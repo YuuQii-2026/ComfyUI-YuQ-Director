@@ -1,0 +1,183 @@
+import copy
+import json
+
+import pytest
+
+from theodore_director.schema import DEFAULT_PLAN, SecondSamplingMode
+from theodore_director.video_results import (
+    generation_result_stage,
+    parse_second_pass_request,
+    read_video_result_metadata,
+    video_result_payload,
+    write_video_result_metadata,
+)
+
+
+def make_plan():
+    plan = copy.deepcopy(DEFAULT_PLAN)
+    plan["project"] = {"id": "demo", "name": "Demo", "runId": "run_001"}
+    plan["shots"] = [
+        {"id": "shot_001", "title": "One", "prompt": "one", "durationSeconds": 5, "enabled": True},
+        {"id": "shot_002", "title": "Two", "prompt": "two", "durationSeconds": 5, "enabled": False},
+    ]
+    return plan
+
+
+@pytest.mark.parametrize("mode", list(SecondSamplingMode))
+def test_simplified_first_pass_accepts_legacy_processing_options(tmp_path, mode):
+    plan = make_plan()
+    plan["shots"][0]["secondSamplingMode"] = mode.value
+    video = create_video(tmp_path)
+    stage, processing_mode = generation_result_stage(mode, first_pass_only=True)
+    write_video_result_metadata(video, stage=stage, processing_mode=processing_mode, shot_id="shot_001", plan_hash="hash")
+    assert read_video_result_metadata(video).stage == "first_pass"
+    assert read_video_result_metadata(video).processing_mode == "off"
+    assert parse_second_pass_request(tmp_path, request(plan, video, tmp_path)).source_path == video
+
+
+@pytest.mark.parametrize("mode,stage", [
+    (SecondSamplingMode.OFF, "first_pass"),
+    (SecondSamplingMode.SUPER_RESOLUTION_ONLY, "upscaled"),
+    (SecondSamplingMode.SUPER_RESOLUTION_SECOND_PASS, "second_pass"),
+    (SecondSamplingMode.LATENT_UPSCALE_SECOND_PASS, "second_pass"),
+])
+def test_legacy_graph_result_stages_are_preserved(mode, stage):
+    assert generation_result_stage(mode) == (stage, mode.value)
+
+
+def create_video(root, shot_id="shot_001", name="00001"):
+    path = root / "TheodoreDirector" / "Demo_run_001" / f"{shot_id}_video_{name}_.mp4"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(b"video")
+    return path
+
+
+def request(plan, video, root, shot_id="shot_001", processing_mode="super_resolution_second_pass"):
+    return {
+        "plan": plan,
+        "shotId": shot_id,
+        "sourcePath": video.relative_to(root).as_posix(),
+        "requestId": "request-1",
+        "processingMode": processing_mode,
+    }
+
+
+def test_video_result_metadata_round_trips(tmp_path):
+    video = create_video(tmp_path)
+    stored = write_video_result_metadata(
+        video,
+        stage="first_pass",
+        shot_id="shot_001",
+        plan_hash="hash",
+    )
+
+    assert read_video_result_metadata(video) == stored
+    assert video_result_payload(tmp_path, video)["stage"] == "first_pass"
+    assert video_result_payload(tmp_path, create_video(tmp_path, name="00002"))["stage"] == "legacy_unknown"
+
+
+def test_second_pass_request_accepts_first_pass_and_disabled_shot(tmp_path):
+    plan = make_plan()
+    first = create_video(tmp_path)
+    disabled = create_video(tmp_path, shot_id="shot_002")
+    write_video_result_metadata(first, stage="first_pass", shot_id="shot_001", plan_hash="hash")
+
+    parsed = parse_second_pass_request(tmp_path, request(plan, first, tmp_path))
+    parsed_disabled = parse_second_pass_request(tmp_path, request(plan, disabled, tmp_path, "shot_002"))
+
+    assert parsed.shot.shot.id == "shot_001"
+    assert parsed.shot.latent_relay is False
+    assert parsed.output_prefix.endswith("/shot_001_video_2nd_sr")
+    assert parsed.processing_mode == "super_resolution_second_pass"
+    assert parsed_disabled.shot.shot.enabled is False
+
+
+def test_second_pass_request_allows_only_upscale_for_known_second_pass(tmp_path):
+    plan = make_plan()
+    video = create_video(tmp_path)
+    write_video_result_metadata(
+        video,
+        stage="second_pass",
+        shot_id="shot_001",
+        plan_hash="hash",
+        processing_mode="latent_upscale_second_pass",
+    )
+
+    with pytest.raises(ValueError, match="只能继续执行只超分"):
+        parse_second_pass_request(tmp_path, request(plan, video, tmp_path))
+    with pytest.raises(ValueError, match="只能继续执行只超分"):
+        parse_second_pass_request(
+            tmp_path,
+            request(plan, video, tmp_path, processing_mode="latent_upscale_second_pass"),
+        )
+
+    parsed = parse_second_pass_request(
+        tmp_path,
+        request(plan, video, tmp_path, processing_mode="super_resolution_only"),
+    )
+    assert parsed.output_prefix.endswith("/shot_001_video_upscaled")
+
+
+def test_second_pass_request_treats_legacy_v72_second_pass_as_upscale_only(tmp_path):
+    plan = make_plan()
+    video = create_video(tmp_path)
+    write_video_result_metadata(video, stage="second_pass", shot_id="shot_001", plan_hash="hash")
+
+    metadata = read_video_result_metadata(video)
+    assert metadata is not None
+    assert metadata.processing_mode == "super_resolution_second_pass"
+    parsed = parse_second_pass_request(
+        tmp_path,
+        request(plan, video, tmp_path, processing_mode="super_resolution_only"),
+    )
+    assert parsed.processing_mode == "super_resolution_only"
+
+
+def test_second_pass_request_rejects_upscaled_result_for_every_mode(tmp_path):
+    plan = make_plan()
+    video = create_video(tmp_path)
+    write_video_result_metadata(
+        video,
+        stage="upscaled",
+        shot_id="shot_001",
+        plan_hash="hash",
+        processing_mode="super_resolution_only",
+    )
+
+    for mode in ("super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"):
+        with pytest.raises(ValueError, match="只超分结果不能再次处理"):
+            parse_second_pass_request(tmp_path, request(plan, video, tmp_path, processing_mode=mode))
+
+
+@pytest.mark.parametrize(
+    ("mode", "suffix"),
+    [
+        ("super_resolution_second_pass", "2nd_sr"),
+        ("latent_upscale_second_pass", "2nd_latent"),
+        ("super_resolution_only", "upscaled"),
+    ],
+)
+def test_postprocess_modes_use_distinct_output_prefixes(tmp_path, mode, suffix):
+    plan = make_plan()
+    video = create_video(tmp_path)
+    parsed = parse_second_pass_request(tmp_path, request(plan, video, tmp_path, processing_mode=mode))
+    assert parsed.output_prefix.endswith(f"/shot_001_video_{suffix}")
+
+
+def test_postprocess_rejects_off_mode(tmp_path):
+    plan = make_plan()
+    video = create_video(tmp_path)
+    with pytest.raises(ValueError, match="无效处理模式"):
+        parse_second_pass_request(tmp_path, request(plan, video, tmp_path, processing_mode="off"))
+
+
+def test_second_pass_request_rejects_cross_shot_and_traversal(tmp_path):
+    plan = make_plan()
+    video = create_video(tmp_path, shot_id="shot_002")
+    with pytest.raises(ValueError, match="不属于镜头"):
+        parse_second_pass_request(tmp_path, request(plan, video, tmp_path, "shot_001"))
+
+    invalid = request(plan, video, tmp_path, "shot_002")
+    invalid["sourcePath"] = "../outside.mp4"
+    with pytest.raises(ValueError, match="output 目录之外"):
+        parse_second_pass_request(tmp_path, json.dumps(invalid, ensure_ascii=False))

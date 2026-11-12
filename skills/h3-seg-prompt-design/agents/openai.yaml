@@ -1,0 +1,7 @@
+interface:
+  display_name: "YuQ导播台 H3 分段短剧提示词"
+  short_description: "以因果与信息推进分镜，连续镜头主动接力，按自然动作定时长"
+  default_prompt: "Use $h3-seg-prompt-design to design or revise an H3 short drama: build causal scenes and motivated shots before dividing generation segments, enable latent relay for continuous takes, avoid decorative pushes/pulls/zooms, budget natural action and speech, keep all frames free of text, and export a shared series .assets.json library plus per-episode .episode.json files for a complete project."
+
+policy:
+  allow_implicit_invocation: true

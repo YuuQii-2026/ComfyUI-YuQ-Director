@@ -1,0 +1,196 @@
+"""稳定、安全的输出路径生成。"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from pathlib import Path
+import re
+
+from .schema import Plan, Shot
+
+_UNSAFE = re.compile(r"[^\w.-]+", re.UNICODE)
+VIDEO_EXTENSIONS = (".mp4", ".webm", ".mov", ".mkv")
+
+
+def slug(value: str, fallback: str) -> str:
+    cleaned = _UNSAFE.sub("_", value.strip()).strip("._")
+    return cleaned[:80] or fallback
+
+
+@dataclass(frozen=True)
+class OutputPaths:
+    run_prefix: str
+    video_prefix: str
+    latent_prefix: str
+    latent_save_prefix: str
+    tail_prefix: str
+    manifest_path: str
+    shot_result_path: str
+
+
+def build_output_paths_from_values(project_name: str, run_id_value: str, shot_id: str, active_index: int) -> OutputPaths:
+    """用界面可提供的最小字段计算路径，保证预览查询与执行节点完全同源。"""
+    if active_index < 0:
+        raise ValueError("active_index 不得小于 0")
+    project = slug(project_name, "project")
+    run_id = slug(run_id_value, "run")
+    shot_name = slug(shot_id, f"shot_{active_index + 1:03d}")
+    # 项目名与 Run ID 合并成一层运行目录；只有需要集中回读的 latent 和
+    # 尾帧各自使用一层专用目录，不再按分镜继续创建更深目录。
+    base = f"TheodoreDirector/{project}_{run_id}"
+    # 分镜文件使用稳定 shot ID，不再绑定会随启用状态变化的 active_index。
+    # active_index 仍由 Impact 用于执行顺序、seed、首尾和 latent 接力。
+    stem = shot_name
+    return OutputPaths(
+        run_prefix=base,
+        video_prefix=f"{base}/{stem}_video",
+        latent_prefix=f"{base}/latent_context",
+        latent_save_prefix=f"{base}/latent_context/clip",
+        tail_prefix=f"{base}/tail_frames/{stem}_tail",
+        manifest_path=f"{base}/manifest.json",
+        # 每个镜头的事务结果集中存放，避免与成片文件混在运行目录根层。
+        shot_result_path=f"{base}/shot_results/{stem}_result.json",
+    )
+
+
+def build_output_paths(plan: Plan, shot: Shot, active_index: int) -> OutputPaths:
+    return build_output_paths_from_values(plan.project_name, plan.run_id, shot.id, active_index)
+
+
+def shot_result_candidates(root: Path, paths: OutputPaths) -> list[Path]:
+    """按稳定路径优先返回结果文件，并兼容旧数字前缀及旧根层文件。"""
+    output_root = root.resolve()
+    current = (output_root / paths.shot_result_path).resolve(strict=False)
+    legacy = (output_root / paths.run_prefix / current.name).resolve(strict=False)
+    candidates = [current, legacy]
+    # 旧版文件名形如 003_shot_004_result.json。禁用前序镜头后 active index
+    # 会变化，因此必须按稳定 shot ID 收集所有历史数字前缀，而不是只猜当前索引。
+    legacy_name = re.compile(rf"^\d+_{re.escape(current.name)}$", re.IGNORECASE)
+    for directory in (current.parent, legacy.parent):
+        if not directory.is_dir():
+            continue
+        candidates.extend(
+            candidate.resolve()
+            for candidate in directory.iterdir()
+            if candidate.is_file() and legacy_name.match(candidate.name)
+        )
+    unique_candidates: list[Path] = []
+    for candidate in candidates:
+        try:
+            candidate.relative_to(output_root)
+        except ValueError as error:
+            raise ValueError(f"拒绝读取 ComfyUI output 目录之外的结果文件: {candidate}") from error
+        if candidate not in unique_candidates:
+            unique_candidates.append(candidate)
+    return unique_candidates
+
+
+def find_generated_video(
+    root: Path,
+    project_name: str,
+    run_id: str,
+    shot_id: str,
+    active_index: int,
+) -> Path | None:
+    """在预期分镜前缀下查找最新视频；找不到时返回 None。"""
+    videos = find_generated_videos(root, project_name, run_id, shot_id, active_index)
+    return videos[0] if videos else None
+
+
+def find_generated_videos(
+    root: Path,
+    project_name: str,
+    run_id: str,
+    shot_id: str,
+    active_index: int,
+) -> list[Path]:
+    """按稳定 shot ID 返回新旧全部生成视频，并按修改时间从新到旧排列。"""
+    # active_index 为旧 API 保留，但不再参与结果定位；这样禁用或移动镜头不会隐藏历史视频。
+    _ = active_index
+    project = slug(project_name, "project")
+    run_id_value = slug(run_id, "run")
+    shot_name = slug(shot_id, "shot")
+    output_root = root.resolve()
+    expected = (output_root / f"TheodoreDirector/{project}_{run_id_value}/{shot_name}_video").resolve(strict=False)
+    try:
+        expected.relative_to(output_root)
+    except ValueError as error:
+        raise ValueError(f"拒绝读取 ComfyUI output 目录之外的文件: {expected}") from error
+    if not expected.parent.is_dir():
+        return []
+    matches_with_stats = []
+    stable_name = re.compile(rf"^{re.escape(expected.name)}_", re.IGNORECASE)
+    legacy_name = re.compile(rf"^\d+_{re.escape(expected.name)}_", re.IGNORECASE)
+    for path in expected.parent.iterdir():
+        # 同时接受新版 <shot-id>_video_* 与旧版 <active-index>_<shot-id>_video_*。
+        if not stable_name.match(path.name) and not legacy_name.match(path.name):
+            continue
+        if not path.is_file() or path.suffix.lower() not in VIDEO_EXTENSIONS:
+            continue
+        # 排序阶段只 stat 一次，避免比较函数为大量历史结果重复访问磁盘。
+        stat = path.stat()
+        matches_with_stats.append((stat.st_mtime_ns, path.resolve()))
+    return [
+        path
+        for _modified, path in sorted(
+            matches_with_stats,
+            key=lambda item: item[0],
+            reverse=True,
+        )
+    ]
+
+
+def resolve_output_file(
+    root: Path,
+    value: str,
+    extensions: tuple[str, ...] = (),
+    *,
+    expected_prefix: str = "",
+) -> Path:
+    """把保存节点返回的绝对路径、相对路径或纯文件名解析为真实输出文件。"""
+    output_root = root.resolve()
+    expected = output_root / expected_prefix if expected_prefix else None
+    raw = Path((value or "").strip().strip('"').strip("'")) if value else None
+    candidates: list[Path] = []
+
+    if raw is not None:
+        candidates.append(raw if raw.is_absolute() else output_root / raw)
+        # SaveImageKJ 只返回文件名；此时必须以导播台给它的保存目录为准。
+        if expected is not None and raw.parent == Path("."):
+            candidates.append(expected.parent / raw.name)
+    if expected is not None:
+        candidates.append(expected)
+
+    checked: list[Path] = []
+    for candidate in candidates:
+        resolved = candidate.resolve(strict=False)
+        try:
+            resolved.relative_to(output_root)
+        except ValueError as error:
+            raise ValueError(f"拒绝读取 ComfyUI output 目录之外的文件: {resolved}") from error
+        if resolved not in checked:
+            checked.append(resolved)
+
+    for candidate in checked:
+        if candidate.is_file() and (not extensions or candidate.suffix.lower() in extensions):
+            return candidate.resolve()
+
+    for candidate in checked:
+        parent = candidate.parent
+        if not parent.is_dir():
+            continue
+        prefix = candidate.name
+        matches = sorted(
+            (
+                path
+                for path in parent.glob(f"{prefix}*")
+                if path.is_file() and (not extensions or path.suffix.lower() in extensions)
+            ),
+            key=lambda path: path.stat().st_mtime_ns,
+            reverse=True,
+        )
+        if matches:
+            return matches[0].resolve()
+
+    expected_text = expected.resolve(strict=False) if expected is not None else ""
+    raise FileNotFoundError(f"找不到已保存输出: {value or expected_text}")

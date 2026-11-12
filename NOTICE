@@ -1,0 +1,11 @@
+ComfyUI Theodore Director
+Copyright 2026 northern-penguin
+
+This product includes workflow templates that interoperate with ComfyUI and
+separately installed third-party custom nodes. Those projects are not bundled
+and remain subject to their respective licenses.
+
+YuQ 导播台 is a modified edition of ComfyUI Theodore Director.
+Source: https://github.com/northern-penguin/ComfyUI_Theodore_Director
+Modifications include the director interface, workflow, settings integration,
+result handling, documentation, and the accompanying H3 prompt skill.

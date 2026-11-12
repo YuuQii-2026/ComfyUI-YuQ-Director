@@ -1,0 +1,316 @@
+"""Theodore Director 视频后处理的安全路径与 FFmpeg 参数。"""
+
+from __future__ import annotations
+
+import os
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+from typing import Any, Callable
+
+from send2trash import send2trash
+
+from .paths import VIDEO_EXTENSIONS, build_output_paths_from_values, find_generated_videos
+from .video_results import metadata_path
+
+_MERGED_VIDEO = re.compile(r"^merged_video_(\d+)_?\.mp4$", re.IGNORECASE)
+
+
+def run_directory(root: Path, project_name: str, run_id: str) -> Path:
+    """返回受 output 根目录约束的当前运行目录。"""
+    output_root = root.resolve()
+    paths = build_output_paths_from_values(project_name, run_id, "merged", 0)
+    directory = (output_root / paths.run_prefix).resolve(strict=False)
+    try:
+        directory.relative_to(output_root)
+    except ValueError as error:
+        raise ValueError(f"拒绝访问 ComfyUI output 目录之外的文件: {directory}") from error
+    return directory
+
+
+def open_run_directory(root: Path, project_name: str, run_id: str) -> Path:
+    """创建并使用当前操作系统的文件管理器打开受约束的运行目录。"""
+    directory = run_directory(root, project_name, run_id)
+    directory.mkdir(parents=True, exist_ok=True)
+
+    if os.name == "nt":
+        # startfile 直接交给 Windows Shell，不拼接命令字符串，路径中的空格也不会改变参数。
+        startfile = getattr(os, "startfile", None)
+        if startfile is None:
+            raise RuntimeError("当前 Python 环境不支持打开 Windows 文件夹")
+        startfile(str(directory))
+    elif sys.platform == "darwin":
+        subprocess.Popen(
+            ["open", str(directory)],
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+        )
+    else:
+        opener = shutil.which("xdg-open")
+        if not opener:
+            raise RuntimeError("找不到 xdg-open，无法打开结果文件夹")
+        subprocess.Popen(
+            [opener, str(directory)],
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+        )
+    return directory
+
+
+def find_merged_videos(root: Path, project_name: str, run_id: str) -> list[Path]:
+    """按修改时间从新到旧返回当前运行的全部合并结果。"""
+    directory = run_directory(root, project_name, run_id)
+    if not directory.is_dir():
+        return []
+    matches: list[tuple[int, Path]] = []
+    for path in directory.glob("merged_video_*.mp4"):
+        if path.is_file() and _MERGED_VIDEO.match(path.name):
+            stat = path.stat()
+            matches.append((stat.st_mtime_ns, path.resolve()))
+    return [path for _modified, path in sorted(matches, key=lambda item: item[0], reverse=True)]
+
+
+def allocate_merged_video(root: Path, project_name: str, run_id: str) -> Path:
+    """分配不覆盖历史结果的下一个合并视频文件名。"""
+    directory = run_directory(root, project_name, run_id)
+    directory.mkdir(parents=True, exist_ok=True)
+    largest = 0
+    for path in directory.glob("merged_video_*.mp4"):
+        match = _MERGED_VIDEO.match(path.name)
+        if match:
+            largest = max(largest, int(match.group(1)))
+    return directory / f"merged_video_{largest + 1:05d}_.mp4"
+
+
+def resolve_deletable_video(
+    root: Path,
+    project_name: str,
+    run_id: str,
+    kind: str,
+    requested_path: str,
+    shot_id: str = "",
+) -> tuple[Path, list[Path]]:
+    """把前端选择解析成当前运行目录内、由结果枚举器认可的视频。"""
+    output_root = root.resolve()
+    directory = run_directory(output_root, project_name, run_id)
+    normalized = str(requested_path or "").strip().replace("\\", "/")
+    raw = Path(normalized)
+    if not normalized or raw.is_absolute():
+        raise ValueError("删除请求必须提供 output 目录内的视频相对路径")
+
+    unresolved = output_root / raw
+    # 禁止通过符号链接把回收站操作导向运行目录之外的用户文件。
+    if unresolved.is_symlink():
+        raise ValueError("拒绝删除符号链接视频")
+    prospective = unresolved.resolve(strict=False)
+    try:
+        prospective.relative_to(directory)
+    except ValueError as error:
+        raise ValueError("拒绝删除当前 Project name 与 Run ID 运行目录之外的文件") from error
+    try:
+        candidate = unresolved.resolve(strict=True)
+    except FileNotFoundError as error:
+        raise FileNotFoundError(f"要删除的视频已经不存在: {normalized}") from error
+    try:
+        candidate.relative_to(directory)
+    except ValueError as error:
+        raise ValueError("拒绝删除当前 Project name 与 Run ID 目录之外的文件") from error
+    if not candidate.is_file() or candidate.suffix.lower() not in VIDEO_EXTENSIONS:
+        raise ValueError("删除目标不是受支持的视频文件")
+
+    if kind == "shot":
+        stable_shot_id = str(shot_id or "").strip()
+        if not stable_shot_id:
+            raise ValueError("删除分镜视频时必须提供 shotId")
+        available = find_generated_videos(output_root, project_name, run_id, stable_shot_id, -1)
+    elif kind == "merged":
+        available = find_merged_videos(output_root, project_name, run_id)
+    else:
+        raise ValueError("删除类型必须是 shot 或 merged")
+    if candidate not in available:
+        raise ValueError("选择的文件不属于当前项目的对应视频结果")
+
+    targets = [candidate]
+    sidecar = metadata_path(candidate)
+    if sidecar.exists():
+        if sidecar.is_symlink() or not sidecar.is_file():
+            raise ValueError("视频伴随元数据不是可安全删除的普通文件")
+        resolved_sidecar = sidecar.resolve(strict=True)
+        try:
+            resolved_sidecar.relative_to(directory)
+        except ValueError as error:
+            raise ValueError("拒绝删除当前运行目录之外的伴随元数据") from error
+        targets.append(resolved_sidecar)
+    return candidate, targets
+
+
+def trash_video_result(
+    root: Path,
+    project_name: str,
+    run_id: str,
+    kind: str,
+    requested_path: str,
+    shot_id: str = "",
+    *,
+    trash: Callable[[list[str]], None] | None = None,
+) -> tuple[Path, list[Path]]:
+    """将一个已验证视频及其伴随元数据移入系统回收站。"""
+    candidate, targets = resolve_deletable_video(
+        root,
+        project_name,
+        run_id,
+        kind,
+        requested_path,
+        shot_id,
+    )
+    # 一次提交整组路径；失败时绝不回退为不可恢复的 unlink。
+    (trash or send2trash)([str(path) for path in targets])
+    return candidate, targets
+
+
+def trash_run_directory(
+    root: Path,
+    project_name: str,
+    run_id: str,
+    *,
+    trash: Callable[[str], None] | None = None,
+) -> Path:
+    """将当前 Project name + Run ID 的完整生成目录移入系统回收站。"""
+    if not str(project_name or "").strip():
+        raise ValueError("清空项目前必须填写 Project name")
+    if not str(run_id or "").strip():
+        raise ValueError("清空项目前必须填写 Run ID")
+
+    output_root = root.resolve()
+    paths = build_output_paths_from_values(project_name, run_id, "clear", 0)
+    unresolved = output_root / paths.run_prefix
+    lexical_director_root = output_root / "TheodoreDirector"
+    # Windows junction 与符号链接都可能把看似合法的项目名导向另一份用户数据。
+    is_link_like = lambda path: path.is_symlink() or bool(getattr(path, "is_junction", lambda: False)())
+    if is_link_like(lexical_director_root) or is_link_like(unresolved):
+        raise ValueError("拒绝清空符号链接或目录联接指向的运行目录")
+    directory = run_directory(output_root, project_name, run_id)
+    # 再次约束目录层级，绝不允许把 output 或 TheodoreDirector 根目录整体送入回收站。
+    director_root = (output_root / "TheodoreDirector").resolve(strict=False)
+    if directory.parent != director_root or directory in {output_root, director_root}:
+        raise ValueError("拒绝清空非当前运行目录")
+    if not directory.exists():
+        raise FileNotFoundError(f"当前项目运行目录不存在: {directory.name}")
+    if directory.is_symlink() or not directory.is_dir():
+        raise ValueError("当前项目运行目录不是可安全清空的普通文件夹")
+
+    # 整个运行目录一次移入回收站，失败时绝不回退为递归永久删除。
+    (trash or send2trash)(str(directory))
+    return directory
+
+
+def validate_merge_selections(
+    root: Path,
+    project_name: str,
+    run_id: str,
+    selections: list[dict[str, Any]],
+) -> list[Path]:
+    """确认每个选择都来自对应分镜的实际生成结果，并保留用户顺序。"""
+    if not isinstance(selections, list):
+        raise ValueError("selections 必须是列表")
+    if not selections:
+        raise ValueError("至少选择一个镜头才能合并")
+    if len(selections) > 1_000:
+        raise ValueError("单次最多合并 1000 个镜头")
+
+    output_root = root.resolve()
+    validated: list[Path] = []
+    seen_indexes: set[int] = set()
+    for position, item in enumerate(selections, start=1):
+        if not isinstance(item, dict):
+            raise ValueError(f"第 {position} 项必须是对象")
+        try:
+            active_index = int(item.get("activeIndex", -1))
+        except (TypeError, ValueError) as error:
+            raise ValueError(f"第 {position} 项的 activeIndex 无效") from error
+        shot_id = str(item.get("shotId", "")).strip()
+        requested = str(item.get("path", "")).strip().replace("\\", "/")
+        if active_index < 0 or active_index > 999_999 or not shot_id or not requested:
+            raise ValueError(f"第 {position} 项缺少有效的镜头或结果信息")
+        if active_index in seen_indexes:
+            raise ValueError(f"启用镜头序号 {active_index + 1} 被重复选择")
+        seen_indexes.add(active_index)
+
+        candidate = (output_root / requested).resolve(strict=False)
+        try:
+            candidate.relative_to(output_root)
+        except ValueError as error:
+            raise ValueError(f"拒绝读取 ComfyUI output 目录之外的文件: {candidate}") from error
+        available = find_generated_videos(output_root, project_name, run_id, shot_id, active_index)
+        if candidate not in available:
+            raise ValueError(f"镜头 {shot_id} 选择的文件不属于其生成结果: {requested}")
+        if candidate.suffix.lower() not in VIDEO_EXTENSIONS or candidate.stat().st_size <= 0:
+            raise ValueError(f"镜头 {shot_id} 的视频为空或格式不受支持: {requested}")
+        validated.append(candidate)
+    return validated
+
+
+def find_ffmpeg_executable() -> str:
+    """优先使用用户配置和 PATH，最后兼容 imageio-ffmpeg 的内置程序。"""
+    configured = os.environ.get("THEODORE_DIRECTOR_FFMPEG", "").strip()
+    if configured:
+        path = Path(configured).expanduser()
+        if path.is_file():
+            return str(path.resolve())
+        raise FileNotFoundError(f"THEODORE_DIRECTOR_FFMPEG 指向的文件不存在: {configured}")
+
+    discovered = shutil.which("ffmpeg")
+    if discovered:
+        return discovered
+    try:
+        import imageio_ffmpeg  # type: ignore[import-not-found]
+
+        bundled = imageio_ffmpeg.get_ffmpeg_exe()
+        if bundled and Path(bundled).is_file():
+            return bundled
+    except (ImportError, OSError):
+        pass
+    raise FileNotFoundError(
+        "找不到 FFmpeg。请将 ffmpeg 加入 PATH，或设置 THEODORE_DIRECTOR_FFMPEG 为 ffmpeg 可执行文件路径。"
+    )
+
+
+def ffmpeg_concat_line(path: Path) -> str:
+    """生成 concat demuxer 的安全单行文件声明。"""
+    # FFmpeg concat 文件使用类似 shell 的单引号规则；Windows 下正斜杠更稳定。
+    normalized = path.resolve().as_posix()
+    if "\n" in normalized or "\r" in normalized:
+        raise ValueError("视频路径不能包含换行符")
+    escaped = normalized.replace("'", "'\\''")
+    return f"file '{escaped}'\n"
+
+
+def build_ffmpeg_concat_args(ffmpeg: str, list_path: Path, output_path: Path) -> list[str]:
+    """构建不经过 shell 的无损拼接参数。"""
+    return [
+        ffmpeg,
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-f",
+        "concat",
+        "-safe",
+        "0",
+        "-i",
+        str(list_path),
+        "-map",
+        "0:v:0",
+        "-map",
+        "0:a?",
+        "-c",
+        "copy",
+        "-movflags",
+        "+faststart",
+        str(output_path),
+    ]
