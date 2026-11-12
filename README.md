@@ -30,7 +30,7 @@ python -m pip install -r requirements.txt
 
 ## 工作流
 
-在 ComfyUI 中导入 [V7.3导播台.json](workflows/V7.3导播台.json)，然后打开导播台。发布版包含空白项目；在网页中导入素材和分镜计划，或自行新建镜头。`image-generation.json` 是插件内置生图功能的配套工作流。
+在 ComfyUI 中导入 [YuQ导播台.json](workflows/YuQ导播台.json)，然后打开导播台。发布版包含空白项目；在网页中导入素材和分镜计划，或自行新建镜头。`image-generation.json` 是插件内置生图功能的配套工作流。
 
 导播台支持素材库、镜头编排、逐段生成与审片、独立后处理及工作流参数配置。模型文件和第三方节点需另行安装，工作流中的模型名按本机实际文件调整。
 

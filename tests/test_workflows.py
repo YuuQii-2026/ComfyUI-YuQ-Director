@@ -5,7 +5,7 @@ from theodore_director.schema import load_plan
 
 
 COPYRIGHT_NOTICE = "### 本工作流由抖音博主Theodore（抖音号:q1503623946）以及 b站up主 南极来の企鹅制作。"
-WORKFLOW_NAME = "V7.3导播台.json"
+WORKFLOW_NAME = "YuQ导播台.json"
 REQUIRED_DIRECTOR_NODES = {
     "TheodoreDirector_Project",
     "TheodoreDirector_SelectShot",

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { findSecondPassSchedulers, patchFirstPassPrompt, patchSecondPassDenoise, patchSecondPassPrompt, type ApiPrompt, type SecondPassPatch } from "./comfy-prompt";
-import v73 from "../../workflows/V7.3导播台.json?raw";
+import v73 from "../../workflows/YuQ导播台.json?raw";
 
 function samplePrompt(): ApiPrompt {
   return {
