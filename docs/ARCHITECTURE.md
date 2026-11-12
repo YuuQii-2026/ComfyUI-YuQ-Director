@@ -39,7 +39,7 @@ v3 为每个分镜增加 `latentRelay`。`SelectShot` 根据 Impact `queue_index
 
 v4 增加布尔 `secondSampling`。v5 将其升级为可扩展枚举 `secondSamplingMode`：`off`、`super_resolution_second_pass`、`latent_upscale_second_pass`、`super_resolution_only`。旧 `true` 无损迁移为 V7.2 原有的超分二采，旧 `false` 迁移为关闭。`SelectShot` 输出模式字符串、三个互斥分支 BOOL，并保留旧 `second_sampling` BOOL 端口；后者只在两种真正重新采样的模式中为真。
 
-V7.3 使用嵌套 Impact 条件节点选择一采画面、RTX 只超分、RTX 超分二采或方案 C Latent 放大二采。未选中的输入分支不会求值，因此关闭和只超分不会加载二采 LoRA，Latent 模式不会执行 RTX，关闭模式只运行一采。四路合流后共用 Motion Context Trim、保存视频/尾帧和结果提交；第一采 AV latent 始终独立落盘，高清处理方式不会改变跨段连续性来源。
+YuQ 导播台工作流使用嵌套 Impact 条件节点选择一采画面、RTX 只超分、RTX 超分二采或方案 C Latent 放大二采。未选中的输入分支不会求值，因此关闭和只超分不会加载二采 LoRA，Latent 模式不会执行 RTX，关闭模式只运行一采。四路合流后共用 Motion Context Trim、保存视频/尾帧和结果提交；第一采 AV latent 始终独立落盘，高清处理方式不会改变跨段连续性来源。
 
 计划对“会影响生成或结果归属”的规范 JSON 计算 plan hash，隐藏的 `project.id` 不参与哈希。每个分镜另有 shot hash，包含该分镜、处理模式、适用素材、全局前后缀和连续性设置。续跑判断同时验证 plan hash、shot hash、结果状态以及视频、尾帧、latent 文件存在性。由于协议版本也属于生成语义，旧计划首次升级后会有一次 plan hash 变化，旧结果文件不会被删除。
 

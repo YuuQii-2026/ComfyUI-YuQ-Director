@@ -1,6 +1,6 @@
 # YuQ 导播台
 
-面向 MiniMax H3 短剧制作的 ComfyUI 导播台，包含网页插件、V7.3 工作流和分镜提示词 Skill。
+面向 MiniMax H3 短剧制作的 ComfyUI 导播台，包含网页插件、YuQ 工作流和分镜提示词 Skill。
 
 交流 QQ 群：**1072830954**
 

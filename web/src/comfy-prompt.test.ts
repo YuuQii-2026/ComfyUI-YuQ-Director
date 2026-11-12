@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { findSecondPassSchedulers, patchFirstPassPrompt, patchSecondPassDenoise, patchSecondPassPrompt, type ApiPrompt, type SecondPassPatch } from "./comfy-prompt";
-import v73 from "../../workflows/YuQ导播台.json?raw";
+import yuqWorkflow from "../../workflows/YuQ导播台.json?raw";
 
 function samplePrompt(): ApiPrompt {
   return {
@@ -75,7 +75,7 @@ function workflowPrompt(json: string): ApiPrompt {
   }]));
 }
 
-describe.each([["V7.3", v73]])("%s 二采任务隔离", (_version, json) => {
+describe.each([["YuQ 导播台", yuqWorkflow]])("%s 二采任务隔离", (_version, json) => {
   it.each(["super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"] as const)("%s 只保留所选处理支流和唯一保存出口", (processingMode) => {
     const source = workflowPrompt(json);
     const before = JSON.stringify(source);
@@ -109,17 +109,17 @@ describe.each([["V7.3", v73]])("%s 二采任务隔离", (_version, json) => {
 describe("二采错误拓扑", () => {
   const patch: SecondPassPatch = { sourceId: "402", targetId: "414", requestJson: "{}", processingMode: "super_resolution_second_pass" };
   it("依赖丢失时中止，不提交残缺任务", () => {
-    const source = workflowPrompt(v73);
+    const source = workflowPrompt(yuqWorkflow);
     delete source["404"];
     expect(() => patchSecondPassPrompt(source, patch)).toThrow("依赖节点 404 不存在");
   });
   it("二采误连主循环时中止", () => {
-    const source = workflowPrompt(v73);
+    const source = workflowPrompt(yuqWorkflow);
     source["414"].inputs.video = ["400", 0];
     expect(() => patchSecondPassPrompt(source, patch)).toThrow("主循环节点");
   });
   it("保存端没有源依赖时中止", () => {
-    const source = workflowPrompt(v73);
+    const source = workflowPrompt(yuqWorkflow);
     source["414"].inputs = {};
     expect(() => patchSecondPassPrompt(source, patch)).toThrow("未连接到所选源节点");
   });
