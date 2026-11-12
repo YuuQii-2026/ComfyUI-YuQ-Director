@@ -2,6 +2,8 @@
 
 面向 MiniMax H3 短剧制作的 ComfyUI 导播台，包含网页插件、V7.3 工作流和分镜提示词 Skill。
 
+交流 QQ 群：**1072830954**
+
 ## 项目来源与许可
 
 本项目改编自 [northern-penguin/ComfyUI_Theodore_Director](https://github.com/northern-penguin/ComfyUI_Theodore_Director)，感谢原作者及贡献者。原工作流由抖音博主 Theodore（抖音号 q1503623946）及 B 站 UP 主南极来の企鹅制作。YuQ 版本对导播台界面、工作流、网页配置、结果处理和文档做了修改，并加入 H3 分镜 Skill。
