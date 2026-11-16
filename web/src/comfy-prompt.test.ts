@@ -5,6 +5,7 @@ import yuqWorkflow from "../../workflows/YuQ导播台.json?raw";
 describe("latent 中间阶段诊断", () => {
   it("records both latent boundaries without cycles and retains only the selected branch", () => {
     const graph = workflowPrompt(yuqWorkflow);
+    graph["431"].inputs.precision = "fp16";
     Object.assign(graph["402"].inputs, { diagnose_latent: true, latent_full_sequence: true });
     const output = patchSecondPassPrompt(graph, { sourceId: "402", targetId: "414", requestJson: '{"relayVersion":1}', processingMode: "latent_upscale_second_pass" });
     expect(output["431"].inputs.enable_temporal_chunking).toBe(false);
@@ -155,7 +156,7 @@ describe("二采接力提交", () => {
     expect(output["413"].inputs.audio).toEqual(["402", 14]);
     expect(count("SamplerCustomAdvanced")).toBe(1);
   });
-  it("旧画布在局部任务中接入接力，保留画布对象", () => {
+  it.each(["super_resolution_second_pass", "latent_upscale_second_pass"] as const)("旧画布 %s 在局部任务中接入接力，保留画布对象", (processingMode) => {
     const source = workflowPrompt(yuqWorkflow);
     source["408"].inputs.conditioning = ["415", 0];
     source["438"].inputs.conditioning = ["432", 0];
@@ -164,17 +165,32 @@ describe("二采接力提交", () => {
     source["415"].inputs.length = ["403", 1];
     source["413"].inputs.audio = ["402", 4];
     source["405"].inputs.pixels = ["404", 0];
+    source["411"].inputs.latent_image = ["407", 0];
+    source["439"].inputs.latent_image = ["437", 0];
+    source["412"].inputs.samples = ["411", 0];
+    source["440"].inputs.samples = ["439", 0];
     delete source["624"];
-    for (const id of ["620", "621", "622", "623"]) delete source[id];
+    for (const id of ["620", "621", "622", "623", "653", "654"]) delete source[id];
     const before = JSON.stringify(source);
-    const output = patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode: "super_resolution_second_pass",
+    const output = patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode,
       requestJson: JSON.stringify({ relayVersion: 1 }), denoise: 0.25 });
-    expect(output.yuq_relay_411.inputs.latent).toEqual(["407", 0]);
-    expect(output["405"].inputs.pixels).toEqual(["yuq_align_405", 0]);
-    expect(output.yuq_align_405.inputs.images).toEqual(["404", 0]);
-    expect(output.yuq_finalize_411.inputs.audio_latent).toEqual(["406", 0]);
-    expect(output["441"].inputs.tt_value).toEqual(["yuq_finalize_411", 0]);
-    expect(output.yuq_relay_439).toBeUndefined();
+    const latent = processingMode === "latent_upscale_second_pass";
+    const sampler = latent ? "439" : "411", relay = `yuq_relay_${sampler}`, finalize = `yuq_finalize_${sampler}`;
+    expect(output[relay].inputs.latent).toEqual([latent ? "437" : "407", 0]);
+    expect(output[relay].inputs.audio_latent).toEqual(["406", 0]);
+    expect(output[sampler].inputs.latent_image).toEqual([relay, 1]);
+    expect(output[`yuq_guide_${sampler}`].inputs.conditioning).toEqual([relay, 0]);
+    expect(output[finalize].inputs.audio_latent).toEqual(["406", 0]);
+    expect(output[finalize].inputs.vae).toEqual(["119", 0]);
+    expect(output[latent ? "442" : "441"].inputs.tt_value).toEqual([finalize, 0]);
+    expect(output[latent ? "yuq_relay_411" : "yuq_relay_439"]).toBeUndefined();
+    if (!latent) {
+      expect(output["405"].inputs.pixels).toEqual(["yuq_align_405", 0]);
+      expect(output.yuq_align_405.inputs.images).toEqual(["404", 0]);
+    }
+    for (const node of Object.values(output)) for (const value of Object.values(node.inputs)) {
+      if (Array.isArray(value)) expect(output[String(value[0])]).toBeDefined();
+    }
     expect(JSON.stringify(source)).toBe(before);
   });
 });

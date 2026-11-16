@@ -214,16 +214,18 @@ function connectSecondPassRelay(prompt: ApiPrompt, sourceId: string): void {
     if ([relayId, guideId, finalId].some((key) => prompt[key])) throw new Error("二采接力自动节点 ID 冲突");
     prompt[relayId] = { class_type: "TheodoreDirector_SecondPassRelay", inputs: {
       conditioning: guider.inputs.conditioning, latent: sampler.inputs.latent_image,
-      vae: prompt[vaeId].inputs.vae, request: [sourceId, 2],
+      vae: prompt[vaeId].inputs.vae, request: [sourceId, 2], audio_latent: [audioIds[0], 0],
     } };
     prompt[guideId] = { ...guider, inputs: { ...guider.inputs, conditioning: [relayId, 0] } };
     sampler.inputs.guider = [guideId, 0];
+    sampler.inputs.latent_image = [relayId, 1];
     // 改接现有消费者后才添加 final，避免节点读取自己的输出。
     for (const node of Object.values(prompt)) for (const [name, value] of Object.entries(node.inputs)) {
       if (isLink(value) && String(value[0]) === vaeId && value[1] === 0) node.inputs[name] = [finalId, 0];
     }
     prompt[finalId] = { class_type: "TheodoreDirector_SecondPassFinalize", inputs: {
       images: [vaeId, 0], latent: [id, 0], audio_latent: [audioIds[0], 0], request: [sourceId, 2],
+      vae: prompt[vaeId].inputs.vae,
     } };
   }
 }

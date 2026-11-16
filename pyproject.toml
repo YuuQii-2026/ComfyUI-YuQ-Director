@@ -10,7 +10,7 @@ keywords = ["comfyui", "minimax", "h3", "storyboard", "director"]
 dependencies = ["imageio-ffmpeg>=0.5.1", "Send2Trash>=1.8.3"]
 
 [project.urls]
-Repository = "https://github.com/YuQii608/ComfyUI-YuQ-Director"
+Repository = "https://github.com/YuuQii-2026/ComfyUI-YuQ-Director"
 Upstream = "https://github.com/northern-penguin/ComfyUI_Theodore_Director"
 
 [tool.pytest.ini_options]

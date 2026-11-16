@@ -48,25 +48,25 @@ def test_distributed_workflow_is_structurally_valid():
 def test_yuq_first_pass_and_shared_postprocess_topology():
     data = load_distributed_workflow()
     types = [item["type"] for item in data["nodes"]]
-    # 一采只保留一个采样器，高清处理复用网页的独立后处理链。
-    assert len(data["nodes"]) == 93  # 包含二采画幅对齐。
-    assert types.count("SamplerCustomAdvanced") == 3
-    assert types.count("SelfLiftH3Sampler") == 1
+    # 一采、两条二采及生图各自独立采样；不依赖总节点数或旧版 SelfLift。
+    assert types.count("SamplerCustomAdvanced") == 4
+    assert types.count("TheodoreDirector_FirstPassTarget") == 1
+    assert types.count("TheodoreDirector_FirstPassFinalize") == 1
     assert types.count("RTXVideoSuperResolution") == 1
     assert types.count("MinimaxH3LatentUpscaler3D") == 1
     assert types.count("MiniMaxH3ConditioningUpscale") == 1
-    assert types.count("MiniMaxH3AddNoise") == 2
-    assert types.count("ImpactConditionalBranch") == 4
+    assert types.count("MiniMaxH3AddNoise") == 1
+    assert types.count("ImpactConditionalBranch") == 2
 
     links_by_id = {item[0]: item for item in data["links"]}
     nodes_by_id = {item["id"]: item for item in data["nodes"]}
     # 当前分镜不再直接选择高清分支；高清模式由网页后处理请求提供。
     assert not {115, 202, 314, 329, 397, 399, 328, 271, 272, 321, 394} & nodes_by_id.keys()
 
-    first_sampler = next(item for item in data["nodes"] if item["id"] == 125)
+    first_finalize = next(item for item in data["nodes"] if item["type"] == "TheodoreDirector_FirstPassFinalize")
     latent_saver = next(item for item in data["nodes"] if item["type"] == "MiniMaxH3MotionContextSaveLatent")
     latent_link = links_by_id[latent_saver["inputs"][0]["link"]]
-    assert (latent_link[1], latent_link[2]) == (first_sampler["id"], 0)
+    assert (latent_link[1], latent_link[2]) == (first_finalize["id"], 0)
     trim = nodes_by_id[392]
     image_link = links_by_id[trim["inputs"][0]["link"]]
     assert (image_link[1], image_link[2]) == (122, 0)
@@ -139,8 +139,9 @@ def test_integrated_controls_and_tail_save_dependencies():
     assert origin(136, 'height') == (450, 4)
     assert origin(130, 'fps') == (450, 5)
     assert origin(392, 'fps') == (450, 5)
-    assert origin(389, 'context_length') == (450, 13)
-    assert origin(389, 'audio_context_length') == (450, 14)
+    assert origin(660, 'plan') == (396, 0)
+    assert origin(660, 'shot') == (450, 0)
+    assert origin(392, 'trim_frames') == (660, 3)
     assert origin(451, 'video') == (92, 0)
     assert origin(451, 'images') == (392, 0)
     assert origin(400, 'tail_path') == (451, 0)
@@ -155,8 +156,17 @@ def test_integrated_controls_and_tail_save_dependencies():
     assert origin(438, 'conditioning') == (622, 0)
     assert origin(620, 'latent') == (407, 0)
     assert origin(622, 'latent') == (437, 0)
-    assert origin(621, 'latent') == (411, 0)
-    assert origin(623, 'latent') == (439, 0)
+    assert origin(653, 'samples') == (411, 0)
+    assert origin(654, 'samples') == (439, 0)
+    assert origin(621, 'latent') == (653, 0)
+    assert origin(623, 'latent') == (654, 0)
+    assert origin(411, 'latent_image') == (620, 1)
+    assert origin(439, 'latent_image') == (622, 1)
+    for relay in (620, 622):
+        assert origin(relay, 'audio_latent') == (406, 0)
+    for finalize in (621, 623):
+        assert origin(finalize, 'audio_latent') == (406, 0)
+        assert origin(finalize, 'vae') == (119, 0)
     assert origin(441, 'tt_value') == (621, 0)
     assert origin(442, 'tt_value') == (623, 0)
     saver = next(n for n in data['nodes'] if n['type'] == 'SaveImage')
@@ -169,25 +179,41 @@ def test_integrated_controls_and_tail_save_dependencies():
                 assert nodes[link[1]]['order'] < n['order']
 
 
-def test_selflift_first_pass_uses_director_inputs_and_preserves_relay():
+def test_native_first_pass_protects_av_context_before_decode_and_save():
     data = load_distributed_workflow()
     nodes = {n["id"]: n for n in data["nodes"]}
     links = {link[0]: link for link in data["links"]}
     def origin(node_id, name):
         port = next(p for p in nodes[node_id]["inputs"] if p["name"] == name)
         return tuple(links[port["link"]][1:3])
-    assert nodes[125]["type"] == "SelfLiftH3Sampler"
+    assert nodes[663]["type"] == "SamplerCustomAdvanced"
     assert nodes[123]["type"] == "KSamplerSelect"
     assert nodes[123]["widgets_values"] == ["euler"]
-    assert origin(125, "seed") == (450, 2)
-    assert origin(125, "positive") == (390, 0)
-    assert origin(481, "conditioning") == (390, 0)
-    assert origin(125, "negative") == (481, 0)
-    assert origin(125, "latent_image") == (136, 1)
-    assert origin(125, "vae") == (119, 0)
-    assert origin(125, "sigmas") == (124, 0)
-    assert origin(393, "latent") == (125, 0)
-    assert origin(122, "samples") == (125, 0)
-    assert origin(121, "samples") == (125, 0)
-    assert all(nodes[i]["mode"] == 4 for i in (483, 484, 485, 486, 487))
-    assert nodes[125]["widgets_values"][8] == "h3_upscaler_lms_v0.1.safetensors"
+    assert origin(662, "noise_seed") == (450, 2)
+    assert origin(660, "conditioning") == (136, 0)
+    assert origin(660, "latent") == (136, 1)
+    assert origin(661, "positive") == (660, 0)
+    assert origin(661, "negative") == (481, 0)
+    assert origin(663, "latent_image") == (660, 1)
+    assert origin(663, "sigmas") == (124, 0)
+    assert origin(664, "latent") == (663, 0)
+    assert origin(664, "context") == (660, 2)
+    assert origin(664, "vae") == (119, 0)
+    assert origin(393, "latent") == (664, 0)
+    assert origin(122, "samples") == (664, 0)
+    assert origin(121, "samples") == (664, 0)
+    assert origin(400, "first_pass_context") == (664, 1)
+
+
+def test_continuous_source_postprocess_preserves_full_precision_and_valid_device():
+    data = load_distributed_workflow()
+    source = next(n for n in data["nodes"] if n["type"] == "TheodoreDirector_PostprocessSecondPassSource")
+    upscaler = next(n for n in data["nodes"] if n["type"] == "MinimaxH3LatentUpscaler3D")
+    assert source["widgets_values_named"]["native_continuity"] is True
+    assert source["widgets_values_named"]["latent_full_sequence"] is True
+    assert source["widgets_values_named"]["diagnose_latent"] is False
+    settings = upscaler["widgets_values_named"]
+    assert settings["device"] in ("cuda", "cpu")
+    assert settings["precision"] == "fp32"
+    assert settings["enable_temporal_chunking"] is False
+    assert upscaler["widgets_values"][6:8] == [settings["device"], settings["precision"]]

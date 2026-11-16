@@ -3933,15 +3933,17 @@ function Sa(e, t) {
       conditioning: a.inputs.conditioning,
       latent: s.inputs.latent_image,
       vae: e[p].inputs.vae,
-      request: [t, 2]
-    } }, e[b] = { ...a, inputs: { ...a.inputs, conditioning: [m, 0] } }, s.inputs.guider = [b, 0];
+      request: [t, 2],
+      audio_latent: [r[0], 0]
+    } }, e[b] = { ...a, inputs: { ...a.inputs, conditioning: [m, 0] } }, s.inputs.guider = [b, 0], s.inputs.latent_image = [m, 1];
     for (const c of Object.values(e)) for (const [g, S] of Object.entries(c.inputs))
       je(S) && String(S[0]) === p && S[1] === 0 && (c.inputs[g] = [h, 0]);
     e[h] = { class_type: "TheodoreDirector_SecondPassFinalize", inputs: {
       images: [p, 0],
       latent: [o, 0],
       audio_latent: [r[0], 0],
-      request: [t, 2]
+      request: [t, 2],
+      vae: e[p].inputs.vae
     } };
   }
 }

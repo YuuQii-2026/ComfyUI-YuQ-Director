@@ -61,27 +61,43 @@ describe("接力最终提交兼容", () => {
 });
 
 describe("工作流加载恢复端口类型", () => {
-  it("发布工作流的来源、目标和连线都保存正确类型", () => {
+  function legacyGraph(): { nodes: any[]; links: Array<[number, number, number, number, number, unknown]> } {
+    return {
+      nodes: [
+        { id: 1, type: "TheodoreDirector_Project", widgets_values: ["{\"continuity\":{\"videoContextFrames\":39}}"] },
+        { id: 2, type: "TheodoreDirector_ShotControl", outputs: [{ name: "video_context", type: "COMBO" }] },
+        { id: 3, type: "MiniMaxH3MotionContext", inputs: [{ name: "context_length", type: "COMBO" }] },
+      ],
+      links: [[41, 2, 0, 3, 0, "COMBO"], [42, 1, 0, 2, 0, "COMBO"]],
+    };
+  }
+
+  it("发布工作流使用原生接力，恢复端口类型不会改变连线或计划", () => {
     const graph = JSON.parse(workflowText);
-    const nodes = new Map<number, any>(graph.nodes.map((node: any) => [node.id, node]));
-    const link = graph.links.find((link: any) => nodes.get(link[1])?.outputs?.[link[2]]?.name === "video_context");
-    expect(nodes.get(link[1]).outputs[link[2]].type).toEqual(VIDEO_CONTEXT_OPTIONS);
-    expect(nodes.get(link[3]).inputs[link[4]].type).toEqual(VIDEO_CONTEXT_OPTIONS);
-    expect(link[5]).toEqual(VIDEO_CONTEXT_OPTIONS);
+    const links = JSON.stringify(graph.links);
+    const plan = graph.nodes.find((node: any) => node.type === "TheodoreDirector_Project").widgets_values[0];
+    expect(graph.nodes.some((node: any) => node.type === "TheodoreDirector_FirstPassTarget")).toBe(true);
+    repairVideoContextTypes(graph);
+    expect(JSON.stringify(graph.links)).toBe(links);
+    expect(graph.nodes.find((node: any) => node.type === "TheodoreDirector_Project").widgets_values[0]).toBe(plan);
+    const control = graph.nodes.find((node: any) => node.type === "TheodoreDirector_ShotControl");
+    expect(control.outputs.find((port: any) => port.name === "video_context").type).toEqual(VIDEO_CONTEXT_OPTIONS);
+    const snapshot = JSON.stringify(graph);
+    repairVideoContextTypes(graph);
+    expect(JSON.stringify(graph)).toBe(snapshot);
   });
 
   it("旧工作流保存再加载仍可恢复，配置和连接编号保持原值", () => {
-    const graph = JSON.parse(workflowText);
+    const graph = legacyGraph();
     const source = graph.nodes.find((node: any) => node.type === "TheodoreDirector_ShotControl");
-    source.outputs[13].type = "COMBO";
-    const link = graph.links.find((link: any) => link[1] === source.id && link[2] === 13);
+    const link = graph.links.find((link: any) => link[1] === source.id)!;
     const target = graph.nodes.find((node: any) => node.id === link[3]);
     target.inputs[link[4]].type = "COMBO"; link[5] = "COMBO";
     const plan = graph.nodes.find((node: any) => node.type === "TheodoreDirector_Project").widgets_values[0];
     repairVideoContextTypes(graph);
-    expect(source.outputs[13].type).toEqual(VIDEO_CONTEXT_OPTIONS);
+    expect(source.outputs[0].type).toEqual(VIDEO_CONTEXT_OPTIONS);
     expect(target.inputs[link[4]].type).toEqual(VIDEO_CONTEXT_OPTIONS);
-    expect(link.slice(0, 5)).toEqual([464, 450, 13, 389, 7]);
+    expect(link.slice(0, 5)).toEqual([41, 2, 0, 3, 0]);
     const saved = JSON.parse(JSON.stringify(graph));
     repairVideoContextTypes(saved);
     expect(saved).toEqual(graph);
@@ -89,10 +105,10 @@ describe("工作流加载恢复端口类型", () => {
   });
 
   it("实际画布以对象保存连线时也会修正", () => {
-    const graph = JSON.parse(workflowText);
+    const graph = legacyGraph();
     const live: ContextGraph = { _nodes: graph.nodes, links: Object.fromEntries(graph.links.map((link: any) => [link[0], { origin_id: link[1], origin_slot: link[2], target_id: link[3], target_slot: link[4], type: "COMBO" }])) };
     repairVideoContextTypes(live);
-    expect((live.links as Record<number, any>)[464].type).toEqual(VIDEO_CONTEXT_OPTIONS);
-    expect((live.links as Record<number, any>)[465].type).toBe("COMBO");
+    expect((live.links as Record<number, any>)[41].type).toEqual(VIDEO_CONTEXT_OPTIONS);
+    expect((live.links as Record<number, any>)[42].type).toBe("COMBO");
   });
 });
