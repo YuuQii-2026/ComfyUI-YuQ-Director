@@ -1,8 +1,8 @@
 {
-  "id": "a0677580-1e33-46b4-bf13-fd353e01a48e",
+  "id": "3e89e736-cf99-4b27-bd9d-05c2a683df63",
   "revision": 0,
-  "last_node_id": 650,
-  "last_link_id": 554,
+  "last_node_id": 666,
+  "last_link_id": 595,
   "nodes": [
     {
       "id": 128,
@@ -16,7 +16,7 @@
         156
       ],
       "flags": {},
-      "order": 4,
+      "order": 0,
       "mode": 0,
       "inputs": [
         {
@@ -59,6 +59,7 @@
           ]
         }
       ],
+      "title": "H3 文本编码器",
       "properties": {
         "Node name for S&R": "CLIPLoader",
         "cnr_id": "comfy-core",
@@ -80,8 +81,7 @@
         "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
         "type": "minimax",
         "device": "default"
-      },
-      "title": "H3 文本编码器"
+      }
     },
     {
       "id": 119,
@@ -89,71 +89,6 @@
       "pos": [
         2208,
         70
-      ],
-      "size": [
-        470,
-        112
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "vae_name",
-          "name": "vae_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "vae_name"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "label": "VAE",
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            31,
-            57,
-            243,
-            333,
-            359,
-            374,
-            412,
-            434,
-            497,
-            533,
-            543
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAELoader",
-        "cnr_id": "comfy-core",
-        "ver": "0.30.2",
-        "models": [
-          {
-            "name": "minimax_h3_video_vae_fp16.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors",
-            "directory": "vae"
-          }
-        ]
-      },
-      "widgets_values": [
-        "minimax-h3/minimax_h3_video_vae_fp16.safetensors"
-      ],
-      "widgets_values_named": {
-        "vae_name": "minimax-h3/minimax_h3_video_vae_fp16.safetensors"
-      },
-      "title": "视频 VAE"
-    },
-    {
-      "id": 120,
-      "type": "VAELoader",
-      "pos": [
-        1148,
-        286
       ],
       "size": [
         470,
@@ -179,14 +114,80 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            32,
-            58,
-            246,
-            334,
-            361
+            57,
+            359,
+            374,
+            412,
+            434,
+            533,
+            543,
+            568,
+            571,
+            588,
+            31,
+            333
           ]
         }
       ],
+      "title": "视频 VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2",
+        "models": [
+          {
+            "name": "minimax_h3_video_vae_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "minimax-h3/minimax_h3_video_vae_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax-h3/minimax_h3_video_vae_fp16.safetensors"
+      }
+    },
+    {
+      "id": 120,
+      "type": "VAELoader",
+      "pos": [
+        1148,
+        286
+      ],
+      "size": [
+        470,
+        112
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            58,
+            361,
+            32,
+            334
+          ]
+        }
+      ],
+      "title": "音频 VAE",
       "properties": {
         "Node name for S&R": "VAELoader",
         "cnr_id": "comfy-core",
@@ -204,8 +205,7 @@
       ],
       "widgets_values_named": {
         "vae_name": "minimax-h3/minimax_h3_audio_vae_fp32.safetensors"
-      },
-      "title": "音频 VAE"
+      }
     },
     {
       "id": 127,
@@ -252,6 +252,7 @@
           ]
         }
       ],
+      "title": "H3 主模型",
       "properties": {
         "Node name for S&R": "UNETLoader",
         "cnr_id": "comfy-core",
@@ -271,8 +272,7 @@
       "widgets_values_named": {
         "unet_name": "minimax_h3_hybrid_fl2va_ref2va_b25-49.safetensors",
         "weight_dtype": "default"
-      },
-      "title": "H3 主模型"
+      }
     },
     {
       "id": 141,
@@ -288,7 +288,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 68,
+      "order": 61,
       "mode": 0,
       "inputs": [
         {
@@ -353,7 +353,7 @@
         134
       ],
       "flags": {},
-      "order": 71,
+      "order": 65,
       "mode": 0,
       "inputs": [
         {
@@ -379,7 +379,7 @@
           "type": "MODEL",
           "links": [
             155,
-            493
+            576
           ]
         }
       ],
@@ -468,7 +468,7 @@
         "auto"
       ],
       "widgets_values_named": {
-        "filename_prefix": "video/MiniMax_H3_segments/H3_60s_run_001/segment_1",
+        "filename_prefix": "video/YuQ/segment",
         "format": "auto",
         "format.codec": "auto",
         "codec": "auto"
@@ -488,14 +488,14 @@
       "flags": {
         "collapsed": false
       },
-      "order": 79,
+      "order": 78,
       "mode": 0,
       "inputs": [
         {
           "label": "Latent",
           "name": "samples",
           "type": "LATENT",
-          "link": 503
+          "link": 590
         },
         {
           "label": "VAE",
@@ -534,14 +534,14 @@
       "flags": {
         "collapsed": false
       },
-      "order": 80,
+      "order": 79,
       "mode": 0,
       "inputs": [
         {
           "label": "Latent",
           "name": "samples",
           "type": "LATENT",
-          "link": 502
+          "link": 589
         },
         {
           "label": "VAE",
@@ -632,12 +632,16 @@
       "widgets_values": [
         24,
         8,
-        "sRGB"
+        "sRGB",
+        "auto",
+        "none"
       ],
       "widgets_values_named": {
         "fps": 24,
         "bit_depth": 8,
-        "color_space": "sRGB"
+        "color_space": "sRGB",
+        "chroma_subsampling": "auto",
+        "codec": "none"
       }
     },
     {
@@ -652,7 +656,7 @@
         156
       ],
       "flags": {},
-      "order": 53,
+      "order": 55,
       "mode": 0,
       "inputs": [
         {
@@ -713,129 +717,6 @@
       "bgcolor": "#335"
     },
     {
-      "id": 390,
-      "type": "ImpactConditionalBranch",
-      "pos": [
-        2828,
-        950
-      ],
-      "size": [
-        340,
-        156
-      ],
-      "flags": {},
-      "order": 48,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "真",
-          "name": "tt_value",
-          "type": "CONDITIONING",
-          "link": 287
-        },
-        {
-          "label": "假",
-          "name": "ff_value",
-          "type": "CONDITIONING",
-          "link": 288
-        },
-        {
-          "label": "条件",
-          "name": "cond",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "cond"
-          },
-          "link": 291
-        }
-      ],
-      "outputs": [
-        {
-          "label": "CONDITIONING",
-          "name": "*",
-          "type": "CONDITIONING",
-          "links": [
-            494,
-            495
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ImpactConditionalBranch",
-        "cnr_id": "comfyui-impact-pack",
-        "ver": "8.28.3"
-      },
-      "widgets_values": [
-        false
-      ],
-      "widgets_values_named": {
-        "cond": false
-      },
-      "color": "#3b2f5b",
-      "bgcolor": "#56447f"
-    },
-    {
-      "id": 391,
-      "type": "ImpactConditionalBranch",
-      "pos": [
-        3358,
-        950
-      ],
-      "size": [
-        340,
-        156
-      ],
-      "flags": {},
-      "order": 49,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "真",
-          "name": "tt_value",
-          "type": "INT",
-          "link": 289
-        },
-        {
-          "label": "假",
-          "name": "ff_value",
-          "type": "INT",
-          "link": 290
-        },
-        {
-          "label": "条件",
-          "name": "cond",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "cond"
-          },
-          "link": 292
-        }
-      ],
-      "outputs": [
-        {
-          "label": "INT",
-          "name": "*",
-          "type": "INT",
-          "links": [
-            256
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ImpactConditionalBranch",
-        "cnr_id": "comfyui-impact-pack",
-        "ver": "8.28.3"
-      },
-      "widgets_values": [
-        false
-      ],
-      "widgets_values_named": {
-        "cond": false
-      },
-      "color": "#3b2f5b",
-      "bgcolor": "#56447f"
-    },
-    {
       "id": 393,
       "type": "MiniMaxH3MotionContextSaveLatent",
       "pos": [
@@ -847,14 +728,14 @@
         156
       ],
       "flags": {},
-      "order": 81,
+      "order": 80,
       "mode": 0,
       "inputs": [
         {
           "label": "latent",
           "name": "latent",
           "type": "LATENT",
-          "link": 504
+          "link": 591
         },
         {
           "label": "filename_prefix",
@@ -940,7 +821,7 @@
           "widget": {
             "name": "trim_frames"
           },
-          "link": 256
+          "link": 592
         },
         {
           "label": "fps",
@@ -1019,7 +900,7 @@
         820
       ],
       "flags": {},
-      "order": 36,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -1031,12 +912,14 @@
         {
           "label": "vae",
           "name": "vae",
+          "shape": 7,
           "type": "VAE",
           "link": 31
         },
         {
           "label": "audio_vae",
           "name": "audio_vae",
+          "shape": 7,
           "type": "VAE",
           "link": 32
         },
@@ -1218,8 +1101,7 @@
           "name": "positive",
           "type": "CONDITIONING",
           "links": [
-            242,
-            288
+            574
           ]
         },
         {
@@ -1227,8 +1109,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            244,
-            498
+            575
           ]
         }
       ],
@@ -1314,6 +1195,12 @@
           "link": 326
         },
         {
+          "name": "first_pass_context",
+          "shape": 7,
+          "type": "YUQ_FIRST_PASS_CONTEXT",
+          "link": 593
+        },
+        {
           "label": "latent_required",
           "name": "latent_required",
           "type": "BOOLEAN",
@@ -1321,15 +1208,6 @@
             "name": "latent_required"
           },
           "link": null
-        },
-        {
-          "name": "first_pass_only",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "first_pass_only"
-          },
-          "link": null,
-          "shape": 7
         }
       ],
       "outputs": [
@@ -1337,25 +1215,25 @@
           "label": "signal",
           "name": "signal",
           "type": "*",
-          "links": null
+          "links": []
         },
         {
           "label": "next_index",
           "name": "next_index",
           "type": "INT",
-          "links": null
+          "links": []
         },
         {
           "label": "has_next",
           "name": "has_next",
           "type": "BOOLEAN",
-          "links": null
+          "links": []
         },
         {
           "label": "result_json",
           "name": "result_json",
           "type": "STRING",
-          "links": null
+          "links": []
         }
       ],
       "title": "一采结果提交",
@@ -1369,196 +1247,8 @@
         true
       ],
       "widgets_values_named": {
-        "latent_required": true
-      }
-    },
-    {
-      "id": 388,
-      "type": "MiniMaxH3MotionContextLoadLatent",
-      "pos": [
-        3358,
-        70
-      ],
-      "size": [
-        390,
-        134
-      ],
-      "flags": {},
-      "order": 26,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "latent_path",
-          "name": "latent_path",
-          "type": "STRING",
-          "widget": {
-            "name": "latent_path"
-          },
-          "link": 319
-        },
-        {
-          "label": "clip_index",
-          "name": "clip_index",
-          "type": "INT",
-          "widget": {
-            "name": "clip_index"
-          },
-          "link": 322
-        }
-      ],
-      "outputs": [
-        {
-          "label": "LATENT",
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            245
-          ]
-        }
-      ],
-      "title": "读取上一镜头 AV latent",
-      "properties": {
-        "Node name for S&R": "MiniMaxH3MotionContextLoadLatent",
-        "cnr_id": "comfyui-h3-motion-context",
-        "ver": "15fc6a7bf7b78efb27f33d7eef3818e7ed0e118a",
-        "aux_id": "NikoDemon80/ComfyUI-H3-Motion-Context"
-      },
-      "widgets_values": [
-        "",
-        0
-      ],
-      "widgets_values_named": {
-        "latent_path": "",
-        "clip_index": 0
-      },
-      "color": "#3b2f5b",
-      "bgcolor": "#56447f"
-    },
-    {
-      "id": 389,
-      "type": "MiniMaxH3MotionContext",
-      "pos": [
-        3888,
-        70
-      ],
-      "size": [
-        368.359375,
-        300
-      ],
-      "flags": {},
-      "order": 43,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "conditioning",
-          "name": "conditioning",
-          "type": "CONDITIONING",
-          "link": 242
-        },
-        {
-          "label": "vae",
-          "name": "vae",
-          "type": "VAE",
-          "link": 243
-        },
-        {
-          "label": "latent",
-          "name": "latent",
-          "type": "LATENT",
-          "link": 244
-        },
-        {
-          "label": "context_frames",
-          "name": "context_frames",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": null
-        },
-        {
-          "label": "context_latent",
-          "name": "context_latent",
-          "shape": 7,
-          "type": "LATENT",
-          "link": 245
-        },
-        {
-          "label": "audio_vae",
-          "name": "audio_vae",
-          "shape": 7,
-          "type": "VAE",
-          "link": 246
-        },
-        {
-          "label": "context_audio",
-          "name": "context_audio",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": null
-        },
-        {
-          "label": "context_length",
-          "name": "context_length",
-          "type": [
-            "22",
-            "5",
-            "39",
-            "56"
-          ],
-          "widget": {
-            "name": "context_length"
-          },
-          "link": 464
-        },
-        {
-          "label": "audio_context_length",
-          "name": "audio_context_length",
-          "type": "INT",
-          "widget": {
-            "name": "audio_context_length"
-          },
-          "link": 465
-        }
-      ],
-      "outputs": [
-        {
-          "label": "conditioning",
-          "name": "conditioning",
-          "type": "CONDITIONING",
-          "links": [
-            287
-          ]
-        },
-        {
-          "label": "trim_frames",
-          "name": "trim_frames",
-          "type": "INT",
-          "links": [
-            289
-          ]
-        }
-      ],
-      "title": "后续段：AV latent 接力（帧数由导播台配置）",
-      "properties": {
-        "Node name for S&R": "MiniMaxH3MotionContext",
-        "cnr_id": "comfyui-h3-motion-context",
-        "ver": "15fc6a7bf7b78efb27f33d7eef3818e7ed0e118a",
-        "aux_id": "NikoDemon80/ComfyUI-H3-Motion-Context",
-        "ue_properties": {
-          "widget_ue_connectable": {
-            "context_length": true,
-            "audio_context_length": true
-          },
-          "version": "7.8",
-          "input_ue_unconnectable": {}
-        }
-      },
-      "widgets_values": [
-        "22",
-        24
-      ],
-      "widgets_values_named": {
-        "context_length": "22",
-        "audio_context_length": 24
+        "latent_required": true,
+        "first_pass_only": true
       }
     },
     {
@@ -1573,7 +1263,7 @@
         178
       ],
       "flags": {},
-      "order": 74,
+      "order": 68,
       "mode": 0,
       "inputs": [
         {
@@ -1616,10 +1306,11 @@
           "name": "SIGMAS",
           "type": "SIGMAS",
           "links": [
-            500
+            584
           ]
         }
       ],
+      "title": "一采采样参数",
       "properties": {
         "Node name for S&R": "BasicScheduler",
         "cnr_id": "comfy-core",
@@ -1627,15 +1318,14 @@
       },
       "widgets_values": [
         "simple",
-        12,
+        20,
         1
       ],
       "widgets_values_named": {
         "scheduler": "simple",
-        "steps": 12,
+        "steps": 20,
         "denoise": 1
-      },
-      "title": "一采采样参数"
+      }
     },
     {
       "id": 398,
@@ -1649,7 +1339,7 @@
         620
       ],
       "flags": {},
-      "order": 27,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1686,13 +1376,13 @@
           "label": "delivery frames",
           "name": "delivery frames",
           "type": "INT",
-          "links": null
+          "links": []
         },
         {
           "label": "reference map",
           "name": "reference map",
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "label": "ref_image_0",
@@ -1854,19 +1544,42 @@
         2470
       ],
       "size": [
-        420,
-        302
+        460,
+        390
       ],
       "flags": {},
-      "order": 6,
+      "order": 4,
       "mode": 4,
       "inputs": [
         {
-          "label": "request_json",
           "name": "request_json",
           "type": "STRING",
           "widget": {
             "name": "request_json"
+          },
+          "link": null
+        },
+        {
+          "name": "native_continuity",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "native_continuity"
+          },
+          "link": null
+        },
+        {
+          "name": "diagnose_latent",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "diagnose_latent"
+          },
+          "link": null
+        },
+        {
+          "name": "latent_full_sequence",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "latent_full_sequence"
           },
           "link": null
         }
@@ -1897,7 +1610,9 @@
             534,
             539,
             544,
-            549
+            549,
+            562,
+            564
           ]
         },
         {
@@ -1905,8 +1620,8 @@
           "name": "images",
           "type": "IMAGE",
           "links": [
-            357,
-            411
+            411,
+            357
           ]
         },
         {
@@ -1937,7 +1652,7 @@
           "label": "processing mode",
           "name": "processing mode",
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "label": "super-res 2nd pass",
@@ -1959,7 +1674,7 @@
           "label": "super-res only",
           "name": "super-res only",
           "type": "BOOLEAN",
-          "links": null
+          "links": []
         },
         {
           "name": "source_width",
@@ -1978,21 +1693,21 @@
         {
           "name": "frame_count",
           "type": "INT",
+          "slot_index": 13,
           "links": [
             551
-          ],
-          "slot_index": 13
+          ]
         },
         {
           "name": "original_audio",
           "type": "AUDIO",
+          "slot_index": 14,
           "links": [
             552
-          ],
-          "slot_index": 14
+          ]
         }
       ],
-      "title": "网页后处理 · 已选视频",
+      "title": "后处理入口 · 统一连续源 / 原生高清保护",
       "properties": {
         "Node name for S&R": "TheodoreDirector_PostprocessSecondPassSource",
         "aux_id": "northern-penguin/ComfyUI_Theodore_Director",
@@ -2000,10 +1715,16 @@
         "theodoreDirectorPostprocessRole": "second-pass-source"
       },
       "widgets_values": [
-        "{}"
+        "{}",
+        true,
+        false,
+        true
       ],
       "widgets_values_named": {
-        "request_json": "{}"
+        "request_json": "{}",
+        "native_continuity": true,
+        "diagnose_latent": false,
+        "latent_full_sequence": true
       }
     },
     {
@@ -2018,7 +1739,7 @@
         112
       ],
       "flags": {},
-      "order": 21,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -2038,8 +1759,7 @@
           "type": "NOISE",
           "links": [
             368,
-            416,
-            420
+            416
           ]
         }
       ],
@@ -2071,7 +1791,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 60,
+      "order": 62,
       "mode": 0,
       "inputs": [
         {
@@ -2122,7 +1842,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 61,
+      "order": 63,
       "mode": 0,
       "inputs": [
         {
@@ -2167,11 +1887,11 @@
           "links": [
             371,
             417,
-            421,
             431
           ]
         }
       ],
+      "title": "后处理采样参数",
       "properties": {
         "Node name for S&R": "BasicScheduler",
         "cnr_id": "comfy-core",
@@ -2191,8 +1911,7 @@
         "scheduler": "simple",
         "steps": 3,
         "denoise": 0.3
-      },
-      "title": "后处理采样参数"
+      }
     },
     {
       "id": 412,
@@ -2208,7 +1927,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 69,
+      "order": 72,
       "mode": 0,
       "inputs": [
         {
@@ -2257,7 +1976,7 @@
         178
       ],
       "flags": {},
-      "order": 89,
+      "order": 92,
       "mode": 0,
       "inputs": [
         {
@@ -2312,12 +2031,16 @@
       "widgets_values": [
         24,
         8,
-        "sRGB"
+        "sRGB",
+        "auto",
+        "none"
       ],
       "widgets_values_named": {
         "fps": 24,
         "bit_depth": 8,
-        "color_space": "sRGB"
+        "color_space": "sRGB",
+        "chroma_subsampling": "auto",
+        "codec": "none"
       }
     },
     {
@@ -2332,7 +2055,7 @@
         310
       ],
       "flags": {},
-      "order": 92,
+      "order": 93,
       "mode": 4,
       "inputs": [
         {
@@ -2353,13 +2076,13 @@
           "label": "video",
           "name": "video",
           "type": "VIDEO",
-          "links": null
+          "links": []
         },
         {
           "label": "path",
           "name": "path",
           "type": "STRING",
-          "links": null
+          "links": []
         }
       ],
       "title": "后处理结果保存",
@@ -2382,7 +2105,7 @@
         134
       ],
       "flags": {},
-      "order": 22,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -2426,7 +2149,7 @@
         90
       ],
       "flags": {},
-      "order": 8,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2459,7 +2182,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 78,
+      "order": 75,
       "mode": 0,
       "inputs": [
         {
@@ -2510,7 +2233,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 82,
+      "order": 81,
       "mode": 0,
       "inputs": [
         {
@@ -2541,7 +2264,7 @@
           "label": "Latent",
           "name": "latent_image",
           "type": "LATENT",
-          "link": 432
+          "link": 570
         }
       ],
       "outputs": [
@@ -2550,15 +2273,14 @@
           "name": "output",
           "type": "LATENT",
           "links": [
-            433,
-            547
+            563
           ]
         },
         {
           "label": "降噪输出",
           "name": "denoised_output",
           "type": "LATENT",
-          "links": null
+          "links": []
         }
       ],
       "properties": {
@@ -2586,7 +2308,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 28,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -2598,12 +2320,14 @@
         {
           "label": "vae",
           "name": "vae",
+          "shape": 7,
           "type": "VAE",
           "link": 333
         },
         {
           "label": "audio_vae",
           "name": "audio_vae",
+          "shape": 7,
           "type": "VAE",
           "link": 334
         },
@@ -2793,7 +2517,7 @@
           "label": "LATENT",
           "name": "LATENT",
           "type": "LATENT",
-          "links": null
+          "links": []
         }
       ],
       "title": "后处理 H3 条件（不生成一采）",
@@ -2839,7 +2563,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 18,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -2874,13 +2598,13 @@
           "label": "delivery frames",
           "name": "delivery frames",
           "type": "INT",
-          "links": null
+          "links": []
         },
         {
           "label": "reference map",
           "name": "reference map",
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "label": "ref_image_0",
@@ -3046,7 +2770,7 @@
         134
       ],
       "flags": {},
-      "order": 44,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
@@ -3068,7 +2792,6 @@
           "name": "latent",
           "type": "LATENT",
           "links": [
-            372,
             532
           ]
         }
@@ -3092,7 +2815,7 @@
         134
       ],
       "flags": {},
-      "order": 20,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -3115,9 +2838,11 @@
           "type": "LATENT",
           "links": [
             363,
-            423,
             538,
-            548
+            548,
+            565,
+            566,
+            569
           ]
         }
       ],
@@ -3139,7 +2864,7 @@
         156
       ],
       "flags": {},
-      "order": 38,
+      "order": 40,
       "mode": 0,
       "inputs": [
         {
@@ -3204,7 +2929,7 @@
         134
       ],
       "flags": {},
-      "order": 72,
+      "order": 69,
       "mode": 0,
       "inputs": [
         {
@@ -3217,7 +2942,7 @@
           "label": "audio_latent",
           "name": "audio_latent",
           "type": "LATENT",
-          "link": 425
+          "link": 565
         }
       ],
       "outputs": [
@@ -3226,7 +2951,6 @@
           "name": "latent",
           "type": "LATENT",
           "links": [
-            432,
             542
           ]
         }
@@ -3250,7 +2974,7 @@
         178
       ],
       "flags": {},
-      "order": 65,
+      "order": 66,
       "mode": 0,
       "inputs": [
         {
@@ -3296,128 +3020,6 @@
       }
     },
     {
-      "id": 435,
-      "type": "MiniMaxH3ShiftSigmas",
-      "pos": [
-        3298,
-        3815.9375
-      ],
-      "size": [
-        340,
-        156
-      ],
-      "flags": {},
-      "order": 66,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "sigmas",
-          "name": "sigmas",
-          "type": "SIGMAS",
-          "link": 421
-        },
-        {
-          "label": "shift_video",
-          "name": "shift_video",
-          "type": "FLOAT",
-          "widget": {
-            "name": "shift_video"
-          },
-          "link": null
-        },
-        {
-          "label": "shift_audio",
-          "name": "shift_audio",
-          "type": "FLOAT",
-          "widget": {
-            "name": "shift_audio"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "label": "SIGMAS",
-          "name": "SIGMAS",
-          "type": "SIGMAS",
-          "links": [
-            422
-          ]
-        }
-      ],
-      "title": "后处理 Latent：audio sigma",
-      "properties": {
-        "Node name for S&R": "MiniMaxH3ShiftSigmas",
-        "aux_id": "rockerBOO/h3-latent-upscaler",
-        "ver": "a5ed6e9586f0b14250a0018f78568e0076e4bd9d"
-      },
-      "widgets_values": [
-        12,
-        3
-      ],
-      "widgets_values_named": {
-        "shift_video": 12,
-        "shift_audio": 3
-      }
-    },
-    {
-      "id": 434,
-      "type": "MiniMaxH3AddNoise",
-      "pos": [
-        2768,
-        3815.9375
-      ],
-      "size": [
-        340,
-        178
-      ],
-      "flags": {},
-      "order": 70,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "model",
-          "name": "model",
-          "type": "MODEL",
-          "link": 419
-        },
-        {
-          "label": "noise",
-          "name": "noise",
-          "type": "NOISE",
-          "link": 420
-        },
-        {
-          "label": "sigmas",
-          "name": "sigmas",
-          "type": "SIGMAS",
-          "link": 422
-        },
-        {
-          "label": "latent_image",
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 423
-        }
-      ],
-      "outputs": [
-        {
-          "label": "LATENT",
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            425
-          ]
-        }
-      ],
-      "title": "后处理 Latent：音频 latent 重加噪",
-      "properties": {
-        "Node name for S&R": "MiniMaxH3AddNoise",
-        "aux_id": "rockerBOO/h3-latent-upscaler",
-        "ver": "a5ed6e9586f0b14250a0018f78568e0076e4bd9d"
-      }
-    },
-    {
       "id": 411,
       "type": "SamplerCustomAdvanced",
       "pos": [
@@ -3431,7 +3033,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 64,
+      "order": 67,
       "mode": 0,
       "inputs": [
         {
@@ -3462,7 +3064,7 @@
           "label": "Latent",
           "name": "latent_image",
           "type": "LATENT",
-          "link": 372
+          "link": 567
         }
       ],
       "outputs": [
@@ -3471,15 +3073,14 @@
           "name": "output",
           "type": "LATENT",
           "links": [
-            373,
-            537
+            561
           ]
         },
         {
           "label": "降噪输出",
           "name": "denoised_output",
           "type": "LATENT",
-          "links": null
+          "links": []
         }
       ],
       "properties": {
@@ -3505,7 +3106,7 @@
         156
       ],
       "flags": {},
-      "order": 75,
+      "order": 82,
       "mode": 0,
       "inputs": [
         {
@@ -3564,7 +3165,7 @@
         156
       ],
       "flags": {},
-      "order": 88,
+      "order": 89,
       "mode": 0,
       "inputs": [
         {
@@ -3625,7 +3226,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 84,
+      "order": 86,
       "mode": 0,
       "inputs": [
         {
@@ -3674,7 +3275,7 @@
         156
       ],
       "flags": {},
-      "order": 19,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -3742,7 +3343,7 @@
         134
       ],
       "flags": {},
-      "order": 37,
+      "order": 41,
       "mode": 0,
       "inputs": [
         {
@@ -3788,7 +3389,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 7,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -3812,6 +3413,7 @@
           ]
         }
       ],
+      "title": "后处理采样算法",
       "properties": {
         "Node name for S&R": "KSamplerSelect",
         "cnr_id": "comfy-core",
@@ -3827,8 +3429,7 @@
       ],
       "widgets_values_named": {
         "sampler_name": "res_multistep"
-      },
-      "title": "后处理采样算法"
+      }
     },
     {
       "id": 396,
@@ -3842,7 +3443,7 @@
         177.96875
       ],
       "flags": {},
-      "order": 5,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -3864,26 +3465,27 @@
             276,
             278,
             458,
-            476
+            476,
+            572
           ]
         },
         {
           "label": "plan hash",
           "name": "plan hash",
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "label": "project name",
           "name": "project name",
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "label": "active shots",
           "name": "active shots",
           "type": "INT",
-          "links": null
+          "links": []
         }
       ],
       "title": "YuQ导播台 · 打开制作空间",
@@ -3894,11 +3496,19 @@
       },
       "widgets_values": [
         "{\"schemaVersion\":5,\"project\":{\"id\":\"yuq_project\",\"name\":\"未命名项目\",\"runId\":\"run_001\",\"notes\":\"\"},\"defaults\":{\"fps\":24,\"baseSeed\":123456790,\"durationSeconds\":6,\"secondSamplingMode\":\"off\"},\"promptPrefix\":\"\",\"promptSuffix\":\"\",\"continuity\":{\"mode\":\"h3_av_latent\",\"videoContextFrames\":22,\"audioContextFrames\":24,\"durationMode\":\"final_output\"},\"pipeline\":{\"phase\":\"first_pass\",\"firstPassConfirmed\":false,\"secondPassMode\":\"super_resolution_second_pass\",\"secondPassDenoise\":0.3},\"uiPreferences\":{\"autoSave\":false,\"compactMode\":false},\"assets\":[],\"shots\":[{\"id\":\"shot_001\",\"title\":\"镜头 1\",\"prompt\":\"\",\"negativePrompt\":\"\",\"durationSeconds\":6,\"enabled\":true,\"latentRelay\":false,\"secondSamplingMode\":\"off\",\"seed\":null,\"disabledAssetIds\":[],\"note\":\"\"}],\"generation\":{\"width\":416,\"height\":224}}",
+        [
+          false,
+          true
+        ],
         null
       ],
       "widgets_values_named": {
         "plan_json": "{\"schemaVersion\":5,\"project\":{\"id\":\"yuq_project\",\"name\":\"未命名项目\",\"runId\":\"run_001\",\"notes\":\"\"},\"defaults\":{\"fps\":24,\"baseSeed\":123456790,\"durationSeconds\":6,\"secondSamplingMode\":\"off\"},\"promptPrefix\":\"\",\"promptSuffix\":\"\",\"continuity\":{\"mode\":\"h3_av_latent\",\"videoContextFrames\":22,\"audioContextFrames\":24,\"durationMode\":\"final_output\"},\"pipeline\":{\"phase\":\"first_pass\",\"firstPassConfirmed\":false,\"secondPassMode\":\"super_resolution_second_pass\",\"secondPassDenoise\":0.3},\"uiPreferences\":{\"autoSave\":false,\"compactMode\":false},\"assets\":[],\"shots\":[{\"id\":\"shot_001\",\"title\":\"镜头 1\",\"prompt\":\"\",\"negativePrompt\":\"\",\"durationSeconds\":6,\"enabled\":true,\"latentRelay\":false,\"secondSamplingMode\":\"off\",\"seed\":null,\"disabledAssetIds\":[],\"note\":\"\"}],\"generation\":{\"width\":416,\"height\":224}}",
-        "打开 Theodore 导播台 / Open Director": null
+        "speak_and_recognation": [
+          false,
+          true
+        ],
+        "打开 YuQ 导播台": null
       }
     },
     {
@@ -3913,7 +3523,7 @@
         134
       ],
       "flags": {},
-      "order": 47,
+      "order": 50,
       "mode": 0,
       "inputs": [
         {
@@ -3969,7 +3579,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 42,
+      "order": 46,
       "mode": 0,
       "inputs": [
         {
@@ -4035,7 +3645,7 @@
         156
       ],
       "flags": {},
-      "order": 17,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -4073,6 +3683,7 @@
           ]
         }
       ],
+      "title": "后处理加速 LoRA",
       "properties": {
         "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
@@ -4092,8 +3703,7 @@
         "strength_model": 0.2
       },
       "color": "#223",
-      "bgcolor": "#335",
-      "title": "后处理加速 LoRA"
+      "bgcolor": "#335"
     },
     {
       "id": 431,
@@ -4107,59 +3717,69 @@
         226
       ],
       "flags": {},
-      "order": 29,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
-          "label": "latent",
           "name": "latent",
           "type": "*",
           "link": 413
         },
         {
-          "label": "model_name",
           "name": "model_name",
           "type": "COMBO",
+          "link": null,
           "widget": {
             "name": "model_name"
-          },
-          "link": null
+          }
         },
         {
-          "label": "mode",
           "name": "mode",
           "type": "COMFY_DYNAMICCOMBO_V3",
+          "link": null,
           "widget": {
             "name": "mode"
-          },
-          "link": null
+          }
         },
         {
-          "label": "align",
           "name": "align",
           "type": "INT",
+          "link": null,
           "widget": {
             "name": "align"
-          },
-          "link": null
+          }
         },
         {
-          "label": "device",
+          "name": "enable_temporal_chunking",
+          "type": "BOOLEAN",
+          "link": null,
+          "widget": {
+            "name": "enable_temporal_chunking"
+          }
+        },
+        {
+          "name": "force_unload",
+          "type": "BOOLEAN",
+          "link": null,
+          "widget": {
+            "name": "force_unload"
+          }
+        },
+        {
           "name": "device",
           "type": "COMBO",
+          "link": null,
           "widget": {
             "name": "device"
-          },
-          "link": null
+          }
         },
         {
-          "label": "precision",
           "name": "precision",
           "type": "COMBO",
+          "link": null,
           "widget": {
             "name": "precision"
-          },
-          "link": null
+          }
         }
       ],
       "outputs": [
@@ -4172,7 +3792,7 @@
           ]
         }
       ],
-      "title": "后处理 · H3 latent 放大（画布设置倍率）",
+      "title": "latent 放大 · 完整时间轴 / fp32 测试",
       "properties": {
         "Node name for S&R": "MinimaxH3LatentUpscaler3D",
         "aux_id": "LBH-123-AI/Comfyui_Minimax_h3_latent_Upscaler",
@@ -4183,8 +3803,10 @@
         "scale by multiplier",
         2,
         32,
+        false,
+        true,
         "cuda",
-        "fp16"
+        "fp32"
       ],
       "widgets_values_named": {
         "model_name": "minimax_h3_latent_upscaler_3d_fp16.safetensors",
@@ -4192,7 +3814,9 @@
         "mode.scale": 2,
         "align": 32,
         "device": "cuda",
-        "precision": "fp16"
+        "precision": "fp32",
+        "enable_temporal_chunking": false,
+        "force_unload": true
       }
     },
     {
@@ -4209,7 +3833,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 57,
+      "order": 58,
       "mode": 0,
       "inputs": [
         {
@@ -4246,7 +3870,6 @@
             364,
             366,
             415,
-            419,
             426
           ]
         }
@@ -4272,49 +3895,6 @@
       }
     },
     {
-      "id": 444,
-      "type": "LoraLoaderModelOnly",
-      "pos": [
-        1678,
-        524
-      ],
-      "size": [
-        340,
-        112
-      ],
-      "flags": {},
-      "order": 62,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 455
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            491
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly"
-      },
-      "widgets_values": [
-        "h3-realism-people-t2v-i2v-r2v.safetensors",
-        0.5
-      ],
-      "widgets_values_named": {
-        "lora_name": "h3-realism-people-t2v-i2v-r2v.safetensors",
-        "strength_model": 0.5
-      },
-      "title": "一采风格 LoRA 2"
-    },
-    {
       "id": 445,
       "type": "LoraLoaderModelOnly",
       "pos": [
@@ -4326,8 +3906,8 @@
         112
       ],
       "flags": {},
-      "order": 30,
-      "mode": 0,
+      "order": 32,
+      "mode": 4,
       "inputs": [
         {
           "name": "model",
@@ -4344,6 +3924,7 @@
           ]
         }
       ],
+      "title": "后处理风格 LoRA 1",
       "properties": {
         "Node name for S&R": "LoraLoaderModelOnly"
       },
@@ -4354,8 +3935,7 @@
       "widgets_values_named": {
         "lora_name": "H3电影质感V0.4_noadaln.safetensors",
         "strength_model": 0.4
-      },
-      "title": "后处理风格 LoRA 1"
+      }
     },
     {
       "id": 446,
@@ -4369,8 +3949,8 @@
         112
       ],
       "flags": {},
-      "order": 39,
-      "mode": 0,
+      "order": 42,
+      "mode": 4,
       "inputs": [
         {
           "name": "model",
@@ -4387,6 +3967,7 @@
           ]
         }
       ],
+      "title": "后处理风格 LoRA 2",
       "properties": {
         "Node name for S&R": "LoraLoaderModelOnly"
       },
@@ -4397,56 +3978,11 @@
       "widgets_values_named": {
         "lora_name": "h3-realism-people-t2v-i2v-r2v.safetensors",
         "strength_model": 0.4
-      },
-      "title": "后处理风格 LoRA 2"
-    },
-    {
-      "id": 449,
-      "type": "LoraLoaderModelOnly",
-      "pos": [
-        2208,
-        286
-      ],
-      "size": [
-        340,
-        112
-      ],
-      "flags": {},
-      "order": 58,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 490
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            455
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly"
-      },
-      "widgets_values": [
-        "H3电影质感V0.4_noadaln.safetensors",
-        0.1
-      ],
-      "widgets_values_named": {
-        "lora_name": "H3电影质感V0.4_noadaln.safetensors",
-        "strength_model": 0.1
-      },
-      "title": "一采风格 LoRA 1"
+      }
     },
     {
       "id": 450,
       "type": "TheodoreDirector_ShotControl",
-      "title": "YuQ · 内置分镜控制",
       "pos": [
         28,
         420
@@ -4456,21 +3992,13 @@
         392
       ],
       "flags": {},
-      "order": 23,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
           "name": "plan",
           "type": "THEODORE_DIRECTOR_PLAN",
           "link": 458
-        },
-        {
-          "name": "queue_index",
-          "type": "INT",
-          "link": null,
-          "widget": {
-            "name": "queue_index"
-          }
         }
       ],
       "outputs": [
@@ -4479,7 +4007,8 @@
           "type": "THEODORE_DIRECTOR_SHOT",
           "links": [
             283,
-            285
+            285,
+            573
           ]
         },
         {
@@ -4494,7 +4023,7 @@
           "name": "seed",
           "type": "INT",
           "links": [
-            501
+            580
           ]
         },
         {
@@ -4522,17 +4051,12 @@
         {
           "name": "latent_relay",
           "type": "BOOLEAN",
-          "links": [
-            291,
-            292
-          ]
+          "links": []
         },
         {
           "name": "active_index",
           "type": "INT",
-          "links": [
-            322
-          ]
+          "links": []
         },
         {
           "name": "next_index",
@@ -4551,9 +4075,7 @@
         {
           "name": "latent_directory",
           "type": "STRING",
-          "links": [
-            319
-          ]
+          "links": []
         },
         {
           "name": "latent_save_prefix",
@@ -4565,7 +4087,7 @@
         {
           "name": "tail_prefix",
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "name": "video_context",
@@ -4575,25 +4097,20 @@
             "39",
             "56"
           ],
-          "links": [
-            464
-          ]
+          "links": []
         },
         {
           "name": "audio_context",
           "type": "INT",
-          "links": [
-            465
-          ]
+          "links": []
         },
         {
           "name": "zero_trim",
           "type": "INT",
-          "links": [
-            290
-          ]
+          "links": []
         }
       ],
+      "title": "YuQ · 内置分镜控制",
       "properties": {
         "Node name for S&R": "TheodoreDirector_ShotControl"
       },
@@ -4607,7 +4124,6 @@
     {
       "id": 451,
       "type": "TheodoreDirector_SaveTail",
-      "title": "YuQ · 保存尾帧",
       "pos": [
         4508,
         650
@@ -4646,16 +4162,14 @@
           ]
         }
       ],
+      "title": "YuQ · 保存尾帧",
       "properties": {
         "Node name for S&R": "TheodoreDirector_SaveTail"
-      },
-      "widgets_values": [],
-      "widgets_values_named": {}
+      }
     },
     {
       "id": 480,
       "type": "TheodoreDirector_ImageControls",
-      "title": "YuQ · 生图输入",
       "pos": [
         4500,
         2800
@@ -4665,69 +4179,13 @@
         520
       ],
       "flags": {},
-      "order": 24,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
           "name": "plan",
           "type": "THEODORE_DIRECTOR_PLAN",
           "link": 476
-        },
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "positive_prompt"
-          }
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "negative_prompt"
-          }
-        },
-        {
-          "name": "width",
-          "type": "INT",
-          "link": null,
-          "widget": {
-            "name": "width"
-          }
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "link": null,
-          "widget": {
-            "name": "height"
-          }
-        },
-        {
-          "name": "batch_size",
-          "type": "INT",
-          "link": null,
-          "widget": {
-            "name": "batch_size"
-          }
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "link": null,
-          "widget": {
-            "name": "seed"
-          }
-        },
-        {
-          "name": "filename_prefix",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "filename_prefix"
-          }
         }
       ],
       "outputs": [
@@ -4783,6 +4241,7 @@
           ]
         }
       ],
+      "title": "YuQ · 生图输入",
       "properties": {
         "Node name for S&R": "TheodoreDirector_ImageControls"
       },
@@ -4793,227 +4252,35 @@
         1024,
         1,
         0,
-        "TheodoreDirector/ImageGen/manual/image"
+        "TheodoreDirector/ImageGen/manual/image",
+        "TheodoreDirector/ImageGen/manual/image",
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ]
       ],
       "widgets_values_named": {
         "positive_prompt": "",
         "negative_prompt": "blurry ugly bad",
-        "width": 1080,
-        "height": 720,
+        "width": 1024,
+        "height": 1024,
         "batch_size": 1,
         "seed": 0,
-        "filename_prefix": "TheodoreDirector/ImageGen/manual/image"
+        "control_after_generate": "TheodoreDirector/ImageGen/manual/image",
+        "filename_prefix": "TheodoreDirector/ImageGen/manual/image",
+        "speak_and_recognation": [
+          false,
+          true
+        ],
+        "speak_and_recognation#1": [
+          false,
+          true
+        ]
       }
-    },
-    {
-      "id": 125,
-      "type": "SelfLiftH3Sampler",
-      "pos": [
-        3888,
-        1166
-      ],
-      "size": [
-        319.6607421875,
-        438
-      ],
-      "flags": {},
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "model",
-          "name": "model",
-          "type": "MODEL",
-          "link": 493
-        },
-        {
-          "label": "positive",
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 494
-        },
-        {
-          "label": "negative",
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 496
-        },
-        {
-          "label": "vae",
-          "name": "vae",
-          "type": "VAE",
-          "link": 497
-        },
-        {
-          "label": "latent_image",
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 498
-        },
-        {
-          "label": "sampler",
-          "name": "sampler",
-          "type": "SAMPLER",
-          "link": 499
-        },
-        {
-          "label": "sigmas",
-          "name": "sigmas",
-          "type": "SIGMAS",
-          "link": 500
-        },
-        {
-          "label": "model_hires",
-          "name": "model_hires",
-          "shape": 7,
-          "type": "MODEL",
-          "link": null
-        },
-        {
-          "label": "seed",
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 501
-        },
-        {
-          "label": "cfg",
-          "name": "cfg",
-          "type": "FLOAT",
-          "widget": {
-            "name": "cfg"
-          },
-          "link": null
-        },
-        {
-          "label": "transition_step",
-          "name": "transition_step",
-          "type": "INT",
-          "widget": {
-            "name": "transition_step"
-          },
-          "link": null
-        },
-        {
-          "label": "lowres_scale",
-          "name": "lowres_scale",
-          "type": "FLOAT",
-          "widget": {
-            "name": "lowres_scale"
-          },
-          "link": null
-        },
-        {
-          "label": "rho",
-          "name": "rho",
-          "type": "FLOAT",
-          "widget": {
-            "name": "rho"
-          },
-          "link": null
-        },
-        {
-          "label": "w_min",
-          "name": "w_min",
-          "type": "FLOAT",
-          "widget": {
-            "name": "w_min"
-          },
-          "link": null
-        },
-        {
-          "label": "w_max",
-          "name": "w_max",
-          "type": "FLOAT",
-          "widget": {
-            "name": "w_max"
-          },
-          "link": null
-        },
-        {
-          "label": "upscaler_model",
-          "name": "upscaler_model",
-          "type": "COMBO",
-          "widget": {
-            "name": "upscaler_model"
-          },
-          "link": null
-        },
-        {
-          "label": "highres_tiling",
-          "name": "highres_tiling",
-          "shape": 7,
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "highres_tiling"
-          },
-          "link": null
-        },
-        {
-          "label": "upscaler_unload",
-          "name": "upscaler_unload",
-          "shape": 7,
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "upscaler_unload"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "label": "LATENT",
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            502,
-            503,
-            504
-          ]
-        }
-      ],
-      "properties": {
-        "aux_id": "facok/comfyui-SelfLift",
-        "ver": "835c3cf7919410f71f414688f049c6ca497789d0",
-        "Node name for S&R": "SelfLiftH3Sampler",
-        "widget_ue_connectable": {},
-        "ttNbgOverride": {
-          "bgcolor": "#533",
-          "groupcolor": "#A88",
-          "color": "#322"
-        }
-      },
-      "widgets_values": [
-        1004877498345751,
-        "fixed",
-        1,
-        6,
-        0.6000000000000001,
-        0,
-        0.5,
-        1,
-        "h3_upscaler_lms_v0.1.safetensors",
-        false,
-        true
-      ],
-      "widgets_values_named": {
-        "seed": 1004877498345751,
-        "control_after_generate": "fixed",
-        "cfg": 1,
-        "transition_step": 6,
-        "lowres_scale": 0.6000000000000001,
-        "rho": 0,
-        "w_min": 0.5,
-        "w_max": 1,
-        "upscaler_model": "h3_upscaler_lms_v0.1.safetensors",
-        "highres_tiling": false,
-        "upscaler_unload": true
-      },
-      "color": "#322",
-      "bgcolor": "#533",
-      "title": "一采 · SelfLift H3 分阶段采样",
-      "order": 77
     },
     {
       "id": 123,
@@ -5029,6 +4296,7 @@
       "flags": {
         "disabled": false
       },
+      "order": 8,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -5037,14 +4305,15 @@
           "name": "SAMPLER",
           "type": "SAMPLER",
           "links": [
-            499
+            583
           ]
         }
       ],
+      "title": "一采 · Euler 采样器",
       "properties": {
+        "Node name for S&R": "KSamplerSelect",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "KSamplerSelect",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5054,9 +4323,7 @@
         "sampler_name": "euler"
       },
       "color": "#323",
-      "bgcolor": "#535",
-      "title": "一采 · Euler 采样器",
-      "order": 2
+      "bgcolor": "#535"
     },
     {
       "id": 331,
@@ -5073,6 +4340,7 @@
         "collapsed": false,
         "disabled": false
       },
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -5092,10 +4360,11 @@
           ]
         }
       ],
+      "title": "一采 · 金鱼工作流基础 LoRA",
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "LoraLoaderModelOnly",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5107,9 +4376,7 @@
         "strength_model": 0.8000000000000002
       },
       "color": "#2a363b",
-      "bgcolor": "#3f5159",
-      "title": "一采 · 金鱼工作流基础 LoRA",
-      "order": 16
+      "bgcolor": "#3f5159"
     },
     {
       "id": 481,
@@ -5126,13 +4393,14 @@
         "collapsed": true,
         "disabled": false
       },
+      "order": 51,
       "mode": 0,
       "inputs": [
         {
           "label": "条件",
           "name": "conditioning",
           "type": "CONDITIONING",
-          "link": 495
+          "link": 578
         }
       ],
       "outputs": [
@@ -5141,14 +4409,15 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            496
+            579
           ]
         }
       ],
+      "title": "一采 · 负向条件",
       "properties": {
+        "Node name for S&R": "ConditioningZeroOut",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "ConditioningZeroOut",
         "widget_ue_connectable": {},
         "ttNbgOverride": {
           "bgcolor": "#533",
@@ -5157,9 +4426,7 @@
         }
       },
       "color": "#322",
-      "bgcolor": "#533",
-      "title": "一采 · 负向条件",
-      "order": 54
+      "bgcolor": "#533"
     },
     {
       "id": 482,
@@ -5175,13 +4442,14 @@
       "flags": {
         "disabled": false
       },
+      "order": 59,
       "mode": 0,
       "inputs": [
         {
           "label": "model",
           "name": "model",
           "type": "MODEL",
-          "link": 491
+          "link": 595
         },
         {
           "label": "shift_video",
@@ -5212,10 +4480,11 @@
           ]
         }
       ],
+      "title": "一采 · 音视频 Sigma",
       "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "MiniMaxH3SigmaShift",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5227,9 +4496,7 @@
         "shift_audio": 3.0000000000000004
       },
       "color": "#233",
-      "bgcolor": "#355",
-      "title": "一采 · 音视频 Sigma",
-      "order": 67
+      "bgcolor": "#355"
     },
     {
       "id": 483,
@@ -5246,7 +4513,8 @@
         "collapsed": false,
         "disabled": false
       },
-      "mode": 4,
+      "order": 33,
+      "mode": 0,
       "inputs": [
         {
           "label": "模型",
@@ -5265,10 +4533,11 @@
           ]
         }
       ],
+      "title": "可选 · Mystic 风格 LoRA",
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "LoraLoaderModelOnly",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5280,9 +4549,7 @@
         "strength_model": 0.35
       },
       "color": "#232",
-      "bgcolor": "#353",
-      "title": "可选 · Mystic 风格 LoRA",
-      "order": 31
+      "bgcolor": "#353"
     },
     {
       "id": 484,
@@ -5298,6 +4565,7 @@
       "flags": {
         "disabled": false
       },
+      "order": 43,
       "mode": 4,
       "inputs": [
         {
@@ -5317,10 +4585,11 @@
           ]
         }
       ],
+      "title": "可选 · 武打 LoRA",
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "LoraLoaderModelOnly",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5332,9 +4601,7 @@
         "strength_model": 0.6500000000000001
       },
       "color": "#233",
-      "bgcolor": "#355",
-      "title": "可选 · 武打 LoRA",
-      "order": 40
+      "bgcolor": "#355"
     },
     {
       "id": 485,
@@ -5350,6 +4617,7 @@
       "flags": {
         "disabled": false
       },
+      "order": 47,
       "mode": 4,
       "inputs": [
         {
@@ -5369,10 +4637,11 @@
           ]
         }
       ],
+      "title": "可选 · 动作修复 LoRA",
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "LoraLoaderModelOnly",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5384,9 +4653,7 @@
         "strength_model": 0.3500000000000001
       },
       "color": "#2a363b",
-      "bgcolor": "#3f5159",
-      "title": "可选 · 动作修复 LoRA",
-      "order": 45
+      "bgcolor": "#3f5159"
     },
     {
       "id": 486,
@@ -5402,6 +4669,7 @@
       "flags": {
         "disabled": false
       },
+      "order": 52,
       "mode": 4,
       "inputs": [
         {
@@ -5421,10 +4689,11 @@
           ]
         }
       ],
+      "title": "可选 · 打斗流畅 LoRA",
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "LoraLoaderModelOnly",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5436,9 +4705,7 @@
         "strength_model": 0.3500000000000001
       },
       "color": "#323",
-      "bgcolor": "#535",
-      "title": "可选 · 打斗流畅 LoRA",
-      "order": 50
+      "bgcolor": "#535"
     },
     {
       "id": 487,
@@ -5454,6 +4721,7 @@
       "flags": {
         "disabled": false
       },
+      "order": 56,
       "mode": 4,
       "inputs": [
         {
@@ -5469,14 +4737,15 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            490
+            595
           ]
         }
       ],
+      "title": "可选 · 动作速度 LoRA",
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
         "ver": "0.39.2",
-        "Node name for S&R": "LoraLoaderModelOnly",
         "widget_ue_connectable": {}
       },
       "widgets_values": [
@@ -5488,9 +4757,7 @@
         "strength_model": 3.0000000000000004
       },
       "color": "#232",
-      "bgcolor": "#353",
-      "title": "可选 · 动作速度 LoRA",
-      "order": 55
+      "bgcolor": "#353"
     },
     {
       "id": 600,
@@ -5506,20 +4773,9 @@
       "flags": {},
       "order": 9,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "UNet名称",
-          "name": "unet_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "unet_name"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "模型",
           "name": "MODEL",
           "type": "MODEL",
           "links": [
@@ -5558,31 +4814,27 @@
         216
       ],
       "flags": {},
-      "order": 46,
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
           "link": 505
         },
         {
-          "localized_name": "image_1",
           "name": "images.image_1",
           "shape": 7,
           "type": "IMAGE",
           "link": null
         },
         {
-          "localized_name": "vae",
           "name": "vae",
           "shape": 7,
           "type": "VAE",
           "link": null
         },
         {
-          "localized_name": "prompt",
           "name": "prompt",
           "type": "STRING",
           "widget": {
@@ -5591,7 +4843,6 @@
           "link": 507
         },
         {
-          "localized_name": "negative_prompt",
           "name": "negative_prompt",
           "type": "STRING",
           "widget": {
@@ -5602,7 +4853,6 @@
       ],
       "outputs": [
         {
-          "localized_name": "positive",
           "name": "positive",
           "type": "CONDITIONING",
           "links": [
@@ -5610,7 +4860,6 @@
           ]
         },
         {
-          "localized_name": "negative",
           "name": "negative",
           "type": "CONDITIONING",
           "links": [
@@ -5618,10 +4867,9 @@
           ]
         },
         {
-          "localized_name": "latent",
           "name": "latent",
           "type": "LATENT",
-          "links": null
+          "links": []
         }
       ],
       "properties": {
@@ -5668,20 +4916,9 @@
       "flags": {},
       "order": 10,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "CLIP名称",
-          "name": "clip_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "clip_name"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "CLIP",
           "name": "CLIP",
           "type": "CLIP",
           "links": [
@@ -5724,20 +4961,9 @@
       "flags": {},
       "order": 11,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "vae名称",
-          "name": "vae_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "vae_name"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "VAE",
           "name": "VAE",
           "type": "VAE",
           "links": [
@@ -5774,11 +5000,10 @@
         120
       ],
       "flags": {},
-      "order": 32,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "宽度",
           "name": "width",
           "type": "INT",
           "widget": {
@@ -5787,7 +5012,6 @@
           "link": 525
         },
         {
-          "localized_name": "高度",
           "name": "height",
           "type": "INT",
           "widget": {
@@ -5806,7 +5030,6 @@
       ],
       "outputs": [
         {
-          "localized_name": "Latent",
           "name": "LATENT",
           "type": "LATENT",
           "links": [
@@ -5840,17 +5063,15 @@
         60
       ],
       "flags": {},
-      "order": 59,
+      "order": 60,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "Latent",
           "name": "samples",
           "type": "LATENT",
           "link": 514
         },
         {
-          "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
           "link": 506
@@ -5858,7 +5079,6 @@
       ],
       "outputs": [
         {
-          "localized_name": "图像",
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
@@ -5882,46 +5102,40 @@
         461
       ],
       "flags": {},
-      "order": 33,
+      "order": 35,
       "mode": 0,
       "showAdvanced": true,
       "inputs": [
         {
-          "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
           "link": 519
         },
         {
-          "localized_name": "图像",
           "name": "image",
           "shape": 7,
           "type": "IMAGE",
           "link": null
         },
         {
-          "localized_name": "视频",
           "name": "video",
           "shape": 7,
           "type": "IMAGE",
           "link": null
         },
         {
-          "localized_name": "音频",
           "name": "audio",
           "shape": 7,
           "type": "AUDIO",
           "link": null
         },
         {
-          "localized_name": "系统提示词",
           "name": "system_prompt",
           "shape": 7,
           "type": "STRING",
           "link": 520
         },
         {
-          "localized_name": "提示词",
           "name": "prompt",
           "type": "STRING",
           "widget": {
@@ -5930,37 +5144,16 @@
           "link": 523
         },
         {
-          "localized_name": "最大长度",
-          "name": "max_length",
-          "type": "INT",
-          "widget": {
-            "name": "max_length"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "种子",
           "name": "sampling_mode.seed",
           "type": "INT",
           "widget": {
             "name": "sampling_mode.seed"
           },
           "link": 529
-        },
-        {
-          "localized_name": "思考模式",
-          "name": "thinking",
-          "shape": 7,
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "thinking"
-          },
-          "link": null
         }
       ],
       "outputs": [
         {
-          "localized_name": "生成文本",
           "name": "generated_text",
           "type": "STRING",
           "links": [
@@ -5968,10 +5161,9 @@
           ]
         },
         {
-          "localized_name": "思考",
           "name": "thinking",
           "type": "STRING",
-          "links": null
+          "links": []
         }
       ],
       "properties": {
@@ -6030,20 +5222,9 @@
       "flags": {},
       "order": 12,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "CLIP名称",
-          "name": "clip_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "clip_name"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "CLIP",
           "name": "CLIP",
           "type": "CLIP",
           "links": [
@@ -6084,36 +5265,24 @@
         80
       ],
       "flags": {},
-      "order": 41,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "为假时",
           "name": "on_false",
           "shape": 7,
           "type": "STRING",
           "link": 522
         },
         {
-          "localized_name": "为真时",
           "name": "on_true",
           "shape": 7,
           "type": "STRING",
           "link": 508
-        },
-        {
-          "localized_name": "切换",
-          "name": "switch",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "switch"
-          },
-          "link": null
         }
       ],
       "outputs": [
         {
-          "localized_name": "输出",
           "name": "output",
           "type": "STRING",
           "links": [
@@ -6121,6 +5290,7 @@
           ]
         }
       ],
+      "title": "可选提示词增强（默认关闭）",
       "properties": {
         "Node name for S&R": "ComfySwitchNode"
       },
@@ -6128,10 +5298,8 @@
         false
       ],
       "widgets_values_named": {
-        "switch": false,
-        "on_false": "Underground techno event poster: black background, a two-line headline in heavy white grotesque capitals where the first line reads \"QWEN IMAGE\" and the second line reads \"2.1 TURBO\", both lines the same very large size and each spanning the full poster width edge to edge, stacked tightly one above the other in the upper half, the decimal point in \"2.1\" rendered as a clearly visible full-size square dot, a scattered pile of overlapping black-and-white halftone portrait photos showing a mixed cast of different people, an elderly man, a young woman, a child and a bearded man among them, arranged in two loose rows across the lower half, every face is razor sharp and crisply in focus with fine detailed halftone dots, high micro-contrast, thin white grid lines, small fluorescent orange accent shapes, two-colour risograph print texture, square 1:1 poster format, both headline lines equally prominent, spelling exactly correct letter by letter, no other readable words, no watermark"
-      },
-      "title": "可选提示词增强（默认关闭）"
+        "switch": false
+      }
     },
     {
       "id": 609,
@@ -6150,7 +5318,6 @@
       "inputs": [],
       "outputs": [
         {
-          "localized_name": "字符串",
           "name": "STRING",
           "type": "STRING",
           "links": [
@@ -6194,7 +5361,6 @@
       "inputs": [],
       "outputs": [
         {
-          "localized_name": "Sigmas",
           "name": "SIGMAS",
           "type": "SIGMAS",
           "links": [
@@ -6225,35 +5391,30 @@
         106
       ],
       "flags": {},
-      "order": 56,
+      "order": 57,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "噪波",
           "name": "noise",
           "type": "NOISE",
           "link": 509
         },
         {
-          "localized_name": "引导器",
           "name": "guider",
           "type": "GUIDER",
           "link": 510
         },
         {
-          "localized_name": "采样器",
           "name": "sampler",
           "type": "SAMPLER",
           "link": 511
         },
         {
-          "localized_name": "西格玛",
           "name": "sigmas",
           "type": "SIGMAS",
           "link": 512
         },
         {
-          "localized_name": "Latent图像",
           "name": "latent_image",
           "type": "LATENT",
           "link": 518
@@ -6261,7 +5422,6 @@
       ],
       "outputs": [
         {
-          "localized_name": "Latent",
           "name": "output",
           "type": "LATENT",
           "links": [
@@ -6269,10 +5429,9 @@
           ]
         },
         {
-          "localized_name": "降噪Latent",
           "name": "denoised_output",
           "type": "LATENT",
-          "links": null
+          "links": []
         }
       ],
       "title": "Sampler Custom Advanced",
@@ -6294,20 +5453,9 @@
       "flags": {},
       "order": 15,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "采样器名称",
-          "name": "sampler_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "sampler_name"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "采样器",
           "name": "SAMPLER",
           "type": "SAMPLER",
           "links": [
@@ -6338,7 +5486,7 @@
         82
       ],
       "flags": {},
-      "order": 34,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -6352,7 +5500,6 @@
       ],
       "outputs": [
         {
-          "localized_name": "噪波",
           "name": "NOISE",
           "type": "NOISE",
           "links": [
@@ -6385,23 +5532,20 @@
         98
       ],
       "flags": {},
-      "order": 51,
+      "order": 53,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "模型",
           "name": "model",
           "type": "MODEL",
           "link": 513
         },
         {
-          "localized_name": "正面条件",
           "name": "positive",
           "type": "CONDITIONING",
           "link": 516
         },
         {
-          "localized_name": "负面条件",
           "name": "negative",
           "type": "CONDITIONING",
           "link": 517
@@ -6409,7 +5553,6 @@
       ],
       "outputs": [
         {
-          "localized_name": "引导器",
           "name": "GUIDER",
           "type": "GUIDER",
           "links": [
@@ -6439,37 +5582,17 @@
         90
       ],
       "flags": {},
-      "order": 25,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
-          "localized_name": "model",
           "name": "model",
           "type": "MODEL",
           "link": 515
-        },
-        {
-          "localized_name": "device",
-          "name": "device",
-          "type": "COMBO",
-          "widget": {
-            "name": "device"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "dtype",
-          "name": "dtype",
-          "type": "COMBO",
-          "widget": {
-            "name": "dtype"
-          },
-          "link": null
         }
       ],
       "outputs": [
         {
-          "localized_name": "模型",
           "name": "MODEL",
           "type": "MODEL",
           "links": [
@@ -6492,7 +5615,6 @@
     {
       "id": 650,
       "type": "SaveImage",
-      "title": "YuQ · Qwen Image 2.1 Turbo 生图输出",
       "pos": [
         6580,
         3680
@@ -6502,7 +5624,7 @@
         320
       ],
       "flags": {},
-      "order": 63,
+      "order": 64,
       "mode": 2,
       "inputs": [
         {
@@ -6519,7 +5641,14 @@
           "link": 530
         }
       ],
-      "outputs": [],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "title": "YuQ · Qwen Image 2.1 Turbo 生图输出",
       "properties": {
         "Node name for S&R": "SaveImage"
       },
@@ -6538,11 +5667,11 @@
         3750
       ],
       "size": [
-        290,
+        292.9458984375,
         160
       ],
       "flags": {},
-      "order": 52,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
@@ -6564,22 +5693,36 @@
           "name": "request",
           "type": "THEODORE_DIRECTOR_SECOND_PASS_REQUEST",
           "link": 534
+        },
+        {
+          "name": "audio_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 566
         }
       ],
       "outputs": [
         {
           "name": "conditioning",
           "type": "CONDITIONING",
+          "slot_index": 0,
           "links": [
             535
-          ],
-          "slot_index": 0
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": [
+            567
+          ]
         }
       ],
+      "title": "像素放大 · 固定高清重叠区 + 锁定原音频",
       "properties": {
         "Node name for S&R": "TheodoreDirector_SecondPassRelay"
-      },
-      "title": "二采 · 读取上一段高清接力状态"
+      }
     },
     {
       "id": 621,
@@ -6589,11 +5732,11 @@
         3930
       ],
       "size": [
-        290,
+        320.9458984375,
         160
       ],
       "flags": {},
-      "order": 73,
+      "order": 76,
       "mode": 0,
       "inputs": [
         {
@@ -6615,22 +5758,28 @@
           "name": "request",
           "type": "THEODORE_DIRECTOR_SECOND_PASS_REQUEST",
           "link": 539
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 568
         }
       ],
       "outputs": [
         {
           "name": "images",
           "type": "IMAGE",
+          "slot_index": 0,
           "links": [
             540
-          ],
-          "slot_index": 0
+          ]
         }
       ],
+      "title": "像素放大 · 保存状态 + 补足上一段解码上下文",
       "properties": {
         "Node name for S&R": "TheodoreDirector_SecondPassFinalize"
-      },
-      "title": "二采 · 裁去重叠并保存本段 AV 状态"
+      }
     },
     {
       "id": 622,
@@ -6640,11 +5789,11 @@
         4110
       ],
       "size": [
-        290,
+        305.5923828125,
         160
       ],
       "flags": {},
-      "order": 76,
+      "order": 73,
       "mode": 0,
       "inputs": [
         {
@@ -6666,22 +5815,36 @@
           "name": "request",
           "type": "THEODORE_DIRECTOR_SECOND_PASS_REQUEST",
           "link": 544
+        },
+        {
+          "name": "audio_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 569
         }
       ],
       "outputs": [
         {
           "name": "conditioning",
           "type": "CONDITIONING",
+          "slot_index": 0,
           "links": [
             545
-          ],
-          "slot_index": 0
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": [
+            570
+          ]
         }
       ],
+      "title": "latent 放大 · 固定高清重叠区 + 锁定原音频",
       "properties": {
         "Node name for S&R": "TheodoreDirector_SecondPassRelay"
-      },
-      "title": "二采 · 读取上一段高清接力状态"
+      }
     },
     {
       "id": 623,
@@ -6691,11 +5854,11 @@
         4290
       ],
       "size": [
-        290,
+        333.5923828125,
         160
       ],
       "flags": {},
-      "order": 86,
+      "order": 88,
       "mode": 0,
       "inputs": [
         {
@@ -6717,22 +5880,28 @@
           "name": "request",
           "type": "THEODORE_DIRECTOR_SECOND_PASS_REQUEST",
           "link": 549
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 571
         }
       ],
       "outputs": [
         {
           "name": "images",
           "type": "IMAGE",
+          "slot_index": 0,
           "links": [
             550
-          ],
-          "slot_index": 0
+          ]
         }
       ],
+      "title": "latent 放大 · 保存状态 + 补足上一段解码上下文",
       "properties": {
         "Node name for S&R": "TheodoreDirector_SecondPassFinalize"
-      },
-      "title": "二采 · 裁去重叠并保存本段 AV 状态"
+      }
     },
     {
       "id": 624,
@@ -6746,7 +5915,7 @@
         70
       ],
       "flags": {},
-      "order": 35,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -6759,59 +5928,474 @@
         {
           "name": "images",
           "type": "IMAGE",
+          "slot_index": 0,
           "links": [
             554
-          ],
-          "slot_index": 0
+          ]
         }
       ],
+      "title": "二采 · 画幅对齐 32",
       "properties": {
         "Node name for S&R": "TheodoreDirector_SecondPassAlign"
+      }
+    },
+    {
+      "id": 653,
+      "type": "TheodoreDirector_SecondPassJoinMatch",
+      "pos": [
+        3600,
+        3430
+      ],
+      "size": [
+        300,
+        126
+      ],
+      "flags": {},
+      "order": 70,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 561
+        },
+        {
+          "name": "request",
+          "type": "THEODORE_DIRECTOR_SECOND_PASS_REQUEST",
+          "link": 562
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            373,
+            537
+          ]
+        }
+      ],
+      "title": "像素放大 · 校验保护区（原生模式）",
+      "properties": {
+        "Node name for S&R": "TheodoreDirector_SecondPassJoinMatch"
       },
-      "title": "二采 · 画幅对齐 32"
+      "widgets_values": [
+        0
+      ],
+      "widgets_values_named": {
+        "strength": 0
+      }
+    },
+    {
+      "id": 654,
+      "type": "TheodoreDirector_SecondPassJoinMatch",
+      "pos": [
+        3600,
+        4054
+      ],
+      "size": [
+        300,
+        126
+      ],
+      "flags": {},
+      "order": 84,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 563
+        },
+        {
+          "name": "request",
+          "type": "THEODORE_DIRECTOR_SECOND_PASS_REQUEST",
+          "link": 564
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            433,
+            547
+          ]
+        }
+      ],
+      "title": "latent 放大 · 校验保护区（原生模式）",
+      "properties": {
+        "Node name for S&R": "TheodoreDirector_SecondPassJoinMatch"
+      },
+      "widgets_values": [
+        0
+      ],
+      "widgets_values_named": {
+        "strength": 0
+      }
+    },
+    {
+      "id": 655,
+      "type": "MarkdownNote",
+      "pos": [
+        1708,
+        2100
+      ],
+      "size": [
+        800,
+        325
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "YuQ 原生接力 · 二采测试方法",
+      "properties": {},
+      "widgets_values": [
+        "## 原生接力二采测试\n\n1. 导入原有 episode，选择两段连续且已通过审片的一采；第二段开启 latent 接力。\n2. 保持原模型、LoRA、种子、画幅和倍率，24 FPS，先沿用 22 帧画面窗口。\n3. 从接力链第一段开始重新二采；选择像素放大或 latent 放大二采均可。\n4. 结果名含 native_v1；在导播台选中同一链两段新结果后合并。\n5. 合并会自动使用有真实右侧上下文的解码版本，直接单看旧的左段文件不会更新。\n\n每个接缝额外重解码上一段一次；保留一采原音轨。二采的 Join Match 不做色彩/纹理匹配。\n一采仍沿用当前方案。原版 H3 视频 VAE 与支持原生 mask 的 ComfyUI 稳定版必需。"
+      ],
+      "widgets_values_named": {
+        "text": "## 原生接力二采测试\n\n1. 导入原有 episode，选择两段连续且已通过审片的一采；第二段开启 latent 接力。\n2. 保持原模型、LoRA、种子、画幅和倍率，24 FPS，先沿用 22 帧画面窗口。\n3. 从接力链第一段开始重新二采；选择像素放大或 latent 放大二采均可。\n4. 结果名含 native_v1；在导播台选中同一链两段新结果后合并。\n5. 合并会自动使用有真实右侧上下文的解码版本，直接单看旧的左段文件不会更新。\n\n每个接缝额外重解码上一段一次；保留一采原音轨。二采的 Join Match 不做色彩/纹理匹配。\n一采仍沿用当前方案。原版 H3 视频 VAE 与支持原生 mask 的 ComfyUI 稳定版必需。"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 660,
+      "type": "TheodoreDirector_FirstPassTarget",
+      "pos": [
+        3358,
+        800
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "plan",
+          "type": "THEODORE_DIRECTOR_PLAN",
+          "link": 572
+        },
+        {
+          "name": "shot",
+          "type": "THEODORE_DIRECTOR_SHOT",
+          "link": 573
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 574
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 575
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            577,
+            578
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            585
+          ]
+        },
+        {
+          "name": "context",
+          "type": "YUQ_FIRST_PASS_CONTEXT",
+          "links": [
+            587
+          ]
+        },
+        {
+          "name": "trim_frames",
+          "type": "INT",
+          "links": [
+            592
+          ]
+        }
+      ],
+      "title": "一采 · 固定上一段 AV 末尾（原生 mask）",
+      "properties": {
+        "Node name for S&R": "TheodoreDirector_FirstPassTarget"
+      }
+    },
+    {
+      "id": 661,
+      "type": "CFGGuider",
+      "pos": [
+        3358,
+        1100
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 71,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 576
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 577
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 579
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            582
+          ]
+        }
+      ],
+      "title": "一采 · CFG（原模型与 LoRA）",
+      "properties": {
+        "Node name for S&R": "CFGGuider"
+      },
+      "widgets_values": [
+        1
+      ],
+      "widgets_values_named": {
+        "cfg": 1
+      }
+    },
+    {
+      "id": 662,
+      "type": "RandomNoise",
+      "pos": [
+        3358,
+        1380
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": 580
+        }
+      ],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            581
+          ]
+        }
+      ],
+      "title": "一采 · 分镜种子",
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        1004877498345751,
+        "fixed"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 1004877498345751,
+        "control_after_generate": "fixed"
+      }
+    },
+    {
+      "id": 663,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        3888,
+        1000
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 74,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 581
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 582
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 583
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 584
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 585
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            586
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": []
+        }
+      ],
+      "title": "一采 · 全画幅原生采样（保留 mask）",
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      }
+    },
+    {
+      "id": 664,
+      "type": "TheodoreDirector_FirstPassFinalize",
+      "pos": [
+        3888,
+        1290
+      ],
+      "size": [
+        340,
+        200
+      ],
+      "flags": {},
+      "order": 77,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 586
+        },
+        {
+          "name": "context",
+          "type": "YUQ_FIRST_PASS_CONTEXT",
+          "link": 587
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 588
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            589,
+            590,
+            591
+          ]
+        },
+        {
+          "name": "context",
+          "type": "YUQ_FIRST_PASS_CONTEXT",
+          "links": [
+            593
+          ]
+        }
+      ],
+      "title": "一采 · 校验 AV 保护区并补足上段解码上下文",
+      "properties": {
+        "Node name for S&R": "TheodoreDirector_FirstPassFinalize"
+      }
+    },
+    {
+      "id": 665,
+      "type": "MarkdownNote",
+      "pos": [
+        3358,
+        100
+      ],
+      "size": [
+        720,
+        400
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "YuQ · 原生一采测试说明",
+      "properties": {
+        "Node name for S&R": "MarkdownNote"
+      },
+      "widgets_values": [
+        "一采原生 AV 保护区测试：模型、LoRA、Euler、12步与分镜种子沿用原图。一采改为全目标网格采样，计算量/显存高于 SelfLift；不要用相同种子画面一致作为判断依据。建议画面39帧、音频39帧、24FPS；从新 Run 的接力链第一段开始生成。在导播台审片页按顺序合并：合并时自动使用带真实后续5个token的上段解码副本，原片保持。若导入分镜覆盖了配置，请确认24FPS和成片时长模式。二采保留原生保护及批次解码修复。本机仅完成CPU与工作流检查，需在运行H3的电脑测试画面。"
+      ],
+      "widgets_values_named": {
+        "text": "一采原生 AV 保护区测试：模型、LoRA、Euler、12步与分镜种子沿用原图。一采改为全目标网格采样，计算量/显存高于 SelfLift；不要用相同种子画面一致作为判断依据。建议画面39帧、音频39帧、24FPS；从新 Run 的接力链第一段开始生成。在导播台审片页按顺序合并：合并时自动使用带真实后续5个token的上段解码副本，原片保持。若导入分镜覆盖了配置，请确认24FPS和成片时长模式。二采保留原生保护及批次解码修复。本机仅完成CPU与工作流检查，需在运行H3的电脑测试画面。"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 666,
+      "type": "MarkdownNote",
+      "title": "连续成片测试说明",
+      "pos": [
+        1708,
+        2020
+      ],
+      "size": [
+        900,
+        360
+      ],
+      "flags": {},
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "连续源二采测试：模型与 LoRA 沿用基础工作流设置。从导播台审片页按接力链顺序执行后处理；读取与一采合并相同的连续解码画面，低清上下文读取上一段一采，高清保护区使用上一段二采 latent。latent 放大关闭时间分块，计算精度 fp32，显存占用增加。切换本版本后请整条链执行一次，旧二采状态将重新匹配。"
+      ],
+      "order": 18
     }
   ],
   "links": [
-    [
-      30,
-      128,
-      0,
-      136,
-      0,
-      "CLIP"
-    ],
-    [
-      31,
-      119,
-      0,
-      136,
-      1,
-      "VAE"
-    ],
-    [
-      32,
-      120,
-      0,
-      136,
-      2,
-      "VAE"
-    ],
-    [
-      43,
-      450,
-      3,
-      136,
-      22,
-      "INT"
-    ],
-    [
-      44,
-      450,
-      4,
-      136,
-      23,
-      "INT"
-    ],
     [
       57,
       119,
@@ -6843,14 +6427,6 @@
       334,
       0,
       "MODEL"
-    ],
-    [
-      201,
-      130,
-      0,
-      92,
-      0,
-      "VIDEO"
     ],
     [
       210,
@@ -6885,60 +6461,12 @@
       "MODEL"
     ],
     [
-      242,
-      136,
-      0,
-      389,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      243,
-      119,
-      0,
-      389,
-      1,
-      "VAE"
-    ],
-    [
-      244,
-      136,
-      1,
-      389,
-      2,
-      "LATENT"
-    ],
-    [
-      245,
-      388,
-      0,
-      389,
-      4,
-      "LATENT"
-    ],
-    [
-      246,
-      120,
-      0,
-      389,
-      5,
-      "VAE"
-    ],
-    [
       255,
       121,
       0,
       392,
       1,
       "AUDIO"
-    ],
-    [
-      256,
-      391,
-      0,
-      392,
-      2,
-      "INT"
     ],
     [
       257,
@@ -6989,68 +6517,1220 @@
       "THEODORE_DIRECTOR_SHOT"
     ],
     [
-      287,
-      389,
-      0,
-      390,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      288,
-      136,
-      0,
-      390,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      289,
-      389,
-      1,
-      391,
-      0,
-      "INT"
-    ],
-    [
-      290,
+      317,
       450,
-      15,
-      391,
       1,
-      "INT"
-    ],
-    [
-      291,
-      450,
-      6,
-      390,
+      400,
       2,
-      "BOOLEAN"
+      "THEODORE_DIRECTOR_PATHS"
     ],
     [
-      292,
+      320,
       450,
-      6,
-      391,
-      2,
-      "BOOLEAN"
-    ],
-    [
-      297,
-      398,
-      0,
-      136,
-      21,
+      11,
+      393,
+      1,
       "STRING"
     ],
     [
-      298,
-      398,
-      1,
-      136,
-      24,
+      323,
+      450,
+      8,
+      393,
+      2,
       "INT"
+    ],
+    [
+      324,
+      451,
+      0,
+      400,
+      3,
+      "*"
+    ],
+    [
+      325,
+      451,
+      0,
+      400,
+      4,
+      "STRING"
+    ],
+    [
+      326,
+      393,
+      0,
+      400,
+      5,
+      "STRING"
+    ],
+    [
+      330,
+      402,
+      0,
+      403,
+      0,
+      "THEODORE_DIRECTOR_PLAN"
+    ],
+    [
+      331,
+      402,
+      1,
+      403,
+      1,
+      "THEODORE_DIRECTOR_SHOT"
+    ],
+    [
+      359,
+      119,
+      0,
+      405,
+      1,
+      "VAE"
+    ],
+    [
+      360,
+      402,
+      4,
+      406,
+      0,
+      "AUDIO"
+    ],
+    [
+      361,
+      120,
+      0,
+      406,
+      1,
+      "VAE"
+    ],
+    [
+      362,
+      405,
+      0,
+      407,
+      0,
+      "LATENT"
+    ],
+    [
+      363,
+      406,
+      0,
+      407,
+      1,
+      "LATENT"
+    ],
+    [
+      364,
+      379,
+      0,
+      408,
+      0,
+      "MODEL"
+    ],
+    [
+      366,
+      379,
+      0,
+      409,
+      0,
+      "MODEL"
+    ],
+    [
+      367,
+      402,
+      6,
+      416,
+      0,
+      "INT"
+    ],
+    [
+      368,
+      416,
+      0,
+      411,
+      0,
+      "NOISE"
+    ],
+    [
+      369,
+      408,
+      0,
+      411,
+      1,
+      "GUIDER"
+    ],
+    [
+      370,
+      410,
+      0,
+      411,
+      2,
+      "SAMPLER"
+    ],
+    [
+      371,
+      409,
+      0,
+      411,
+      3,
+      "SIGMAS"
+    ],
+    [
+      373,
+      653,
+      0,
+      412,
+      0,
+      "LATENT"
+    ],
+    [
+      374,
+      119,
+      0,
+      412,
+      1,
+      "VAE"
+    ],
+    [
+      377,
+      402,
+      5,
+      413,
+      2,
+      "FLOAT"
+    ],
+    [
+      378,
+      413,
+      0,
+      414,
+      0,
+      "VIDEO"
+    ],
+    [
+      379,
+      402,
+      2,
+      414,
+      1,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      411,
+      402,
+      3,
+      430,
+      0,
+      "IMAGE"
+    ],
+    [
+      412,
+      119,
+      0,
+      430,
+      1,
+      "VAE"
+    ],
+    [
+      414,
+      415,
+      0,
+      432,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      415,
+      379,
+      0,
+      433,
+      0,
+      "MODEL"
+    ],
+    [
+      416,
+      416,
+      0,
+      433,
+      1,
+      "NOISE"
+    ],
+    [
+      417,
+      409,
+      0,
+      433,
+      2,
+      "SIGMAS"
+    ],
+    [
+      418,
+      431,
+      0,
+      433,
+      3,
+      "LATENT"
+    ],
+    [
+      424,
+      433,
+      0,
+      437,
+      0,
+      "LATENT"
+    ],
+    [
+      426,
+      379,
+      0,
+      438,
+      0,
+      "MODEL"
+    ],
+    [
+      428,
+      436,
+      0,
+      439,
+      0,
+      "NOISE"
+    ],
+    [
+      429,
+      438,
+      0,
+      439,
+      1,
+      "GUIDER"
+    ],
+    [
+      430,
+      410,
+      0,
+      439,
+      2,
+      "SAMPLER"
+    ],
+    [
+      431,
+      409,
+      0,
+      439,
+      3,
+      "SIGMAS"
+    ],
+    [
+      433,
+      654,
+      0,
+      440,
+      0,
+      "LATENT"
+    ],
+    [
+      434,
+      119,
+      0,
+      440,
+      1,
+      "VAE"
+    ],
+    [
+      436,
+      404,
+      0,
+      441,
+      1,
+      "IMAGE"
+    ],
+    [
+      437,
+      402,
+      8,
+      441,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      439,
+      441,
+      0,
+      442,
+      1,
+      "IMAGE"
+    ],
+    [
+      440,
+      402,
+      9,
+      442,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      441,
+      442,
+      0,
+      413,
+      0,
+      "IMAGE"
+    ],
+    [
+      447,
+      375,
+      0,
+      445,
+      0,
+      "MODEL"
+    ],
+    [
+      448,
+      446,
+      0,
+      376,
+      0,
+      "MODEL"
+    ],
+    [
+      456,
+      445,
+      0,
+      446,
+      0,
+      "MODEL"
+    ],
+    [
+      410,
+      122,
+      0,
+      392,
+      0,
+      "IMAGE"
+    ],
+    [
+      458,
+      396,
+      0,
+      450,
+      0,
+      "THEODORE_DIRECTOR_PLAN"
+    ],
+    [
+      459,
+      392,
+      0,
+      451,
+      0,
+      "IMAGE"
+    ],
+    [
+      460,
+      450,
+      1,
+      451,
+      1,
+      "THEODORE_DIRECTOR_PATHS"
+    ],
+    [
+      461,
+      92,
+      0,
+      451,
+      2,
+      "VIDEO"
+    ],
+    [
+      462,
+      450,
+      5,
+      130,
+      2,
+      "FLOAT"
+    ],
+    [
+      463,
+      450,
+      5,
+      392,
+      3,
+      "FLOAT"
+    ],
+    [
+      476,
+      396,
+      0,
+      480,
+      0,
+      "THEODORE_DIRECTOR_PLAN"
+    ],
+    [
+      484,
+      127,
+      0,
+      331,
+      0,
+      "MODEL"
+    ],
+    [
+      485,
+      331,
+      0,
+      483,
+      0,
+      "MODEL"
+    ],
+    [
+      486,
+      483,
+      0,
+      484,
+      0,
+      "MODEL"
+    ],
+    [
+      487,
+      484,
+      0,
+      485,
+      0,
+      "MODEL"
+    ],
+    [
+      488,
+      485,
+      0,
+      486,
+      0,
+      "MODEL"
+    ],
+    [
+      489,
+      486,
+      0,
+      487,
+      0,
+      "MODEL"
+    ],
+    [
+      492,
+      482,
+      0,
+      141,
+      0,
+      "MODEL"
+    ],
+    [
+      505,
+      602,
+      0,
+      601,
+      0,
+      "CLIP"
+    ],
+    [
+      506,
+      603,
+      0,
+      605,
+      1,
+      "VAE"
+    ],
+    [
+      507,
+      608,
+      0,
+      601,
+      3,
+      "STRING"
+    ],
+    [
+      508,
+      606,
+      0,
+      608,
+      1,
+      "STRING"
+    ],
+    [
+      509,
+      613,
+      0,
+      611,
+      0,
+      "NOISE"
+    ],
+    [
+      510,
+      614,
+      0,
+      611,
+      1,
+      "GUIDER"
+    ],
+    [
+      511,
+      612,
+      0,
+      611,
+      2,
+      "SAMPLER"
+    ],
+    [
+      512,
+      610,
+      0,
+      611,
+      3,
+      "SIGMAS"
+    ],
+    [
+      513,
+      615,
+      0,
+      614,
+      0,
+      "MODEL"
+    ],
+    [
+      514,
+      611,
+      0,
+      605,
+      0,
+      "LATENT"
+    ],
+    [
+      515,
+      600,
+      0,
+      615,
+      0,
+      "MODEL"
+    ],
+    [
+      516,
+      601,
+      0,
+      614,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      517,
+      601,
+      1,
+      614,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      518,
+      604,
+      0,
+      611,
+      4,
+      "LATENT"
+    ],
+    [
+      521,
+      605,
+      0,
+      650,
+      0,
+      "IMAGE"
+    ],
+    [
+      522,
+      480,
+      0,
+      608,
+      0,
+      "STRING"
+    ],
+    [
+      524,
+      480,
+      1,
+      601,
+      4,
+      "STRING"
+    ],
+    [
+      525,
+      480,
+      2,
+      604,
+      0,
+      "INT"
+    ],
+    [
+      526,
+      480,
+      3,
+      604,
+      1,
+      "INT"
+    ],
+    [
+      527,
+      480,
+      4,
+      604,
+      2,
+      "INT"
+    ],
+    [
+      528,
+      480,
+      5,
+      613,
+      0,
+      "INT"
+    ],
+    [
+      530,
+      480,
+      6,
+      650,
+      1,
+      "STRING"
+    ],
+    [
+      531,
+      415,
+      0,
+      620,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      532,
+      407,
+      0,
+      620,
+      1,
+      "LATENT"
+    ],
+    [
+      533,
+      119,
+      0,
+      620,
+      2,
+      "VAE"
+    ],
+    [
+      534,
+      402,
+      2,
+      620,
+      3,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      535,
+      620,
+      0,
+      408,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      536,
+      412,
+      0,
+      621,
+      0,
+      "IMAGE"
+    ],
+    [
+      537,
+      653,
+      0,
+      621,
+      1,
+      "LATENT"
+    ],
+    [
+      538,
+      406,
+      0,
+      621,
+      2,
+      "LATENT"
+    ],
+    [
+      539,
+      402,
+      2,
+      621,
+      3,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      540,
+      621,
+      0,
+      441,
+      0,
+      "*"
+    ],
+    [
+      541,
+      432,
+      0,
+      622,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      542,
+      437,
+      0,
+      622,
+      1,
+      "LATENT"
+    ],
+    [
+      543,
+      119,
+      0,
+      622,
+      2,
+      "VAE"
+    ],
+    [
+      544,
+      402,
+      2,
+      622,
+      3,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      545,
+      622,
+      0,
+      438,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      546,
+      440,
+      0,
+      623,
+      0,
+      "IMAGE"
+    ],
+    [
+      547,
+      654,
+      0,
+      623,
+      1,
+      "LATENT"
+    ],
+    [
+      548,
+      406,
+      0,
+      623,
+      2,
+      "LATENT"
+    ],
+    [
+      549,
+      402,
+      2,
+      623,
+      3,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      550,
+      623,
+      0,
+      442,
+      0,
+      "*"
+    ],
+    [
+      552,
+      402,
+      14,
+      413,
+      1,
+      "AUDIO"
+    ],
+    [
+      553,
+      404,
+      0,
+      624,
+      0,
+      "IMAGE"
+    ],
+    [
+      554,
+      624,
+      0,
+      405,
+      0,
+      "IMAGE"
+    ],
+    [
+      561,
+      411,
+      0,
+      653,
+      0,
+      "LATENT"
+    ],
+    [
+      562,
+      402,
+      2,
+      653,
+      1,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      563,
+      439,
+      0,
+      654,
+      0,
+      "LATENT"
+    ],
+    [
+      564,
+      402,
+      2,
+      654,
+      1,
+      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
+    ],
+    [
+      565,
+      406,
+      0,
+      437,
+      1,
+      "LATENT"
+    ],
+    [
+      566,
+      406,
+      0,
+      620,
+      4,
+      "LATENT"
+    ],
+    [
+      567,
+      620,
+      1,
+      411,
+      4,
+      "LATENT"
+    ],
+    [
+      568,
+      119,
+      0,
+      621,
+      4,
+      "VAE"
+    ],
+    [
+      569,
+      406,
+      0,
+      622,
+      4,
+      "LATENT"
+    ],
+    [
+      570,
+      622,
+      1,
+      439,
+      4,
+      "LATENT"
+    ],
+    [
+      571,
+      119,
+      0,
+      623,
+      4,
+      "VAE"
+    ],
+    [
+      572,
+      396,
+      0,
+      660,
+      0,
+      "THEODORE_DIRECTOR_PLAN"
+    ],
+    [
+      573,
+      450,
+      0,
+      660,
+      1,
+      "THEODORE_DIRECTOR_SHOT"
+    ],
+    [
+      574,
+      136,
+      0,
+      660,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      575,
+      136,
+      1,
+      660,
+      3,
+      "LATENT"
+    ],
+    [
+      576,
+      334,
+      0,
+      661,
+      0,
+      "MODEL"
+    ],
+    [
+      577,
+      660,
+      0,
+      661,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      578,
+      660,
+      0,
+      481,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      579,
+      481,
+      0,
+      661,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      580,
+      450,
+      2,
+      662,
+      0,
+      "INT"
+    ],
+    [
+      581,
+      662,
+      0,
+      663,
+      0,
+      "NOISE"
+    ],
+    [
+      582,
+      661,
+      0,
+      663,
+      1,
+      "GUIDER"
+    ],
+    [
+      583,
+      123,
+      0,
+      663,
+      2,
+      "SAMPLER"
+    ],
+    [
+      584,
+      124,
+      0,
+      663,
+      3,
+      "SIGMAS"
+    ],
+    [
+      585,
+      660,
+      1,
+      663,
+      4,
+      "LATENT"
+    ],
+    [
+      586,
+      663,
+      0,
+      664,
+      0,
+      "LATENT"
+    ],
+    [
+      587,
+      660,
+      2,
+      664,
+      1,
+      "YUQ_FIRST_PASS_CONTEXT"
+    ],
+    [
+      588,
+      119,
+      0,
+      664,
+      2,
+      "VAE"
+    ],
+    [
+      589,
+      664,
+      0,
+      122,
+      0,
+      "LATENT"
+    ],
+    [
+      590,
+      664,
+      0,
+      121,
+      0,
+      "LATENT"
+    ],
+    [
+      591,
+      664,
+      0,
+      393,
+      0,
+      "LATENT"
+    ],
+    [
+      592,
+      660,
+      3,
+      392,
+      2,
+      "INT"
+    ],
+    [
+      593,
+      664,
+      1,
+      400,
+      6,
+      "YUQ_FIRST_PASS_CONTEXT"
+    ],
+    [
+      201,
+      130,
+      0,
+      92,
+      0,
+      "VIDEO"
+    ],
+    [
+      318,
+      450,
+      9,
+      92,
+      1,
+      "STRING"
+    ],
+    [
+      357,
+      402,
+      3,
+      404,
+      0,
+      "IMAGE"
+    ],
+    [
+      413,
+      430,
+      0,
+      431,
+      0,
+      "LATENT"
+    ],
+    [
+      519,
+      607,
+      0,
+      606,
+      0,
+      "CLIP"
+    ],
+    [
+      520,
+      609,
+      0,
+      606,
+      4,
+      "STRING"
+    ],
+    [
+      523,
+      480,
+      0,
+      606,
+      5,
+      "STRING"
+    ],
+    [
+      529,
+      480,
+      5,
+      606,
+      6,
+      "INT"
+    ],
+    [
+      30,
+      128,
+      0,
+      136,
+      0,
+      "CLIP"
+    ],
+    [
+      31,
+      119,
+      0,
+      136,
+      1,
+      "VAE"
+    ],
+    [
+      32,
+      120,
+      0,
+      136,
+      2,
+      "VAE"
     ],
     [
       299,
@@ -7197,92 +7877,36 @@
       "AUDIO"
     ],
     [
-      317,
-      450,
-      1,
-      400,
-      2,
-      "THEODORE_DIRECTOR_PATHS"
-    ],
-    [
-      318,
-      450,
-      9,
-      92,
-      1,
-      "STRING"
-    ],
-    [
-      319,
-      450,
-      10,
-      388,
+      297,
+      398,
       0,
+      136,
+      21,
       "STRING"
     ],
     [
-      320,
+      43,
       450,
-      11,
-      393,
-      1,
-      "STRING"
-    ],
-    [
-      322,
-      450,
-      7,
-      388,
-      1,
-      "INT"
-    ],
-    [
-      323,
-      450,
-      8,
-      393,
-      2,
-      "INT"
-    ],
-    [
-      324,
-      451,
-      0,
-      400,
       3,
-      "*"
+      136,
+      22,
+      "INT"
     ],
     [
-      325,
-      451,
-      0,
-      400,
+      44,
+      450,
       4,
-      "STRING"
+      136,
+      23,
+      "INT"
     ],
     [
-      326,
-      393,
-      0,
-      400,
-      5,
-      "STRING"
-    ],
-    [
-      330,
-      402,
-      0,
-      403,
-      0,
-      "THEODORE_DIRECTOR_PLAN"
-    ],
-    [
-      331,
-      402,
+      298,
+      398,
       1,
-      403,
-      1,
-      "THEODORE_DIRECTOR_SHOT"
+      136,
+      24,
+      "INT"
     ],
     [
       332,
@@ -7389,11 +8013,43 @@
       "IMAGE"
     ],
     [
+      347,
+      403,
+      14,
+      415,
+      13,
+      "IMAGE"
+    ],
+    [
+      350,
+      403,
+      15,
+      415,
+      14,
+      "IMAGE"
+    ],
+    [
       345,
       403,
       16,
       415,
       15,
+      "AUDIO"
+    ],
+    [
+      348,
+      403,
+      17,
+      415,
+      16,
+      "AUDIO"
+    ],
+    [
+      351,
+      403,
+      18,
+      415,
+      17,
       "AUDIO"
     ],
     [
@@ -7405,43 +8061,11 @@
       "AUDIO"
     ],
     [
-      347,
-      403,
-      14,
-      415,
-      13,
-      "IMAGE"
-    ],
-    [
-      348,
-      403,
-      17,
-      415,
-      16,
-      "AUDIO"
-    ],
-    [
       349,
       403,
       20,
       415,
       19,
-      "AUDIO"
-    ],
-    [
-      350,
-      403,
-      15,
-      415,
-      14,
-      "IMAGE"
-    ],
-    [
-      351,
-      403,
-      18,
-      415,
-      17,
       "AUDIO"
     ],
     [
@@ -7477,1035 +8101,6 @@
       "INT"
     ],
     [
-      357,
-      402,
-      3,
-      404,
-      0,
-      "IMAGE"
-    ],
-    [
-      359,
-      119,
-      0,
-      405,
-      1,
-      "VAE"
-    ],
-    [
-      360,
-      402,
-      4,
-      406,
-      0,
-      "AUDIO"
-    ],
-    [
-      361,
-      120,
-      0,
-      406,
-      1,
-      "VAE"
-    ],
-    [
-      362,
-      405,
-      0,
-      407,
-      0,
-      "LATENT"
-    ],
-    [
-      363,
-      406,
-      0,
-      407,
-      1,
-      "LATENT"
-    ],
-    [
-      364,
-      379,
-      0,
-      408,
-      0,
-      "MODEL"
-    ],
-    [
-      366,
-      379,
-      0,
-      409,
-      0,
-      "MODEL"
-    ],
-    [
-      367,
-      402,
-      6,
-      416,
-      0,
-      "INT"
-    ],
-    [
-      368,
-      416,
-      0,
-      411,
-      0,
-      "NOISE"
-    ],
-    [
-      369,
-      408,
-      0,
-      411,
-      1,
-      "GUIDER"
-    ],
-    [
-      370,
-      410,
-      0,
-      411,
-      2,
-      "SAMPLER"
-    ],
-    [
-      371,
-      409,
-      0,
-      411,
-      3,
-      "SIGMAS"
-    ],
-    [
-      372,
-      407,
-      0,
-      411,
-      4,
-      "LATENT"
-    ],
-    [
-      373,
-      411,
-      0,
-      412,
-      0,
-      "LATENT"
-    ],
-    [
-      374,
-      119,
-      0,
-      412,
-      1,
-      "VAE"
-    ],
-    [
-      377,
-      402,
-      5,
-      413,
-      2,
-      "FLOAT"
-    ],
-    [
-      378,
-      413,
-      0,
-      414,
-      0,
-      "VIDEO"
-    ],
-    [
-      379,
-      402,
-      2,
-      414,
-      1,
-      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
-    ],
-    [
-      411,
-      402,
-      3,
-      430,
-      0,
-      "IMAGE"
-    ],
-    [
-      412,
-      119,
-      0,
-      430,
-      1,
-      "VAE"
-    ],
-    [
-      413,
-      430,
-      0,
-      431,
-      0,
-      "LATENT"
-    ],
-    [
-      414,
-      415,
-      0,
-      432,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      415,
-      379,
-      0,
-      433,
-      0,
-      "MODEL"
-    ],
-    [
-      416,
-      416,
-      0,
-      433,
-      1,
-      "NOISE"
-    ],
-    [
-      417,
-      409,
-      0,
-      433,
-      2,
-      "SIGMAS"
-    ],
-    [
-      418,
-      431,
-      0,
-      433,
-      3,
-      "LATENT"
-    ],
-    [
-      419,
-      379,
-      0,
-      434,
-      0,
-      "MODEL"
-    ],
-    [
-      420,
-      416,
-      0,
-      434,
-      1,
-      "NOISE"
-    ],
-    [
-      421,
-      409,
-      0,
-      435,
-      0,
-      "SIGMAS"
-    ],
-    [
-      422,
-      435,
-      0,
-      434,
-      2,
-      "SIGMAS"
-    ],
-    [
-      423,
-      406,
-      0,
-      434,
-      3,
-      "LATENT"
-    ],
-    [
-      424,
-      433,
-      0,
-      437,
-      0,
-      "LATENT"
-    ],
-    [
-      425,
-      434,
-      0,
-      437,
-      1,
-      "LATENT"
-    ],
-    [
-      426,
-      379,
-      0,
-      438,
-      0,
-      "MODEL"
-    ],
-    [
-      428,
-      436,
-      0,
-      439,
-      0,
-      "NOISE"
-    ],
-    [
-      429,
-      438,
-      0,
-      439,
-      1,
-      "GUIDER"
-    ],
-    [
-      430,
-      410,
-      0,
-      439,
-      2,
-      "SAMPLER"
-    ],
-    [
-      431,
-      409,
-      0,
-      439,
-      3,
-      "SIGMAS"
-    ],
-    [
-      432,
-      437,
-      0,
-      439,
-      4,
-      "LATENT"
-    ],
-    [
-      433,
-      439,
-      0,
-      440,
-      0,
-      "LATENT"
-    ],
-    [
-      434,
-      119,
-      0,
-      440,
-      1,
-      "VAE"
-    ],
-    [
-      436,
-      404,
-      0,
-      441,
-      1,
-      "IMAGE"
-    ],
-    [
-      437,
-      402,
-      8,
-      441,
-      2,
-      "BOOLEAN"
-    ],
-    [
-      439,
-      441,
-      0,
-      442,
-      1,
-      "IMAGE"
-    ],
-    [
-      440,
-      402,
-      9,
-      442,
-      2,
-      "BOOLEAN"
-    ],
-    [
-      441,
-      442,
-      0,
-      413,
-      0,
-      "IMAGE"
-    ],
-    [
-      447,
-      375,
-      0,
-      445,
-      0,
-      "MODEL"
-    ],
-    [
-      448,
-      446,
-      0,
-      376,
-      0,
-      "MODEL"
-    ],
-    [
-      455,
-      449,
-      0,
-      444,
-      0,
-      "MODEL"
-    ],
-    [
-      456,
-      445,
-      0,
-      446,
-      0,
-      "MODEL"
-    ],
-    [
-      410,
-      122,
-      0,
-      392,
-      0,
-      "IMAGE"
-    ],
-    [
-      458,
-      396,
-      0,
-      450,
-      0,
-      "THEODORE_DIRECTOR_PLAN"
-    ],
-    [
-      459,
-      392,
-      0,
-      451,
-      0,
-      "IMAGE"
-    ],
-    [
-      460,
-      450,
-      1,
-      451,
-      1,
-      "THEODORE_DIRECTOR_PATHS"
-    ],
-    [
-      461,
-      92,
-      0,
-      451,
-      2,
-      "VIDEO"
-    ],
-    [
-      462,
-      450,
-      5,
-      130,
-      2,
-      "FLOAT"
-    ],
-    [
-      463,
-      450,
-      5,
-      392,
-      3,
-      "FLOAT"
-    ],
-    [
-      464,
-      450,
-      13,
-      389,
-      7,
-      [
-        "22",
-        "5",
-        "39",
-        "56"
-      ]
-    ],
-    [
-      465,
-      450,
-      14,
-      389,
-      8,
-      "INT"
-    ],
-    [
-      476,
-      396,
-      0,
-      480,
-      0,
-      "THEODORE_DIRECTOR_PLAN"
-    ],
-    [
-      484,
-      127,
-      0,
-      331,
-      0,
-      "MODEL"
-    ],
-    [
-      485,
-      331,
-      0,
-      483,
-      0,
-      "MODEL"
-    ],
-    [
-      486,
-      483,
-      0,
-      484,
-      0,
-      "MODEL"
-    ],
-    [
-      487,
-      484,
-      0,
-      485,
-      0,
-      "MODEL"
-    ],
-    [
-      488,
-      485,
-      0,
-      486,
-      0,
-      "MODEL"
-    ],
-    [
-      489,
-      486,
-      0,
-      487,
-      0,
-      "MODEL"
-    ],
-    [
-      490,
-      487,
-      0,
-      449,
-      0,
-      "MODEL"
-    ],
-    [
-      491,
-      444,
-      0,
-      482,
-      0,
-      "MODEL"
-    ],
-    [
-      492,
-      482,
-      0,
-      141,
-      0,
-      "MODEL"
-    ],
-    [
-      493,
-      334,
-      0,
-      125,
-      0,
-      "MODEL"
-    ],
-    [
-      494,
-      390,
-      0,
-      125,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      495,
-      390,
-      0,
-      481,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      496,
-      481,
-      0,
-      125,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      497,
-      119,
-      0,
-      125,
-      3,
-      "VAE"
-    ],
-    [
-      498,
-      136,
-      1,
-      125,
-      4,
-      "LATENT"
-    ],
-    [
-      499,
-      123,
-      0,
-      125,
-      5,
-      "SAMPLER"
-    ],
-    [
-      500,
-      124,
-      0,
-      125,
-      6,
-      "SIGMAS"
-    ],
-    [
-      501,
-      450,
-      2,
-      125,
-      8,
-      "INT"
-    ],
-    [
-      502,
-      125,
-      0,
-      122,
-      0,
-      "LATENT"
-    ],
-    [
-      503,
-      125,
-      0,
-      121,
-      0,
-      "LATENT"
-    ],
-    [
-      504,
-      125,
-      0,
-      393,
-      0,
-      "LATENT"
-    ],
-    [
-      505,
-      602,
-      0,
-      601,
-      0,
-      "CLIP"
-    ],
-    [
-      506,
-      603,
-      0,
-      605,
-      1,
-      "VAE"
-    ],
-    [
-      507,
-      608,
-      0,
-      601,
-      3,
-      "STRING"
-    ],
-    [
-      508,
-      606,
-      0,
-      608,
-      1,
-      "STRING"
-    ],
-    [
-      509,
-      613,
-      0,
-      611,
-      0,
-      "NOISE"
-    ],
-    [
-      510,
-      614,
-      0,
-      611,
-      1,
-      "GUIDER"
-    ],
-    [
-      511,
-      612,
-      0,
-      611,
-      2,
-      "SAMPLER"
-    ],
-    [
-      512,
-      610,
-      0,
-      611,
-      3,
-      "SIGMAS"
-    ],
-    [
-      513,
-      615,
-      0,
-      614,
-      0,
-      "MODEL"
-    ],
-    [
-      514,
-      611,
-      0,
-      605,
-      0,
-      "LATENT"
-    ],
-    [
-      515,
-      600,
-      0,
-      615,
-      0,
-      "MODEL"
-    ],
-    [
-      516,
-      601,
-      0,
-      614,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      517,
-      601,
-      1,
-      614,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      518,
-      604,
-      0,
-      611,
-      4,
-      "LATENT"
-    ],
-    [
-      519,
-      607,
-      0,
-      606,
-      0,
-      "CLIP"
-    ],
-    [
-      520,
-      609,
-      0,
-      606,
-      4,
-      "STRING"
-    ],
-    [
-      521,
-      605,
-      0,
-      650,
-      0,
-      "IMAGE"
-    ],
-    [
-      522,
-      480,
-      0,
-      608,
-      0,
-      "STRING"
-    ],
-    [
-      523,
-      480,
-      0,
-      606,
-      5,
-      "STRING"
-    ],
-    [
-      524,
-      480,
-      1,
-      601,
-      4,
-      "STRING"
-    ],
-    [
-      525,
-      480,
-      2,
-      604,
-      0,
-      "INT"
-    ],
-    [
-      526,
-      480,
-      3,
-      604,
-      1,
-      "INT"
-    ],
-    [
-      527,
-      480,
-      4,
-      604,
-      2,
-      "INT"
-    ],
-    [
-      528,
-      480,
-      5,
-      613,
-      0,
-      "INT"
-    ],
-    [
-      529,
-      480,
-      5,
-      606,
-      7,
-      "INT"
-    ],
-    [
-      530,
-      480,
-      6,
-      650,
-      1,
-      "STRING"
-    ],
-    [
-      531,
-      415,
-      0,
-      620,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      532,
-      407,
-      0,
-      620,
-      1,
-      "LATENT"
-    ],
-    [
-      533,
-      119,
-      0,
-      620,
-      2,
-      "VAE"
-    ],
-    [
-      534,
-      402,
-      2,
-      620,
-      3,
-      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
-    ],
-    [
-      535,
-      620,
-      0,
-      408,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      536,
-      412,
-      0,
-      621,
-      0,
-      "IMAGE"
-    ],
-    [
-      537,
-      411,
-      0,
-      621,
-      1,
-      "LATENT"
-    ],
-    [
-      538,
-      406,
-      0,
-      621,
-      2,
-      "LATENT"
-    ],
-    [
-      539,
-      402,
-      2,
-      621,
-      3,
-      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
-    ],
-    [
-      540,
-      621,
-      0,
-      441,
-      0,
-      "*"
-    ],
-    [
-      541,
-      432,
-      0,
-      622,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      542,
-      437,
-      0,
-      622,
-      1,
-      "LATENT"
-    ],
-    [
-      543,
-      119,
-      0,
-      622,
-      2,
-      "VAE"
-    ],
-    [
-      544,
-      402,
-      2,
-      622,
-      3,
-      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
-    ],
-    [
-      545,
-      622,
-      0,
-      438,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      546,
-      440,
-      0,
-      623,
-      0,
-      "IMAGE"
-    ],
-    [
-      547,
-      439,
-      0,
-      623,
-      1,
-      "LATENT"
-    ],
-    [
-      548,
-      406,
-      0,
-      623,
-      2,
-      "LATENT"
-    ],
-    [
-      549,
-      402,
-      2,
-      623,
-      3,
-      "THEODORE_DIRECTOR_SECOND_PASS_REQUEST"
-    ],
-    [
-      550,
-      623,
-      0,
-      442,
-      0,
-      "*"
-    ],
-    [
       551,
       402,
       13,
@@ -8514,28 +8109,12 @@
       "INT"
     ],
     [
-      552,
-      402,
-      14,
-      413,
-      1,
-      "AUDIO"
-    ],
-    [
-      553,
-      404,
+      595,
+      487,
       0,
-      624,
+      482,
       0,
-      "IMAGE"
-    ],
-    [
-      554,
-      624,
-      0,
-      405,
-      0,
-      "IMAGE"
+      "MODEL"
     ]
   ],
   "groups": [
@@ -8621,22 +8200,21 @@
         2500
       ],
       "color": "#4a6b60",
-      "font_size": 24,
       "flags": {}
     }
   ],
   "config": {},
   "extra": {
-    "frontendVersion": "1.49.6",
+    "frontendVersion": "1.59.1",
     "VHS_latentpreview": false,
     "VHS_latentpreviewrate": 0,
     "VHS_MetadataImage": true,
     "VHS_KeepIntermediate": true,
     "ds": {
-      "scale": 0.6,
+      "scale": 0.6600000000000016,
       "offset": [
-        80,
-        80
+        1.2598029667018,
+        -1648.9113769067762
       ]
     },
     "theodoreDirector": {
@@ -8646,13 +8224,18 @@
       "postprocessSecondPass": true,
       "workflowVersion": "YuQ-2.1",
       "firstPassOnly": true,
-      "secondPassRelayVersion": 1
+      "secondPassRelayVersion": 1,
+      "nativeContinuity": "h3_native_prefix_right_context_v1",
+      "nativeAudioRevision": 2,
+      "firstPassNativeContinuity": "h3_firstpass_native_av_prefix_v1",
+      "firstPassSampler": "native_full_grid",
+      "postprocessSourceRevision": 1
     },
     "workflowVersion": "YuQ-2.0-h3-studio",
     "v74Optimization": {
       "continuityMode": "h3_av_latent",
-      "videoContextFrames": 22,
-      "audioContextFrames": 24,
+      "videoContextFrames": 39,
+      "audioContextFrames": 39,
       "otherContinuationModes": "disabled",
       "promptContract": "speaker-lock/style-lock/scene-anchor/negative-lock",
       "pipeline": "first_pass -> review -> ordered_second_pass"

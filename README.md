@@ -46,7 +46,9 @@ python -m pip install -r requirements.txt
 
 在 ComfyUI 中导入 [YuQ导播台.json](workflows/YuQ导播台.json)，然后打开导播台。发布版包含空白项目；在网页中导入素材和分镜计划，或自行新建镜头。更新插件后需重启 ComfyUI 并刷新页面，再载入新版工作流。已有项目可先导出计划，再导入新版工作流；只更新插件时旧分镜节点仍保留兼容。
 
-视频一采融合 YZ金鱼 MiniMax H3 文武双全 v2 的 SelfLift 分阶段采样、Euler 与 Sigma 设置；分镜索引、种子、画幅、输出路径和尾帧保存由内置节点处理。画布保留可选风格、武打、动作修复及速度 LoRA，另有 18 个生图相关节点（含可选提示词增强与网页控制），主工作流共 93 个节点。默认视频一采画幅为 16:9、0.4×（416 × 224），接力开关在每个分镜中设置。独立配置页只保存项目与内置功能参数，不复制整张画布的生成参数。
+视频一采沿用基础工作流的模型、LoRA、Euler 与采样设置，使用原生 AV 保护区处理接力；分镜索引、种子、画幅、输出路径和尾帧保存由内置节点处理。画布保留可选风格、武打、动作修复及速度 LoRA，另有 18 个生图相关节点（含可选提示词增强与网页控制），主工作流共 94 个节点。默认视频一采画幅为 16:9、0.4×（416 × 224），接力开关在每个分镜中设置。独立配置页只保存项目与内置功能参数，不复制整张画布的生成参数。
+
+当前发布的工作流基于「连续源二采测试」版本：一采使用原生 AV 保护区；二采使用连续解码画面及上一段二采 latent 保护区。latent 放大使用 fp32 且关闭时间分块，显存占用可能增加；实际效果需在生成环境测试。
 
 二采超分后的画幅会自动对齐到 32 像素的倍数，再进入 VAE 编码；原有未对齐的二采接力链需要重新生成。二采沿用分镜的接力开关：在「审片与生成」中先选片并通过整条连续链，再执行整体二采。后续段读取上一段二采的高清画面与 AV 状态，补入上下文后采样，再裁去重复画面；原始对白音轨和片段帧数保留。高清 latent 独立写入当前 Run 的 `second_pass_context/`，与一采状态分开。选片、seed、画布参数、模式、重绘强度或上游结果改变后，旧状态不能作为有效断点；中断后勾选「复用有效二采」继续。新版二采保留历史视频和接力状态。
 
@@ -62,9 +64,9 @@ python -m pip install -r requirements.txt
 
 旧版工作流未连接生图输入节点时，使用同样的 Qwen Turbo `image-generation.json` 内置兼容路径。新版主工作流默认使用画布生图链。模型文件和第三方节点需另行安装，工作流中的模型名按本机实际文件调整。
 
-SelfLift 一采需要另装 [comfyui-SelfLift](https://github.com/facok/comfyui-SelfLift)，将 `h3_upscaler_lms_v0.1.safetensors` 放入 `ComfyUI/models/latent_upscale_models/`，并将 `minimax_h3_dmad_full_dareties_v4_step600_comfy_fro.safetensors` 放入 LoRA 模型目录。画布中的模型文件名应按本机路径调整；可选 LoRA 默认旁路，使用前需安装相应模型并启用。SelfLift 使用标准 Euler，切勿替换为 Turbo 采样器；调整步数时转换步数须小于总步数。接力与生成效果需要在本机实测。
+一采使用基础工作流的 `minimax_h3_dmad_full_dareties_v4_step600_comfy_fro.safetensors` LoRA。画布中的模型文件名应按本机实际文件调整；可选 LoRA 使用前需安装相应模型并确认节点是否启用。
 
-主要工作流依赖：ComfyUI Impact Pack、comfyui-SelfLift、ComfyUI H3 Motion Context、ComfyUI-KJNodes、ComfyUI-Easy-Use；超分或 latent 放大模式另需 NVIDIA RTX Video Nodes、Comfyui Minimax H3 Latent Upscaler 和 H3 Latent Upscaler。合并视频需要 FFmpeg。各依赖的作用见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+主要工作流依赖：ComfyUI Impact Pack、ComfyUI H3 Motion Context、ComfyUI-KJNodes、ComfyUI-Easy-Use；超分或 latent 放大模式另需 NVIDIA RTX Video Nodes、Comfyui Minimax H3 Latent Upscaler 和 H3 Latent Upscaler。合并视频需要 FFmpeg。各依赖的作用见 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
 ## 安装 Skill
 
