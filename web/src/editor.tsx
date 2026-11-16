@@ -4,11 +4,10 @@ import { AssetsPanel } from "./assets-panel";
 import { BatchAssetImport } from "./batch-asset-import";
 import { filledAssetFromDraft } from "./batch-assets";
 import { moveCurrentProjectToTrash } from "./clear-project";
-import { HighlightedTextarea } from "./highlighted-textarea";
 import { loadLanguage, saveLanguage, t, type Language } from "./i18n";
 import { assertAssetLibrary, assertEpisode, assertPlanShape, assetLibraryFromPlan, episodeFromPlan, exportFileStem, mergeAssetLibrary, mergeImportedEpisode, mergeImportedPlan, normalizePlan } from "./plan-io";
 import { PostprocessPanel } from "./postprocess";
-import { clearAssetReferences, referenceTokenIsGloballyAvailable, validatePlan } from "./reference";
+import { clearAssetReferences, validatePlan } from "./reference";
 import { activeIndexOf, chosenTake, deliverableFor, firstPassTakes, latentWriteSlot, processedResultsFor, randomSeed, relaysFromPrevious, shotSignature, withRelayPredecessors } from "./review";
 import { IDLE_RUN, ReviewPanel, type RunState } from "./review-panel";
 import { appendShots, randomShotSuffix, resetStoryboard } from "./shot-batch";
@@ -18,8 +17,8 @@ import { ImageGenerationPanel } from "./image-generation-panel";
 import { generatedAsset, type ImageGenerationController, type ImageGenerationRecord, type PendingImageGeneration } from "./image-generation";
 import { imageBatchCandidates } from "./image-generation-batch";
 import { cleanupAssetResources, clearStoryboardResources, collectAssetResources } from "./resource-cleanup";
-import { WorkflowSettingsPanel } from "./workflow-settings-panel";
-import type { WorkflowSettingsController } from "./workflow-settings";
+import { SettingsPage } from "./settings-page";
+import { secondPassJobs } from "./second-pass-jobs";
 import type { AssetKind, DirectorPlan, DirectorShot, QueueFirstPass, QueueSecondPass, ShotReview } from "./types";
 
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value));
@@ -84,9 +83,9 @@ function ProjectCleanupSection({ language, projectName, runId, busy, onClearShot
   </section>;
 }
 
-interface EditorProps { initial: DirectorPlan; onSave: (plan: DirectorPlan) => void; onPersist?: (plan: DirectorPlan) => void; onClose: () => void; supportsSecondSampling: boolean; queueSecondPass?: QueueSecondPass; queueFirstPass?: QueueFirstPass; imageGeneration?: ImageGenerationController; workflowSettings?: WorkflowSettingsController }
+interface EditorProps { initial: DirectorPlan; onSave: (plan: DirectorPlan) => void; onPersist?: (plan: DirectorPlan) => void; onClose: () => void; supportsSecondSampling: boolean; queueSecondPass?: QueueSecondPass; queueFirstPass?: QueueFirstPass; imageGeneration?: ImageGenerationController; builtInControls?: boolean }
 
-function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, queueSecondPass, queueFirstPass, imageGeneration, workflowSettings }: EditorProps) {
+function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, queueSecondPass, queueFirstPass, imageGeneration, builtInControls = false }: EditorProps) {
   // 只规范化一次：缺少 project.id 时会生成随机 ID，两次规范化会让窗口一打开就显示“未保存”。
   const [initialPlan] = useState<DirectorPlan>(() => normalizePlan(initial));
   const [plan, setPlan] = useState<DirectorPlan>(initialPlan);
@@ -312,25 +311,22 @@ function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, q
     if (!queueSecondPass || busy) return;
     const mode = plan.pipeline?.secondPassMode ?? "super_resolution_second_pass";
     const denoise = plan.pipeline?.secondPassDenoise ?? 0.3;
-    const jobs = shotIds.flatMap((shotId) => {
-      const shot = plan.shots.find((item) => item.id === shotId);
-      const all = results.byShot[shotId] ?? [];
-      const take = shot ? chosenTake(shot, firstPassTakes(all)) : undefined;
-      if (!shot || !take) return [];
-      if (skipDone && processedResultsFor(all, take.path, mode).length) return [];
-      return [{ shot, take }];
-    });
+    let prepared: ReturnType<typeof secondPassJobs>;
+    try { prepared = secondPassJobs(plan, shotIds, results.byShot, mode, skipDone); }
+    catch (error) { setRun({ ...IDLE_RUN, error: error instanceof Error ? error.message : String(error) }); return; }
+    const { jobs, selections } = prepared;
     if (!jobs.length) { notify(L("没有需要二采的镜头（已全部完成或缺少一采结果）", "Nothing to process")); return; }
     const controller = new AbortController();
     abortRef.current = controller;
     const batchId = `td_batch_${Date.now().toString(36)}`;
     setRun({ kind: "second", total: jobs.length, done: 0, progress: { value: 0, max: 0 }, message: "" });
     try {
-      for (const [index, { shot, take }] of jobs.entries()) {
+      for (const [index, { shot, sourcePath, skipIfValid }] of jobs.entries()) {
         setRun((current) => ({ ...current, currentShotId: shot.id, done: index, progress: { value: 0, max: 0 } }));
         await queueSecondPass({
-          plan, shotId: shot.id, sourcePath: take.path, requestId: `${batchId}_${shot.id}`, processingMode: mode,
+          plan, shotId: shot.id, sourcePath, requestId: `${batchId}_${shot.id}`, processingMode: mode,
           batchId, sequenceIndex: index, latentRelay: Boolean(shot.latentRelay), phase: "second_pass",
+          relayVersion: 1, sourceSelections: selections, skipIfValid,
           denoise: mode === "super_resolution_only" ? undefined : denoise,
           signal: controller.signal,
           onProgress: (progress) => setRun((current) => ({ ...current, progress })),
@@ -432,9 +428,8 @@ function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, q
     { id: "shots", number: "02", title: L("分镜工作台", "Storyboard"), description: L("写镜头，安排连续性", "Compose each shot") },
     { id: "review", number: "03", title: L("生成与审片", "Generate & review"), description: L("挑选结果，确认成片", "Choose your takes"), badge: `${approvedCount}/${enabledShots.length}` },
     { id: "postprocess", number: "04", title: L("后处理与交付", "Finish & deliver"), description: L("高清处理 · 合并导出", "Enhance · assemble") },
-    { id: "settings", number: "05", title: L("项目配置", "Project settings"), description: L("默认参数与全局提示词", "Defaults & global prompts") },
   ];
-  const stage = stages.find((item) => item.id === tab)!;
+  const stage = stages.find((item) => item.id === tab) ?? { number: "⚙", title: L("导播台配置", "Director settings"), description: L("项目 · 内置控制 · 全局提示词", "Project · built-in controls · global prompts") };
 
   return <div class={`td-shell ${plan.uiPreferences?.compactMode ? "td-compact" : ""}`} lang={language === "zh" ? "zh-CN" : "en"}>
     <aside class="td-workspace-rail">
@@ -444,6 +439,7 @@ function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, q
         {stages.map((item) => <button key={item.id} class={tab === item.id ? "active" : ""} aria-label={item.title} title={item.title} aria-current={tab === item.id ? "page" : undefined} onClick={() => setTab(item.id)}><span class="td-stage-number">{item.number}</span><span><strong>{item.title}</strong><small>{item.description}</small></span>{item.badge && <em class={item.id === "assets" ? "warn" : ""}>{item.badge}</em>}</button>)}
       </nav>
       <div class="td-rail-progress"><div><span>{L("本集进度", "EPISODE PROGRESS")}</span><strong>{approvedCount}/{enabledShots.length}</strong></div><progress max={Math.max(1, enabledShots.length)} value={approvedCount}/><p>{L(`已生成 ${takenCount} 段 · ${formatDuration(totalSeconds)}`, `${takenCount} generated · ${formatDuration(totalSeconds)}`)}</p><button onClick={() => setTab(missingAssets ? "assets" : "review")}>{missingAssets ? L(`补齐 ${missingAssets} 个素材`, `Fill ${missingAssets} media files`) : L("查看审片进度 →", "Review progress →")}</button></div>
+      <button class={`td-config-entry ${tab === "settings" ? "active" : ""}`} aria-label={L("导播台配置", "Director settings")} title={L("导播台配置", "Director settings")} aria-current={tab === "settings" ? "page" : undefined} onClick={() => setTab("settings")}><span>⚙</span><strong>{L("导播台配置", "Director settings")}</strong></button>
     </aside>
     <header class="td-topbar">
       <div class="td-workspace-title"><span class="td-eyebrow">{L("制作空间", "PRODUCTION SPACE")} / {stage.number}</span><div><h2>{stage.title}</h2>
@@ -467,7 +463,7 @@ function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, q
         {busy
           ? <span class="td-run-pill"><i/>{run.kind === "first" ? L("一采", "1st pass") : run.kind === "second" ? L("二采", "2nd pass") : run.kind === "image" ? L("生图", "Image") : L("合并", "Merge")} {run.done}/{run.total}{run.kind !== "merge" && run.progress.max ? ` · ${runPercent}%` : ""}<button onClick={stopRun}>{L("停止", "Stop")}</button></span>
           : <span class="td-progress-text">{L(`一采 ${takenCount}/${enabledShots.length} · 通过 ${approvedCount}/${enabledShots.length}`, `Generated ${takenCount}/${enabledShots.length} · Approved ${approvedCount}/${enabledShots.length}`)}</span>}
-        {!busy && !results.loading && queueFirstPass && takenCount < enabledShots.length && <button class="primary" onClick={() => void runFirstPass(enabledShots.filter((shot) => !firstPassTakes(results.byShot[shot.id] ?? []).length).map((shot) => shot.id), false)}>{L(`开始一采（${enabledShots.length - takenCount} 段）`, `Start first pass (${enabledShots.length - takenCount})`)}</button>}
+        {tab !== "settings" && !busy && !results.loading && queueFirstPass && takenCount < enabledShots.length && <button class="primary" onClick={() => void runFirstPass(enabledShots.filter((shot) => !firstPassTakes(results.byShot[shot.id] ?? []).length).map((shot) => shot.id), false)}>{L(`开始一采（${enabledShots.length - takenCount} 段）`, `Start first pass (${enabledShots.length - takenCount})`)}</button>}
       </div>
     </section>
     <main>
@@ -478,24 +474,10 @@ function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, q
         setImageAsset(first); setImageBatchOpen(true);
       } : undefined} notify={notify}/>}
       {tab === "review" && <ReviewPanel plan={plan} language={language} results={results} run={run} supportsSecondPass={Boolean(queueSecondPass)} setReview={setReview} setPipeline={setPipeline} onRunFirstPass={(ids, reseed) => void runFirstPass(ids, reseed)} onRunSecondPass={(ids, skipDone) => void runSecondPass(ids, skipDone)} onMerge={(processed) => void mergeShots(processed)} onStop={stopRun} onRefresh={() => setRevision((value) => value + 1)} onOpenShot={(shotId) => { setSelected(Math.max(0, plan.shots.findIndex((shot) => shot.id === shotId))); setTab("shots"); }}/>}
-      <section class="td-form settings" style={tab === "settings" ? undefined : { display: "none" }}>
-        <h2>{L("项目", "Project")}</h2>
-        <div class="td-settings-grid">
-          <label>{L("项目名（决定输出目录）", "Project name")}<input value={plan.project.name} onInput={(event) => mutate((draft) => { draft.project.name = event.currentTarget.value; })}/></label>
-          <label>Run ID<input value={plan.project.runId} onInput={(event) => mutate((draft) => { draft.project.runId = event.currentTarget.value; })}/></label>
-          <label>FPS<input type="number" min="1" step="1" value={plan.defaults.fps} onInput={(event) => mutate((draft) => { draft.defaults.fps = Number(event.currentTarget.value); })}/></label>
-          <label>{L("基础种子", "Base seed")}<input type="number" value={plan.defaults.baseSeed} onInput={(event) => mutate((draft) => { draft.defaults.baseSeed = Number(event.currentTarget.value); })}/></label>
-          <label>{L("新分镜默认时长", "Default shot duration")}<input type="number" min="0.1" step="0.1" value={plan.defaults.durationSeconds ?? 6} onInput={(event) => mutate((draft) => { draft.defaults.durationSeconds = Math.max(0.1, Number(event.currentTarget.value) || 6); setUniformDuration(event.currentTarget.value); setAppendDuration(event.currentTarget.value); })}/></label>
-          <label>{L("新分镜默认处理", "Default processing")}<select value={plan.defaults.secondSamplingMode ?? "off"} onChange={(event) => mutate((draft) => { draft.defaults.secondSamplingMode = event.currentTarget.value as DirectorPlan["defaults"]["secondSamplingMode"]; })}><option value="off">{L("关闭二采", "Off")}</option><option value="super_resolution_second_pass">{L("超分二采", "Super-resolution 2nd pass")}</option><option value="latent_upscale_second_pass">{L("Latent 二采", "Latent 2nd pass")}</option><option value="super_resolution_only">{L("只超分", "Super-resolution only")}</option></select></label>
-          <label class="td-setting-check"><span>{L("网页偏好", "Web preferences")}</span><span><input type="checkbox" checked={plan.uiPreferences?.autoSave ?? false} onChange={(event) => mutate((draft) => { draft.uiPreferences = { ...draft.uiPreferences, autoSave: event.currentTarget.checked }; })}/>{L("编辑后自动保存到工作流", "Auto-save edits to workflow")}</span></label>
-          <label class="td-setting-check"><span>{L("紧凑布局", "Compact layout")}</span><span><input type="checkbox" checked={plan.uiPreferences?.compactMode ?? false} onChange={(event) => mutate((draft) => { draft.uiPreferences = { ...draft.uiPreferences, compactMode: event.currentTarget.checked }; })}/>{L("减少面板间距", "Reduce panel spacing")}</span></label>
-        </div>
-        <p class="td-hint">{L("修改项目名或 Run ID 会切换到另一个输出目录，已有结果不会被移动。", "Changing the project name or Run ID switches the output folder.")}</p>
-        <label>{L("全局提示词前缀（每段都会自动加在最前面，只放全片通用内容）", "Global prompt prefix")}<HighlightedTextarea value={plan.promptPrefix} isReferenceValid={(alias) => referenceTokenIsGloballyAvailable(plan, alias)} onInput={(event) => mutate((draft) => { draft.promptPrefix = event.currentTarget.value; })}/></label>
-        <label>{L("全局提示词后缀", "Global prompt suffix")}<HighlightedTextarea value={plan.promptSuffix} isReferenceValid={(alias) => referenceTokenIsGloballyAvailable(plan, alias)} onInput={(event) => mutate((draft) => { draft.promptSuffix = event.currentTarget.value; })}/></label>
-        <label>{L("项目备注（风格/人物/场景锁定块等，仅供参考，不发送给模型）", "Project notes")}<textarea rows={8} value={plan.project.notes ?? ""} onInput={(event) => mutate((draft) => { draft.project.notes = event.currentTarget.value; })}/></label>
-        {workflowSettings && <WorkflowSettingsPanel controller={workflowSettings} language={language} busy={busy} notify={notify}/>}
+      <section hidden={tab !== "settings"}>
+        <SettingsPage plan={plan} language={language} busy={busy} builtInControls={builtInControls} mutate={mutate} onDuration={(value) => { setUniformDuration(value); setAppendDuration(value); }}>
         <ProjectCleanupSection language={language} projectName={plan.project.name} runId={plan.project.runId} busy={busy} onClearShots={async (deleteResources) => { if (deleteResources) await clearStoryboardResources(plan.project.name, plan.project.runId); mutate((draft) => { draft.shots = resetStoryboard(draft.defaults.durationSeconds ?? 6, randomShotSuffix, draft.defaults.secondSamplingMode ?? "off"); }); setSelected(0); setBatchShots([]); setRevision((value) => value + 1); }} onClearAssets={() => { mutate((draft) => { const cleared = clearAssetReferences(draft); draft.assets = cleared.assets; draft.shots = cleared.shots; }); }} onProjectCleared={() => setRevision((value) => value + 1)}/>
+        </SettingsPage>
       </section>
       {tab === "postprocess" && <PostprocessPanel plan={plan} language={language} queueSecondPass={queueSecondPass}/>}
     </main>
@@ -542,7 +524,7 @@ function Editor({ initial, onSave, onPersist, onClose, supportsSecondSampling, q
   </div>;
 }
 
-export function openEditor(initial: DirectorPlan, onSave: (plan: DirectorPlan) => void, supportsSecondSampling = false, queueSecondPass?: QueueSecondPass, queueFirstPass?: QueueFirstPass, onPersist?: (plan: DirectorPlan) => void, imageGeneration?: ImageGenerationController, workflowSettings?: WorkflowSettingsController): void {
+export function openEditor(initial: DirectorPlan, onSave: (plan: DirectorPlan) => void, supportsSecondSampling = false, queueSecondPass?: QueueSecondPass, queueFirstPass?: QueueFirstPass, onPersist?: (plan: DirectorPlan) => void, imageGeneration?: ImageGenerationController, builtInControls = false): void {
   const existing = document.getElementById("theodore-director-modal");
   if (existing) {
     // 防止快速重复点击在画布上叠加多个编辑器实例。
@@ -560,6 +542,6 @@ export function openEditor(initial: DirectorPlan, onSave: (plan: DirectorPlan) =
   };
   // ComfyUI 画布会监听全局快捷键；导播台打开时阻止按键冒泡到画布。
   host.addEventListener("keydown", (event) => event.stopPropagation());
-  render(<Editor initial={initial} onSave={onSave} onPersist={onPersist} onClose={close} supportsSecondSampling={supportsSecondSampling} queueSecondPass={queueSecondPass} queueFirstPass={queueFirstPass} imageGeneration={imageGeneration} workflowSettings={workflowSettings}/>, host);
+  render(<Editor initial={initial} onSave={onSave} onPersist={onPersist} onClose={close} supportsSecondSampling={supportsSecondSampling} queueSecondPass={queueSecondPass} queueFirstPass={queueFirstPass} imageGeneration={imageGeneration} builtInControls={builtInControls}/>, host);
   host.focus();
 }

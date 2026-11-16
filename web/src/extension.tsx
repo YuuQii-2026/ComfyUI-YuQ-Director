@@ -1,12 +1,13 @@
 import { openEditor } from "./editor";
-import { patchFirstPassPrompt, patchSecondPassPrompt, type ApiPrompt } from "./comfy-prompt";
+import { materializeVideoContext, repairVideoContextTypes, type ContextGraph, type ContextNode } from "./context-link";
+import { dependsOn, findNodeIds, patchCanvasImagePrompt, patchFirstPassPrompt, type ApiPrompt } from "./comfy-prompt";
 import { activeIndexOf } from "./review";
+import { prepareSecondPassSubmission } from "./second-pass-jobs";
 import { abortError, runQueuedJob, type ComfyQueueApi } from "./comfy-queue";
 import imageWorkflowText from "../../workflows/image-generation.json?raw";
-import { effectiveImageSettings, fetchGeneratedImages, fetchImageModelOptions, historyJobStatus, imageWorkflowDefaults, patchImageGenerationPrompt, patchImageWorkflow, uiWorkflowToApiPrompt, type ImageGenerationController, type ImageGenerationDefaults, type ImageGenerationSettings, type ImageWorkflowGraph, type PendingImageGeneration, type QueueImageGenerationRequest } from "./image-generation";
+import { effectiveImageSettings, fetchGeneratedImages, fetchImageModelOptions, historyJobStatus, imageSamplingDefaults, imageWorkflowDefaults, patchImageGenerationPrompt, patchImageWorkflow, uiWorkflowToApiPrompt, type ImageGenerationController, type ImageGenerationDefaults, type ImageGenerationSettings, type ImageWorkflowGraph, type PendingImageGeneration, type QueueImageGenerationRequest } from "./image-generation";
 import type { DirectorPlan, FirstPassQueueRequest, QueueFirstPass, QueueSecondPass, SecondPassQueueRequest } from "./types";
 import directorStyles from "./style.css?inline";
-import { createWorkflowSettings, type GraphWidget } from "./workflow-settings";
 
 const STYLE_ID = "yuq-director-styles";
 
@@ -21,11 +22,11 @@ function ensureDirectorStyles(): void {
 // ComfyUI 只自动加载 web 目录中的 JavaScript，样式必须由扩展主动注入。
 ensureDirectorStyles();
 
-interface Widget extends GraphWidget { type?: string; computeSize?: () => [number, number] }
-interface ComfyNode { id?: number | string; mode?: number; widgets?: Widget[]; inputs?: Array<{ name: string; link?: number | null }>; outputs?: Array<{ name: string; links?: number[] | null }>; addWidget: (type: string, name: string, value: unknown, callback: () => void) => Widget; setDirtyCanvas: (foreground: boolean, background: boolean) => void; size?: [number, number]; type?: string; title?: string }
+interface Widget { name: string; value: unknown; type?: string; computeSize?: () => [number, number] }
+interface ComfyNode extends ContextNode { mode?: number; widgets?: Widget[]; addWidget: (type: string, name: string, value: unknown, callback: () => void) => Widget; setDirtyCanvas: (foreground: boolean, background: boolean) => void; size?: [number, number]; title?: string }
 interface NodeType { prototype: { onNodeCreated?: () => void } }
 interface GraphPrompt { output: ApiPrompt; workflow: unknown }
-interface ComfyApp { registerExtension: (extension: unknown) => void; graph?: { _nodes?: ComfyNode[]; setDirtyCanvas?: (foreground: boolean, background: boolean) => void }; rootGraph?: unknown; graphToPrompt: (graph?: unknown) => Promise<GraphPrompt> }
+interface ComfyApp { registerExtension: (extension: unknown) => void; graph?: { _nodes?: ComfyNode[]; links?: Record<number, { origin_id: number | string }>; setDirtyCanvas?: (foreground: boolean, background: boolean) => void }; rootGraph?: unknown; graphToPrompt: (graph?: unknown) => Promise<GraphPrompt> }
 interface ComfyApi extends ComfyQueueApi {
   queuePrompt: (number: number, prompt: GraphPrompt, options?: { partialExecutionTargets?: string[] }) => Promise<{ prompt_id?: string }>;
   fetchApi?: (input: string, init?: RequestInit) => Promise<Response>;
@@ -44,7 +45,12 @@ void Promise.all([
   import(/* @vite-ignore */ comfyAppUrl),
   import(/* @vite-ignore */ comfyApiUrl),
 ]).then(([{ app }, { api }]: [{ app: ComfyApp }, { api: ComfyApi }]) => {
-  const queueFirstPass: QueueFirstPass = async (request: FirstPassQueueRequest) => {
+  // 原生画布、导播台逐段生成及 Impact 续排均在最终提交时读取当前项目配置。
+  const originalQueuePrompt = api.queuePrompt;
+  api.queuePrompt = function (number, prompt, options) {
+    return originalQueuePrompt.call(this, number, { ...prompt, output: materializeVideoContext(prompt.output) }, options);
+  };
+  const queueFirstPassFor = (projectId: string): QueueFirstPass => async (request: FirstPassQueueRequest) => {
     const firstPassPlan: DirectorPlan = {
       ...request.plan,
       pipeline: { ...(request.plan.pipeline ?? { firstPassConfirmed: false, secondPassMode: "super_resolution_second_pass" }), phase: "first_pass", firstPassConfirmed: false },
@@ -59,7 +65,7 @@ void Promise.all([
       const activeIndex = activeIndexOf(firstPassPlan, shotId);
       if (activeIndex < 0) throw new Error(`镜头 ${shotId} 未启用或不存在，无法生成`);
       // 每段都单独提交并关闭 Impact 自动续排，导播台掌握顺序、进度与停止。
-      const output = patchFirstPassPrompt(base.output, { planJson, activeIndex });
+      const output = patchFirstPassPrompt(base.output, { planJson, activeIndex, projectId, baseSeed: firstPassPlan.defaults.baseSeed });
       request.onShotStart?.(shotId, index, shotIds.length);
       request.onProgress?.({ value: 0, max: 0 });
       await runQueuedJob(api, () => api.queuePrompt(0, { output, workflow: base.workflow }), request.onProgress, `镜头 ${shotId} 一采执行失败`, request.signal);
@@ -72,7 +78,7 @@ void Promise.all([
     const source = nodes.find((node) => node.type === "TheodoreDirector_PostprocessSecondPassSource");
     const target = nodes.find((node) => node.type === "TheodoreDirector_SaveSecondPass");
     if (!source || !target || source.id === undefined || target.id === undefined) {
-      throw new Error("当前工作流缺少后处理单独二采支流，请重新载入仓库中的 V7 导播台示例工作流");
+      throw new Error("当前工作流缺少后处理单独二采支流，请载入 YuQ 导播台工作流或接回对应支流");
     }
     const previousSourceMode = source.mode;
     const previousTargetMode = target.mode;
@@ -86,12 +92,18 @@ void Promise.all([
       source.mode = previousSourceMode;
       target.mode = previousTargetMode;
     }
-    const { onProgress, signal, ...payload } = request;
-    const output = patchSecondPassPrompt(prompt.output, {
-      sourceId: String(source.id), targetId: String(target.id), requestJson: JSON.stringify(payload),
-      processingMode: request.processingMode, denoise: request.denoise,
-    });
+    const { onProgress, signal } = request;
+    const { payload, output } = prepareSecondPassSubmission(prompt.output, String(source.id), String(target.id), request);
     if (signal?.aborted) throw abortError();
+    const response = await (api.fetchApi ? api.fetchApi("/theodore-director/v1/second-pass/prepare", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal,
+    }) : fetch("/theodore-director/v1/second-pass/prepare", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal,
+    }));
+    if (response.status === 404) throw new Error("请更新 YuQ 插件并重启 ComfyUI，当前服务不支持二采接力状态校验");
+    const prepared = await response.json() as { skip?: boolean; error?: string };
+    if (!response.ok) throw new Error(prepared.error || `HTTP ${response.status}`);
+    if (prepared.skip) return;
     await runQueuedJob(api, () => api.queuePrompt(0, { output, workflow: prompt.workflow }), onProgress, "单独二采任务执行失败", signal);
   };
 
@@ -131,8 +143,31 @@ void Promise.all([
     if (signal?.aborted) throw abortError();
     if (errors.length) throw new Error(errors.join("\n"));
   };
-  const imageGeneration: ImageGenerationController = {
-    defaults: async (): Promise<ImageGenerationDefaults> => ({ ...imageWorkflowDefaults(getImageWorkflow().graph), width: 1080, height: 720, batchSize: 1, modelOptions: await fetchImageModelOptions(apiFetch) }),
+  const canvasImageWorkflow = async (projectId: string) => {
+    if (!(app.graph?._nodes ?? []).some((node) => node.type === "TheodoreDirector_ImageControls")) return undefined;
+    const savers = (app.graph?._nodes ?? []).filter((node) => node.type === "SaveImage" && node.mode === 2);
+    const modes = savers.map((node) => node.mode);
+    let base: GraphPrompt;
+    try {
+      savers.forEach((node) => { node.mode = 0; });
+      base = await app.graphToPrompt(app.rootGraph);
+    } finally { savers.forEach((node, index) => { node.mode = modes[index]; }); }
+    const controls = findNodeIds(base.output, "TheodoreDirector_ImageControls").filter((id) => dependsOn(base.output, id, projectId));
+    if (!controls.length) return undefined;
+    if (controls.length !== 1) throw new Error("当前项目连接了多个生图控制节点，请保留一个");
+    return { base, controls: base.output[controls[0]].inputs };
+  };
+  const imageGenerationFor = (projectId: string): ImageGenerationController => ({
+    defaults: async (): Promise<ImageGenerationDefaults> => {
+      const canvas = await canvasImageWorkflow(projectId);
+      if (!canvas) return { ...imageWorkflowDefaults(getImageWorkflow().graph), modelOptions: await fetchImageModelOptions(apiFetch) };
+      const values = canvas.controls;
+      const imageJob = patchCanvasImagePrompt(canvas.base.output, projectId, {
+        positivePrompt: "", negativePrompt: String(values.negative_prompt ?? ""), width: Number(values.width ?? 1024), height: Number(values.height ?? 1024),
+        batchSize: Number(values.batch_size ?? 1), seed: Number(values.seed ?? 0), filenamePrefix: String(values.filename_prefix ?? "TheodoreDirector/ImageGen/manual/image"),
+      });
+      return { negativePrompt: String(values.negative_prompt ?? ""), width: Number(values.width ?? 1080), height: Number(values.height ?? 720), batchSize: Number(values.batch_size ?? 1), seed: Number(values.seed ?? 0), ...imageSamplingDefaults(imageJob.output), models: [], canvasWorkflow: true, workflowSource: "canvas" };
+    },
     register: async (projectName, image) => {
       const response = await apiFetch("/theodore-director/v1/image-generation/register", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -147,12 +182,20 @@ void Promise.all([
       images: await fetchGeneratedImages(pending.promptId, undefined, apiFetch),
     }),
     queue: async (request: QueueImageGenerationRequest) => {
-      const { graph, prompt: basePrompt } = getImageWorkflow();
       const { signal, onProgress, onQueued, ...rawSettings } = request;
-      const settings: ImageGenerationSettings = effectiveImageSettings(rawSettings);
-      const output = patchImageGenerationPrompt(basePrompt, graph, settings);
-      const workflow = patchImageWorkflow(graph, output);
-      await checkImageWorkflow(workflow, signal);
+      const canvas = await canvasImageWorkflow(projectId);
+      const settings: ImageGenerationSettings = effectiveImageSettings({ ...rawSettings, workflowSource: canvas ? "canvas" : undefined });
+      let output: ApiPrompt, workflow: unknown, outputNodeId: string | undefined;
+      if (canvas) {
+        const patched = patchCanvasImagePrompt(canvas.base.output, projectId, settings);
+        output = patched.output; workflow = canvas.base.workflow; outputNodeId = patched.targetId;
+      } else {
+        const bundled = getImageWorkflow();
+        output = patchImageGenerationPrompt(bundled.prompt, bundled.graph, settings);
+        const patched = patchImageWorkflow(bundled.graph, output);
+        workflow = patched;
+        await checkImageWorkflow({ ...patched, nodes: patched.nodes.filter((node) => output[String(node.id)]) }, signal);
+      }
       if (signal?.aborted) throw abortError();
       let promptId = "";
       await runQueuedJob(api, async () => {
@@ -169,13 +212,17 @@ void Promise.all([
         pollMs: 2500,
       });
       if (!promptId) throw new Error("ComfyUI 没有返回生图任务 ID");
-      const images = await fetchGeneratedImages(promptId, signal, apiFetch);
+      const images = await fetchGeneratedImages(promptId, signal, apiFetch, outputNodeId);
       return { promptId, createdAt: Date.now(), settings, images };
     },
-  };
+  });
 
   app.registerExtension({
     name: "YuQ.Director.UI",
+    beforeConfigureGraph(graph: ContextGraph) { repairVideoContextTypes(graph); },
+    nodeCreated(node: ComfyNode) { repairVideoContextTypes({ nodes: [node] }); },
+    loadedGraphNode(node: ComfyNode) { repairVideoContextTypes({ nodes: [node] }); },
+    afterConfigureGraph() { repairVideoContextTypes(app.graph as ContextGraph ?? {}); },
     beforeRegisterNodeDef(nodeType: NodeType, nodeData: { name: string }) {
       if (nodeData.name === "TheodoreDirector_PostprocessSecondPassSource") {
         const originalSourceCreated = nodeType.prototype.onNodeCreated;
@@ -212,8 +259,21 @@ void Promise.all([
               app.graph?.setDirtyCanvas?.(true, true);
             };
             const supportsInlineProcessing = workflowNodes.some((node) => node.type === "TheodoreDirector_SelectShot" && node.outputs?.some((output) => ["super-res 2nd pass", "latent upscale 2nd pass", "super-res only"].includes(output.name) && output.links?.length));
-            const workflowSettings = createWorkflowSettings(() => app.graph?._nodes ?? [], () => app.graph?.setDirtyCanvas?.(true, true));
-            openEditor(initial, persistPlan, supportsInlineProcessing, supportsStandaloneSecondPass ? queueStandaloneSecondPass : undefined, queueFirstPass, persistPlan, imageGeneration, workflowSettings);
+            const linkedToProject = (node: ComfyNode, seen = new Set<string>()): boolean => {
+              const id = String(node.id);
+              if (id === String(this.id)) return true;
+              if (seen.has(id)) return false;
+              seen.add(id);
+              return Boolean(node.inputs?.some((input) => {
+                if (input.link == null) return false;
+                if (this.outputs?.[0]?.links?.includes(input.link)) return true;
+                const origin = app.graph?.links?.[input.link]?.origin_id;
+                const parent = workflowNodes.find((candidate) => String(candidate.id) === String(origin));
+                return parent ? linkedToProject(parent, seen) : false;
+              }));
+            };
+            const builtInControls = workflowNodes.some((node) => node.type === "TheodoreDirector_ShotControl" && linkedToProject(node));
+            openEditor(initial, persistPlan, supportsInlineProcessing, supportsStandaloneSecondPass ? queueStandaloneSecondPass : undefined, queueFirstPassFor(String(this.id)), persistPlan, imageGenerationFor(String(this.id)), builtInControls);
           } catch (error) {
             window.alert(`YuQ Director: ${error instanceof Error ? error.message : String(error)}`);
           }

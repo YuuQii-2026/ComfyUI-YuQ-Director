@@ -23,6 +23,16 @@ function plan(shots: DirectorShot[]): DirectorPlan {
 const take = (path: string, modifiedAt: number, extra: Partial<GeneratedVideoItem> = {}): GeneratedVideoItem => ({ path, modifiedAt, stage: "first_pass", ...extra });
 
 describe("审片结果选择", () => {
+  it("修改画幅、FPS 和基础种子会标记已生成镜头变化", () => {
+    const storyboard = plan([shot("s1")]); storyboard.generation = { width: 608, height: 352 };
+    const original = shotSignature(storyboard, storyboard.shots[0]);
+    storyboard.generation.width = 352;
+    expect(shotSignature(storyboard, storyboard.shots[0])).not.toBe(original);
+    storyboard.generation.width = 608; storyboard.defaults.fps = 30;
+    expect(shotSignature(storyboard, storyboard.shots[0])).not.toBe(original);
+    storyboard.defaults.fps = 24; storyboard.defaults.baseSeed++;
+    expect(shotSignature(storyboard, storyboard.shots[0])).not.toBe(original);
+  });
   it("只把一采与旧结果作为候选，并优先使用用户选择", () => {
     const results = [take("a1", 10), take("a2", 20), take("a2_2nd", 30, { stage: "second_pass", sourcePath: "a2" }), take("legacy", 5, { stage: "legacy_unknown" })];
     const takes = firstPassTakes(results);

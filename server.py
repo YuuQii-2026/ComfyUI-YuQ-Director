@@ -63,9 +63,28 @@ def register_routes() -> None:
 
     routes = PromptServer.instance.routes
 
+    @routes.post("/theodore-director/v1/second-pass/prepare")
+    async def prepare_second_pass(request):
+        from .theodore_director.video_results import parse_second_pass_request
+        from .theodore_director.second_pass_relay import matching_result
+
+        try:
+            data = await request.json()
+            root = Path(folder_paths.get_output_directory()).resolve()
+            parsed = parse_second_pass_request(root, data)
+            previous = matching_result(root, parsed.plan, parsed.shot.shot.id, parsed.relay["key"]) if parsed.relay else None
+            if parsed.processing_mode == "super_resolution_only":
+                from .theodore_director.render_source import matching_upscale
+
+                previous = matching_upscale(root, parsed, data.get("workflowSignature", ""))
+            return web.json_response({"skip": bool(data.get("skipIfValid") and previous),
+                                      "path": previous.relative_to(root).as_posix() if previous else ""})
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            return web.json_response({"error": str(exc)}, status=400)
+
     @routes.get("/theodore-director/v1/health")
     async def health(_request):
-        return web.json_response({"ok": True, "apiVersion": 1})
+        return web.json_response({"ok": True, "apiVersion": 1, "secondPassRelayVersion": 1})
 
     @routes.get("/theodore-director/v1/generated-video")
     async def generated_video(request):

@@ -8,9 +8,10 @@ COPYRIGHT_NOTICE = "### 本工作流由抖音博主Theodore（抖音号:q1503623
 WORKFLOW_NAME = "YuQ导播台.json"
 REQUIRED_DIRECTOR_NODES = {
     "TheodoreDirector_Project",
-    "TheodoreDirector_SelectShot",
+    "TheodoreDirector_ShotControl",
+    "TheodoreDirector_SaveTail",
+    "TheodoreDirector_ImageControls",
     "TheodoreDirector_H3Adapter",
-    "TheodoreDirector_OutputPaths",
     "TheodoreDirector_CommitResult",
     "TheodoreDirector_PostprocessSecondPassSource",
     "TheodoreDirector_SaveSecondPass",
@@ -40,7 +41,7 @@ def test_distributed_workflow_is_structurally_valid():
     plan = load_plan(project["widgets_values"][0])
     assert len(plan.active_shots) >= 1
     assert plan.schema_version == 5
-    assert data["extra"]["theodoreDirector"]["workflowVersion"] == "YuQ-2.0"
+    assert data["extra"]["theodoreDirector"]["workflowVersion"] == "YuQ-2.1"
     assert data["extra"]["theodoreDirector"]["variant"] == "yuq_h3_first_review_second"
 
 
@@ -48,27 +49,19 @@ def test_yuq_first_pass_and_shared_postprocess_topology():
     data = load_distributed_workflow()
     types = [item["type"] for item in data["nodes"]]
     # 一采只保留一个采样器，高清处理复用网页的独立后处理链。
-    assert len(data["nodes"]) == 74
+    assert len(data["nodes"]) == 93  # 包含二采画幅对齐。
     assert types.count("SamplerCustomAdvanced") == 3
+    assert types.count("SelfLiftH3Sampler") == 1
     assert types.count("RTXVideoSuperResolution") == 1
     assert types.count("MinimaxH3LatentUpscaler3D") == 1
     assert types.count("MiniMaxH3ConditioningUpscale") == 1
     assert types.count("MiniMaxH3AddNoise") == 2
     assert types.count("ImpactConditionalBranch") == 4
 
-    selector = next(item for item in data["nodes"] if item["type"] == "TheodoreDirector_SelectShot")
-    assert [item["name"] for item in selector["outputs"][-4:]] == [
-        "processing mode",
-        "super-res 2nd pass",
-        "latent upscale 2nd pass",
-        "super-res only",
-    ]
     links_by_id = {item[0]: item for item in data["links"]}
     nodes_by_id = {item["id"]: item for item in data["nodes"]}
     # 当前分镜不再直接选择高清分支；高清模式由网页后处理请求提供。
-    assert selector["outputs"][15].get("links") is None
-    for output in selector["outputs"][17:20]:
-        assert output["links"] is None
+    assert not {115, 202, 314, 329, 397, 399, 328, 271, 272, 321, 394} & nodes_by_id.keys()
 
     first_sampler = next(item for item in data["nodes"] if item["id"] == 125)
     latent_saver = next(item for item in data["nodes"] if item["type"] == "MiniMaxH3MotionContextSaveLatent")
@@ -133,3 +126,68 @@ def test_public_workflow_contains_blank_project():
     assert len(plan["shots"]) == 1
     assert plan["shots"][0]["prompt"] == ""
     assert plan["project"]["notes"] == ""
+
+
+def test_integrated_controls_and_tail_save_dependencies():
+    data = load_distributed_workflow()
+    nodes = {n['id']: n for n in data['nodes']}
+    links = {l[0]: l for l in data['links']}
+    def origin(target, field):
+        port = next(i for i in nodes[target]['inputs'] if i['name'] == field)
+        return tuple(links[port['link']][1:3])
+    assert origin(136, 'width') == (450, 3)
+    assert origin(136, 'height') == (450, 4)
+    assert origin(130, 'fps') == (450, 5)
+    assert origin(392, 'fps') == (450, 5)
+    assert origin(389, 'context_length') == (450, 13)
+    assert origin(389, 'audio_context_length') == (450, 14)
+    assert origin(451, 'video') == (92, 0)
+    assert origin(451, 'images') == (392, 0)
+    assert origin(400, 'tail_path') == (451, 0)
+    assert origin(400, 'latent_path') == (393, 0)
+    assert origin(415, 'width') == (402, 11)
+    assert origin(415, 'height') == (402, 12)
+    assert origin(415, 'length') == (402, 13)
+    assert origin(413, 'audio') == (402, 14)
+    assert origin(624, 'images') == (404, 0)
+    assert origin(405, 'pixels') == (624, 0)
+    assert origin(408, 'conditioning') == (620, 0)
+    assert origin(438, 'conditioning') == (622, 0)
+    assert origin(620, 'latent') == (407, 0)
+    assert origin(622, 'latent') == (437, 0)
+    assert origin(621, 'latent') == (411, 0)
+    assert origin(623, 'latent') == (439, 0)
+    assert origin(441, 'tt_value') == (621, 0)
+    assert origin(442, 'tt_value') == (623, 0)
+    saver = next(n for n in data['nodes'] if n['type'] == 'SaveImage')
+    assert saver['mode'] == 2
+    assert origin(saver['id'], 'filename_prefix') == (480, 6)
+    for n in data['nodes']:
+        for port in n.get('inputs', []):
+            if port.get('link') is not None:
+                link = links[port['link']]
+                assert nodes[link[1]]['order'] < n['order']
+
+
+def test_selflift_first_pass_uses_director_inputs_and_preserves_relay():
+    data = load_distributed_workflow()
+    nodes = {n["id"]: n for n in data["nodes"]}
+    links = {link[0]: link for link in data["links"]}
+    def origin(node_id, name):
+        port = next(p for p in nodes[node_id]["inputs"] if p["name"] == name)
+        return tuple(links[port["link"]][1:3])
+    assert nodes[125]["type"] == "SelfLiftH3Sampler"
+    assert nodes[123]["type"] == "KSamplerSelect"
+    assert nodes[123]["widgets_values"] == ["euler"]
+    assert origin(125, "seed") == (450, 2)
+    assert origin(125, "positive") == (390, 0)
+    assert origin(481, "conditioning") == (390, 0)
+    assert origin(125, "negative") == (481, 0)
+    assert origin(125, "latent_image") == (136, 1)
+    assert origin(125, "vae") == (119, 0)
+    assert origin(125, "sigmas") == (124, 0)
+    assert origin(393, "latent") == (125, 0)
+    assert origin(122, "samples") == (125, 0)
+    assert origin(121, "samples") == (125, 0)
+    assert all(nodes[i]["mode"] == 4 for i in (483, 484, 485, 486, 487))
+    assert nodes[125]["widgets_values"][8] == "h3_upscaler_lms_v0.1.safetensors"

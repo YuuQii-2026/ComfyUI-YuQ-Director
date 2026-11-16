@@ -1,6 +1,27 @@
 import { describe, expect, it } from "vitest";
-import { findSecondPassSchedulers, patchFirstPassPrompt, patchSecondPassDenoise, patchSecondPassPrompt, type ApiPrompt, type SecondPassPatch } from "./comfy-prompt";
+import { findSecondPassSchedulers, patchCanvasImagePrompt, patchFirstPassPrompt, patchSecondPassDenoise, patchSecondPassPrompt, type ApiPrompt, type SecondPassPatch } from "./comfy-prompt";
 import yuqWorkflow from "../../workflows/YuQ导播台.json?raw";
+
+describe("latent 中间阶段诊断", () => {
+  it("records both latent boundaries without cycles and retains only the selected branch", () => {
+    const graph = workflowPrompt(yuqWorkflow);
+    Object.assign(graph["402"].inputs, { diagnose_latent: true, latent_full_sequence: true });
+    const output = patchSecondPassPrompt(graph, { sourceId: "402", targetId: "414", requestJson: '{"relayVersion":1}', processingMode: "latent_upscale_second_pass" });
+    expect(output["431"].inputs.enable_temporal_chunking).toBe(false);
+    expect(output["431"].inputs.precision).toBe("fp32");
+    expect(output.yuq_probe_before_431.inputs).toEqual({ latent: ["430", 0], request: ["402", 2], stage: "encoded" });
+    expect(output["431"].inputs.latent).toEqual(["yuq_probe_before_431", 0]);
+    expect(output.yuq_probe_after_431.inputs.latent).toEqual(["431", 0]);
+    expect(Object.values(output).filter(n => n.class_type === "TheodoreDirector_LatentProbe")).toHaveLength(2);
+    expect(output["404"]).toBeUndefined();
+    expect(graph["431"].inputs.precision).toBe("fp16");
+    const walk = (id: string, seen = new Set<string>()) => {
+      expect(seen.has(id)).toBe(false);
+      for (const v of Object.values(output[id].inputs)) if (Array.isArray(v)) walk(String(v[0]), new Set([...seen, id]));
+    };
+    walk("414");
+  });
+});
 
 function samplePrompt(): ApiPrompt {
   return {
@@ -62,16 +83,16 @@ describe("后处理二采 denoise 覆盖", () => {
 
 function workflowPrompt(json: string): ApiPrompt {
   const graph = JSON.parse(json) as {
-    nodes: Array<{ id: number; type: string; inputs?: Array<{ name: string; link?: number | null }> }>;
+    nodes: Array<{ id: number; type: string; widgets_values_named?: Record<string, unknown>; inputs?: Array<{ name: string; link?: number | null }> }>;
     links: Array<[number, number, number, number, number, string]>;
   };
   const links = new Map(graph.links.map((link) => [link[0], link]));
   return Object.fromEntries(graph.nodes.filter((node) => node.type !== "MarkdownNote").map((node) => [String(node.id), {
     class_type: node.type,
-    inputs: Object.fromEntries((node.inputs ?? []).filter((input) => input.link != null).map((input) => {
+    inputs: { ...Object.fromEntries(Object.entries(node.widgets_values_named ?? {}).filter(([, value]) => !Array.isArray(value))), ...Object.fromEntries((node.inputs ?? []).filter((input) => input.link != null).map((input) => {
       const link = links.get(input.link!)!;
       return [input.name, [String(link[1]), link[2]]];
-    })),
+    })) },
   }]));
 }
 
@@ -106,6 +127,58 @@ describe.each([["YuQ 导播台", yuqWorkflow]])("%s 二采任务隔离", (_versi
   });
 });
 
+describe("二采接力提交", () => {
+  it.each(["super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"] as const)("%s 覆盖所选支路的倍率", (processingMode) => {
+    const source = workflowPrompt(yuqWorkflow);
+    const output = patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode, requestJson: "{}", scale: 1.6 });
+    if (processingMode === "latent_upscale_second_pass") {
+      expect(output["431"].inputs["mode.scale"]).toBe(1.6);
+      expect(output["432"].inputs.scale_by).toBe(1.6);
+    } else expect(output["404"].inputs["resize_type.scale"]).toBe(1.6);
+    expect(source["404"].inputs["resize_type.scale"]).not.toBe(1.6);
+    const other = patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode, requestJson: "{}", scale: 1.8 });
+    expect(JSON.stringify(output)).not.toBe(JSON.stringify(other));
+  });
+  it("不支持倍率的支路明确报错", () => {
+    const source = workflowPrompt(yuqWorkflow);
+    source["404"].inputs.resize_type = "other";
+    expect(() => patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode: "super_resolution_second_pass", requestJson: "{}", scale: 1.6 })).toThrow("倍率模式");
+  });
+  it.each(["super_resolution_second_pass", "latent_upscale_second_pass"] as const)("%s 带入对应接力和裁切节点", (processingMode) => {
+    const source = workflowPrompt(yuqWorkflow);
+    const output = patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode,
+      requestJson: JSON.stringify({ relayVersion: 1 }), denoise: 0.25 });
+    const count = (type: string) => Object.values(output).filter((n) => n.class_type === type).length;
+    expect(count("TheodoreDirector_SecondPassRelay")).toBe(1);
+    expect(count("TheodoreDirector_SecondPassFinalize")).toBe(1);
+    expect(output["415"].inputs.length).toEqual(["402", 13]);
+    expect(output["413"].inputs.audio).toEqual(["402", 14]);
+    expect(count("SamplerCustomAdvanced")).toBe(1);
+  });
+  it("旧画布在局部任务中接入接力，保留画布对象", () => {
+    const source = workflowPrompt(yuqWorkflow);
+    source["408"].inputs.conditioning = ["415", 0];
+    source["438"].inputs.conditioning = ["432", 0];
+    source["441"].inputs.tt_value = ["412", 0];
+    source["442"].inputs.tt_value = ["440", 0];
+    source["415"].inputs.length = ["403", 1];
+    source["413"].inputs.audio = ["402", 4];
+    source["405"].inputs.pixels = ["404", 0];
+    delete source["624"];
+    for (const id of ["620", "621", "622", "623"]) delete source[id];
+    const before = JSON.stringify(source);
+    const output = patchSecondPassPrompt(source, { sourceId: "402", targetId: "414", processingMode: "super_resolution_second_pass",
+      requestJson: JSON.stringify({ relayVersion: 1 }), denoise: 0.25 });
+    expect(output.yuq_relay_411.inputs.latent).toEqual(["407", 0]);
+    expect(output["405"].inputs.pixels).toEqual(["yuq_align_405", 0]);
+    expect(output.yuq_align_405.inputs.images).toEqual(["404", 0]);
+    expect(output.yuq_finalize_411.inputs.audio_latent).toEqual(["406", 0]);
+    expect(output["441"].inputs.tt_value).toEqual(["yuq_finalize_411", 0]);
+    expect(output.yuq_relay_439).toBeUndefined();
+    expect(JSON.stringify(source)).toBe(before);
+  });
+});
+
 describe("二采错误拓扑", () => {
   const patch: SecondPassPatch = { sourceId: "402", targetId: "414", requestJson: "{}", processingMode: "super_resolution_second_pass" };
   it("依赖丢失时中止，不提交残缺任务", () => {
@@ -122,5 +195,71 @@ describe("二采错误拓扑", () => {
     const source = workflowPrompt(yuqWorkflow);
     source["414"].inputs = {};
     expect(() => patchSecondPassPrompt(source, patch)).toThrow("未连接到所选源节点");
+  });
+});
+
+describe("画布内置控制与生图任务", () => {
+  const imageSettings = { positivePrompt: "portrait", negativePrompt: "text", width: 512, height: 768, batchSize: 2, seed: 88, filenamePrefix: "TheodoreDirector/ImageGen/demo/portrait" };
+
+  it("一采只执行所选项目，直接设置索引，不运行生图和后处理", () => {
+    const source = workflowPrompt(yuqWorkflow);
+    const before = JSON.stringify(source);
+    const output = patchFirstPassPrompt(source, { projectId: "396", planJson: "{}", activeIndex: 4 });
+    expect(output["450"].inputs.queue_index).toBe(4);
+    expect(output["400"]).toBeDefined();
+    expect(Object.values(output).some((n) => ["TheodoreDirector_ImageControls", "TheodoreDirector_SaveSecondPass", "ImpactQueueTrigger"].includes(n.class_type))).toBe(false);
+    expect(JSON.stringify(source)).toBe(before);
+  });
+
+  it("旧节点使用项目基础种子，忽略手工改名和编号", () => {
+    const source = samplePrompt();
+    expect(patchFirstPassPrompt(source, { planJson: "{}", activeIndex: 0, baseSeed: 42 })["397"].inputs.base_seed).toBe(42);
+    const renamed: ApiPrompt = { p: { class_type: "TheodoreDirector_Project", inputs: {} }, ctrl: { class_type: "TheodoreDirector_ShotControl", inputs: { plan: ["p", 0] } }, result: { class_type: "TheodoreDirector_CommitResult", inputs: { shot: ["ctrl", 0] } } };
+    expect(patchFirstPassPrompt(renamed, { projectId: "p", planJson: "{}", activeIndex: 2 }).ctrl.inputs.queue_index).toBe(2);
+  });
+
+  it("生图保留自定义 LoRA、采样器和后处理参数，并隔离视频链", () => {
+    const source = workflowPrompt(yuqWorkflow);
+    const samplerId = Object.keys(source).find((id) => source[id].class_type === "CFGGuider")!;
+    const sampler = source[samplerId];
+    source.custom = { class_type: "CustomLoraStack", inputs: { model: sampler.inputs.model, strength: 0.73 } };
+    sampler.inputs.model = ["custom", 0]; sampler.inputs.cfg = 4.5;
+    source.other = { class_type: "TheodoreDirector_Project", inputs: {} };
+    source.otherImage = { class_type: "TheodoreDirector_ImageControls", inputs: { plan: ["other", 0] } };
+    const before = JSON.stringify(source);
+    const { output, targetId } = patchCanvasImagePrompt(source, "396", imageSettings);
+    expect(output["480"].inputs).toMatchObject({ positive_prompt: "portrait", width: 512, batch_size: 2, seed: 88 });
+    expect(output.custom.inputs.strength).toBe(0.73);
+    expect(output[samplerId].inputs).toMatchObject({ cfg: 4.5, model: ["custom", 0] });
+    expect(output[targetId].class_type).toBe("SaveImage");
+    expect(output.otherImage).toBeUndefined();
+    expect(output["450"]).toBeUndefined(); expect(output["400"]).toBeUndefined();
+    expect(JSON.stringify(source)).toBe(before);
+  });
+
+  it("Qwen enhancement off prunes its model and on preserves the enhancement input", () => {
+    const source = workflowPrompt(yuqWorkflow);
+    const toggle = Object.values(source).find((node) => node.class_type === "ComfySwitchNode")!;
+    toggle.inputs.switch = false;
+    const disabled = patchCanvasImagePrompt(source, "396", imageSettings).output;
+    expect(Object.values(disabled).some((node) => node.class_type === "TextGenerate")).toBe(false);
+    expect(Object.values(disabled).filter((node) => node.class_type === "CLIPLoader")).toHaveLength(1);
+    expect(Object.values(disabled).find((node) => node.class_type === "TextEncodeQwenImage21")!.inputs.prompt).toEqual(["480", 0]);
+    toggle.inputs.switch = true;
+    const enabled = patchCanvasImagePrompt(source, "396", imageSettings).output;
+    const enhancer = Object.values(enabled).find((node) => node.class_type === "TextGenerate")!;
+    expect(enhancer.inputs.prompt).toEqual(["480", 0]);
+    expect(enhancer.inputs["sampling_mode.seed"]).toEqual(["480", 5]);
+    expect(Object.values(enabled).filter((node) => node.class_type === "CLIPLoader")).toHaveLength(2);
+    expect(Object.values(enabled).find((node) => node.class_type === "ManualSigmas")!.inputs.sigmas).toBe(Object.values(disabled).find((node) => node.class_type === "ManualSigmas")!.inputs.sigmas);
+  });
+
+  it("生图出口断线、重复控制、误接输出时给出错误", () => {
+    const source = workflowPrompt(yuqWorkflow);
+    const saver = Object.values(source).find((n) => n.class_type === "SaveImage")!;
+    saver.inputs.filename_prefix = "other";
+    expect(() => patchCanvasImagePrompt(source, "396", imageSettings)).toThrow("SaveImage");
+    source.duplicate = { class_type: "TheodoreDirector_ImageControls", inputs: { plan: ["396", 0] } };
+    expect(() => patchCanvasImagePrompt(source, "396", imageSettings)).toThrow("找到 2 个");
   });
 });

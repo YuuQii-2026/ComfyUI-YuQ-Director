@@ -252,8 +252,18 @@ def validate_merge_selections(
             raise ValueError(f"镜头 {shot_id} 选择的文件不属于其生成结果: {requested}")
         if candidate.suffix.lower() not in VIDEO_EXTENSIONS or candidate.stat().st_size <= 0:
             raise ValueError(f"镜头 {shot_id} 的视频为空或格式不受支持: {requested}")
+        from .video_results import read_video_result_metadata
+        from .second_pass_relay import invalid_reason
+
+        metadata = read_video_result_metadata(candidate)
+        if metadata and (metadata.relay or metadata.source_context):
+            reason = invalid_reason(output_root, metadata)
+            if reason:
+                raise ValueError(f"镜头 {shot_id} 的二采接力状态已失效: {reason}")
         validated.append(candidate)
-    return validated
+    from .native_continuity import contextual_merge_sources
+
+    return contextual_merge_sources(output_root, validated)
 
 
 def find_ffmpeg_executable() -> str:

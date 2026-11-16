@@ -9,7 +9,7 @@ export interface ImageGenerationPreferences extends ImageModelSettings {
   seed: number;
   randomSeed: boolean;
 }
-export const IMAGE_PREFERENCES_KEY = "theodore-director-image-settings-v1";
+export const IMAGE_PREFERENCES_KEY = "theodore-director-image-settings-v2-qwen21";
 export const DEFAULT_IMAGE_PREFERENCES: ImageGenerationPreferences = {
   width: 1080, height: 720, steps: 12, cfg: 1, batchSize: 1, seed: 0, randomSeed: false,
 };

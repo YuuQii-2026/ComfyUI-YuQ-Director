@@ -84,6 +84,7 @@ export interface ImportMergeReport {
  */
 export function mergeImportedPlan(current: DirectorPlan, imported: DirectorPlan): ImportMergeReport {
   const plan = normalizePlan(imported);
+  if (!imported.generation && current.generation) plan.generation = { ...current.generation };
   const currentAssets = new Map(current.assets.map((asset) => [`${asset.kind}:${asset.alias.toLocaleLowerCase()}`, asset]));
   const keptPaths: string[] = [];
   plan.assets = plan.assets.map((asset): DirectorAsset => {
@@ -120,6 +121,7 @@ export function mergeImportedPlan(current: DirectorPlan, imported: DirectorPlan)
   });
   if (current.pipeline && plan.pipeline) {
     plan.pipeline.secondPassDenoise = imported.pipeline?.secondPassDenoise ?? current.pipeline.secondPassDenoise ?? DEFAULT_SECOND_PASS_DENOISE;
+    plan.pipeline.secondPassScale = imported.pipeline?.secondPassScale ?? current.pipeline.secondPassScale;
   }
   return { plan, keptPaths, keptReviews, keptSeeds };
 }

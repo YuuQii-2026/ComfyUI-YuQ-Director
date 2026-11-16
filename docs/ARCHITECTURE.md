@@ -2,16 +2,17 @@
 
 ## 分层原则
 
+二采连续性由 `second_pass_relay.py` 与 `SecondPassRelay / SecondPassFinalize` 管理。一采选片由网页固定为 `sourceSelections`；后端按启用顺序递归校验前一段的处理图签名、分镜哈希、重绘强度、源文件和状态文件版本。仅匹配当前来源链的完成记录可复用，失败或中断产生的孤立状态不算完成。
+
+源节点给后续段补入上一段高清结果的画面和等长音轨，并输出实际总帧数供 H3 条件使用。接力节点在最终采样分辨率上调用已安装的 H3 Motion Context；裁切节点按原视频帧数交付画面，并独立保存原生二采视频 latent。成片沿用一采音轨，因此状态中的音频来自该音轨的干净 VAE 编码，而非未用于成片的采样音频。成功保存视频与元数据后才算有效状态；一采状态目录不变，二采状态写入 `second_pass_context/`。
+
 核心协议不认识 MiniMax、Impact 或具体采样器。它只保存稳定、可迁移的生产意图：项目、素材目录、分镜、提示词、最终时长、seed 和连续性策略。`Plan` 与 `ShotSelection` 使用冻结数据类，节点执行期间不能原地修改。
 
 H3 适配器是一个编译边界：输入通用 `PLAN + SHOT`，输出 H3 的提示词、合法生成帧数、9 个图片槽、3 个视频槽、3 个视频伴音槽和 3 个独立音频槽。虽然物理端口分开，适配器仍执行官方“有效音频总数 3”约束。
 
-Impact Pack 只负责队列：
+浏览器逐段排队并等待结果后再提交下一段。`TheodoreDirector_ShotControl` 从 PLAN 与 `queue_index` 输出当前分镜、种子、画幅、FPS、连续性和保存路径，替代多个分散控制节点。节点编号不参与控制逻辑；API prompt 沿当前项目依赖查找控制节点。一采只提交 `CommitResult` 及其依赖，二采只提交独立保存出口及其依赖。Impact 条件节点仅选择连续性与后处理分支。旧 SelectShot / OutputPaths 节点仍注册以兼容历史工作流。
 
-- `PrimitiveInt(314)` 保存当前索引；
-- `ImpactExecutionOrderController` 让计划先解析，再把索引交给 SelectShot；
-- `CommitResult` 成功后，`ImpactSetWidgetValue` 写入 next index；
-- `has_next` 控制 `ImpactQueueTrigger`，最后一段不会额外排队。
+`generation: {width, height}` 是可选配置，宽高为 32–8192 的 32 倍数；旧计划不补写该字段以保留旧规范序列化。导入不含画幅的计划时沿用当前项目画幅。配置页以比例和 0.1× 尺寸倍率换算为实际像素；旧自定义尺寸原样保留，编辑倍率时按最接近的比例计算。配置页保存这些内置字段；任意模型节点的参数继续由 ComfyUI 工作流保存。
 
 ## 计划协议 v5
 
@@ -39,7 +40,13 @@ v3 为每个分镜增加 `latentRelay`。`SelectShot` 根据 Impact `queue_index
 
 v4 增加布尔 `secondSampling`。v5 将其升级为可扩展枚举 `secondSamplingMode`：`off`、`super_resolution_second_pass`、`latent_upscale_second_pass`、`super_resolution_only`。旧 `true` 无损迁移为 V7.2 原有的超分二采，旧 `false` 迁移为关闭。`SelectShot` 输出模式字符串、三个互斥分支 BOOL，并保留旧 `second_sampling` BOOL 端口；后者只在两种真正重新采样的模式中为真。
 
-YuQ 导播台工作流使用嵌套 Impact 条件节点选择一采画面、RTX 只超分、RTX 超分二采或方案 C Latent 放大二采。未选中的输入分支不会求值，因此关闭和只超分不会加载二采 LoRA，Latent 模式不会执行 RTX，关闭模式只运行一采。四路合流后共用 Motion Context Trim、保存视频/尾帧和结果提交；第一采 AV latent 始终独立落盘，高清处理方式不会改变跨段连续性来源。
+一采图像经 Motion Context Trim 后写视频和尾帧。`SaveTail` 的 video 输入依赖 SaveVideo 完成，图像输入直接取裁切后的最后一帧并保存 PNG，避免重新解码视频；尾帧相较旧版不再含视频压缩损失。`CommitResult` 同时依赖尾帧与 AV latent 保存，确保视频、尾帧、latent 完整落盘。后处理三种模式另走独立支流，宽高从所选源视频的真实尺寸输出，不回到一采控制链。
+
+## 可编辑生图链
+
+`TheodoreDirector_ImageControls` 用 PLAN 关联项目，提供正负提示词、宽高、数量、种子和保存前缀。生成节点全部保留在画布，网页通过 ComfyUI 原生 `graphToPrompt` 读取任意受支持的节点；不使用固定类型白名单去猜自定义节点的控件序列化。
+
+网页从当前项目关联的唯一生图输入查找唯一 `SaveImage`：保存前缀直连输入槽 6，图像输入路径须依赖该输入节点。入队只改生图输入的字段，然后截取保存出口的完整依赖。LoRA、模型、采样器和后处理不被覆盖。SaveImage 平时静音，序列化期间临时启用并在 finally 恢复；视频排队不会执行该分支。旧工作流缺少 ImageControls 时保留内置生图兼容路径。
 
 计划对“会影响生成或结果归属”的规范 JSON 计算 plan hash，隐藏的 `project.id` 不参与哈希。每个分镜另有 shot hash，包含该分镜、处理模式、适用素材、全局前后缀和连续性设置。续跑判断同时验证 plan hash、shot hash、结果状态以及视频、尾帧、latent 文件存在性。由于协议版本也属于生成语义，旧计划首次升级后会有一次 plan hash 变化，旧结果文件不会被删除。
 
@@ -65,7 +72,7 @@ YuQ 导播台工作流使用嵌套 Impact 条件节点选择一采画面、RTX �
 
 ## 扩展其他模型
 
-新的模型适配器应保持 Project、SelectShot、OutputPaths 和 CommitResult 不变，只实现：
+新的模型适配器应复用 Project、ShotControl 和 CommitResult，旧流程也可继续复用 SelectShot / OutputPaths，只实现：
 
 1. 模型自己的素材容量与时长校验；
 2. 别名到模型原生提示标签的稳定编译；
@@ -74,3 +81,7 @@ YuQ 导播台工作流使用嵌套 Impact 条件节点选择一采画面、RTX �
 5. 固定、版本化的 ComfyUI 输出端口。
 
 不要把队列触发放进模型适配器；否则适配器会与 Impact、循环节点或未来其他调度器产生不必要耦合。
+
+## Qwen Image 2.1 Turbo 生图
+
+发布工作流与内置兼容工作流均使用 Qwen 2.1 Turbo。原子图展开为可编辑节点；网页控制器只覆盖提示词、宽高、数量、种子及保存路径，保留 Qwen Cache、Euler、CFG 和原始 8 步 ManualSigmas。API 提交前折叠布尔字面量的提示词增强开关，并裁去非选中依赖。关闭增强时不校验或执行增强模型；开启时保留 TextGenerate 的动态输入、原系统提示词和同一次任务的 seed。静音的标准 SaveImage 为唯一生图出口，与视频支流隔离。Qwen 生图界面使用独立的 v2 偏好键，旧版模型选择不会覆盖新链默认模型。

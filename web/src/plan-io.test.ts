@@ -19,6 +19,13 @@ function basePlan(): DirectorPlan {
 }
 
 describe("计划导入", () => {
+  it("导入旧计划保留当前画幅，显式提供画幅时更新", () => {
+    const current = basePlan(); current.generation = { width: 352, height: 608 };
+    const imported = basePlan();
+    expect(mergeImportedPlan(current, imported).plan.generation).toEqual(current.generation);
+    imported.generation = { width: 512, height: 512 };
+    expect(mergeImportedPlan(current, imported).plan.generation).toEqual(imported.generation);
+  });
   it("缺省字段被补齐，skill 生成的精简计划也能直接打开", () => {
     const plan = normalizePlan({ project: { name: "x" }, assets: [{ alias: "hero", kind: "image" }], shots: [{ prompt: "p" }] } as unknown as DirectorPlan);
     expect(plan.shots[0]).toMatchObject({ id: "shot_001", title: "shot_001", durationSeconds: 5, enabled: true, disabledAssetIds: [] });

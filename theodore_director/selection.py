@@ -37,6 +37,10 @@ def shot_hash(plan: Plan, shot: Shot) -> str:
         "suffix": plan.prompt_suffix,
         "continuity": plan.continuity.__dict__,
     }
+    if plan.generation is not None:
+        value["generation"] = plan.generation.__dict__
+        value["fps"] = plan.fps
+        value["baseSeed"] = plan.base_seed
     return hashlib.sha256(json.dumps(value, default=str, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
 
 

@@ -71,6 +71,8 @@ export interface DirectorPlan {
   assetLibrary?: { id: string; name: string };
   project: { id: string; name: string; runId: string; notes?: string };
   defaults: { fps: number; baseSeed: number; durationSeconds?: number; secondSamplingMode?: SecondSamplingMode };
+  /** 仅供内置分镜控制使用；模型与采样连接由当前画布决定。 */
+  generation?: { width: number; height: number };
   promptPrefix: string;
   promptSuffix: string;
   continuity: {
@@ -86,6 +88,8 @@ export interface DirectorPlan {
     secondPassMode: Exclude<SecondSamplingMode, "off">;
     /** 整体二采重绘强度；越低接缝越稳，越高细节越多。 */
     secondPassDenoise?: number;
+    /** 未设置时使用工作流画布中的倍率。 */
+    secondPassScale?: number;
     /** 导播台一采时记录的 latent 槽位写入者；缺失表示没有记录（旧项目），不做来源检查。 */
     latentWriters?: LatentWriters;
   };
@@ -112,6 +116,11 @@ export interface SecondPassQueueRequest {
   batchId?: string;
   sequenceIndex?: number;
   latentRelay?: boolean;
+  relayVersion?: number;
+  sourceSelections?: Record<string, string>;
+  workflowSignature?: string;
+  continuityMode?: "h3_native_prefix_right_context_v1";
+  skipIfValid?: boolean;
   phase?: "second_pass";
   /** 仅修改本次提交的二采调度器 denoise，不改动用户工作流。 */
   denoise?: number;

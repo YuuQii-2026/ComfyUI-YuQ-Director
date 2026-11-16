@@ -94,9 +94,10 @@ export function ReviewPanel({ plan, language, results, run, supportsSecondPass, 
           <input type="range" min="0.1" max="0.45" step="0.01" value={denoise} disabled={busy} onInput={(event) => setPipeline({ secondPassDenoise: Number(event.currentTarget.value) })}/>
           <b>{denoise.toFixed(2)}</b>
         </label>}
-        <label class="td-inline-check"><input type="checkbox" checked={skipDone} onChange={(event) => setSkipDone(event.currentTarget.checked)}/>{L("跳过已二采的段", "Skip processed")}</label>
+        <label class="td-inline-check"><input type="checkbox" checked={skipDone} onChange={(event) => setSkipDone(event.currentTarget.checked)}/>{L("复用有效二采（校验选片与接力来源）", "Reuse valid results")}</label>
         <button class="primary" disabled={busy || !approved.length} onClick={startSecondPass}>{L(`整体二采（已通过 ${approved.length} 段）`, `Batch 2nd pass (${approved.length})`)}</button>
       </div>}
+      {mode !== "super_resolution_only" && <p class="td-hint">{L("二采按接力链执行，自动补齐已通过审片的上游段；接力段读取上一段的高清画面与 AV latent。更换选片、参数或上游结果后需重跑，原音轨和片段帧数保留。", "Second passes follow relay chains and include approved predecessors. Changed sources or settings invalidate cached results. Original audio and frame counts are preserved.")}</p>}
       <div class="td-action-group">
         <button disabled={busy || !allReady} title={L("把每段选定的一采结果拼成整片，审片时检查整体连贯性", "Concatenate chosen first-pass takes for review")} onClick={() => onMerge(false)}>{L("合并一采样片", "Merge 1st-pass cut")}</button>
         <button class="accent" disabled={busy || !allProcessed} title={allProcessed ? "" : L("全部镜头完成二采后才能合并成片（一采与二采分辨率不同，不能混拼）", "All shots need a 2nd pass first")} onClick={() => onMerge(true)}>{L("合并二采成片", "Merge final")}</button>
@@ -155,6 +156,7 @@ function ReviewCard({ plan, shot, language, results, busy, running, setReview, o
   const chain = relayChain(plan, shot.id);
   const status = shot.review?.status ?? "pending";
   const modified = shotModifiedSinceGeneration(plan, shot);
+  const invalidSecondPass = all.find((item) => item.stage === "second_pass" && item.sourcePath === take?.path && item.relayValid === false);
 
   return <article class={`td-review-card ${status} ${shot.enabled ? "" : "off"} ${running ? "running" : ""}`}>
     <header>
@@ -175,6 +177,7 @@ function ReviewCard({ plan, shot, language, results, busy, running, setReview, o
     {seam === "wrong_source" && <p class="td-review-warning">{L(`接力来源错误：本段结果生成时读取的不是「${previous?.title}」的 latent（镜头顺序或启用状态变过）。请连同上一段一起重生。`, "This take relayed from a different shot; re-roll it together with the previous shot.")}</p>}
     {sourceIssue && seam !== "wrong_source" && <p class="td-review-warning">{L(`下次生成本段时将读到不属于「${previous?.title}」的 latent（镜头顺序或启用状态变过），重生时会建议连同上一段一起生成。`, "The relay slot no longer belongs to the previous shot.")}</p>}
     {modified && <p class="td-review-warning">{L("提示词或素材在生成后被修改过，当前结果不代表最新设置。", "Prompt changed after this take was generated.")}</p>}
+    {invalidSecondPass && !processed.length && <p class="td-review-warning">{L(invalidSecondPass.relayReason || "二采接力状态已失效，请重新执行接力链。", "Second-pass relay is stale. Run this chain again.")}</p>}
     {shot.note && <p class="td-review-note" title={shot.note}>{shot.note}</p>}
     <footer>
       <button class={`ok ${status === "approved" ? "active" : ""}`} disabled={!take} onClick={() => setReview(shot.id, { status: status === "approved" ? "pending" : "approved", take: take?.path })}>✓ {L("通过", "Approve")}</button>

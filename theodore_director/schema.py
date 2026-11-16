@@ -143,6 +143,12 @@ class Continuity:
 
 
 @dataclass(frozen=True)
+class GenerationSettings:
+    width: int = 416
+    height: int = 224
+
+
+@dataclass(frozen=True)
 class Plan:
     schema_version: int
     project_id: str
@@ -155,6 +161,7 @@ class Plan:
     continuity: Continuity
     assets: tuple[Asset, ...] = field(default_factory=tuple)
     shots: tuple[Shot, ...] = field(default_factory=tuple)
+    generation: GenerationSettings | None = None
 
     @property
     def active_shots(self) -> tuple[Shot, ...]:
@@ -177,7 +184,7 @@ class Plan:
         return hashlib.sha256(self.generation_json.encode("utf-8")).hexdigest()
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        data = {
             "schemaVersion": self.schema_version,
             "project": {"id": self.project_id, "name": self.project_name, "runId": self.run_id},
             "defaults": {"fps": self.fps, "baseSeed": self.base_seed},
@@ -222,6 +229,9 @@ class Plan:
                 for shot in self.shots
             ],
         }
+        if self.generation is not None:
+            data["generation"] = {"width": self.generation.width, "height": self.generation.height}
+        return data
 
 
 def _optional_float(value: Any) -> float | None:
@@ -270,6 +280,15 @@ def load_plan(value: str | dict[str, Any]) -> Plan:
     project = data.get("project") or {}
     defaults = data.get("defaults") or {}
     continuity_data = data.get("continuity") or {}
+    generation_data = data.get("generation")
+    generation = None
+    if generation_data is not None:
+        if not isinstance(generation_data, dict):
+            raise PlanValidationError("generation 必须为画幅配置对象")
+        dimensions = [generation_data.get("width", 416), generation_data.get("height", 224)]
+        if any(type(value) is not int or value < 32 or value > 8192 or value % 32 for value in dimensions):
+            raise PlanValidationError("画幅宽高必须为 32 至 8192 之间的 32 倍数")
+        generation = GenerationSettings(*dimensions)
     assets = tuple(Asset.from_dict(item) for item in data.get("assets", []))
     shots = tuple(Shot.from_dict(item, index) for index, item in enumerate(data.get("shots", [])))
 
@@ -307,6 +326,7 @@ def load_plan(value: str | dict[str, Any]) -> Plan:
         ),
         assets=assets,
         shots=shots,
+        generation=generation,
     )
     if plan.fps <= 0:
         raise PlanValidationError("fps 必须大于 0")

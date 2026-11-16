@@ -1,97 +1,97 @@
-var Ft, me, ur, qe, Cn, hr, mr, Qt, $t, ht, fr, pn, nn, rn, zt = {}, At = [], po = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, Gt = Array.isArray;
-function Ue(e, t) {
+var Ht, me, br, Qe, An, xr, vr, tn, Tt, wt, wr, xn, dn, ln, Mt = {}, Rt = [], bi = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, Wt = Array.isArray;
+function Ve(e, t) {
   for (var r in t) e[r] = t[r];
   return e;
 }
-function un(e) {
+function vn(e) {
   e && e.parentNode && e.parentNode.removeChild(e);
 }
-function uo(e, t, r) {
-  var o, i, a, l = {};
-  for (a in t) a == "key" ? o = t[a] : a == "ref" ? i = t[a] : l[a] = t[a];
-  if (arguments.length > 2 && (l.children = arguments.length > 3 ? Ft.call(arguments, 2) : r), typeof e == "function" && e.defaultProps != null) for (a in e.defaultProps) l[a] === void 0 && (l[a] = e.defaultProps[a]);
-  return It(e, l, o, i, null);
+function xi(e, t, r) {
+  var i, o, s, l = {};
+  for (s in t) s == "key" ? i = t[s] : s == "ref" ? o = t[s] : l[s] = t[s];
+  if (arguments.length > 2 && (l.children = arguments.length > 3 ? Ht.call(arguments, 2) : r), typeof e == "function" && e.defaultProps != null) for (s in e.defaultProps) l[s] === void 0 && (l[s] = e.defaultProps[s]);
+  return At(e, l, i, o, null);
 }
-function It(e, t, r, o, i) {
-  var a = { type: e, props: t, key: r, ref: o, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: i ?? ++ur, __i: -1, __u: 0 };
-  return i == null && me.vnode != null && me.vnode(a), a;
+function At(e, t, r, i, o) {
+  var s = { type: e, props: t, key: r, ref: i, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: o ?? ++br, __i: -1, __u: 0 };
+  return o == null && me.vnode != null && me.vnode(s), s;
 }
-function Vt(e) {
+function Jt(e) {
   return e.children;
 }
-function Pt(e, t) {
+function jt(e, t) {
   this.props = e, this.context = t;
 }
-function Ze(e, t) {
-  if (t == null) return e.__ ? Ze(e.__, e.__i + 1) : null;
+function it(e, t) {
+  if (t == null) return e.__ ? it(e.__, e.__i + 1) : null;
   for (var r; t < e.__k.length; t++) if ((r = e.__k[t]) != null && r.__e != null) return r.__e;
-  return typeof e.type == "function" ? Ze(e) : null;
+  return typeof e.type == "function" ? it(e) : null;
 }
-function ho(e) {
+function vi(e) {
   if (e.__P && e.__d) {
-    var t = e.__v, r = t.__e, o = [], i = [], a = Ue({}, t);
-    a.__v = t.__v + 1, me.vnode && me.vnode(a), hn(e.__P, a, t, e.__n, e.__P.namespaceURI, 32 & t.__u ? [r] : null, o, r ?? Ze(t), !!(32 & t.__u), i), a.__v = t.__v, a.__.__k[a.__i] = a, wr(o, a, i), t.__e = t.__ = null, a.__e != r && gr(a);
+    var t = e.__v, r = t.__e, i = [], o = [], s = Ve({}, t);
+    s.__v = t.__v + 1, me.vnode && me.vnode(s), wn(e.__P, s, t, e.__n, e.__P.namespaceURI, 32 & t.__u ? [r] : null, i, r ?? it(t), !!(32 & t.__u), o), s.__v = t.__v, s.__.__k[s.__i] = s, $r(i, s, o), t.__e = t.__ = null, s.__e != r && yr(s);
   }
 }
-function gr(e) {
+function yr(e) {
   if ((e = e.__) != null && e.__c != null) return e.__e = e.__c.base = null, e.__k.some(function(t) {
     if (t != null && t.__e != null) return e.__e = e.__c.base = t.__e;
-  }), gr(e);
+  }), yr(e);
 }
-function En(e) {
-  (!e.__d && (e.__d = !0) && qe.push(e) && !Tt.__r++ || Cn != me.debounceRendering) && ((Cn = me.debounceRendering) || hr)(Tt);
+function jn(e) {
+  (!e.__d && (e.__d = !0) && Qe.push(e) && !Lt.__r++ || An != me.debounceRendering) && ((An = me.debounceRendering) || xr)(Lt);
 }
-function Tt() {
+function Lt() {
   try {
-    for (var e, t = 1; qe.length; ) qe.length > t && qe.sort(mr), e = qe.shift(), t = qe.length, ho(e);
+    for (var e, t = 1; Qe.length; ) Qe.length > t && Qe.sort(vr), e = Qe.shift(), t = Qe.length, vi(e);
   } finally {
-    qe.length = Tt.__r = 0;
+    Qe.length = Lt.__r = 0;
   }
 }
-function br(e, t, r, o, i, a, l, s, m, h, d) {
-  var f, c, p, b, _, N, k = o && o.__k || At, w = t.length;
-  for (m = mo(r, t, k, m, w), f = 0; f < w; f++) (p = r.__k[f]) != null && (c = p.__i != -1 && k[p.__i] || zt, p.__i = f, N = hn(e, p, c, i, a, l, s, m, h, d), b = p.__e, p.ref && c.ref != p.ref && (c.ref && mn(c.ref, null, p), d.push(p.ref, p.__c || b, p)), _ == null && b != null && (_ = b), 4 & p.__u ? (m = xr(p, m, e), c.__e && (c.__e = null)) : typeof p.type == "function" && N !== void 0 ? m = N : b && (m = b.nextSibling), p.__u &= -7);
-  return r.__e = _, m;
+function _r(e, t, r, i, o, s, l, a, d, p, m) {
+  var b, h, c, g, S, T, y = i && i.__k || Rt, v = t.length;
+  for (d = wi(r, t, y, d, v), b = 0; b < v; b++) (c = r.__k[b]) != null && (h = c.__i != -1 && y[c.__i] || Mt, c.__i = b, T = wn(e, c, h, o, s, l, a, d, p, m), g = c.__e, c.ref && h.ref != c.ref && (h.ref && yn(h.ref, null, c), m.push(c.ref, c.__c || g, c)), S == null && g != null && (S = g), 4 & c.__u ? (d = kr(c, d, e), h.__e && (h.__e = null)) : typeof c.type == "function" && T !== void 0 ? d = T : g && (d = g.nextSibling), c.__u &= -7);
+  return r.__e = S, d;
 }
-function mo(e, t, r, o, i) {
-  var a, l, s, m, h, d = r.length, f = d, c = 0;
-  for (e.__k = new Array(i), a = 0; a < i; a++) (l = t[a]) != null && typeof l != "boolean" && typeof l != "function" ? (typeof l == "string" || typeof l == "number" || typeof l == "bigint" || l.constructor == String ? l = e.__k[a] = It(null, l, null, null, null) : Gt(l) ? l = e.__k[a] = It(Vt, { children: l }, null, null, null) : l.constructor === void 0 && l.__b > 0 ? l = e.__k[a] = It(l.type, l.props, l.key, l.ref ? l.ref : null, l.__v) : e.__k[a] = l, m = a + c, l.__ = e, l.__b = e.__b + 1, s = null, (h = l.__i = fo(l, r, m, f)) != -1 && (f--, (s = r[h]) && (s.__u |= 2)), s == null || s.__v == null ? (h == -1 && (i > d ? c-- : i < d && c++), typeof l.type != "function" && (l.__u |= 4)) : h != m && (h == m - 1 ? c-- : h == m + 1 ? c++ : (h > m ? c-- : c++, l.__u |= 4))) : e.__k[a] = null;
-  if (f) for (a = 0; a < d; a++) (s = r[a]) != null && (2 & s.__u) == 0 && (s.__e == o && (o = Ze(s)), _r(s, s));
-  return o;
+function wi(e, t, r, i, o) {
+  var s, l, a, d, p, m = r.length, b = m, h = 0;
+  for (e.__k = new Array(o), s = 0; s < o; s++) (l = t[s]) != null && typeof l != "boolean" && typeof l != "function" ? (typeof l == "string" || typeof l == "number" || typeof l == "bigint" || l.constructor == String ? l = e.__k[s] = At(null, l, null, null, null) : Wt(l) ? l = e.__k[s] = At(Jt, { children: l }, null, null, null) : l.constructor === void 0 && l.__b > 0 ? l = e.__k[s] = At(l.type, l.props, l.key, l.ref ? l.ref : null, l.__v) : e.__k[s] = l, d = s + h, l.__ = e, l.__b = e.__b + 1, a = null, (p = l.__i = yi(l, r, d, b)) != -1 && (b--, (a = r[p]) && (a.__u |= 2)), a == null || a.__v == null ? (p == -1 && (o > m ? h-- : o < m && h++), typeof l.type != "function" && (l.__u |= 4)) : p != d && (p == d - 1 ? h-- : p == d + 1 ? h++ : (p > d ? h-- : h++, l.__u |= 4))) : e.__k[s] = null;
+  if (b) for (s = 0; s < m; s++) (a = r[s]) != null && (2 & a.__u) == 0 && (a.__e == i && (i = it(a)), Pr(a, a));
+  return i;
 }
-function xr(e, t, r) {
-  var o, i;
+function kr(e, t, r) {
+  var i, o;
   if (typeof e.type == "function") {
-    for (o = e.__k, i = 0; o && i < o.length; i++) o[i] && (o[i].__ = e, t = xr(o[i], t, r));
+    for (i = e.__k, o = 0; i && o < i.length; o++) i[o] && (i[o].__ = e, t = kr(i[o], t, r));
     return t;
   }
-  e.__e != t && (t && e.type && !t.parentNode && (t = Ze(e)), t = r.insertBefore(e.__e, t || null));
+  e.__e != t && (t && e.type && !t.parentNode && (t = it(e)), t = r.insertBefore(e.__e, t || null));
   do
     t = t && t.nextSibling;
   while (t != null && t.nodeType == 8);
   return t;
 }
-function fo(e, t, r, o) {
-  var i, a, l, s = e.key, m = e.type, h = t[r], d = h != null && (2 & h.__u) == 0;
-  if (h === null && s == null || d && s == h.key && m == h.type) return r;
-  if (o > (d ? 1 : 0)) {
-    for (i = r - 1, a = r + 1; i >= 0 || a < t.length; ) if ((h = t[l = i >= 0 ? i-- : a++]) != null && (2 & h.__u) == 0 && s == h.key && m == h.type) return l;
+function yi(e, t, r, i) {
+  var o, s, l, a = e.key, d = e.type, p = t[r], m = p != null && (2 & p.__u) == 0;
+  if (p === null && a == null || m && a == p.key && d == p.type) return r;
+  if (i > (m ? 1 : 0)) {
+    for (o = r - 1, s = r + 1; o >= 0 || s < t.length; ) if ((p = t[l = o >= 0 ? o-- : s++]) != null && (2 & p.__u) == 0 && a == p.key && d == p.type) return l;
   }
   return -1;
 }
-function zn(e, t, r) {
-  t[0] == "-" ? e.setProperty(t, r ?? "") : e[t] = r == null ? "" : typeof r != "number" || po.test(t) ? r : r + "px";
+function Nn(e, t, r) {
+  t[0] == "-" ? e.setProperty(t, r ?? "") : e[t] = r == null ? "" : typeof r != "number" || bi.test(t) ? r : r + "px";
 }
-function St(e, t, r, o, i) {
-  var a, l;
+function Et(e, t, r, i, o) {
+  var s, l;
   e: if (t == "style") if (typeof r == "string") e.style.cssText = r;
   else {
-    if (typeof o == "string" && (e.style.cssText = o = ""), o) for (t in o) r && t in r || zn(e.style, t, "");
-    if (r) for (t in r) o && r[t] == o[t] || zn(e.style, t, r[t]);
+    if (typeof i == "string" && (e.style.cssText = i = ""), i) for (t in i) r && t in r || Nn(e.style, t, "");
+    if (r) for (t in r) i && r[t] == i[t] || Nn(e.style, t, r[t]);
   }
-  else if (t[0] == "o" && t[1] == "n") a = t != (t = t.replace(fr, "$1")), l = t.toLowerCase(), t = l in e || t == "onFocusOut" || t == "onFocusIn" ? l.slice(2) : t.slice(2), e.l || (e.l = {}), e.l[t + a] = r, r ? o ? r[ht] = o[ht] : (r[ht] = pn, e.addEventListener(t, a ? rn : nn, a)) : e.removeEventListener(t, a ? rn : nn, a);
+  else if (t[0] == "o" && t[1] == "n") s = t != (t = t.replace(wr, "$1")), l = t.toLowerCase(), t = l in e || t == "onFocusOut" || t == "onFocusIn" ? l.slice(2) : t.slice(2), e.l || (e.l = {}), e.l[t + s] = r, r ? i ? r[wt] = i[wt] : (r[wt] = xn, e.addEventListener(t, s ? ln : dn, s)) : e.removeEventListener(t, s ? ln : dn, s);
   else {
-    if (i == "http://www.w3.org/2000/svg") t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
+    if (o == "http://www.w3.org/2000/svg") t = t.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
     else if (t != "width" && t != "height" && t != "href" && t != "list" && t != "form" && t != "tabIndex" && t != "download" && t != "rowSpan" && t != "colSpan" && t != "role" && t != "popover" && t in e) try {
       e[t] = r ?? "";
       break e;
@@ -100,561 +100,561 @@ function St(e, t, r, o, i) {
     typeof r == "function" || (r == null || r === !1 && t[4] != "-" ? e.removeAttribute(t) : e.setAttribute(t, t == "popover" && r == 1 ? "" : r));
   }
 }
-function An(e) {
+function Mn(e) {
   return function(t) {
     if (this.l) {
       var r = this.l[t.type + e];
-      if (t[$t] == null) t[$t] = pn++;
-      else if (t[$t] < r[ht]) return;
+      if (t[Tt] == null) t[Tt] = xn++;
+      else if (t[Tt] < r[wt]) return;
       return r(me.event ? me.event(t) : t);
     }
   };
 }
-function hn(e, t, r, o, i, a, l, s, m, h) {
-  var d, f, c, p, b, _, N, k, w, z, g, $, T, C, S, L, V = t.type;
+function wn(e, t, r, i, o, s, l, a, d, p) {
+  var m, b, h, c, g, S, T, y, v, x, u, $, j, E, P, C, N = t.type;
   if (t.constructor !== void 0) return null;
-  128 & r.__u && (m = !!(32 & r.__u), a = [s = t.__e = r.__e]), (d = me.__b) && d(t);
-  e: if (typeof V == "function") {
-    f = l.length;
+  128 & r.__u && (d = !!(32 & r.__u), s = [a = t.__e = r.__e]), (m = me.__b) && m(t);
+  e: if (typeof N == "function") {
+    b = l.length;
     try {
-      if (w = t.props, z = V.prototype && V.prototype.render, g = (d = V.contextType) && o[d.__c], $ = d ? g ? g.props.value : d.__ : o, r.__c ? k = (c = t.__c = r.__c).__ = c.__E : (z ? t.__c = c = new V(w, $) : (t.__c = c = new Pt(w, $), c.constructor = V, c.render = bo), g && g.sub(c), c.state || (c.state = {}), c.__n = o, p = c.__d = !0, c.__h = [], c._sb = []), z && c.__s == null && (c.__s = c.state), z && V.getDerivedStateFromProps != null && (c.__s == c.state && (c.__s = Ue({}, c.__s)), Ue(c.__s, V.getDerivedStateFromProps(w, c.__s))), b = c.props, _ = c.state, c.__v = t, p) z && V.getDerivedStateFromProps == null && c.componentWillMount != null && c.componentWillMount(), z && c.componentDidMount != null && c.__h.push(c.componentDidMount);
+      if (v = t.props, x = N.prototype && N.prototype.render, u = (m = N.contextType) && i[m.__c], $ = m ? u ? u.props.value : m.__ : i, r.__c ? y = (h = t.__c = r.__c).__ = h.__E : (x ? t.__c = h = new N(v, $) : (t.__c = h = new jt(v, $), h.constructor = N, h.render = ki), u && u.sub(h), h.state || (h.state = {}), h.__n = i, c = h.__d = !0, h.__h = [], h._sb = []), x && h.__s == null && (h.__s = h.state), x && N.getDerivedStateFromProps != null && (h.__s == h.state && (h.__s = Ve({}, h.__s)), Ve(h.__s, N.getDerivedStateFromProps(v, h.__s))), g = h.props, S = h.state, h.__v = t, c) x && N.getDerivedStateFromProps == null && h.componentWillMount != null && h.componentWillMount(), x && h.componentDidMount != null && h.__h.push(h.componentDidMount);
       else {
-        if (z && V.getDerivedStateFromProps == null && w !== b && c.componentWillReceiveProps != null && c.componentWillReceiveProps(w, $), t.__v == r.__v || !c.__e && c.shouldComponentUpdate != null && c.shouldComponentUpdate(w, c.__s, $) === !1) {
-          t.__v != r.__v && (c.props = w, c.state = c.__s, c.__d = !1), t.__e = r.__e, t.__k = r.__k, t.__k.some(function(O) {
-            O && (O.__ = t);
-          }), At.push.apply(c.__h, c._sb), c._sb = [], c.__h.length && l.push(c), s = Ze(r);
+        if (x && N.getDerivedStateFromProps == null && v !== g && h.componentWillReceiveProps != null && h.componentWillReceiveProps(v, $), t.__v == r.__v || !h.__e && h.shouldComponentUpdate != null && h.shouldComponentUpdate(v, h.__s, $) === !1) {
+          t.__v != r.__v && (h.props = v, h.state = h.__s, h.__d = !1), t.__e = r.__e, t.__k = r.__k, t.__k.some(function(R) {
+            R && (R.__ = t);
+          }), Rt.push.apply(h.__h, h._sb), h._sb = [], h.__h.length && l.push(h), a = it(r);
           break e;
         }
-        c.componentWillUpdate != null && c.componentWillUpdate(w, c.__s, $), z && c.componentDidUpdate != null && c.__h.push(function() {
-          c.componentDidUpdate(b, _, N);
+        h.componentWillUpdate != null && h.componentWillUpdate(v, h.__s, $), x && h.componentDidUpdate != null && h.__h.push(function() {
+          h.componentDidUpdate(g, S, T);
         });
       }
-      if (c.context = $, c.props = w, c.__P = e, c.__e = !1, T = me.__r, C = 0, z) c.state = c.__s, c.__d = !1, T && T(t), d = c.render(c.props, c.state, c.context), At.push.apply(c.__h, c._sb), c._sb = [];
+      if (h.context = $, h.props = v, h.__P = e, h.__e = !1, j = me.__r, E = 0, x) h.state = h.__s, h.__d = !1, j && j(t), m = h.render(h.props, h.state, h.context), Rt.push.apply(h.__h, h._sb), h._sb = [];
       else do
-        c.__d = !1, T && T(t), d = c.render(c.props, c.state, c.context), c.state = c.__s;
-      while (c.__d && ++C < 25);
-      c.state = c.__s, c.getChildContext != null && (o = Ue(Ue({}, o), c.getChildContext())), z && !p && c.getSnapshotBeforeUpdate != null && (N = c.getSnapshotBeforeUpdate(b, _)), S = d != null && d.type === Vt && d.key == null ? yr(d.props.children) : d, s = br(e, Gt(S) ? S : [S], t, r, o, i, a, l, s, m, h), c.base = t.__e, t.__u &= -161, c.__h.length && l.push(c), k && (c.__E = c.__ = null);
-    } catch (O) {
-      if (l.length = f, t.__v = null, m || a != null) {
-        if (O.then) {
-          for (t.__u |= m ? 160 : 128; s && s.nodeType == 8 && s.nextSibling; ) s = s.nextSibling;
-          a != null && (a[a.indexOf(s)] = null), t.__e = s;
-        } else if (a != null) for (L = a.length; L--; ) un(a[L]);
+        h.__d = !1, j && j(t), m = h.render(h.props, h.state, h.context), h.state = h.__s;
+      while (h.__d && ++E < 25);
+      h.state = h.__s, h.getChildContext != null && (i = Ve(Ve({}, i), h.getChildContext())), x && !c && h.getSnapshotBeforeUpdate != null && (T = h.getSnapshotBeforeUpdate(g, S)), P = m != null && m.type === Jt && m.key == null ? Ir(m.props.children) : m, a = _r(e, Wt(P) ? P : [P], t, r, i, o, s, l, a, d, p), h.base = t.__e, t.__u &= -161, h.__h.length && l.push(h), y && (h.__E = h.__ = null);
+    } catch (R) {
+      if (l.length = b, t.__v = null, d || s != null) {
+        if (R.then) {
+          for (t.__u |= d ? 160 : 128; a && a.nodeType == 8 && a.nextSibling; ) a = a.nextSibling;
+          s != null && (s[s.indexOf(a)] = null), t.__e = a;
+        } else if (s != null) for (C = s.length; C--; ) vn(s[C]);
       } else t.__e = r.__e;
-      t.__k == null && (t.__k = r.__k || []), O.then || vr(t), me.__e(O, t, r);
+      t.__k == null && (t.__k = r.__k || []), R.then || Sr(t), me.__e(R, t, r);
     }
-  } else a == null && t.__v == r.__v ? (t.__k = r.__k, t.__e = r.__e) : s = t.__e = go(r.__e, t, r, o, i, a, l, m, h);
-  return (d = me.diffed) && d(t), 128 & t.__u ? void 0 : s;
+  } else s == null && t.__v == r.__v ? (t.__k = r.__k, t.__e = r.__e) : a = t.__e = _i(r.__e, t, r, i, o, s, l, d, p);
+  return (m = me.diffed) && m(t), 128 & t.__u ? void 0 : a;
 }
-function vr(e) {
-  e && (e.__c && (e.__c.__e = !0), e.__k && e.__k.some(vr));
+function Sr(e) {
+  e && (e.__c && (e.__c.__e = !0), e.__k && e.__k.some(Sr));
 }
-function wr(e, t, r) {
-  for (var o = 0; o < r.length; o++) mn(r[o], r[++o], r[++o]);
-  me.__c && me.__c(t, e), e.some(function(i) {
+function $r(e, t, r) {
+  for (var i = 0; i < r.length; i++) yn(r[i], r[++i], r[++i]);
+  me.__c && me.__c(t, e), e.some(function(o) {
     try {
-      e = i.__h, i.__h = [], e.some(function(a) {
-        a.call(i);
+      e = o.__h, o.__h = [], e.some(function(s) {
+        s.call(o);
       });
-    } catch (a) {
-      me.__e(a, i.__v);
+    } catch (s) {
+      me.__e(s, o.__v);
     }
   });
 }
-function yr(e) {
-  return typeof e != "object" || e == null || e.__b > 0 ? e : Gt(e) ? e.map(yr) : e.constructor !== void 0 ? null : Ue({}, e);
+function Ir(e) {
+  return typeof e != "object" || e == null || e.__b > 0 ? e : Wt(e) ? e.map(Ir) : e.constructor !== void 0 ? null : Ve({}, e);
 }
-function go(e, t, r, o, i, a, l, s, m) {
-  var h, d, f, c, p, b, _, N = r.props || zt, k = t.props, w = t.type;
-  if (w == "svg" ? i = "http://www.w3.org/2000/svg" : w == "math" ? i = "http://www.w3.org/1998/Math/MathML" : i || (i = "http://www.w3.org/1999/xhtml"), a != null) {
-    for (h = 0; h < a.length; h++) if ((p = a[h]) && "setAttribute" in p == !!w && (w ? p.localName == w : p.nodeType == 3)) {
-      e = p, a[h] = null;
+function _i(e, t, r, i, o, s, l, a, d) {
+  var p, m, b, h, c, g, S, T = r.props || Mt, y = t.props, v = t.type;
+  if (v == "svg" ? o = "http://www.w3.org/2000/svg" : v == "math" ? o = "http://www.w3.org/1998/Math/MathML" : o || (o = "http://www.w3.org/1999/xhtml"), s != null) {
+    for (p = 0; p < s.length; p++) if ((c = s[p]) && "setAttribute" in c == !!v && (v ? c.localName == v : c.nodeType == 3)) {
+      e = c, s[p] = null;
       break;
     }
   }
   if (e == null) {
-    if (w == null) return document.createTextNode(k);
-    e = document.createElementNS(i, w, k.is && k), s && (me.__m && me.__m(t, a), s = !1), a = null;
+    if (v == null) return document.createTextNode(y);
+    e = document.createElementNS(o, v, y.is && y), a && (me.__m && me.__m(t, s), a = !1), s = null;
   }
-  if (w == null) N === k || s && e.data == k || (e.data = k);
+  if (v == null) T === y || a && e.data == y || (e.data = y);
   else {
-    if (a = w == "textarea" && k.defaultValue != null ? null : a && Ft.call(e.childNodes), !s && a != null) for (N = {}, h = 0; h < e.attributes.length; h++) N[(p = e.attributes[h]).name] = p.value;
-    for (h in N) p = N[h], h == "dangerouslySetInnerHTML" ? f = p : h == "children" || h in k || h == "value" && "defaultValue" in k || h == "checked" && "defaultChecked" in k || St(e, h, null, p, i);
-    for (h in k) p = k[h], h == "children" ? c = p : h == "dangerouslySetInnerHTML" ? d = p : h == "value" ? b = p : h == "checked" ? _ = p : s && typeof p != "function" || N[h] === p || St(e, h, p, N[h], i);
-    if (d) s || f && (d.__html == f.__html || d.__html == e.innerHTML) || (e.innerHTML = d.__html), t.__k = [];
-    else if (f && (e.innerHTML = ""), br(t.type == "template" ? e.content : e, Gt(c) ? c : [c], t, r, o, w == "foreignObject" ? "http://www.w3.org/1999/xhtml" : i, a, l, a ? a[0] : r.__k && Ze(r, 0), s, m), a != null) for (h = a.length; h--; ) un(a[h]);
-    s && w != "textarea" || (h = "value", w == "progress" && b == null ? e.removeAttribute("value") : b != null && (b !== e[h] || w == "progress" && !b || w == "option" && b != N[h]) && St(e, h, b, N[h], i), h = "checked", _ != null && _ != e[h] && St(e, h, _, N[h], i));
+    if (s = v == "textarea" && y.defaultValue != null ? null : s && Ht.call(e.childNodes), !a && s != null) for (T = {}, p = 0; p < e.attributes.length; p++) T[(c = e.attributes[p]).name] = c.value;
+    for (p in T) c = T[p], p == "dangerouslySetInnerHTML" ? b = c : p == "children" || p in y || p == "value" && "defaultValue" in y || p == "checked" && "defaultChecked" in y || Et(e, p, null, c, o);
+    for (p in y) c = y[p], p == "children" ? h = c : p == "dangerouslySetInnerHTML" ? m = c : p == "value" ? g = c : p == "checked" ? S = c : a && typeof c != "function" || T[p] === c || Et(e, p, c, T[p], o);
+    if (m) a || b && (m.__html == b.__html || m.__html == e.innerHTML) || (e.innerHTML = m.__html), t.__k = [];
+    else if (b && (e.innerHTML = ""), _r(t.type == "template" ? e.content : e, Wt(h) ? h : [h], t, r, i, v == "foreignObject" ? "http://www.w3.org/1999/xhtml" : o, s, l, s ? s[0] : r.__k && it(r, 0), a, d), s != null) for (p = s.length; p--; ) vn(s[p]);
+    a && v != "textarea" || (p = "value", v == "progress" && g == null ? e.removeAttribute("value") : g != null && (g !== e[p] || v == "progress" && !g || v == "option" && g != T[p]) && Et(e, p, g, T[p], o), p = "checked", S != null && S != e[p] && Et(e, p, S, T[p], o));
   }
   return e;
 }
-function mn(e, t, r) {
+function yn(e, t, r) {
   try {
     if (typeof e == "function") {
-      var o = typeof e.__u == "function";
-      o && e.__u(), o && t == null || (e.__u = e(t));
+      var i = typeof e.__u == "function";
+      i && e.__u(), i && t == null || (e.__u = e(t));
     } else e.current = t;
-  } catch (i) {
-    me.__e(i, r);
+  } catch (o) {
+    me.__e(o, r);
   }
 }
-function _r(e, t, r) {
-  var o, i;
-  if (me.unmount && me.unmount(e), (o = e.ref) && (o.current && o.current != e.__e || mn(o, null, t)), (o = e.__c) != null) {
-    if (o.componentWillUnmount) try {
-      o.componentWillUnmount();
-    } catch (a) {
-      me.__e(a, t);
+function Pr(e, t, r) {
+  var i, o;
+  if (me.unmount && me.unmount(e), (i = e.ref) && (i.current && i.current != e.__e || yn(i, null, t)), (i = e.__c) != null) {
+    if (i.componentWillUnmount) try {
+      i.componentWillUnmount();
+    } catch (s) {
+      me.__e(s, t);
     }
-    o.base = o.__P = o.__n = null;
+    i.base = i.__P = i.__n = null;
   }
-  if (o = e.__k) for (i = 0; i < o.length; i++) o[i] && _r(o[i], t, r || typeof e.type != "function");
-  r || un(e.__e), e.__c = e.__ = e.__e = void 0;
+  if (i = e.__k) for (o = 0; o < i.length; o++) i[o] && Pr(i[o], t, r || typeof e.type != "function");
+  r || vn(e.__e), e.__c = e.__ = e.__e = void 0;
 }
-function bo(e, t, r) {
+function ki(e, t, r) {
   return this.constructor(e, r);
 }
-function Tn(e, t, r) {
-  var o, i, a, l;
-  t == document && (t = document.documentElement), me.__ && me.__(e, t), i = (o = !1) ? null : t.__k, a = [], l = [], hn(t, e = t.__k = uo(Vt, null, [e]), i || zt, zt, t.namespaceURI, i ? null : t.firstChild ? Ft.call(t.childNodes) : null, a, i ? i.__e : t.firstChild, o, l), wr(a, e, l), e.props.children = null;
+function Rn(e, t, r) {
+  var i, o, s, l;
+  t == document && (t = document.documentElement), me.__ && me.__(e, t), o = (i = !1) ? null : t.__k, s = [], l = [], wn(t, e = t.__k = xi(Jt, null, [e]), o || Mt, Mt, t.namespaceURI, o ? null : t.firstChild ? Ht.call(t.childNodes) : null, s, o ? o.__e : t.firstChild, i, l), $r(s, e, l), e.props.children = null;
 }
-Ft = At.slice, me = { __e: function(e, t, r, o) {
-  for (var i, a, l; t = t.__; ) if ((i = t.__c) && !i.__) try {
-    if ((a = i.constructor) && a.getDerivedStateFromError != null && (i.setState(a.getDerivedStateFromError(e)), l = i.__d), i.componentDidCatch != null && (i.componentDidCatch(e, o || {}), l = i.__d), l) return i.__E = i;
-  } catch (s) {
-    e = s;
+Ht = Rt.slice, me = { __e: function(e, t, r, i) {
+  for (var o, s, l; t = t.__; ) if ((o = t.__c) && !o.__) try {
+    if ((s = o.constructor) && s.getDerivedStateFromError != null && (o.setState(s.getDerivedStateFromError(e)), l = o.__d), o.componentDidCatch != null && (o.componentDidCatch(e, i || {}), l = o.__d), l) return o.__E = o;
+  } catch (a) {
+    e = a;
   }
   throw e;
-} }, ur = 0, Pt.prototype.setState = function(e, t) {
+} }, br = 0, jt.prototype.setState = function(e, t) {
   var r;
-  r = this.__s != null && this.__s != this.state ? this.__s : this.__s = Ue({}, this.state), typeof e == "function" && (e = e(Ue({}, r), this.props)), e && Ue(r, e), e != null && this.__v && (t && this._sb.push(t), En(this));
-}, Pt.prototype.forceUpdate = function(e) {
-  this.__v && (this.__e = !0, e && this.__h.push(e), En(this));
-}, Pt.prototype.render = Vt, qe = [], hr = typeof Promise == "function" ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, mr = function(e, t) {
+  r = this.__s != null && this.__s != this.state ? this.__s : this.__s = Ve({}, this.state), typeof e == "function" && (e = e(Ve({}, r), this.props)), e && Ve(r, e), e != null && this.__v && (t && this._sb.push(t), jn(this));
+}, jt.prototype.forceUpdate = function(e) {
+  this.__v && (this.__e = !0, e && this.__h.push(e), jn(this));
+}, jt.prototype.render = Jt, Qe = [], xr = typeof Promise == "function" ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, vr = function(e, t) {
   return e.__v.__b - t.__v.__b;
-}, Tt.__r = 0, Qt = Math.random().toString(8), $t = "__d" + Qt, ht = "__a" + Qt, fr = /(PointerCapture)$|Capture$/i, pn = 0, nn = An(!1), rn = An(!0);
-var xo = 0;
-function n(e, t, r, o, i, a) {
+}, Lt.__r = 0, tn = Math.random().toString(8), Tt = "__d" + tn, wt = "__a" + tn, wr = /(PointerCapture)$|Capture$/i, xn = 0, dn = Mn(!1), ln = Mn(!0);
+var Si = 0;
+function n(e, t, r, i, o, s) {
   t || (t = {});
-  var l, s, m = t;
-  if ("ref" in m) for (s in m = {}, t) s == "ref" ? l = t[s] : m[s] = t[s];
-  var h = { type: e, props: m, key: r, ref: l, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: --xo, __i: -1, __u: 0, __source: i, __self: a };
-  if (typeof e == "function" && (l = e.defaultProps)) for (s in l) m[s] === void 0 && (m[s] = l[s]);
-  return me.vnode && me.vnode(h), h;
+  var l, a, d = t;
+  if ("ref" in d) for (a in d = {}, t) a == "ref" ? l = t[a] : d[a] = t[a];
+  var p = { type: e, props: d, key: r, ref: l, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: --Si, __i: -1, __u: 0, __source: o, __self: s };
+  if (typeof e == "function" && (l = e.defaultProps)) for (a in l) d[a] === void 0 && (d[a] = l[a]);
+  return me.vnode && me.vnode(p), p;
 }
-var it, ve, Yt, jn, jt = 0, kr = [], we = me, Nn = we.__b, Ln = we.__r, Mn = we.diffed, Rn = we.__c, Dn = we.unmount, On = we.__;
-function Ht(e, t) {
-  we.__h && we.__h(ve, e, jt || t), jt = 0;
-  var r = ve.__H || (ve.__H = { __: [], __h: [] });
+var lt, we, nn, Ln, Ot = 0, Cr = [], ye = me, On = ye.__b, Dn = ye.__r, Gn = ye.diffed, Fn = ye.__c, Un = ye.unmount, Bn = ye.__;
+function Kt(e, t) {
+  ye.__h && ye.__h(we, e, Ot || t), Ot = 0;
+  var r = we.__H || (we.__H = { __: [], __h: [] });
   return e >= r.__.length && r.__.push({}), r.__[e];
 }
-function R(e) {
-  return jt = 1, vo(Sr, e);
+function G(e) {
+  return Ot = 1, $i(Er, e);
 }
-function vo(e, t, r) {
-  var o = Ht(it++, 2);
-  if (o.t = e, !o.__c && (o.__ = [Sr(void 0, t), function(s) {
-    var m = o.__N ? o.__N[0] : o.__[0], h = o.t(m, s);
-    m !== h && (o.__N = [h, o.__[1]], o.__c.setState({}));
-  }], o.__c = ve, !ve.__f)) {
-    var i = function(s, m, h) {
-      if (!o.__c.__H) return !0;
-      var d = !1, f = o.__c.props !== s;
-      if (o.__c.__H.__.some(function(p) {
-        if (p.__N) {
-          d = !0;
-          var b = p.__[0];
-          p.__ = p.__N, p.__N = void 0, b !== p.__[0] && (f = !0);
+function $i(e, t, r) {
+  var i = Kt(lt++, 2);
+  if (i.t = e, !i.__c && (i.__ = [Er(void 0, t), function(a) {
+    var d = i.__N ? i.__N[0] : i.__[0], p = i.t(d, a);
+    d !== p && (i.__N = [p, i.__[1]], i.__c.setState({}));
+  }], i.__c = we, !we.__f)) {
+    var o = function(a, d, p) {
+      if (!i.__c.__H) return !0;
+      var m = !1, b = i.__c.props !== a;
+      if (i.__c.__H.__.some(function(c) {
+        if (c.__N) {
+          m = !0;
+          var g = c.__[0];
+          c.__ = c.__N, c.__N = void 0, g !== c.__[0] && (b = !0);
         }
-      }), a) {
-        var c = a.call(this, s, m, h);
-        return d ? c || f : c;
+      }), s) {
+        var h = s.call(this, a, d, p);
+        return m ? h || b : h;
       }
-      return !d || f;
+      return !m || b;
     };
-    ve.__f = !0;
-    var a = ve.shouldComponentUpdate, l = ve.componentWillUpdate;
-    ve.componentWillUpdate = function(s, m, h) {
+    we.__f = !0;
+    var s = we.shouldComponentUpdate, l = we.componentWillUpdate;
+    we.componentWillUpdate = function(a, d, p) {
       if (this.__e) {
-        var d = a;
-        a = void 0, i(s, m, h), a = d;
+        var m = s;
+        s = void 0, o(a, d, p), s = m;
       }
-      l && l.call(this, s, m, h);
-    }, ve.shouldComponentUpdate = i;
+      l && l.call(this, a, d, p);
+    }, we.shouldComponentUpdate = o;
   }
-  return o.__N || o.__;
+  return i.__N || i.__;
 }
-function Pe(e, t) {
-  var r = Ht(it++, 3);
-  !we.__s && fn(r.__H, t) && (r.__ = e, r.u = t, ve.__H.__h.push(r));
+function Ee(e, t) {
+  var r = Kt(lt++, 3);
+  !ye.__s && _n(r.__H, t) && (r.__ = e, r.u = t, we.__H.__h.push(r));
 }
-function wo(e, t) {
-  var r = Ht(it++, 4);
-  !we.__s && fn(r.__H, t) && (r.__ = e, r.u = t, ve.__h.push(r));
+function Ii(e, t) {
+  var r = Kt(lt++, 4);
+  !ye.__s && _n(r.__H, t) && (r.__ = e, r.u = t, we.__h.push(r));
 }
 function ke(e) {
-  return jt = 5, Ve(function() {
+  return Ot = 5, He(function() {
     return { current: e };
   }, []);
 }
-function Ve(e, t) {
-  var r = Ht(it++, 7);
-  return fn(r.__H, t) && (r.__ = e(), r.__H = t, r.__h = e), r.__;
+function He(e, t) {
+  var r = Kt(lt++, 7);
+  return _n(r.__H, t) && (r.__ = e(), r.__H = t, r.__h = e), r.__;
 }
-function yo() {
-  for (var e; e = kr.shift(); ) {
+function Pi() {
+  for (var e; e = Cr.shift(); ) {
     var t = e.__H;
     if (e.__P && t) try {
-      t.__h.some(Ct), t.__h.some(on), t.__h = [];
+      t.__h.some(Nt), t.__h.some(cn), t.__h = [];
     } catch (r) {
-      t.__h = [], we.__e(r, e.__v);
+      t.__h = [], ye.__e(r, e.__v);
     }
   }
 }
-we.__b = function(e) {
-  ve = null, Nn && Nn(e);
-}, we.__ = function(e, t) {
-  e && t.__k && t.__k.__m && (e.__m = t.__k.__m), On && On(e, t);
-}, we.__r = function(e) {
-  Ln && Ln(e), it = 0;
-  var t = (ve = e.__c).__H;
-  t && (Yt === ve ? (t.__h = [], ve.__h = [], t.__.some(function(r) {
+ye.__b = function(e) {
+  we = null, On && On(e);
+}, ye.__ = function(e, t) {
+  e && t.__k && t.__k.__m && (e.__m = t.__k.__m), Bn && Bn(e, t);
+}, ye.__r = function(e) {
+  Dn && Dn(e), lt = 0;
+  var t = (we = e.__c).__H;
+  t && (nn === we ? (t.__h = [], we.__h = [], t.__.some(function(r) {
     r.__N && (r.__ = r.__N), r.u = r.__N = void 0;
-  })) : (t.__h.some(Ct), t.__h.some(on), t.__h = [], it = 0)), Yt = ve;
-}, we.diffed = function(e) {
-  Mn && Mn(e);
+  })) : (t.__h.some(Nt), t.__h.some(cn), t.__h = [], lt = 0)), nn = we;
+}, ye.diffed = function(e) {
+  Gn && Gn(e);
   var t = e.__c;
-  t && t.__H && (t.__H.__h.length && (kr.push(t) !== 1 && jn === we.requestAnimationFrame || ((jn = we.requestAnimationFrame) || _o)(yo)), t.__H.__.some(function(r) {
+  t && t.__H && (t.__H.__h.length && (Cr.push(t) !== 1 && Ln === ye.requestAnimationFrame || ((Ln = ye.requestAnimationFrame) || Ci)(Pi)), t.__H.__.some(function(r) {
     r.u && (r.__H = r.u, r.u = void 0);
-  })), Yt = ve = null;
-}, we.__c = function(e, t) {
+  })), nn = we = null;
+}, ye.__c = function(e, t) {
   t.some(function(r) {
     try {
-      r.__h.some(Ct), r.__h = r.__h.filter(function(o) {
-        return !o.__ || on(o);
+      r.__h.some(Nt), r.__h = r.__h.filter(function(i) {
+        return !i.__ || cn(i);
       });
-    } catch (o) {
-      t.some(function(i) {
-        i.__h && (i.__h = []);
-      }), t = [], we.__e(o, r.__v);
-    }
-  }), Rn && Rn(e, t);
-}, we.unmount = function(e) {
-  Dn && Dn(e);
-  var t, r = e.__c;
-  r && r.__H && (r.__H.__.some(function(o) {
-    try {
-      Ct(o);
     } catch (i) {
-      t = i;
+      t.some(function(o) {
+        o.__h && (o.__h = []);
+      }), t = [], ye.__e(i, r.__v);
     }
-  }), r.__H = void 0, t && we.__e(t, r.__v));
+  }), Fn && Fn(e, t);
+}, ye.unmount = function(e) {
+  Un && Un(e);
+  var t, r = e.__c;
+  r && r.__H && (r.__H.__.some(function(i) {
+    try {
+      Nt(i);
+    } catch (o) {
+      t = o;
+    }
+  }), r.__H = void 0, t && ye.__e(t, r.__v));
 };
-var Un = typeof requestAnimationFrame == "function";
-function _o(e) {
+var Vn = typeof requestAnimationFrame == "function";
+function Ci(e) {
   var t, r = function() {
-    clearTimeout(o), Un && cancelAnimationFrame(t), setTimeout(e);
-  }, o = setTimeout(r, 35);
-  Un && (t = requestAnimationFrame(r));
+    clearTimeout(i), Vn && cancelAnimationFrame(t), setTimeout(e);
+  }, i = setTimeout(r, 35);
+  Vn && (t = requestAnimationFrame(r));
 }
-function Ct(e) {
-  var t = ve, r = e.__c;
-  typeof r == "function" && (e.__c = void 0, r()), ve = t;
+function Nt(e) {
+  var t = we, r = e.__c;
+  typeof r == "function" && (e.__c = void 0, r()), we = t;
 }
-function on(e) {
-  var t = ve;
-  e.__c = e.__(), ve = t;
+function cn(e) {
+  var t = we;
+  e.__c = e.__(), we = t;
 }
-function fn(e, t) {
-  return !e || e.length !== t.length || t.some(function(r, o) {
-    return r !== e[o];
+function _n(e, t) {
+  return !e || e.length !== t.length || t.some(function(r, i) {
+    return r !== e[i];
   });
 }
-function Sr(e, t) {
+function Er(e, t) {
   return typeof t == "function" ? t(e) : t;
 }
-async function $r(e) {
-  var a;
-  if ((a = navigator.clipboard) != null && a.writeText)
+async function zr(e) {
+  var s;
+  if ((s = navigator.clipboard) != null && s.writeText)
     try {
       await navigator.clipboard.writeText(e);
       return;
     } catch {
     }
-  const t = document.activeElement, r = t instanceof HTMLTextAreaElement || t instanceof HTMLInputElement ? { start: t.selectionStart, end: t.selectionEnd, direction: t.selectionDirection } : null, o = document.createElement("textarea");
-  o.value = e, o.style.position = "fixed", o.style.opacity = "0", document.body.append(o), o.select();
-  const i = document.execCommand("copy");
-  if (o.remove(), t instanceof HTMLElement && t.focus({ preventScroll: !0 }), r && (t instanceof HTMLTextAreaElement || t instanceof HTMLInputElement) && t.setSelectionRange(r.start, r.end, r.direction ?? void 0), !i) throw new Error("浏览器拒绝写入剪贴板");
+  const t = document.activeElement, r = t instanceof HTMLTextAreaElement || t instanceof HTMLInputElement ? { start: t.selectionStart, end: t.selectionEnd, direction: t.selectionDirection } : null, i = document.createElement("textarea");
+  i.value = e, i.style.position = "fixed", i.style.opacity = "0", document.body.append(i), i.select();
+  const o = document.execCommand("copy");
+  if (i.remove(), t instanceof HTMLElement && t.focus({ preventScroll: !0 }), r && (t instanceof HTMLTextAreaElement || t instanceof HTMLInputElement) && t.setSelectionRange(r.start, r.end, r.direction ?? void 0), !o) throw new Error("浏览器拒绝写入剪贴板");
 }
-function Ie(e, t) {
+function Pe(e, t) {
   const r = e.trim().replace(/\\/g, "/").replace(/^\.\//, "");
   if (!r || r.startsWith("/") || /^[A-Za-z]:\//.test(r)) return null;
-  const o = r.split("/").filter(Boolean), i = o.pop();
-  if (!i || o.some((l) => l === "..")) return null;
-  const a = new URLSearchParams({ filename: i, type: t });
-  return o.length && a.set("subfolder", o.join("/")), `/view?${a.toString()}`;
+  const i = r.split("/").filter(Boolean), o = i.pop();
+  if (!o || i.some((l) => l === "..")) return null;
+  const s = new URLSearchParams({ filename: o, type: t });
+  return i.length && s.set("subfolder", i.join("/")), `/view?${s.toString()}`;
 }
-function Ir(e) {
-  return Ie(e, "input");
+function Tr(e) {
+  return Pe(e, "input");
 }
-function Ce(e) {
+function ze(e) {
   return e.trim().replace(/\\/g, "/").split("/").filter(Boolean).pop() ?? "";
 }
-function Pr({ asset: e, compact: t = !1 }) {
-  const r = Ir(e.path), o = `td-media-preview ${t ? "compact" : ""}`;
-  return r ? e.kind === "image" ? /* @__PURE__ */ n("div", { class: o, children: /* @__PURE__ */ n("img", { src: r, alt: e.alias, loading: "lazy" }) }) : e.kind === "video" ? /* @__PURE__ */ n("div", { class: o, children: /* @__PURE__ */ n("video", { src: r, controls: !0, preload: "metadata", playsInline: !0 }) }) : /* @__PURE__ */ n("div", { class: o, children: /* @__PURE__ */ n("audio", { src: r, controls: !0, preload: "metadata" }) }) : e.path ? /* @__PURE__ */ n("div", { class: `${o} unavailable`, children: "该路径无法在浏览器中预览 / Preview unavailable" }) : /* @__PURE__ */ n("div", { class: `${o} empty`, children: "尚未选择素材 / No media selected" });
+function Ar({ asset: e, compact: t = !1 }) {
+  const r = Tr(e.path), i = `td-media-preview ${t ? "compact" : ""}`;
+  return r ? e.kind === "image" ? /* @__PURE__ */ n("div", { class: i, children: /* @__PURE__ */ n("img", { src: r, alt: e.alias, loading: "lazy" }) }) : e.kind === "video" ? /* @__PURE__ */ n("div", { class: i, children: /* @__PURE__ */ n("video", { src: r, controls: !0, preload: "metadata", playsInline: !0 }) }) : /* @__PURE__ */ n("div", { class: i, children: /* @__PURE__ */ n("audio", { src: r, controls: !0, preload: "metadata" }) }) : e.path ? /* @__PURE__ */ n("div", { class: `${i} unavailable`, children: "该路径无法在浏览器中预览 / Preview unavailable" }) : /* @__PURE__ */ n("div", { class: `${i} empty`, children: "尚未选择素材 / No media selected" });
 }
-function Cr(e, t) {
+function jr(e, t) {
   return t === "image" ? Promise.resolve(null) : new Promise((r) => {
-    const o = document.createElement(t === "video" ? "video" : "audio"), i = URL.createObjectURL(e);
-    let a = !1;
-    const l = (s) => {
-      a || (a = !0, o.onloadedmetadata = null, o.onerror = null, o.removeAttribute("src"), o.load(), URL.revokeObjectURL(i), r(s));
+    const i = document.createElement(t === "video" ? "video" : "audio"), o = URL.createObjectURL(e);
+    let s = !1;
+    const l = (a) => {
+      s || (s = !0, i.onloadedmetadata = null, i.onerror = null, i.removeAttribute("src"), i.load(), URL.revokeObjectURL(o), r(a));
     };
-    o.preload = "metadata", o.onloadedmetadata = () => l(Number.isFinite(o.duration) && o.duration > 0 ? Math.round(o.duration * 10) / 10 : null), o.onerror = () => l(null), o.src = i;
+    i.preload = "metadata", i.onloadedmetadata = () => l(Number.isFinite(i.duration) && i.duration > 0 ? Math.round(i.duration * 10) / 10 : null), i.onerror = () => l(null), i.src = o;
   });
 }
-const ko = (e) => `${e}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`, sn = { image: "图片", video: "视频", audio: "音频" }, Fn = ["角色", "场景", "道具", "声音"];
-function So(e, t) {
-  const r = ko(e);
+const Ei = (e) => `${e}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`, pn = { image: "图片", video: "视频", audio: "音频" }, qn = ["角色", "场景", "道具", "声音"];
+function zi(e, t) {
+  const r = Ei(e);
   return { id: r, alias: r, kind: e, path: "", enabled: !0, fixed: !1, fixedOrder: t, shotIds: [], includeVideoAudio: !1, durationSeconds: e === "image" ? null : 6, audioDurationSeconds: null, fingerprint: "" };
 }
-function Gn(e, t) {
+function Hn(e, t) {
   var r;
-  return (r = e.group) != null && r.trim() ? e.group.trim() : t === "zh" ? `${sn[e.kind]}素材` : `${e.kind} assets`;
+  return (r = e.group) != null && r.trim() ? e.group.trim() : t === "zh" ? `${pn[e.kind]}素材` : `${e.kind} assets`;
 }
-function $o({ plan: e, language: t, mutate: r, uploadAsset: o, importingDisabled: i, onImportLibrary: a, onExportLibrary: l, onOpenBatch: s, onGenerateImage: m, onBatchGenerateImages: h, notify: d }) {
-  const f = (O, U) => t === "zh" ? O : U, [c, p] = R({}), [b, _] = R({}), [N, k] = R(""), [w, z] = R(!1), g = e.assets.filter((O) => O.enabled && !O.path.trim()), $ = w ? e.assets.filter((O) => g.includes(O) || c[O.id] !== void 0) : e.assets, T = /* @__PURE__ */ new Map();
-  for (const O of $) {
-    const U = c[O.id] ?? Gn(O, t);
-    T.set(U, [...T.get(U) ?? [], O]);
+function Ti({ plan: e, language: t, mutate: r, uploadAsset: i, importingDisabled: o, onImportLibrary: s, onExportLibrary: l, onOpenBatch: a, onGenerateImage: d, onBatchGenerateImages: p, notify: m }) {
+  const b = (R, F) => t === "zh" ? R : F, [h, c] = G({}), [g, S] = G({}), [T, y] = G(""), [v, x] = G(!1), u = e.assets.filter((R) => R.enabled && !R.path.trim()), $ = v ? e.assets.filter((R) => u.includes(R) || h[R.id] !== void 0) : e.assets, j = /* @__PURE__ */ new Map();
+  for (const R of $) {
+    const F = h[R.id] ?? Hn(R, t);
+    j.set(F, [...j.get(F) ?? [], R]);
   }
-  const C = [...T.entries()].sort(([O], [U]) => {
-    const P = (oe) => {
-      const y = Fn.indexOf(oe);
-      return y < 0 ? Fn.length : y;
+  const E = [...j.entries()].sort(([R], [F]) => {
+    const I = (ne) => {
+      const k = qn.indexOf(ne);
+      return k < 0 ? qn.length : k;
     };
-    return P(O) - P(U) || O.localeCompare(U, "zh");
-  }), S = (O, U) => r((P) => {
-    const oe = P.assets.find((y) => y.id === O);
-    oe && U(oe);
-  }), L = async (O, U) => {
-    _((P) => ({ ...P, [O.id]: U.name }));
+    return I(R) - I(F) || R.localeCompare(F, "zh");
+  }), P = (R, F) => r((I) => {
+    const ne = I.assets.find((k) => k.id === R);
+    ne && F(ne);
+  }), C = async (R, F) => {
+    S((I) => ({ ...I, [R.id]: F.name }));
     try {
-      const [P, oe] = await Promise.all([o(e.project.name, O.kind, U), Cr(U, O.kind)]);
-      S(O.id, (y) => {
-        y.path = P, O.kind !== "image" && oe != null && (y.durationSeconds = oe);
-      }), d(f(`已上传 ${O.alias}`, `Uploaded ${O.alias}`));
-    } catch (P) {
-      d(`${f("上传失败", "Upload failed")}：${P instanceof Error ? P.message : String(P)}`, "error");
+      const [I, ne] = await Promise.all([i(e.project.name, R.kind, F), jr(F, R.kind)]);
+      P(R.id, (k) => {
+        k.path = I, R.kind !== "image" && ne != null && (k.durationSeconds = ne);
+      }), m(b(`已上传 ${R.alias}`, `Uploaded ${R.alias}`));
+    } catch (I) {
+      m(`${b("上传失败", "Upload failed")}：${I instanceof Error ? I.message : String(I)}`, "error");
     } finally {
-      _((P) => {
-        const oe = { ...P };
-        return delete oe[O.id], oe;
+      S((I) => {
+        const ne = { ...I };
+        return delete ne[R.id], ne;
       });
     }
-  }, V = async (O, U) => {
+  }, N = async (R, F) => {
     try {
-      await $r(O), d(U);
-    } catch (P) {
-      d(`${f("复制失败", "Copy failed")}：${String(P)}`, "error");
+      await zr(R), m(F);
+    } catch (I) {
+      m(`${b("复制失败", "Copy failed")}：${String(I)}`, "error");
     }
   };
   return /* @__PURE__ */ n("div", { class: "td-assets-panel", children: [
     /* @__PURE__ */ n("div", { class: "td-assets-toolbar", children: [
       /* @__PURE__ */ n("div", { class: "td-assets-summary", children: [
-        /* @__PURE__ */ n("strong", { children: f(`共 ${e.assets.length} 项素材`, `${e.assets.length} assets`) }),
-        g.length ? /* @__PURE__ */ n("span", { class: "td-chip warn", children: f(`${g.length} 项待上传`, `${g.length} missing`) }) : /* @__PURE__ */ n("span", { class: "td-chip ok", children: f("全部就绪", "All ready") }),
+        /* @__PURE__ */ n("strong", { children: b(`共 ${e.assets.length} 项素材`, `${e.assets.length} assets`) }),
+        u.length ? /* @__PURE__ */ n("span", { class: "td-chip warn", children: b(`${u.length} 项待上传`, `${u.length} missing`) }) : /* @__PURE__ */ n("span", { class: "td-chip ok", children: b("全部就绪", "All ready") }),
         /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
-          /* @__PURE__ */ n("input", { type: "checkbox", checked: w, onChange: (O) => z(O.currentTarget.checked) }),
-          f("只看待上传", "Missing only")
+          /* @__PURE__ */ n("input", { type: "checkbox", checked: v, onChange: (R) => x(R.currentTarget.checked) }),
+          b("只看待上传", "Missing only")
         ] })
       ] }),
       /* @__PURE__ */ n("div", { class: "td-assets-actions", children: [
-        /* @__PURE__ */ n("label", { class: "td-button", title: f("载入共用素材清单与远程文件路径，保留当前分镜", "Load a shared library and remote media paths; preserve current shots"), children: [
-          f("导入素材库", "Import library"),
-          /* @__PURE__ */ n("input", { type: "file", accept: "application/json,.json", disabled: i, onChange: (O) => {
-            var oe;
-            const U = O.currentTarget, P = (oe = U.files) == null ? void 0 : oe[0];
-            U.value = "", P && a(P);
+        /* @__PURE__ */ n("label", { class: "td-button", title: b("载入共用素材清单与远程文件路径，保留当前分镜", "Load a shared library and remote media paths; preserve current shots"), children: [
+          b("导入素材库", "Import library"),
+          /* @__PURE__ */ n("input", { type: "file", accept: "application/json,.json", disabled: o, onChange: (R) => {
+            var ne;
+            const F = R.currentTarget, I = (ne = F.files) == null ? void 0 : ne[0];
+            F.value = "", I && s(I);
           } })
         ] }),
-        /* @__PURE__ */ n("button", { onClick: l, children: f("导出素材库", "Export library") }),
-        ["image", "video", "audio"].map((O) => /* @__PURE__ */ n("button", { onClick: () => r((U) => {
-          U.assets.push(So(O, U.assets.length + 1));
+        /* @__PURE__ */ n("button", { onClick: l, children: b("导出素材库", "Export library") }),
+        ["image", "video", "audio"].map((R) => /* @__PURE__ */ n("button", { onClick: () => r((F) => {
+          F.assets.push(zi(R, F.assets.length + 1));
         }), children: [
           "＋ ",
-          f(sn[O], O)
+          b(pn[R], R)
         ] })),
-        /* @__PURE__ */ n("button", { class: "accent", onClick: s, children: [
+        /* @__PURE__ */ n("button", { class: "accent", onClick: a, children: [
           "⇪ ",
-          f("批量导入 / 按文件名填充", "Batch import / fill by name")
+          b("批量导入 / 按文件名填充", "Batch import / fill by name")
         ] }),
-        /* @__PURE__ */ n("button", { class: "primary", disabled: i || !h, onClick: h, children: f("批量生图", "Batch generate images") })
+        /* @__PURE__ */ n("button", { class: "primary", disabled: o || !p, onClick: p, children: b("批量生图", "Batch generate images") })
       ] })
     ] }),
     !e.assets.length && /* @__PURE__ */ n("div", { class: "td-empty-state", children: [
-      /* @__PURE__ */ n("strong", { children: f("素材库为空", "No assets yet") }),
-      /* @__PURE__ */ n("p", { children: f("导入 skill 生成的 .assets.json 共用素材库，或已上传后导出的素材库，即可载入角色、场景和声音参考。每集用顶部“导入分镜”切换。", "Import a shared .assets.json library with character, scene and voice references. Use Import shots to switch episodes.") })
+      /* @__PURE__ */ n("strong", { children: b("素材库为空", "No assets yet") }),
+      /* @__PURE__ */ n("p", { children: b("导入 skill 生成的 .assets.json 共用素材库，或已上传后导出的素材库，即可载入角色、场景和声音参考。每集用顶部“导入分镜”切换。", "Import a shared .assets.json library with character, scene and voice references. Use Import shots to switch episodes.") })
     ] }),
-    C.map(([O, U]) => /* @__PURE__ */ n("section", { class: "td-asset-group", children: [
+    E.map(([R, F]) => /* @__PURE__ */ n("section", { class: "td-asset-group", children: [
       /* @__PURE__ */ n("h3", { children: [
-        O,
-        /* @__PURE__ */ n("span", { children: U.length })
+        R,
+        /* @__PURE__ */ n("span", { children: F.length })
       ] }),
-      /* @__PURE__ */ n("div", { class: "td-asset-grid", children: U.map((P) => {
-        const oe = !!P.path.trim(), y = c[P.id] !== void 0, D = `{{ref:${P.alias}}}`;
+      /* @__PURE__ */ n("div", { class: "td-asset-grid", children: F.map((I) => {
+        const ne = !!I.path.trim(), k = h[I.id] !== void 0, D = `{{ref:${I.alias}}}`;
         return /* @__PURE__ */ n(
           "article",
           {
-            class: `td-asset-card ${y ? "expanded" : ""} ${oe ? "" : "missing"} ${P.enabled ? "" : "disabled"} ${N === P.id ? "dragging" : ""}`,
-            onDragOver: (j) => {
-              j.preventDefault(), k(P.id);
+            class: `td-asset-card ${k ? "expanded" : ""} ${ne ? "" : "missing"} ${I.enabled ? "" : "disabled"} ${T === I.id ? "dragging" : ""}`,
+            onDragOver: (M) => {
+              M.preventDefault(), y(I.id);
             },
-            onDragLeave: () => k((j) => j === P.id ? "" : j),
-            onDrop: (j) => {
-              var te, X;
-              j.preventDefault(), k("");
-              const H = (X = (te = j.dataTransfer) == null ? void 0 : te.files) == null ? void 0 : X[0];
-              H && L(P, H);
+            onDragLeave: () => y((M) => M === I.id ? "" : M),
+            onDrop: (M) => {
+              var Z, Y;
+              M.preventDefault(), y("");
+              const V = (Y = (Z = M.dataTransfer) == null ? void 0 : Z.files) == null ? void 0 : Y[0];
+              V && C(I, V);
             },
             children: [
               /* @__PURE__ */ n("div", { class: "td-asset-card-media", children: [
-                oe ? /* @__PURE__ */ n(Pr, { asset: P, compact: !0 }) : /* @__PURE__ */ n("label", { class: "td-asset-drop", children: [
-                  /* @__PURE__ */ n("span", { children: b[P.id] ? f("上传中…", "Uploading…") : f("拖入文件或点击上传", "Drop or click to upload") }),
+                ne ? /* @__PURE__ */ n(Ar, { asset: I, compact: !0 }) : /* @__PURE__ */ n("label", { class: "td-asset-drop", children: [
+                  /* @__PURE__ */ n("span", { children: g[I.id] ? b("上传中…", "Uploading…") : b("拖入文件或点击上传", "Drop or click to upload") }),
                   /* @__PURE__ */ n("small", { children: [
-                    f("建议文件名", "Suggested name"),
+                    b("建议文件名", "Suggested name"),
                     "：",
-                    P.alias,
+                    I.alias,
                     ".",
-                    P.kind === "image" ? "png" : P.kind === "video" ? "mp4" : "wav"
+                    I.kind === "image" ? "png" : I.kind === "video" ? "mp4" : "wav"
                   ] }),
-                  /* @__PURE__ */ n("input", { type: "file", accept: `${P.kind}/*`, onChange: (j) => {
-                    var X;
-                    const H = j.currentTarget, te = (X = H.files) == null ? void 0 : X[0];
-                    H.value = "", te && L(P, te);
+                  /* @__PURE__ */ n("input", { type: "file", accept: `${I.kind}/*`, onChange: (M) => {
+                    var Y;
+                    const V = M.currentTarget, Z = (Y = V.files) == null ? void 0 : Y[0];
+                    V.value = "", Z && C(I, Z);
                   } })
                 ] }),
                 /* @__PURE__ */ n("span", { class: "td-asset-kind", children: [
-                  f(sn[P.kind], P.kind),
-                  P.kind !== "image" && P.durationSeconds ? ` · ${P.durationSeconds}s` : ""
+                  b(pn[I.kind], I.kind),
+                  I.kind !== "image" && I.durationSeconds ? ` · ${I.durationSeconds}s` : ""
                 ] }),
-                /* @__PURE__ */ n("span", { class: `td-asset-status ${oe ? "ok" : "warn"}`, children: b[P.id] ? f("上传中", "Uploading") : oe ? f("已就绪", "Ready") : f("待上传", "Missing") })
+                /* @__PURE__ */ n("span", { class: `td-asset-status ${ne ? "ok" : "warn"}`, children: g[I.id] ? b("上传中", "Uploading") : ne ? b("已就绪", "Ready") : b("待上传", "Missing") })
               ] }),
               /* @__PURE__ */ n("div", { class: "td-asset-card-body", children: [
                 /* @__PURE__ */ n("div", { class: "td-asset-card-title", children: [
-                  /* @__PURE__ */ n("input", { "aria-label": f("别名", "Alias"), value: P.alias, onInput: (j) => S(P.id, (H) => {
-                    H.alias = j.currentTarget.value;
+                  /* @__PURE__ */ n("input", { "aria-label": b("别名", "Alias"), value: I.alias, onInput: (M) => P(I.id, (V) => {
+                    V.alias = M.currentTarget.value;
                   }) }),
-                  /* @__PURE__ */ n("button", { title: f(`复制引用 ${D}`, `Copy ${D}`), onClick: () => void V(D, f(`已复制 ${D}`, `Copied ${D}`)), children: "{ }" })
+                  /* @__PURE__ */ n("button", { title: b(`复制引用 ${D}`, `Copy ${D}`), onClick: () => void N(D, b(`已复制 ${D}`, `Copied ${D}`)), children: "{ }" })
                 ] }),
-                P.note && /* @__PURE__ */ n("p", { class: "td-asset-note", title: P.note, children: P.note }),
+                I.note && /* @__PURE__ */ n("p", { class: "td-asset-note", title: I.note, children: I.note }),
                 /* @__PURE__ */ n("div", { class: "td-asset-card-actions", children: [
-                  P.kind === "image" && /* @__PURE__ */ n("button", { class: "accent", disabled: i || !m, onClick: () => m == null ? void 0 : m(P), children: f("自动生图", "Generate image") }),
-                  oe && /* @__PURE__ */ n("label", { class: "td-file-label", children: [
-                    b[P.id] ? f("上传中…", "Uploading…") : f("替换文件", "Replace"),
-                    /* @__PURE__ */ n("input", { type: "file", accept: `${P.kind}/*`, onChange: (j) => {
-                      var X;
-                      const H = j.currentTarget, te = (X = H.files) == null ? void 0 : X[0];
-                      H.value = "", te && L(P, te);
+                  I.kind === "image" && /* @__PURE__ */ n("button", { class: "accent", disabled: o || !d, onClick: () => d == null ? void 0 : d(I), children: b("自动生图", "Generate image") }),
+                  ne && /* @__PURE__ */ n("label", { class: "td-file-label", children: [
+                    g[I.id] ? b("上传中…", "Uploading…") : b("替换文件", "Replace"),
+                    /* @__PURE__ */ n("input", { type: "file", accept: `${I.kind}/*`, onChange: (M) => {
+                      var Y;
+                      const V = M.currentTarget, Z = (Y = V.files) == null ? void 0 : Y[0];
+                      V.value = "", Z && C(I, Z);
                     } })
                   ] }),
-                  P.genPrompt && /* @__PURE__ */ n("button", { class: "accent", onClick: () => void V(P.genPrompt ?? "", f("已复制生成提示词", "Generation prompt copied")), children: f("复制生成提示词", "Copy gen prompt") }),
-                  /* @__PURE__ */ n("button", { "aria-expanded": y, "aria-controls": `td-asset-details-${P.id}`, onClick: () => p((j) => {
-                    const H = { ...j };
-                    return y ? delete H[P.id] : H[P.id] = Gn(P, t), H;
-                  }), children: y ? f("收起", "Less") : f("详情", "More") })
+                  I.genPrompt && /* @__PURE__ */ n("button", { class: "accent", onClick: () => void N(I.genPrompt ?? "", b("已复制生成提示词", "Generation prompt copied")), children: b("复制生成提示词", "Copy gen prompt") }),
+                  /* @__PURE__ */ n("button", { "aria-expanded": k, "aria-controls": `td-asset-details-${I.id}`, onClick: () => c((M) => {
+                    const V = { ...M };
+                    return k ? delete V[I.id] : V[I.id] = Hn(I, t), V;
+                  }), children: k ? b("收起", "Less") : b("详情", "More") })
                 ] }),
-                y && /* @__PURE__ */ n("div", { class: "td-asset-details", id: `td-asset-details-${P.id}`, children: [
-                  P.genPrompt && /* @__PURE__ */ n("details", { class: "td-gen-prompt", children: [
-                    /* @__PURE__ */ n("summary", { children: f("生成提示词", "Generation prompt") }),
-                    /* @__PURE__ */ n("pre", { children: P.genPrompt })
+                k && /* @__PURE__ */ n("div", { class: "td-asset-details", id: `td-asset-details-${I.id}`, children: [
+                  I.genPrompt && /* @__PURE__ */ n("details", { class: "td-gen-prompt", children: [
+                    /* @__PURE__ */ n("summary", { children: b("生成提示词", "Generation prompt") }),
+                    /* @__PURE__ */ n("pre", { children: I.genPrompt })
                   ] }),
                   /* @__PURE__ */ n("label", { children: [
-                    f("输入目录相对路径", "Input-relative path"),
-                    /* @__PURE__ */ n("input", { value: P.path, placeholder: "theodore_director/项目名/文件名", onInput: (j) => S(P.id, (H) => {
-                      H.path = j.currentTarget.value;
+                    b("输入目录相对路径", "Input-relative path"),
+                    /* @__PURE__ */ n("input", { value: I.path, placeholder: "theodore_director/项目名/文件名", onInput: (M) => P(I.id, (V) => {
+                      V.path = M.currentTarget.value;
                     }) }),
-                    /* @__PURE__ */ n("small", { children: Ce(P.path) })
+                    /* @__PURE__ */ n("small", { children: ze(I.path) })
                   ] }),
                   /* @__PURE__ */ n("div", { class: "td-asset-detail-grid", children: [
                     /* @__PURE__ */ n("label", { children: [
-                      f("类型", "Kind"),
-                      /* @__PURE__ */ n("select", { value: P.kind, onChange: (j) => S(P.id, (H) => {
-                        H.kind = j.currentTarget.value;
+                      b("类型", "Kind"),
+                      /* @__PURE__ */ n("select", { value: I.kind, onChange: (M) => P(I.id, (V) => {
+                        V.kind = M.currentTarget.value;
                       }), children: [
-                        /* @__PURE__ */ n("option", { value: "image", children: f("图片", "image") }),
-                        /* @__PURE__ */ n("option", { value: "video", children: f("视频", "video") }),
-                        /* @__PURE__ */ n("option", { value: "audio", children: f("音频", "audio") })
+                        /* @__PURE__ */ n("option", { value: "image", children: b("图片", "image") }),
+                        /* @__PURE__ */ n("option", { value: "video", children: b("视频", "video") }),
+                        /* @__PURE__ */ n("option", { value: "audio", children: b("音频", "audio") })
                       ] })
                     ] }),
                     /* @__PURE__ */ n("label", { children: [
-                      f("分组", "Group"),
-                      /* @__PURE__ */ n("input", { "aria-label": f("分组", "Group"), value: P.group ?? "", placeholder: f("角色 / 场景 / 道具 / 声音", "Group"), onInput: (j) => S(P.id, (H) => {
-                        H.group = j.currentTarget.value;
+                      b("分组", "Group"),
+                      /* @__PURE__ */ n("input", { "aria-label": b("分组", "Group"), value: I.group ?? "", placeholder: b("角色 / 场景 / 道具 / 声音", "Group"), onInput: (M) => P(I.id, (V) => {
+                        V.group = M.currentTarget.value;
                       }) }),
-                      /* @__PURE__ */ n("small", { children: f("收起详情后按新分组归类", "Regroup after closing details") })
+                      /* @__PURE__ */ n("small", { children: b("收起详情后按新分组归类", "Regroup after closing details") })
                     ] }),
-                    P.kind !== "image" && /* @__PURE__ */ n("label", { children: [
-                      f("时长（秒）", "Duration (s)"),
-                      /* @__PURE__ */ n("input", { type: "number", min: "0", step: "0.1", value: P.durationSeconds ?? "", onInput: (j) => S(P.id, (H) => {
-                        H.durationSeconds = j.currentTarget.value ? Number(j.currentTarget.value) : null;
+                    I.kind !== "image" && /* @__PURE__ */ n("label", { children: [
+                      b("时长（秒）", "Duration (s)"),
+                      /* @__PURE__ */ n("input", { type: "number", min: "0", step: "0.1", value: I.durationSeconds ?? "", onInput: (M) => P(I.id, (V) => {
+                        V.durationSeconds = M.currentTarget.value ? Number(M.currentTarget.value) : null;
                       }) })
                     ] }),
                     /* @__PURE__ */ n("label", { children: [
-                      f("固定顺序", "Fixed order"),
-                      /* @__PURE__ */ n("input", { type: "number", value: P.fixedOrder, onInput: (j) => S(P.id, (H) => {
-                        H.fixedOrder = Number(j.currentTarget.value);
+                      b("固定顺序", "Fixed order"),
+                      /* @__PURE__ */ n("input", { type: "number", value: I.fixedOrder, onInput: (M) => P(I.id, (V) => {
+                        V.fixedOrder = Number(M.currentTarget.value);
                       }) })
                     ] }),
                     /* @__PURE__ */ n("label", { class: "wide", children: [
-                      f("仅用于这些镜头 ID（逗号分隔，留空=全部）", "Limit to shot IDs (comma separated)"),
-                      /* @__PURE__ */ n("input", { value: P.shotIds.join(", "), onInput: (j) => S(P.id, (H) => {
-                        H.shotIds = j.currentTarget.value.split(",").map((te) => te.trim()).filter(Boolean);
+                      b("仅用于这些镜头 ID（逗号分隔，留空=全部）", "Limit to shot IDs (comma separated)"),
+                      /* @__PURE__ */ n("input", { value: I.shotIds.join(", "), onInput: (M) => P(I.id, (V) => {
+                        V.shotIds = M.currentTarget.value.split(",").map((Z) => Z.trim()).filter(Boolean);
                       }) })
                     ] }),
                     /* @__PURE__ */ n("label", { class: "wide", children: [
-                      f("说明", "Note"),
-                      /* @__PURE__ */ n("textarea", { rows: 2, value: P.note ?? "", onInput: (j) => S(P.id, (H) => {
-                        H.note = j.currentTarget.value;
+                      b("说明", "Note"),
+                      /* @__PURE__ */ n("textarea", { rows: 2, value: I.note ?? "", onInput: (M) => P(I.id, (V) => {
+                        V.note = M.currentTarget.value;
                       }) })
                     ] })
                   ] }),
                   /* @__PURE__ */ n("div", { class: "td-asset-flags", children: [
                     /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
-                      /* @__PURE__ */ n("input", { type: "checkbox", checked: P.enabled, onChange: (j) => S(P.id, (H) => {
-                        H.enabled = j.currentTarget.checked;
+                      /* @__PURE__ */ n("input", { type: "checkbox", checked: I.enabled, onChange: (M) => P(I.id, (V) => {
+                        V.enabled = M.currentTarget.checked;
                       }) }),
-                      f("启用", "Enabled")
+                      b("启用", "Enabled")
                     ] }),
-                    /* @__PURE__ */ n("label", { class: "td-inline-check", title: f("固定引用会被每个镜头自动加载，即使提示词没有写 {{ref}}", "Fixed assets load in every shot even without {{ref}}"), children: [
-                      /* @__PURE__ */ n("input", { type: "checkbox", checked: P.fixed, onChange: (j) => S(P.id, (H) => {
-                        H.fixed = j.currentTarget.checked;
+                    /* @__PURE__ */ n("label", { class: "td-inline-check", title: b("固定引用会被每个镜头自动加载，即使提示词没有写 {{ref}}", "Fixed assets load in every shot even without {{ref}}"), children: [
+                      /* @__PURE__ */ n("input", { type: "checkbox", checked: I.fixed, onChange: (M) => P(I.id, (V) => {
+                        V.fixed = M.currentTarget.checked;
                       }) }),
-                      f("固定引用", "Always load")
+                      b("固定引用", "Always load")
                     ] }),
-                    P.kind === "video" && /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
-                      /* @__PURE__ */ n("input", { type: "checkbox", checked: P.includeVideoAudio, onChange: (j) => S(P.id, (H) => {
-                        H.includeVideoAudio = j.currentTarget.checked;
+                    I.kind === "video" && /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
+                      /* @__PURE__ */ n("input", { type: "checkbox", checked: I.includeVideoAudio, onChange: (M) => P(I.id, (V) => {
+                        V.includeVideoAudio = M.currentTarget.checked;
                       }) }),
-                      f("启用视频伴音", "Use video audio")
+                      b("启用视频伴音", "Use video audio")
                     ] }),
                     /* @__PURE__ */ n("button", { class: "danger", onClick: () => {
-                      window.confirm(f(`删除素材 ${P.alias}？本地文件不会被删除。`, `Remove ${P.alias}? Local files are kept.`)) && r((j) => {
-                        j.assets = j.assets.filter((H) => H.id !== P.id);
+                      window.confirm(b(`删除素材 ${I.alias}？本地文件不会被删除。`, `Remove ${I.alias}? Local files are kept.`)) && r((M) => {
+                        M.assets = M.assets.filter((V) => V.id !== I.id);
                       });
-                    }, children: f("删除素材", "Remove") })
+                    }, children: b("删除素材", "Remove") })
                   ] })
                 ] })
               ] })
             ]
           },
-          P.id
+          I.id
         );
       }) })
-    ] }, O))
+    ] }, R))
   ] });
 }
-const Io = {
+const Ai = {
   png: "image",
   jpg: "image",
   jpeg: "image",
@@ -671,82 +671,82 @@ const Io = {
   m4a: "audio",
   aac: "audio"
 };
-function Er(e) {
-  var o;
-  const t = ((o = e.name.split(".").pop()) == null ? void 0 : o.toLocaleLowerCase()) ?? "";
-  if (e.name.includes(".")) return Io[t] ?? null;
+function Nr(e) {
+  var i;
+  const t = ((i = e.name.split(".").pop()) == null ? void 0 : i.toLocaleLowerCase()) ?? "";
+  if (e.name.includes(".")) return Ai[t] ?? null;
   const r = e.type.split("/", 1)[0];
   return r === "image" || r === "video" || r === "audio" ? r : null;
 }
-function Po(e) {
-  const i = e.replace(/\.[^.]+$/, "").replace(/^\s*\d+\s*[-_. ]+/, "").normalize("NFKC").replace(/[\s-]+/g, "_").replace(/[{}]/g, "").replace(/_+/g, "_").replace(/^[_\.]+|[_\.]+$/g, "").slice(0, 96) || "asset";
-  return i.toLocaleLowerCase().endsWith(".audio") ? `${i}_asset` : i;
+function ji(e) {
+  const o = e.replace(/\.[^.]+$/, "").replace(/^\s*\d+\s*[-_. ]+/, "").normalize("NFKC").replace(/[\s-]+/g, "_").replace(/[{}]/g, "").replace(/_+/g, "_").replace(/^[_\.]+|[_\.]+$/g, "").slice(0, 96) || "asset";
+  return o.toLocaleLowerCase().endsWith(".audio") ? `${o}_asset` : o;
 }
-function Co(e, t) {
-  const r = new Set(Array.from(t, (i) => i.toLocaleLowerCase()));
+function Ni(e, t) {
+  const r = new Set(Array.from(t, (o) => o.toLocaleLowerCase()));
   if (!r.has(e.toLocaleLowerCase())) return e;
-  let o = 2;
-  for (; r.has(`${e}_${o}`.toLocaleLowerCase()); ) o += 1;
-  return `${e}_${o}`;
+  let i = 2;
+  for (; r.has(`${e}_${i}`.toLocaleLowerCase()); ) i += 1;
+  return `${e}_${i}`;
 }
-function Eo(e, t, r) {
-  const o = e.trim().toLocaleLowerCase();
-  return !e.trim() || /[\s{}]/.test(e) || o.endsWith(".audio") ? "invalid" : Array.from(t, (a) => a.toLocaleLowerCase()).includes(o) || Array.from(r, (a) => a.trim().toLocaleLowerCase()).filter((a) => a === o).length > 1 ? "duplicate" : null;
+function Mi(e, t, r) {
+  const i = e.trim().toLocaleLowerCase();
+  return !e.trim() || /[\s{}]/.test(e) || i.endsWith(".audio") ? "invalid" : Array.from(t, (s) => s.toLocaleLowerCase()).includes(i) || Array.from(r, (s) => s.trim().toLocaleLowerCase()).filter((s) => s === i).length > 1 ? "duplicate" : null;
 }
-function zo(e, t, r, o = []) {
-  const i = [], a = [], l = new Map(o.filter((m) => !m.path.trim()).map((m) => [`${m.kind}:${m.alias.toLocaleLowerCase()}`, m])), s = e.map((m) => "file" in m ? m : { file: m, relativePath: m.webkitRelativePath || m.name });
-  s.sort((m, h) => m.relativePath.localeCompare(h.relativePath, "en", { numeric: !0, sensitivity: "base" }));
-  for (const m of s) {
-    const { file: h } = m, d = Er(h);
-    if (!d) {
-      a.push(m.relativePath);
+function Ri(e, t, r, i = []) {
+  const o = [], s = [], l = new Map(i.filter((d) => !d.path.trim()).map((d) => [`${d.kind}:${d.alias.toLocaleLowerCase()}`, d])), a = e.map((d) => "file" in d ? d : { file: d, relativePath: d.webkitRelativePath || d.name });
+  a.sort((d, p) => d.relativePath.localeCompare(p.relativePath, "en", { numeric: !0, sensitivity: "base" }));
+  for (const d of a) {
+    const { file: p } = d, m = Nr(p);
+    if (!m) {
+      s.push(d.relativePath);
       continue;
     }
-    const f = Po(h.name), c = `${d}:${f.toLocaleLowerCase()}`, p = l.get(c);
-    if (p) {
-      l.delete(c), i.push({ id: r(), file: h, sourcePath: m.relativePath, alias: p.alias, kind: d, durationSeconds: d === "image" ? null : p.durationSeconds ?? 2, includeVideoAudio: p.includeVideoAudio, status: "pending", error: "", fillAssetId: p.id });
+    const b = ji(p.name), h = `${m}:${b.toLocaleLowerCase()}`, c = l.get(h);
+    if (c) {
+      l.delete(h), o.push({ id: r(), file: p, sourcePath: d.relativePath, alias: c.alias, kind: m, durationSeconds: m === "image" ? null : c.durationSeconds ?? 2, includeVideoAudio: c.includeVideoAudio, status: "pending", error: "", fillAssetId: c.id });
       continue;
     }
-    const b = f;
-    i.push({ id: r(), file: h, sourcePath: m.relativePath, alias: b, kind: d, durationSeconds: d === "image" ? null : 2, includeVideoAudio: !1, status: "pending", error: "" });
+    const g = b;
+    o.push({ id: r(), file: p, sourcePath: d.relativePath, alias: g, kind: m, durationSeconds: m === "image" ? null : 2, includeVideoAudio: !1, status: "pending", error: "" });
   }
-  return { drafts: i, rejected: a };
+  return { drafts: o, rejected: s };
 }
-const mt = (e) => e.trim().toLocaleLowerCase();
-function Xe(e, t, r) {
+const yt = (e) => e.trim().toLocaleLowerCase();
+function rt(e, t, r) {
   if (e.status === "imported") return null;
-  const o = mt(e.alias), i = t.find((l) => mt(l.alias) === o);
-  return !r.filter((l) => l.id !== e.id && l.status !== "imported" && mt(l.alias) === o).length && (!i || i.id === e.fillAssetId) ? null : { target: i, canReplace: !i || i.kind === e.kind };
+  const i = yt(e.alias), o = t.find((l) => yt(l.alias) === i);
+  return !r.filter((l) => l.id !== e.id && l.status !== "imported" && yt(l.alias) === i).length && (!o || o.id === e.fillAssetId) ? null : { target: o, canReplace: !o || o.kind === e.kind };
 }
-function zr(e, t, r, o) {
-  const i = e.find((l) => l.id === t);
-  if (!i || i.status === "imported" || i.status === "uploading") return e;
+function Mr(e, t, r, i) {
+  const o = e.find((l) => l.id === t);
+  if (!o || o.status === "imported" || o.status === "uploading") return e;
   if (r === "skip") return e.filter((l) => l.id !== t);
   if (r === "keep") {
-    const l = Co(i.alias.trim(), [...o.map((s) => s.alias), ...e.filter((s) => s.id !== t).map((s) => s.alias)]);
-    return e.map((s) => s.id === t ? { ...s, alias: l, fillAssetId: void 0, replaceExisting: !1, status: "pending", error: "" } : s);
+    const l = Ni(o.alias.trim(), [...i.map((a) => a.alias), ...e.filter((a) => a.id !== t).map((a) => a.alias)]);
+    return e.map((a) => a.id === t ? { ...a, alias: l, fillAssetId: void 0, replaceExisting: !1, status: "pending", error: "" } : a);
   }
-  const a = Xe(i, o, e);
-  return a != null && a.canReplace ? e.filter((l) => l.id === t || l.status === "imported" || mt(l.alias) !== mt(i.alias)).map((l) => {
-    var s, m, h, d;
+  const s = rt(o, i, e);
+  return s != null && s.canReplace ? e.filter((l) => l.id === t || l.status === "imported" || yt(l.alias) !== yt(o.alias)).map((l) => {
+    var a, d, p, m;
     return l.id === t ? {
       ...l,
-      alias: ((s = a.target) == null ? void 0 : s.alias) ?? i.alias.trim(),
-      fillAssetId: (m = a.target) == null ? void 0 : m.id,
-      replaceExisting: !!((h = a.target) != null && h.path.trim()),
-      includeVideoAudio: ((d = a.target) == null ? void 0 : d.includeVideoAudio) ?? l.includeVideoAudio,
+      alias: ((a = s.target) == null ? void 0 : a.alias) ?? o.alias.trim(),
+      fillAssetId: (d = s.target) == null ? void 0 : d.id,
+      replaceExisting: !!((p = s.target) != null && p.path.trim()),
+      includeVideoAudio: ((m = s.target) == null ? void 0 : m.includeVideoAudio) ?? l.includeVideoAudio,
       status: "pending",
       error: ""
     } : l;
   }) : e;
 }
-function Ao(e, t, r) {
-  return e.filter((i) => Xe(i, r, e)).map((i) => i.id).reduce((i, a) => {
-    const l = i.find((s) => s.id === a);
-    return l && (t === "skip" || Xe(l, r, i)) ? zr(i, a, t, r) : i;
+function Li(e, t, r) {
+  return e.filter((o) => rt(o, r, e)).map((o) => o.id).reduce((o, s) => {
+    const l = o.find((a) => a.id === s);
+    return l && (t === "skip" || rt(l, r, o)) ? Mr(o, s, t, r) : o;
   }, e);
 }
-function To(e, t, r) {
+function Oi(e, t, r) {
   return {
     ...e,
     path: t,
@@ -755,7 +755,7 @@ function To(e, t, r) {
     fingerprint: ""
   };
 }
-function jo(e, t, r) {
+function Di(e, t, r) {
   return {
     id: e.id,
     alias: e.alias.trim(),
@@ -771,136 +771,136 @@ function jo(e, t, r) {
     fingerprint: ""
   };
 }
-const Ar = (e, t) => e.relativePath.localeCompare(t.relativePath, "en", { numeric: !0, sensitivity: "base" });
-function Tr(e, t) {
+const Rr = (e, t) => e.relativePath.localeCompare(t.relativePath, "en", { numeric: !0, sensitivity: "base" });
+function Lr(e, t) {
   return e.replace(/\\/g, "/").replace(/^\/+/, "").replace(/\/{2,}/g, "/") || t;
 }
-function an(e) {
+function hn(e) {
   return Array.from(e, (t) => ({
     file: t,
     // webkitRelativePath 由目录选择器提供；普通多文件选择回退到文件名。
-    relativePath: Tr(t.webkitRelativePath, t.name)
-  })).sort(Ar);
+    relativePath: Lr(t.webkitRelativePath, t.name)
+  })).sort(Rr);
 }
-function No(e) {
+function Gi(e) {
   return new Promise((t, r) => e.file(t, r));
 }
-function Lo(e) {
+function Fi(e) {
   return new Promise((t, r) => e.readEntries(t, r));
 }
-async function Mo(e, t) {
-  const r = e.createReader(), o = [];
+async function Ui(e, t) {
+  const r = e.createReader(), i = [];
   for (; t(); ) {
-    const i = await Lo(r);
-    if (!i.length) return o;
-    o.push(...i);
+    const o = await Fi(r);
+    if (!o.length) return i;
+    i.push(...o);
   }
-  return o;
+  return i;
 }
-async function Ro(e, t, r = () => !0) {
-  const o = [], i = async (a) => {
+async function Bi(e, t, r = () => !0) {
+  const i = [], o = async (s) => {
     if (!r()) return;
-    if (a.isFile) {
-      const s = await No(a);
+    if (s.isFile) {
+      const a = await Gi(s);
       if (!r()) return;
-      o.push({ file: s, relativePath: Tr(a.fullPath, s.name) }), t == null || t(o.length);
+      i.push({ file: a, relativePath: Lr(s.fullPath, a.name) }), t == null || t(i.length);
       return;
     }
-    if (!a.isDirectory) return;
-    const l = await Mo(a, r);
-    for (const s of l) await i(s);
+    if (!s.isDirectory) return;
+    const l = await Ui(s, r);
+    for (const a of l) await o(a);
   };
-  for (const a of e) {
+  for (const s of e) {
     if (!r()) break;
-    await i(a);
+    await o(s);
   }
-  return o.sort(Ar);
+  return i.sort(Rr);
 }
-async function Do(e, t, r = () => !0) {
-  const i = Array.from(e.items ?? []).filter((l) => l.kind === "file" && typeof l.webkitGetAsEntry == "function");
-  if (i.length) {
-    const l = i.map((s) => {
-      var m;
-      return (m = s.webkitGetAsEntry) == null ? void 0 : m.call(s);
-    }).filter((s) => !!s);
-    if (l.length) return Ro(l, t, r);
+async function Vi(e, t, r = () => !0) {
+  const o = Array.from(e.items ?? []).filter((l) => l.kind === "file" && typeof l.webkitGetAsEntry == "function");
+  if (o.length) {
+    const l = o.map((a) => {
+      var d;
+      return (d = a.webkitGetAsEntry) == null ? void 0 : d.call(a);
+    }).filter((a) => !!a);
+    if (l.length) return Bi(l, t, r);
   }
-  const a = an(e.files ?? []);
-  return r() && (t == null || t(a.length)), a;
+  const s = hn(e.files ?? []);
+  return r() && (t == null || t(s.length)), s;
 }
-const Oo = () => `asset_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`, Xt = (e, t) => t === "zh" ? { image: "图片", video: "视频", audio: "音频" }[e] : e;
-function Uo({ language: e, assets: t, projectName: r, onClose: o, onImported: i, onFilled: a, uploadFile: l }) {
-  const [s, m] = R([]), [h, d] = R([]), [f, c] = R(!1), [p, b] = R(!1), [_, N] = R(0), [k, w] = R(!1), z = ke([]), g = ke(null), $ = ke(0);
-  z.current = s;
-  const T = t.map((v) => v.alias);
-  Pe(() => {
-    var v, K;
-    return (v = g.current) == null || v.setAttribute("webkitdirectory", ""), (K = g.current) == null || K.setAttribute("directory", ""), () => {
+const qi = () => `asset_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`, rn = (e, t) => t === "zh" ? { image: "图片", video: "视频", audio: "音频" }[e] : e;
+function Hi({ language: e, assets: t, projectName: r, onClose: i, onImported: o, onFilled: s, uploadFile: l }) {
+  const [a, d] = G([]), [p, m] = G([]), [b, h] = G(!1), [c, g] = G(!1), [S, T] = G(0), [y, v] = G(!1), x = ke([]), u = ke(null), $ = ke(0);
+  x.current = a;
+  const j = t.map((_) => _.alias);
+  Ee(() => {
+    var _, K;
+    return (_ = u.current) == null || _.setAttribute("webkitdirectory", ""), (K = u.current) == null || K.setAttribute("directory", ""), () => {
       $.current += 1;
     };
   }, []);
-  const C = (v, K) => m((Z) => Z.map((Q) => Q.id === v ? { ...Q, ...K } : Q)), S = (v, K) => {
-    let Z = 0;
+  const E = (_, K) => d((ee) => ee.map((Q) => Q.id === _ ? { ...Q, ...K } : Q)), P = (_, K) => {
+    let ee = 0;
     const Q = async () => {
-      for (; Z < v.length && $.current === K; ) {
-        const ee = v[Z++];
-        if (ee.kind === "image") continue;
-        const pe = await Cr(ee.file, ee.kind);
-        pe == null || $.current !== K || m((E) => E.map((B) => B.id === ee.id && B.kind === ee.kind && !B.durationEdited ? { ...B, durationSeconds: pe } : B));
+      for (; ee < _.length && $.current === K; ) {
+        const te = _[ee++];
+        if (te.kind === "image") continue;
+        const ce = await jr(te.file, te.kind);
+        ce == null || $.current !== K || d((z) => z.map((q) => q.id === te.id && q.kind === te.kind && !q.durationEdited ? { ...q, durationSeconds: ce } : q));
       }
     };
-    Promise.all(Array.from({ length: Math.min(4, v.length) }, Q));
-  }, L = (v) => {
-    if (!v.length || k) return;
-    const K = [...T, ...z.current.map((ee) => ee.alias)], Z = new Set(z.current.map((ee) => ee.fillAssetId).filter(Boolean)), Q = zo(v, K, Oo, t.filter((ee) => !Z.has(ee.id)));
-    Q.rejected.length && d((ee) => [...ee, ...Q.rejected]), Q.drafts.length && (m((ee) => [...ee, ...Q.drafts]), S(Q.drafts, $.current));
-  }, V = async (v) => {
-    if (p || k) return;
+    Promise.all(Array.from({ length: Math.min(4, _.length) }, Q));
+  }, C = (_) => {
+    if (!_.length || y) return;
+    const K = [...j, ...x.current.map((te) => te.alias)], ee = new Set(x.current.map((te) => te.fillAssetId).filter(Boolean)), Q = Ri(_, K, qi, t.filter((te) => !ee.has(te.id)));
+    Q.rejected.length && m((te) => [...te, ...Q.rejected]), Q.drafts.length && (d((te) => [...te, ...Q.drafts]), P(Q.drafts, $.current));
+  }, N = async (_) => {
+    if (c || y) return;
     const K = $.current;
-    b(!0), N(0);
+    g(!0), T(0);
     try {
-      const Z = () => $.current === K, Q = await v((ee) => {
-        Z() && N(ee);
-      }, Z);
+      const ee = () => $.current === K, Q = await _((te) => {
+        ee() && T(te);
+      }, ee);
       if ($.current !== K) return;
-      N(Q.length), L(Q);
-    } catch (Z) {
-      $.current === K && d((Q) => [...Q, String(Z)]);
+      T(Q.length), C(Q);
+    } catch (ee) {
+      $.current === K && m((Q) => [...Q, String(ee)]);
     } finally {
-      $.current === K && b(!1);
+      $.current === K && g(!1);
     }
-  }, O = s.filter((v) => Xe(v, t, s)), U = (v, K) => m((Z) => zr(Z, v, K, t)), P = (v) => m((K) => Ao(K, v, t)), y = s.filter((v) => v.status !== "imported").map((v) => v.alias), D = (v) => {
-    if (v.status === "imported") return null;
-    const K = Xe(v, t, s);
+  }, R = a.filter((_) => rt(_, t, a)), F = (_, K) => d((ee) => Mr(ee, _, K, t)), I = (_) => d((K) => Li(K, _, t)), k = a.filter((_) => _.status !== "imported").map((_) => _.alias), D = (_) => {
+    if (_.status === "imported") return null;
+    const K = rt(_, t, a);
     if (K) return e === "zh" ? K.canReplace ? "发现重名，请选择替换、保留两份或跳过" : "重名素材类型不同，请保留两份或跳过" : K.canReplace ? "Name conflict: replace, keep both, or skip" : "Different asset kinds: keep both or skip";
-    if (v.fillAssetId && !t.some((Q) => Q.id === v.fillAssetId && Q.kind === v.kind && Q.alias === v.alias)) return e === "zh" ? "原素材已变更，请移除后重新添加文件" : "The target changed; remove and add the file again";
-    const Z = Eo(v.alias, t.filter((Q) => Q.id !== v.fillAssetId).map((Q) => Q.alias), y);
-    return Z === "invalid" ? e === "zh" ? "别名为空、包含空白/花括号，或使用了保留后缀 .audio" : "Alias is empty, contains whitespace/braces, or uses reserved .audio" : Z === "duplicate" ? e === "zh" ? "别名与素材库或本批次其他素材重复" : "Alias duplicates an existing or staged asset" : Er(v.file) !== v.kind ? e === "zh" ? "文件扩展名与所选类型不匹配" : "The extension does not match the selected kind" : v.kind !== "image" && (v.durationSeconds == null || v.durationSeconds <= 0) ? e === "zh" ? "视频或音频时长必须大于 0" : "Video/audio duration must be greater than 0" : null;
-  }, j = async () => {
-    const K = z.current.filter((pe) => pe.status === "pending" || pe.status === "error");
-    if (!K.length || p || k) return;
+    if (_.fillAssetId && !t.some((Q) => Q.id === _.fillAssetId && Q.kind === _.kind && Q.alias === _.alias)) return e === "zh" ? "原素材已变更，请移除后重新添加文件" : "The target changed; remove and add the file again";
+    const ee = Mi(_.alias, t.filter((Q) => Q.id !== _.fillAssetId).map((Q) => Q.alias), k);
+    return ee === "invalid" ? e === "zh" ? "别名为空、包含空白/花括号，或使用了保留后缀 .audio" : "Alias is empty, contains whitespace/braces, or uses reserved .audio" : ee === "duplicate" ? e === "zh" ? "别名与素材库或本批次其他素材重复" : "Alias duplicates an existing or staged asset" : Nr(_.file) !== _.kind ? e === "zh" ? "文件扩展名与所选类型不匹配" : "The extension does not match the selected kind" : _.kind !== "image" && (_.durationSeconds == null || _.durationSeconds <= 0) ? e === "zh" ? "视频或音频时长必须大于 0" : "Video/audio duration must be greater than 0" : null;
+  }, M = async () => {
+    const K = x.current.filter((ce) => ce.status === "pending" || ce.status === "error");
+    if (!K.length || c || y) return;
     if (K.some(D)) {
       window.alert(e === "zh" ? "请先修正列表中标红的项目。" : "Fix the highlighted rows before importing.");
       return;
     }
-    w(!0);
-    const Z = Math.max(0, ...t.map((pe) => pe.fixedOrder)) + 1;
+    v(!0);
+    const ee = Math.max(0, ...t.map((ce) => ce.fixedOrder)) + 1;
     let Q = 0;
-    const ee = async () => {
+    const te = async () => {
       for (; Q < K.length; ) {
-        const pe = Q++, E = K[pe];
-        C(E.id, { status: "uploading", error: "" });
+        const ce = Q++, z = K[ce];
+        E(z.id, { status: "uploading", error: "" });
         try {
-          const B = await l(r, E.kind, E.file);
-          E.fillAssetId ? a(E.fillAssetId, B, E.kind === "image" ? null : E.durationSeconds) : i([jo(E, B, Z + pe)]), C(E.id, { status: "imported", error: "" });
-        } catch (B) {
-          C(E.id, { status: "error", error: String(B) });
+          const q = await l(r, z.kind, z.file);
+          z.fillAssetId ? s(z.fillAssetId, q, z.kind === "image" ? null : z.durationSeconds) : o([Di(z, q, ee + ce)]), E(z.id, { status: "imported", error: "" });
+        } catch (q) {
+          E(z.id, { status: "error", error: String(q) });
         }
       }
     };
-    await Promise.all(Array.from({ length: Math.min(2, K.length) }, ee)), w(!1);
-  }, H = s.filter((v) => v.status === "imported").length, te = s.filter((v) => v.status === "error").length, X = s.length - H, M = () => {
-    $.current += 1, o();
+    await Promise.all(Array.from({ length: Math.min(2, K.length) }, te)), v(!1);
+  }, V = a.filter((_) => _.status === "imported").length, Z = a.filter((_) => _.status === "error").length, Y = a.length - V, L = () => {
+    $.current += 1, i();
   };
   return /* @__PURE__ */ n("div", { class: "td-batch-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-asset-batch-panel", role: "dialog", "aria-modal": "true", "aria-label": e === "zh" ? "批量导入素材" : "Batch import assets", children: [
     /* @__PURE__ */ n("header", { class: "td-batch-header", children: [
@@ -908,53 +908,53 @@ function Uo({ language: e, assets: t, projectName: r, onClose: o, onImported: i,
         /* @__PURE__ */ n("h2", { children: e === "zh" ? "批量导入素材" : "Batch import assets" }),
         /* @__PURE__ */ n("p", { children: e === "zh" ? "可混合选择文件或递归导入文件夹。空缺素材自动填充；重名时先选择替换、保留两份或跳过。替换保留原有镜头引用。" : "Select files or folders. Empty assets are filled automatically. For name conflicts, choose replace, keep both, or skip. Replacing preserves shot references." })
       ] }),
-      /* @__PURE__ */ n("button", { disabled: k, "aria-label": e === "zh" ? "关闭" : "Close", onClick: M, children: "×" })
+      /* @__PURE__ */ n("button", { disabled: y, "aria-label": e === "zh" ? "关闭" : "Close", onClick: L, children: "×" })
     ] }),
-    /* @__PURE__ */ n("div", { class: `td-asset-dropzone ${f ? "dragging" : ""}`, onDragEnter: (v) => {
-      v.preventDefault(), c(!0);
-    }, onDragOver: (v) => v.preventDefault(), onDragLeave: (v) => {
-      v.currentTarget === v.target && c(!1);
-    }, onDrop: (v) => {
-      v.preventDefault(), c(!1);
-      const K = v.dataTransfer;
-      K && V((Z, Q) => Do(K, Z, Q));
+    /* @__PURE__ */ n("div", { class: `td-asset-dropzone ${b ? "dragging" : ""}`, onDragEnter: (_) => {
+      _.preventDefault(), h(!0);
+    }, onDragOver: (_) => _.preventDefault(), onDragLeave: (_) => {
+      _.currentTarget === _.target && h(!1);
+    }, onDrop: (_) => {
+      _.preventDefault(), h(!1);
+      const K = _.dataTransfer;
+      K && N((ee, Q) => Vi(K, ee, Q));
     }, children: [
-      /* @__PURE__ */ n("strong", { children: p ? e === "zh" ? `正在扫描文件夹…已发现 ${_} 个文件` : `Scanning folders… ${_} files found` : e === "zh" ? "拖拽文件或文件夹到这里" : "Drop files or folders here" }),
+      /* @__PURE__ */ n("strong", { children: c ? e === "zh" ? `正在扫描文件夹…已发现 ${S} 个文件` : `Scanning folders… ${S} files found` : e === "zh" ? "拖拽文件或文件夹到这里" : "Drop files or folders here" }),
       /* @__PURE__ */ n("span", { children: e === "zh" ? "递归识别子文件夹中的图片、视频和音频" : "Images, videos, and audio are detected recursively" }),
       /* @__PURE__ */ n("div", { class: "td-asset-picker-actions", children: [
         /* @__PURE__ */ n("label", { class: "td-asset-picker-button", children: [
           e === "zh" ? "选择多个文件" : "Choose files",
-          /* @__PURE__ */ n("input", { type: "file", multiple: !0, accept: "image/*,video/*,audio/*", disabled: k || p, onChange: (v) => {
-            L(an(v.currentTarget.files ?? [])), v.currentTarget.value = "";
+          /* @__PURE__ */ n("input", { type: "file", multiple: !0, accept: "image/*,video/*,audio/*", disabled: y || c, onChange: (_) => {
+            C(hn(_.currentTarget.files ?? [])), _.currentTarget.value = "";
           } })
         ] }),
         /* @__PURE__ */ n("label", { class: "td-asset-picker-button", children: [
           e === "zh" ? "选择文件夹" : "Choose folder",
-          /* @__PURE__ */ n("input", { ref: g, type: "file", multiple: !0, disabled: k || p, onChange: (v) => {
-            const K = an(v.currentTarget.files ?? []);
-            v.currentTarget.value = "", V(async (Z) => (Z(K.length), K));
+          /* @__PURE__ */ n("input", { ref: u, type: "file", multiple: !0, disabled: y || c, onChange: (_) => {
+            const K = hn(_.currentTarget.files ?? []);
+            _.currentTarget.value = "", N(async (ee) => (ee(K.length), K));
           } })
         ] })
       ] })
     ] }),
-    h.length > 0 && /* @__PURE__ */ n("div", { class: "td-asset-batch-warning", children: [
-      /* @__PURE__ */ n("span", { children: e === "zh" ? `已跳过 ${h.length} 个不支持的文件：${h.join("、")}` : `Skipped ${h.length} unsupported files: ${h.join(", ")}` }),
-      /* @__PURE__ */ n("button", { onClick: () => d([]), children: "×" })
+    p.length > 0 && /* @__PURE__ */ n("div", { class: "td-asset-batch-warning", children: [
+      /* @__PURE__ */ n("span", { children: e === "zh" ? `已跳过 ${p.length} 个不支持的文件：${p.join("、")}` : `Skipped ${p.length} unsupported files: ${p.join(", ")}` }),
+      /* @__PURE__ */ n("button", { onClick: () => m([]), children: "×" })
     ] }),
-    O.length > 0 && /* @__PURE__ */ n("div", { class: "td-asset-batch-conflicts", role: "status", children: [
-      /* @__PURE__ */ n("strong", { children: e === "zh" ? `发现 ${O.length} 项重名素材，如何处理？` : `${O.length} name conflicts. How should they be handled?` }),
+    R.length > 0 && /* @__PURE__ */ n("div", { class: "td-asset-batch-conflicts", role: "status", children: [
+      /* @__PURE__ */ n("strong", { children: e === "zh" ? `发现 ${R.length} 项重名素材，如何处理？` : `${R.length} name conflicts. How should they be handled?` }),
       /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("button", { disabled: k || O.some((v) => {
+        /* @__PURE__ */ n("button", { disabled: y || R.some((_) => {
           var K;
-          return !((K = Xe(v, t, s)) != null && K.canReplace);
-        }), onClick: () => P("replace"), children: e === "zh" ? "全部替换" : "Replace all" }),
-        /* @__PURE__ */ n("button", { disabled: k, onClick: () => P("keep"), children: e === "zh" ? "全部保留两份" : "Keep all copies" }),
-        /* @__PURE__ */ n("button", { disabled: k, onClick: () => P("skip"), children: e === "zh" ? "全部跳过" : "Skip all" })
+          return !((K = rt(_, t, a)) != null && K.canReplace);
+        }), onClick: () => I("replace"), children: e === "zh" ? "全部替换" : "Replace all" }),
+        /* @__PURE__ */ n("button", { disabled: y, onClick: () => I("keep"), children: e === "zh" ? "全部保留两份" : "Keep all copies" }),
+        /* @__PURE__ */ n("button", { disabled: y, onClick: () => I("skip"), children: e === "zh" ? "全部跳过" : "Skip all" })
       ] })
     ] }),
     /* @__PURE__ */ n("div", { class: "td-asset-batch-summary", children: [
-      /* @__PURE__ */ n("span", { children: e === "zh" ? `共 ${s.length} 项 · 已导入 ${H} · 待处理 ${X}${te ? ` · 失败 ${te}` : ""}` : `${s.length} items · ${H} imported · ${X} pending${te ? ` · ${te} failed` : ""}` }),
-      /* @__PURE__ */ n("button", { disabled: k || !s.length, onClick: () => m([]), children: e === "zh" ? "清空列表" : "Clear list" })
+      /* @__PURE__ */ n("span", { children: e === "zh" ? `共 ${a.length} 项 · 已导入 ${V} · 待处理 ${Y}${Z ? ` · 失败 ${Z}` : ""}` : `${a.length} items · ${V} imported · ${Y} pending${Z ? ` · ${Z} failed` : ""}` }),
+      /* @__PURE__ */ n("button", { disabled: y || !a.length, onClick: () => d([]), children: e === "zh" ? "清空列表" : "Clear list" })
     ] }),
     /* @__PURE__ */ n("div", { class: "td-asset-batch-list", children: [
       /* @__PURE__ */ n("div", { class: "td-asset-batch-row td-asset-batch-head", children: [
@@ -965,177 +965,1302 @@ function Uo({ language: e, assets: t, projectName: r, onClose: o, onImported: i,
         /* @__PURE__ */ n("span", { children: e === "zh" ? "视频伴音" : "Video audio" }),
         /* @__PURE__ */ n("span", { children: e === "zh" ? "操作" : "Action" })
       ] }),
-      !s.length && /* @__PURE__ */ n("div", { class: "td-asset-batch-empty", children: e === "zh" ? "尚未选择素材" : "No media selected" }),
-      s.map((v) => {
-        const K = Xe(v, t, s), Z = D(v), Q = k || v.status === "imported" || v.status === "uploading";
-        return /* @__PURE__ */ n("div", { class: `td-asset-batch-row ${Z || v.status === "error" ? "invalid" : ""} ${v.status === "imported" ? "imported" : ""}`, children: [
+      !a.length && /* @__PURE__ */ n("div", { class: "td-asset-batch-empty", children: e === "zh" ? "尚未选择素材" : "No media selected" }),
+      a.map((_) => {
+        const K = rt(_, t, a), ee = D(_), Q = y || _.status === "imported" || _.status === "uploading";
+        return /* @__PURE__ */ n("div", { class: `td-asset-batch-row ${ee || _.status === "error" ? "invalid" : ""} ${_.status === "imported" ? "imported" : ""}`, children: [
           /* @__PURE__ */ n("div", { class: "td-asset-batch-file", children: [
-            /* @__PURE__ */ n("strong", { title: v.sourcePath, children: v.sourcePath }),
+            /* @__PURE__ */ n("strong", { title: _.sourcePath, children: _.sourcePath }),
             /* @__PURE__ */ n("small", { children: [
-              (v.file.size / 1024 / 1024).toFixed(1),
+              (_.file.size / 1024 / 1024).toFixed(1),
               " MB · ",
-              v.status === "pending" ? e === "zh" ? "待导入" : "Pending" : v.status === "uploading" ? e === "zh" ? "上传中" : "Uploading" : v.status === "imported" ? e === "zh" ? "已完成" : "Imported" : e === "zh" ? "失败" : "Failed"
+              _.status === "pending" ? e === "zh" ? "待导入" : "Pending" : _.status === "uploading" ? e === "zh" ? "上传中" : "Uploading" : _.status === "imported" ? e === "zh" ? "已完成" : "Imported" : e === "zh" ? "失败" : "Failed"
             ] }),
-            (Z || v.error) && /* @__PURE__ */ n("em", { title: Z || v.error, children: Z || v.error })
+            (ee || _.error) && /* @__PURE__ */ n("em", { title: ee || _.error, children: ee || _.error })
           ] }),
           /* @__PURE__ */ n("div", { class: "td-asset-batch-alias", children: [
-            v.fillAssetId ? /* @__PURE__ */ n("span", { class: "td-asset-batch-fill", title: e === "zh" ? "更新原素材，保留别名与镜头引用" : "Updates the original asset and preserves references", children: [
+            _.fillAssetId ? /* @__PURE__ */ n("span", { class: "td-asset-batch-fill", title: e === "zh" ? "更新原素材，保留别名与镜头引用" : "Updates the original asset and preserves references", children: [
               "↳ ",
-              v.alias,
-              /* @__PURE__ */ n("em", { children: v.replaceExisting ? e === "zh" ? "替换" : "replace" : e === "zh" ? "填充" : "fill" })
-            ] }) : /* @__PURE__ */ n("input", { disabled: Q, value: v.alias, onInput: (ee) => C(v.id, { alias: ee.currentTarget.value, status: "pending", error: "" }) }),
+              _.alias,
+              /* @__PURE__ */ n("em", { children: _.replaceExisting ? e === "zh" ? "替换" : "replace" : e === "zh" ? "填充" : "fill" })
+            ] }) : /* @__PURE__ */ n("input", { disabled: Q, value: _.alias, onInput: (te) => E(_.id, { alias: te.currentTarget.value, status: "pending", error: "" }) }),
             K && /* @__PURE__ */ n("div", { class: "td-asset-conflict-actions", children: [
-              /* @__PURE__ */ n("button", { disabled: Q || !K.canReplace, onClick: () => U(v.id, "replace"), children: e === "zh" ? "替换" : "Replace" }),
-              /* @__PURE__ */ n("button", { disabled: Q, onClick: () => U(v.id, "keep"), children: e === "zh" ? "保留两份" : "Keep both" }),
-              /* @__PURE__ */ n("button", { disabled: Q, onClick: () => U(v.id, "skip"), children: e === "zh" ? "跳过" : "Skip" })
+              /* @__PURE__ */ n("button", { disabled: Q || !K.canReplace, onClick: () => F(_.id, "replace"), children: e === "zh" ? "替换" : "Replace" }),
+              /* @__PURE__ */ n("button", { disabled: Q, onClick: () => F(_.id, "keep"), children: e === "zh" ? "保留两份" : "Keep both" }),
+              /* @__PURE__ */ n("button", { disabled: Q, onClick: () => F(_.id, "skip"), children: e === "zh" ? "跳过" : "Skip" })
             ] })
           ] }),
-          /* @__PURE__ */ n("select", { disabled: Q || !!v.fillAssetId, value: v.kind, onChange: (ee) => {
-            const pe = ee.currentTarget.value;
-            C(v.id, { kind: pe, durationSeconds: pe === "image" ? null : v.durationSeconds ?? 2, includeVideoAudio: pe === "video" && v.includeVideoAudio, status: "pending", error: "" });
+          /* @__PURE__ */ n("select", { disabled: Q || !!_.fillAssetId, value: _.kind, onChange: (te) => {
+            const ce = te.currentTarget.value;
+            E(_.id, { kind: ce, durationSeconds: ce === "image" ? null : _.durationSeconds ?? 2, includeVideoAudio: ce === "video" && _.includeVideoAudio, status: "pending", error: "" });
           }, children: [
-            /* @__PURE__ */ n("option", { value: "image", children: Xt("image", e) }),
-            /* @__PURE__ */ n("option", { value: "video", children: Xt("video", e) }),
-            /* @__PURE__ */ n("option", { value: "audio", children: Xt("audio", e) })
+            /* @__PURE__ */ n("option", { value: "image", children: rn("image", e) }),
+            /* @__PURE__ */ n("option", { value: "video", children: rn("video", e) }),
+            /* @__PURE__ */ n("option", { value: "audio", children: rn("audio", e) })
           ] }),
           /* @__PURE__ */ n("label", { class: "td-asset-batch-duration", children: [
-            /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", disabled: Q || v.kind === "image", value: v.durationSeconds ?? "", onInput: (ee) => C(v.id, { durationSeconds: ee.currentTarget.value ? Number(ee.currentTarget.value) : null, durationEdited: !0, status: "pending", error: "" }) }),
-            /* @__PURE__ */ n("span", { children: v.kind === "image" ? "—" : e === "zh" ? "秒" : "sec" })
+            /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", disabled: Q || _.kind === "image", value: _.durationSeconds ?? "", onInput: (te) => E(_.id, { durationSeconds: te.currentTarget.value ? Number(te.currentTarget.value) : null, durationEdited: !0, status: "pending", error: "" }) }),
+            /* @__PURE__ */ n("span", { children: _.kind === "image" ? "—" : e === "zh" ? "秒" : "sec" })
           ] }),
           /* @__PURE__ */ n("label", { class: "td-asset-batch-audio", children: [
-            /* @__PURE__ */ n("input", { type: "checkbox", disabled: Q || !!v.fillAssetId || v.kind !== "video", checked: v.kind === "video" && v.includeVideoAudio, onChange: (ee) => C(v.id, { includeVideoAudio: ee.currentTarget.checked }) }),
-            /* @__PURE__ */ n("span", { children: v.kind === "video" ? v.includeVideoAudio ? e === "zh" ? "开" : "ON" : e === "zh" ? "关" : "OFF" : "—" })
+            /* @__PURE__ */ n("input", { type: "checkbox", disabled: Q || !!_.fillAssetId || _.kind !== "video", checked: _.kind === "video" && _.includeVideoAudio, onChange: (te) => E(_.id, { includeVideoAudio: te.currentTarget.checked }) }),
+            /* @__PURE__ */ n("span", { children: _.kind === "video" ? _.includeVideoAudio ? e === "zh" ? "开" : "ON" : e === "zh" ? "关" : "OFF" : "—" })
           ] }),
-          /* @__PURE__ */ n("button", { class: "danger", disabled: Q, onClick: () => m((ee) => ee.filter((pe) => pe.id !== v.id)), children: e === "zh" ? "移除" : "Remove" })
-        ] }, v.id);
+          /* @__PURE__ */ n("button", { class: "danger", disabled: Q, onClick: () => d((te) => te.filter((ce) => ce.id !== _.id)), children: e === "zh" ? "移除" : "Remove" })
+        ] }, _.id);
       })
     ] }),
     /* @__PURE__ */ n("footer", { children: [
-      /* @__PURE__ */ n("button", { disabled: k, onClick: M, children: e === "zh" ? "关闭" : "Close" }),
-      /* @__PURE__ */ n("button", { class: "primary", disabled: k || p || O.length > 0 || !s.some((v) => v.status === "pending" || v.status === "error"), onClick: () => void j(), children: p ? e === "zh" ? "正在扫描…" : "Scanning…" : k ? e === "zh" ? "正在导入…" : "Importing…" : te ? e === "zh" ? "重试失败项" : "Retry failed" : e === "zh" ? "开始导入" : "Start import" })
+      /* @__PURE__ */ n("button", { disabled: y, onClick: L, children: e === "zh" ? "关闭" : "Close" }),
+      /* @__PURE__ */ n("button", { class: "primary", disabled: y || c || R.length > 0 || !a.some((_) => _.status === "pending" || _.status === "error"), onClick: () => void M(), children: c ? e === "zh" ? "正在扫描…" : "Scanning…" : y ? e === "zh" ? "正在导入…" : "Importing…" : Z ? e === "zh" ? "重试失败项" : "Retry failed" : e === "zh" ? "开始导入" : "Start import" })
     ] })
   ] }) });
 }
-function Fo(e, t) {
+function Wi(e, t) {
   return { projectName: e, runId: t };
 }
-async function Go(e, t) {
+async function Ji(e, t) {
   const r = await fetch("/theodore-director/v1/project/clear", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(Fo(e, t))
-  }), o = await r.json();
-  if (!r.ok || !o.ok) throw new Error(o.error || `HTTP ${r.status}`);
-  return o.path || "";
+    body: JSON.stringify(Wi(e, t))
+  }), i = await r.json();
+  if (!r.ok || !i.ok) throw new Error(i.error || `HTTP ${r.status}`);
+  return i.path || "";
 }
-function Vo(e, t) {
-  if (!Number.isInteger(t) || t < 0 || t > e.length) return null;
-  const o = e.slice(0, t).lastIndexOf("@");
-  if (o < 0) return null;
-  const i = o > 0 ? e[o - 1] : "";
-  if (i && /[A-Za-z0-9_.+-]/.test(i)) return null;
-  const a = e.slice(o + 1, t);
-  return /[\s{}@]/u.test(a) ? null : { start: o, end: t, query: a };
+const Ki = {
+  zh: { title: "YuQ 导播台", save: "保存", close: "关闭", shots: "分镜", assets: "素材库", settings: "项目设置", postprocess: "后处理", addShot: "添加分镜", addAsset: "添加素材", preview: "H3 编译预览", noErrors: "当前分镜通过预检" },
+  en: { title: "YuQ Director", save: "Save", close: "Close", shots: "Shots", assets: "Media", settings: "Project", postprocess: "Post-process", addShot: "Add shot", addAsset: "Add asset", preview: "H3 compile preview", noErrors: "Current shot passes validation" }
+}, Or = "theodore-director-language";
+function Wn(e, t) {
+  return Ki[e][t];
 }
-function Ho(e, t) {
-  const r = t.trim().toLocaleLowerCase();
-  if (!r) return e;
-  const o = [], i = [];
-  for (const a of e)
-    a.alias.toLocaleLowerCase().includes(r) ? o.push(a) : Ce(a.path).toLocaleLowerCase().includes(r) && i.push(a);
-  return [...o, ...i];
+function Qi() {
+  try {
+    return window.localStorage.getItem(Or) === "en" ? "en" : "zh";
+  } catch {
+    return "zh";
+  }
 }
-function Bo(e, t, r) {
-  const o = `{{ref:${r}}}`;
+function Yi(e) {
+  try {
+    window.localStorage.setItem(Or, e);
+  } catch {
+  }
+}
+const kn = (e) => `${e}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`, ot = (e) => JSON.parse(JSON.stringify(e)), Dr = 0.3;
+function _t(e) {
+  var r, i, o, s, l, a, d, p, m, b, h, c, g, S, T, y, v, x;
+  const t = ot(e);
+  return t.schemaVersion = 5, t.project = { ...t.project, name: ((r = t.project) == null ? void 0 : r.name) ?? "YuQ Project", runId: ((i = t.project) == null ? void 0 : i.runId) ?? "run_001", id: ((o = t.project) == null ? void 0 : o.id) ?? "" }, (s = t.project.id) != null && s.trim() || (t.project.id = kn("project")), t.defaults = { fps: ((l = t.defaults) == null ? void 0 : l.fps) ?? 24, baseSeed: ((a = t.defaults) == null ? void 0 : a.baseSeed) ?? 123456790, durationSeconds: ((d = t.defaults) == null ? void 0 : d.durationSeconds) ?? 6, secondSamplingMode: ((p = t.defaults) == null ? void 0 : p.secondSamplingMode) ?? "off" }, t.promptPrefix = t.promptPrefix ?? "", t.promptSuffix = t.promptSuffix ?? "", t.continuity = {
+    mode: ((m = t.continuity) == null ? void 0 : m.mode) ?? "h3_av_latent",
+    videoContextFrames: ((b = t.continuity) == null ? void 0 : b.videoContextFrames) ?? 22,
+    audioContextFrames: ((h = t.continuity) == null ? void 0 : h.audioContextFrames) ?? 24,
+    durationMode: ((c = t.continuity) == null ? void 0 : c.durationMode) ?? "final_output"
+  }, t.shots = (t.shots ?? []).map((u, $) => {
+    const j = u, E = u.id || `shot_${String($ + 1).padStart(3, "0")}`;
+    return {
+      ...u,
+      id: E,
+      title: u.title || E,
+      prompt: u.prompt ?? "",
+      negativePrompt: u.negativePrompt ?? "",
+      durationSeconds: Number(u.durationSeconds) || 5,
+      enabled: u.enabled ?? !0,
+      latentRelay: u.latentRelay ?? !0,
+      // 旧 BOOL 开关无损迁移到 V7.2 原有的超分二采模式。
+      secondSamplingMode: u.secondSamplingMode ?? (j.secondSampling === !1 ? "off" : t.defaults.secondSamplingMode ?? "super_resolution_second_pass"),
+      seed: u.seed ?? null,
+      disabledAssetIds: u.disabledAssetIds ?? []
+    };
+  }), t.assets = (t.assets ?? []).map((u, $) => ({
+    ...u,
+    id: u.id || `asset_${String($ + 1).padStart(3, "0")}`,
+    path: u.path ?? "",
+    enabled: u.enabled ?? !0,
+    fixed: u.fixed ?? !1,
+    fixedOrder: u.fixedOrder ?? $ + 1,
+    shotIds: u.shotIds ?? [],
+    includeVideoAudio: u.includeVideoAudio ?? !1,
+    durationSeconds: u.durationSeconds ?? null,
+    audioDurationSeconds: u.audioDurationSeconds ?? null,
+    fingerprint: u.fingerprint ?? ""
+  })), t.pipeline = {
+    ...t.pipeline,
+    phase: ((g = t.pipeline) == null ? void 0 : g.phase) ?? "first_pass",
+    firstPassConfirmed: !!((S = t.pipeline) != null && S.firstPassConfirmed),
+    secondPassMode: ((T = t.pipeline) == null ? void 0 : T.secondPassMode) ?? "super_resolution_second_pass",
+    secondPassDenoise: ((y = t.pipeline) == null ? void 0 : y.secondPassDenoise) ?? Dr
+  }, t.uiPreferences = { autoSave: ((v = t.uiPreferences) == null ? void 0 : v.autoSave) ?? !1, compactMode: ((x = t.uiPreferences) == null ? void 0 : x.compactMode) ?? !1 }, t;
+}
+function on(e) {
+  const t = e;
+  if (!t || typeof t != "object" || !t.project || !Array.isArray(t.shots) || !Array.isArray(t.assets))
+    throw new Error("不是有效的 Theodore Director 计划：需要 project、assets 和 shots 字段");
+}
+function Gr(e, t) {
+  var p, m;
+  const r = _t(t);
+  !t.generation && e.generation && (r.generation = { ...e.generation });
+  const i = new Map(e.assets.map((b) => [`${b.kind}:${b.alias.toLocaleLowerCase()}`, b])), o = [];
+  r.assets = r.assets.map((b) => {
+    const h = i.get(`${b.kind}:${b.alias.toLocaleLowerCase()}`);
+    if (!h) return b;
+    const c = {
+      imageGeneration: b.imageGeneration ?? h.imageGeneration,
+      imageGenerationPending: b.imageGenerationPending ?? h.imageGenerationPending
+    };
+    return b.path.trim() || !h.path.trim() ? { ...b, ...c } : (o.push(b.alias), {
+      ...b,
+      ...c,
+      path: h.path,
+      // 已上传文件的真实时长比 skill 中的计划时长更可靠。
+      durationSeconds: h.durationSeconds ?? b.durationSeconds,
+      audioDurationSeconds: h.audioDurationSeconds ?? b.audioDurationSeconds,
+      fingerprint: h.fingerprint || b.fingerprint
+    });
+  });
+  const s = e.project.name === r.project.name && e.project.runId === r.project.runId, l = new Map((s ? e.shots : []).map((b) => [b.id, b]));
+  let a = 0, d = 0;
+  return r.shots = r.shots.map((b) => {
+    const h = l.get(b.id);
+    if (!h) return b;
+    const c = { ...b };
+    return !c.review && h.review && (c.review = h.review, a += 1), c.seed == null && h.seed != null && (c.seed = h.seed, d += 1), c;
+  }), e.pipeline && r.pipeline && (r.pipeline.secondPassDenoise = ((p = t.pipeline) == null ? void 0 : p.secondPassDenoise) ?? e.pipeline.secondPassDenoise ?? Dr, r.pipeline.secondPassScale = ((m = t.pipeline) == null ? void 0 : m.secondPassScale) ?? e.pipeline.secondPassScale), { plan: r, keptPaths: o, keptReviews: a, keptSeeds: d };
+}
+function an(e) {
+  return e.trim().replace(/[<>:"/\\|?*\u0000-\u001f]+/g, "_").replace(/[. ]+$/g, "").slice(0, 96) || "theodore_project";
+}
+const Me = (e) => e.trim().toLocaleLowerCase(), Xi = /* @__PURE__ */ new Set(["image", "video", "audio"]);
+function Fr(e) {
+  if (!Array.isArray(e)) throw new Error("素材清单必须为数组 / Expected an asset list");
+  const t = /* @__PURE__ */ new Set();
+  for (const r of e) {
+    if (!r || typeof r.alias != "string" || !r.alias.trim() || /[\s{}]/.test(r.alias) || Me(r.alias).endsWith(".audio") || !Xi.has(r.kind)) throw new Error("素材别名或类型无效 / Invalid asset alias or kind");
+    if (t.has(Me(r.alias))) throw new Error(`素材别名重复 / Duplicate alias: ${r.alias}`);
+    if (t.add(Me(r.alias)), r.path != null && typeof r.path != "string") throw new Error("素材路径必须为字符串 / Expected a string path");
+  }
+}
+function Ur(e) {
+  var r, i;
+  const t = e;
+  if (!t || t.format !== "theodore-assets" || t.version !== 1 || typeof ((r = t.library) == null ? void 0 : r.id) != "string" || !t.library.id.trim() || typeof ((i = t.library) == null ? void 0 : i.name) != "string") throw new Error("不是有效的素材库 JSON / Invalid asset library JSON");
+  Fr(t.assets);
+}
+function Sn(e) {
+  var i;
+  const t = e;
+  if (!t || t.format !== "theodore-episode" || t.version !== 1 || typeof ((i = t.project) == null ? void 0 : i.name) != "string" || !t.project.name.trim() || !Array.isArray(t.shots) || !Array.isArray(t.requiredAssets)) throw new Error("不是有效的分镜 JSON / Invalid episode JSON");
+  Fr(t.requiredAssets);
+  const r = new Set(t.requiredAssets.map((o) => Me(o.alias)));
+  for (const o of Br(t)) if (!r.has(o)) throw new Error(`分镜未声明素材 / Undeclared asset: ${o}`);
+}
+function Br(e) {
+  const t = /* @__PURE__ */ new Set();
+  for (const r of [e.promptPrefix, e.promptSuffix, ...e.shots.flatMap((i) => [i.prompt, i.negativePrompt])])
+    for (const i of (r ?? "").matchAll(/\{\{ref:([^}]+)\}\}/g)) t.add(Me(i[1].replace(/\.audio$/i, "")));
+  return t;
+}
+function Jn(e) {
   return {
-    value: `${e.slice(0, t.start)}${o}${e.slice(t.end)}`,
-    caret: t.start + o.length
+    format: "theodore-assets",
+    version: 1,
+    library: ot(e.assetLibrary ?? { id: `library_${e.project.id}`, name: e.project.name }),
+    // 镜头适用范围属于当集，系列清单不携带其他集的镜头 ID。
+    assets: e.assets.map((t) => ({ ...ot(t), enabled: !0, fixed: !1, shotIds: [] }))
   };
 }
-const jr = String.raw`\{\{ref:([^{}]+)}}`;
-function Vn() {
-  return new RegExp(jr, "g");
+function Kn(e) {
+  const { assets: t, ...r } = ot(e), i = Br(e), o = new Set(e.shots.flatMap((a) => a.disabledAssetIds)), s = t.filter((a) => i.has(Me(a.alias)) || a.fixed || o.has(a.id)).map(({ id: a, alias: d, kind: p, enabled: m, fixed: b, shotIds: h, includeVideoAudio: c }) => ({ id: a, alias: d, kind: p, enabled: m, fixed: b, shotIds: h, includeVideoAudio: c })), l = { ...r, format: "theodore-episode", version: 1, requiredAssets: s };
+  return Sn(l), l;
 }
-function Nr(e, t) {
-  return e.assets.filter((r) => r.enabled && r.path.trim() && (!(r.shotIds ?? []).length || (r.shotIds ?? []).includes(t.id)) && !(t.disabledAssetIds ?? []).includes(r.id));
+function Zi(e, t) {
+  Ur(t);
+  const r = _t({ ...e, assets: t.assets }).assets, i = ot(e), o = new Map(i.assets.map((p) => [Me(p.alias), p])), s = new Set(i.assets.map((p) => p.id));
+  let l = 0, a = 0;
+  const d = [];
+  for (const p of r) {
+    const m = o.get(Me(p.alias));
+    if (m) {
+      if (m.kind !== p.kind) throw new Error(`同名素材类型不同 / Asset kind mismatch: ${p.alias}`);
+      const b = !p.path.trim() && !!m.path.trim(), h = {
+        ...m,
+        ...p,
+        id: m.id,
+        alias: m.alias,
+        enabled: m.enabled,
+        fixed: m.fixed,
+        fixedOrder: m.fixedOrder,
+        shotIds: m.shotIds,
+        imageGeneration: p.imageGeneration ?? m.imageGeneration,
+        imageGenerationPending: p.imageGenerationPending ?? m.imageGenerationPending
+      };
+      b && (h.path = m.path, h.durationSeconds = m.durationSeconds, h.audioDurationSeconds = m.audioDurationSeconds, h.fingerprint = m.fingerprint, d.push(m.alias)), Object.assign(m, h), a += 1;
+    } else {
+      const b = { ...p, id: s.has(p.id) ? kn("asset") : p.id, shotIds: [] };
+      s.add(b.id), o.set(Me(p.alias), b), i.assets.push(b), l += 1;
+    }
+  }
+  return i.assetLibrary = ot(t.library), { plan: i, added: l, updated: a, keptPaths: d };
 }
-function Lr(e, t) {
-  const r = /* @__PURE__ */ new Map();
-  for (const o of Nr(e, t)) r.set(o.alias, o);
+function eo(e, t) {
+  Sn(t);
+  const r = ot(e.assets).map((h) => ({ ...h, fixed: !1, shotIds: [] })), i = new Map(r.map((h) => [Me(h.alias), h])), o = new Set(r.map((h) => h.id)), s = /* @__PURE__ */ new Map(), l = [];
+  for (const h of t.requiredAssets) {
+    let c = i.get(Me(h.alias));
+    if (c && c.kind !== h.kind) throw new Error(`同名素材类型不同 / Asset kind mismatch: ${h.alias}`);
+    if (!c) {
+      const g = h.id && !o.has(h.id) ? h.id : kn("asset");
+      c = { id: g, alias: h.alias, kind: h.kind, path: "", enabled: !0, fixed: !1, fixedOrder: r.length + 1, shotIds: [], includeVideoAudio: !1, durationSeconds: null, audioDurationSeconds: null, fingerprint: "" }, r.push(c), i.set(Me(h.alias), c), o.add(g);
+    }
+    c.enabled = h.enabled ?? !0, c.fixed = h.fixed ?? !1, c.shotIds = [...h.shotIds ?? []], c.includeVideoAudio = h.includeVideoAudio ?? c.includeVideoAudio, h.id && s.set(h.id, c.id), c.path.trim() || l.push(h.alias);
+  }
+  const { format: a, version: d, requiredAssets: p, ...m } = t, b = Gr(e, { ...m, assetLibrary: t.assetLibrary ?? e.assetLibrary, assets: r });
+  return b.plan.assets = r, b.plan.shots = b.plan.shots.map((h) => ({ ...h, disabledAssetIds: h.disabledAssetIds.map((c) => s.get(c) ?? c) })), { ...b, keptPaths: r.filter((h) => h.path.trim()).map((h) => h.alias), missingAssets: l };
+}
+function Ge(e) {
+  return (Array.isArray(e.results) && e.results.length ? e.results : e.path ? [{ path: e.path, bytes: e.bytes, modifiedAt: e.modifiedAt, stage: e.stage, processingMode: e.processingMode, sourcePath: e.sourcePath, completedAt: e.completedAt }] : []).filter((r) => typeof r.path == "string" && r.path.trim().length > 0).sort((r, i) => (i.modifiedAt ?? 0) - (r.modifiedAt ?? 0));
+}
+function to(e, t) {
+  const r = /_video_(\d+)/i.exec(e.replace(/\\/g, "/"));
+  return r ? Number(r[1]) : t;
+}
+function no(e, t) {
+  return e.stage === "second_pass" && t !== "super_resolution_only" ? "second_pass_requires_upscale_only" : e.stage === "upscaled" ? "upscaled_is_terminal" : null;
+}
+function ro(e, t) {
+  return no(e, t) === null;
+}
+function io(e) {
+  return ["super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"].filter((r) => ro(e, r));
+}
+function Vr(e) {
+  const t = ke(null), [r, i] = G(!1);
+  return Ee(() => {
+    const o = t.current;
+    if (!o) return;
+    if (!("IntersectionObserver" in window)) {
+      i(!0);
+      return;
+    }
+    const s = new IntersectionObserver((l) => {
+      i(l.some((a) => a.isIntersecting));
+    }, { rootMargin: e });
+    return s.observe(o), () => s.disconnect();
+  }, []), { hostRef: t, active: r };
+}
+function oo({ src: e, className: t }) {
+  const { hostRef: r, active: i } = Vr("320px");
+  return /* @__PURE__ */ n("div", { class: `td-lazy-player ${t ?? ""}`, ref: r, children: i ? /* @__PURE__ */ n("video", { src: e, controls: !0, preload: "metadata", playsInline: !0 }, e) : /* @__PURE__ */ n("span", { children: "…" }) });
+}
+function ct({ src: e, alt: t }) {
+  const { hostRef: r, active: i } = Vr("160px");
+  return /* @__PURE__ */ n("div", { class: "td-result-thumb", ref: r, children: i ? /* @__PURE__ */ n("video", { src: e, "aria-label": t, muted: !0, playsInline: !0, preload: "metadata", onLoadedMetadata: (o) => {
+    const s = o.currentTarget;
+    Number.isFinite(s.duration) && s.duration > 0.02 && (s.currentTime = Math.min(0.25, Math.max(0, s.duration - 0.05)));
+  } }) : /* @__PURE__ */ n("span", { children: "…" }) });
+}
+function $n(e) {
+  let t = 0;
+  return e.shots.map((r, i) => {
+    const o = {
+      key: `${i}:${r.id}`,
+      shot: r,
+      sourceIndex: i,
+      activeIndex: r.enabled ? t : -1
+    };
+    return r.enabled && (t += 1), o;
+  });
+}
+function ao(e, t, r) {
+  return e.filter((i) => i.shot.enabled && t[i.key]).map((i) => ({
+    shotId: i.shot.id,
+    activeIndex: i.activeIndex,
+    path: r[i.key] ?? ""
+  }));
+}
+function so(e, t, r) {
+  const i = {};
+  return e.forEach((o) => {
+    const s = o.sourceIndex + 1;
+    i[o.key] = o.shot.enabled && s >= t && s <= r;
+  }), i;
+}
+const qr = 5;
+function lo(e) {
+  return !e.stage || e.stage === "first_pass" || e.stage === "legacy_unknown";
+}
+function Le(e) {
+  return e.filter(lo).sort((t, r) => (r.modifiedAt ?? 0) - (t.modifiedAt ?? 0));
+}
+function Xe(e, t) {
+  var i;
+  const r = (i = e.review) == null ? void 0 : i.take;
+  return r && t.find((o) => o.path === r) || t[0];
+}
+const Qn = (e) => (e ?? "").replace(/\\/g, "/").replace(/^\.\//, "");
+function Dt(e, t, r) {
+  const i = Qn(t);
+  return e.filter((o) => (o.stage === "second_pass" || o.stage === "upscaled") && Qn(o.sourcePath) === i).filter((o) => o.relayValid !== !1).filter((o) => !0).sort((o, s) => (s.modifiedAt ?? 0) - (o.modifiedAt ?? 0));
+}
+function Hr(e, t) {
+  const r = Xe(e, Le(t));
+  if (!r) return;
+  const i = Dt(t, r.path)[0];
+  return i ? { item: i, processed: !0 } : { item: r, processed: !1 };
+}
+function kt(e, t) {
+  const r = e.shots.findIndex((i) => i.id === t);
+  for (let i = r - 1; i >= 0; i -= 1)
+    if (e.shots[i].enabled) return e.shots[i];
+}
+function at(e, t) {
+  return t.enabled && t.latentRelay && e.continuity.mode === "h3_av_latent" && !!kt(e, t.id);
+}
+function Wr(e, t) {
+  const r = e.shots.findIndex((o) => o.id === t);
+  if (r < 0) return [];
+  const i = [t];
+  for (let o = r + 1; o < e.shots.length; o += 1) {
+    const s = e.shots[o];
+    if (s.enabled) {
+      if (!at(e, s)) break;
+      i.push(s.id);
+    }
+  }
+  return i;
+}
+function Gt(e, t) {
+  return e.shots.filter((r) => r.enabled).findIndex((r) => r.id === t);
+}
+function co(e, t) {
+  const r = e.shots.filter((o) => o.enabled), i = r.findIndex((o) => o.id === t);
+  return i >= 0 && i + 1 < r.length ? i + 1 : 0;
+}
+function Jr(e, t) {
+  var s, l;
+  const r = (s = e.pipeline) == null ? void 0 : s.latentWriters, i = e.shots.find((a) => a.id === t);
+  if (!r || !i || !at(e, i)) return null;
+  const o = r[String(Gt(e, t))];
+  return o ? o.shotId === ((l = kt(e, t)) == null ? void 0 : l.id) ? null : "wrong" : "missing";
+}
+function po(e, t) {
+  const r = new Set(t), i = [];
+  let o = !0;
+  for (; o; ) {
+    o = !1;
+    for (const l of [...r]) {
+      const a = kt(e, l);
+      !a || r.has(a.id) || !Jr(e, l) || (r.add(a.id), i.push(a.id), o = !0);
+    }
+  }
+  return { shotIds: e.shots.filter((l) => r.has(l.id)).map((l) => l.id), added: e.shots.filter((l) => i.includes(l.id)).map((l) => l.id) };
+}
+function ho(e, t) {
+  var i;
+  if (!t) return;
+  const r = (t.modifiedAt ?? 0) + qr;
+  return [...((i = e.review) == null ? void 0 : i.relayHistory) ?? []].sort((o, s) => s.at - o.at).find((o) => o.at <= r);
+}
+function uo(e, t, r) {
+  const i = r != null ? r + qr : t.modifiedAt ?? 0;
+  return [...e].sort((o, s) => (s.modifiedAt ?? 0) - (o.modifiedAt ?? 0)).find((o) => (o.modifiedAt ?? 0) <= i);
+}
+function mo(e, t, r, i, o) {
+  if (!e || !r) return "unknown";
+  if (o) {
+    if (o.source == null) return "unknown";
+    if (i && o.source !== i) return "wrong_source";
+  }
+  const s = uo(t, r, o == null ? void 0 : o.sourceAt);
+  return s ? s.path === e.path ? "ok" : "mismatch" : "unknown";
+}
+function go(e) {
+  let t = 5381;
+  for (let r = 0; r < e.length; r += 1) t = (t << 5) + t + e.charCodeAt(r) | 0;
+  return (t >>> 0).toString(36);
+}
+function Kr(e, t) {
+  const r = e.assets.filter((i) => !(i.shotIds ?? []).length || i.shotIds.includes(t.id)).map((i) => [i.alias, i.kind, i.path, i.enabled, i.includeVideoAudio, i.durationSeconds, i.fixed, i.fixedOrder]);
+  return go(JSON.stringify([
+    t.prompt,
+    t.negativePrompt,
+    t.durationSeconds,
+    t.latentRelay,
+    t.seed,
+    [...t.disabledAssetIds ?? []].sort(),
+    e.promptPrefix,
+    e.promptSuffix,
+    e.continuity,
+    r,
+    ...e.generation ? [e.generation, e.defaults.fps, e.defaults.baseSeed] : []
+  ]));
+}
+function Qr(e, t) {
+  var i;
+  const r = (i = t.review) == null ? void 0 : i.generatedSig;
+  return !!r && r !== Kr(e, t);
+}
+function Yr() {
+  return Math.floor(Math.random() * 4294967295);
+}
+function fo(e, t, r) {
+  return `/theodore-director/v1/generated-video?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId, shotId: t, activeIndex: String(r) }).toString()}`;
+}
+function bo(e, t, r) {
+  return t === "latent_upscale_second_pass" ? r === "zh" ? "Latent 放大二采" : "Latent upscale 2nd pass" : t === "super_resolution_second_pass" || e === "second_pass" ? r === "zh" ? "超分二采" : "Super-res 2nd pass" : t === "super_resolution_only" || e === "upscaled" ? r === "zh" ? "只超分" : "Super-res only" : e === "first_pass" ? r === "zh" ? "一采" : "1st pass" : r === "zh" ? "旧结果" : "Legacy";
+}
+function xo(e, t) {
+  return e === "latent_upscale_second_pass" ? t === "zh" ? "Latent 放大二采" : "Latent upscale 2nd pass" : e === "super_resolution_only" ? t === "zh" ? "只超分" : "Super-res only" : t === "zh" ? "超分二采" : "Super-res 2nd pass";
+}
+function vo({ plan: e, language: t, queueSecondPass: r }) {
+  var u;
+  const i = He(() => $n(e), [e]), [o, s] = G({}), [l, a] = G({}), [d, p] = G(null), [m, b] = G(0), [h, c] = G({}), [g, S] = G({ value: 0, max: 0 }), T = ke(!1), y = ((u = e.pipeline) == null ? void 0 : u.secondPassDenoise) ?? 0.3;
+  Ee(() => {
+    let $ = !1;
+    const j = {};
+    return i.forEach((E) => {
+      j[E.key] = { loading: !0, response: { found: !1, results: [] } };
+    }), s(j), i.forEach((E) => {
+      fetch(fo(e, E.shot.id, E.activeIndex)).then(async (P) => {
+        const C = await P.json();
+        if (!P.ok) throw new Error(C.error || `HTTP ${P.status}`);
+        $ || s((N) => ({ ...N, [E.key]: { loading: !1, response: C } }));
+      }).catch((P) => {
+        $ || s((C) => ({ ...C, [E.key]: { loading: !1, response: { found: !1, results: [], error: String(P) } } }));
+      });
+    }), () => {
+      $ = !0;
+    };
+  }, [e.project.name, e.project.runId, e.shots.map(($) => $.id).join("|"), m]);
+  const v = async ($, j, E) => {
+    if (!r || T.current) return;
+    T.current = !0;
+    const P = `${j}:${E}`;
+    a((C) => ({ ...C, [P]: { state: "queued" } }));
+    try {
+      await r({
+        plan: e,
+        shotId: $,
+        sourcePath: j,
+        requestId: `td2_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`,
+        processingMode: E,
+        relayVersion: 1,
+        sourceSelections: Object.fromEntries(i.flatMap((C) => {
+          var R;
+          const N = Xe(C.shot, Le(Ge(((R = o[C.key]) == null ? void 0 : R.response) ?? { found: !1 })));
+          return N ? [[C.shot.id, N.path]] : [];
+        })),
+        phase: "second_pass",
+        denoise: E === "super_resolution_only" ? void 0 : y,
+        onProgress: S
+      }), a((C) => ({ ...C, [P]: { state: "done" } })), b((C) => C + 1);
+    } catch (C) {
+      a((N) => ({ ...N, [P]: { state: "error", message: String(C instanceof Error ? C.message : C) } }));
+    } finally {
+      T.current = !1;
+    }
+  }, x = Object.values(l).some(($) => $.state === "queued");
+  return /* @__PURE__ */ n("section", { class: "td-postprocess td-second-pass-panel", children: [
+    /* @__PURE__ */ n("div", { class: "td-post-header", children: [
+      /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ n("h2", { children: t === "zh" ? "单独二采" : "Standalone processing" }),
+        /* @__PURE__ */ n("p", { children: t === "zh" ? "对满意结果执行所选高清处理；二采结果只能继续只超分，不重跑一采或启动 Impact 循环。" : "Process a selected result; second-pass outputs may only continue with Super-res only, without rerunning the first pass or Impact loop." })
+      ] }),
+      /* @__PURE__ */ n("div", { class: "td-post-actions", children: /* @__PURE__ */ n("button", { onClick: () => b(($) => $ + 1), children: [
+        "↻ ",
+        t === "zh" ? "刷新结果" : "Refresh"
+      ] }) })
+    ] }),
+    /* @__PURE__ */ n("div", { class: "td-post-warning", children: t === "zh" ? `整体二采请到「审片与生成」页执行（使用每段选定的结果，按分镜顺序）。这里用于单独处理某一个结果；重绘强度沿用审片页设置：${y.toFixed(2)}。` : `Run the batch second pass from Review & generate. Denoise: ${y.toFixed(2)}.` }),
+    x && /* @__PURE__ */ n("div", { class: "td-batch-progress", children: [
+      /* @__PURE__ */ n("span", { children: t === "zh" ? "当前任务进度" : "Current task" }),
+      /* @__PURE__ */ n("progress", { max: g.max || 1, value: g.value }),
+      /* @__PURE__ */ n("b", { children: g.max ? `${Math.round(g.value / g.max * 100)}%` : "…" })
+    ] }),
+    !r && /* @__PURE__ */ n("div", { class: "td-post-warning", children: t === "zh" ? "当前工作流缺少后处理二采支流，请重新载入仓库中的 V7 导播台示例工作流。" : "This workflow does not contain the standalone second-pass branch. Reload the V7 example workflow from the repository." }),
+    /* @__PURE__ */ n("div", { class: "td-post-shot-list", children: i.map(($) => {
+      const j = o[$.key], E = Ge((j == null ? void 0 : j.response) ?? { results: [] });
+      return /* @__PURE__ */ n("article", { class: "td-post-shot", children: [
+        /* @__PURE__ */ n("header", { children: [
+          /* @__PURE__ */ n("span", { children: [
+            /* @__PURE__ */ n("strong", { children: $.shot.id }),
+            /* @__PURE__ */ n("em", { children: $.shot.title })
+          ] }),
+          /* @__PURE__ */ n("span", { children: [
+            $.shot.durationSeconds,
+            "s"
+          ] })
+        ] }),
+        !$.shot.enabled && /* @__PURE__ */ n("div", { class: "td-post-shot-disabled-note", children: t === "zh" ? "镜头已禁用，但仍可对历史一采结果进行后处理。" : "This shot is disabled, but its historical first-pass results remain available." }),
+        j != null && j.loading ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "正在查询生成结果…" : "Loading results…" }) : j != null && j.response.error ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty errors", children: t === "zh" ? "查询失败，请重启 ComfyUI 后重试。" : "Query failed. Restart ComfyUI and retry." }) : E.length ? /* @__PURE__ */ n("div", { class: "td-post-result-list", children: E.map((P) => {
+          const C = Pe(P.path, "output"), N = io(P), R = N.includes(h[P.path]) ? h[P.path] : N[0], F = R ? l[`${P.path}:${R}`] : void 0;
+          return /* @__PURE__ */ n("div", { class: "td-second-pass-result", children: [
+            /* @__PURE__ */ n("button", { class: "td-post-result-choice", onClick: () => C && p({ path: P.path, title: `${$.shot.id} · ${$.shot.title}` }), children: [
+              C ? /* @__PURE__ */ n(ct, { src: C, alt: ze(P.path) }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
+              /* @__PURE__ */ n("span", { children: [
+                /* @__PURE__ */ n("strong", { children: [
+                  bo(P.stage, P.processingMode, t),
+                  (P.stage === "legacy_unknown" || !P.stage) && /* @__PURE__ */ n("em", { children: t === "zh" ? "兼容" : "Compatible" })
+                ] }),
+                /* @__PURE__ */ n("span", { title: P.path, children: ze(P.path) }),
+                /* @__PURE__ */ n("small", { children: P.bytes ? `${(P.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
+              ] })
+            ] }),
+            /* @__PURE__ */ n("div", { class: "td-second-pass-actions", children: [
+              R ? /* @__PURE__ */ n("select", { "aria-label": t === "zh" ? "该视频可用的处理方式" : "Available processing modes for this video", value: R, disabled: x, onChange: (I) => c((ne) => ({ ...ne, [P.path]: I.currentTarget.value })), children: N.map((I) => /* @__PURE__ */ n("option", { value: I, children: xo(I, t) })) }) : /* @__PURE__ */ n("span", { class: "td-second-pass-terminal", children: t === "zh" ? "只超分后不可再处理" : "Upscaled: no further processing" }),
+              /* @__PURE__ */ n("button", { class: "primary td-second-pass-run", disabled: !r || !R || x, onClick: () => R && void v($.shot.id, P.path, R), children: (F == null ? void 0 : F.state) === "queued" ? t === "zh" ? "排队/执行中…" : "Queued/running…" : (F == null ? void 0 : F.state) === "done" ? t === "zh" ? "处理完成" : "Completed" : t === "zh" ? "开始处理" : "Process" })
+            ] }),
+            (F == null ? void 0 : F.state) === "error" && /* @__PURE__ */ n("div", { class: "td-second-pass-error", children: F.message })
+          ] }, P.path);
+        }) }) : /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "没有可用的生成结果" : "No generated result available" })
+      ] }, $.key);
+    }) }),
+    d && Pe(d.path, "output") && /* @__PURE__ */ n("div", { class: "td-post-preview-overlay", role: "presentation", onClick: () => p(null), children: /* @__PURE__ */ n("section", { role: "dialog", "aria-modal": "true", onClick: ($) => $.stopPropagation(), children: [
+      /* @__PURE__ */ n("header", { children: [
+        /* @__PURE__ */ n("strong", { children: d.title }),
+        /* @__PURE__ */ n("button", { onClick: () => p(null), children: "×" })
+      ] }),
+      /* @__PURE__ */ n("video", { src: Pe(d.path, "output") ?? "", controls: !0, autoPlay: !0, preload: "metadata", playsInline: !0 }),
+      /* @__PURE__ */ n("p", { children: ze(d.path) })
+    ] }) })
+  ] });
+}
+function wo(e, t, r) {
+  return `/theodore-director/v1/generated-video?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId, shotId: t, activeIndex: String(r) }).toString()}`;
+}
+function yo(e) {
+  return `/theodore-director/v1/postprocess/merged-videos?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId }).toString()}`;
+}
+async function Yn(e) {
+  const t = await fetch(e), r = await t.json();
+  if (!t.ok) throw new Error(r.error || `HTTP ${t.status}`);
   return r;
 }
-function Mr(e, t, r) {
-  const o = r.trim(), i = o.endsWith(".audio"), a = i ? o.slice(0, -6) : o, l = Lr(e, t).get(a);
-  return l ? !i || l.kind === "video" && l.includeVideoAudio : !1;
+function Xn(e, t) {
+  const r = Ge(e).filter((i) => i.path !== t);
+  return { found: !!r.length, count: r.length, results: r };
 }
-function Hn(e, t) {
-  const r = e.shots.filter((o) => o.enabled);
-  return r.length > 0 && r.every((o) => Mr(e, o, t));
+function _o(e, t, r, i = "") {
+  return { projectName: e.project.name, runId: e.project.runId, kind: t, shotId: i, path: r };
 }
-function Wo(e) {
+function ko(e, t) {
+  return e.processingMode === "latent_upscale_second_pass" ? t === "zh" ? "Latent 放大二采" : "Latent upscale 2nd pass" : e.processingMode === "super_resolution_second_pass" || e.stage === "second_pass" ? t === "zh" ? "超分二采" : "Super-res 2nd pass" : e.processingMode === "super_resolution_only" || e.stage === "upscaled" ? t === "zh" ? "只超分" : "Super-res only" : e.stage === "first_pass" ? t === "zh" ? "一采" : "1st pass" : t === "zh" ? "旧结果" : "Legacy";
+}
+function So({ plan: e, language: t }) {
+  const r = He(() => $n(e), [e]), [i, o] = G({}), [s, l] = G({ loading: !0, response: { found: !1, results: [] } }), [a, d] = G({}), [p, m] = G(null), [b, h] = G(""), [c, g] = G(0);
+  Ee(() => {
+    let v = !1;
+    const x = {};
+    return r.forEach((u) => {
+      x[u.key] = { loading: !0, response: { found: !1, results: [] } };
+    }), o(x), h(""), r.forEach((u) => {
+      Yn(wo(e, u.shot.id, u.activeIndex)).then(($) => {
+        v || o((j) => ({ ...j, [u.key]: { loading: !1, response: $ } }));
+      }).catch(($) => {
+        v || o((j) => ({ ...j, [u.key]: { loading: !1, response: { found: !1, results: [], error: String($) } } }));
+      });
+    }), () => {
+      v = !0;
+    };
+  }, [e.project.name, e.project.runId, e.shots.map((v) => v.id).join("|"), c]), Ee(() => {
+    let v = !1;
+    return l({ loading: !0, response: { found: !1, results: [] } }), Yn(yo(e)).then((x) => {
+      v || l({ loading: !1, response: x });
+    }).catch((x) => {
+      v || l({ loading: !1, response: { found: !1, results: [], error: String(x) } });
+    }), () => {
+      v = !0;
+    };
+  }, [e.project.name, e.project.runId, c]);
+  const S = async (v, x, u = "", $ = "") => {
+    const j = ze(x.path);
+    if (window.confirm(t === "zh" ? `确定将“${j}”移入系统回收站吗？
+可从系统回收站恢复。` : `Move “${j}” to the system trash?
+You can restore it from the trash.`)) {
+      (p == null ? void 0 : p.path) === x.path && m(null), d((P) => ({ ...P, [x.path]: !0 })), h(""), await new Promise((P) => requestAnimationFrame(() => requestAnimationFrame(() => P())));
+      try {
+        const P = await fetch("/theodore-director/v1/postprocess/delete-video", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(_o(e, v, x.path, u))
+        }), C = await P.json();
+        if (!P.ok) throw new Error(C.error || `HTTP ${P.status}`);
+        v === "merged" ? l((N) => ({ ...N, response: Xn(N.response, x.path) })) : o((N) => {
+          var R;
+          return {
+            ...N,
+            [$]: { ...N[$], response: Xn(((R = N[$]) == null ? void 0 : R.response) ?? { found: !1, results: [] }, x.path) }
+          };
+        });
+      } catch (P) {
+        h(String(P instanceof Error ? P.message : P));
+      } finally {
+        d((P) => {
+          const C = { ...P };
+          return delete C[x.path], C;
+        });
+      }
+    }
+  }, T = (v, x, u, $ = "", j = "") => {
+    const E = Pe(v.path, "output"), P = !!a[v.path];
+    return /* @__PURE__ */ n("div", { class: `td-delete-result ${P ? "deleting" : ""}`, children: [
+      /* @__PURE__ */ n("button", { class: "td-post-result-choice", disabled: P || !E, onClick: () => E && m({ path: v.path, title: u }), children: [
+        P ? /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "…" }) : E ? /* @__PURE__ */ n(ct, { src: E, alt: $o(v, t) }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
+        /* @__PURE__ */ n("span", { children: [
+          /* @__PURE__ */ n("strong", { children: x === "merged" ? t === "zh" ? "合并视频" : "Merged video" : ko(v, t) }),
+          /* @__PURE__ */ n("span", { title: v.path, children: ze(v.path) }),
+          /* @__PURE__ */ n("small", { children: v.bytes ? `${(v.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
+        ] })
+      ] }),
+      /* @__PURE__ */ n("button", { class: "danger td-delete-video-button", disabled: P, onClick: () => void S(x, v, $, j), children: P ? t === "zh" ? "正在移动…" : "Moving…" : t === "zh" ? "移入回收站" : "Move to trash" })
+    ] }, v.path);
+  }, y = Ge(s.response);
+  return /* @__PURE__ */ n("section", { class: "td-postprocess td-delete-panel", children: [
+    /* @__PURE__ */ n("div", { class: "td-post-header", children: [
+      /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ n("h2", { children: t === "zh" ? "删除视频" : "Delete videos" }),
+        /* @__PURE__ */ n("p", { children: t === "zh" ? "逐条预览并将当前项目的视频移入系统回收站；不会删除素材、latent 或尾帧。" : "Preview videos and move them to the system trash one at a time. Assets, latent files, and tail frames are preserved." })
+      ] }),
+      /* @__PURE__ */ n("div", { class: "td-post-actions", children: /* @__PURE__ */ n("button", { onClick: () => g((v) => v + 1), children: [
+        "↻ ",
+        t === "zh" ? "刷新结果" : "Refresh"
+      ] }) })
+    ] }),
+    b && /* @__PURE__ */ n("div", { class: "td-post-error", children: [
+      t === "zh" ? "删除失败：" : "Delete failed: ",
+      b
+    ] }),
+    /* @__PURE__ */ n("div", { class: "td-post-shot-list", children: r.map((v) => {
+      const x = i[v.key], u = Ge((x == null ? void 0 : x.response) ?? { results: [] });
+      return /* @__PURE__ */ n("article", { class: "td-post-shot", children: [
+        /* @__PURE__ */ n("header", { children: [
+          /* @__PURE__ */ n("span", { children: [
+            /* @__PURE__ */ n("strong", { children: v.shot.id }),
+            /* @__PURE__ */ n("em", { children: v.shot.title })
+          ] }),
+          /* @__PURE__ */ n("span", { children: [
+            v.shot.durationSeconds,
+            "s"
+          ] })
+        ] }),
+        !v.shot.enabled && /* @__PURE__ */ n("div", { class: "td-post-shot-disabled-note", children: t === "zh" ? "镜头已禁用，仍可管理其历史视频。" : "This shot is disabled; its historical videos can still be managed." }),
+        x != null && x.loading ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "正在查询生成结果…" : "Loading results…" }) : x != null && x.response.error ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty errors", children: t === "zh" ? "查询失败" : "Unable to load results" }) : u.length ? /* @__PURE__ */ n("div", { class: "td-post-result-list", children: u.map(($) => T($, "shot", `${v.shot.id} · ${v.shot.title}`, v.shot.id, v.key)) }) : /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "没有生成视频" : "No generated videos" })
+      ] }, v.key);
+    }) }),
+    /* @__PURE__ */ n("section", { class: "td-post-merged td-delete-merged", children: [
+      /* @__PURE__ */ n("header", { children: /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ n("h2", { children: t === "zh" ? "合并视频" : "Merged videos" }),
+        /* @__PURE__ */ n("span", { class: `td-result-state ${y.length ? "found" : ""}`, children: s.loading ? t === "zh" ? "查询中" : "Loading" : t === "zh" ? `${y.length} 个结果` : `${y.length} results` })
+      ] }) }),
+      s.loading ? /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "正在查询合并视频…" : "Loading merged videos…" }) : s.response.error ? /* @__PURE__ */ n("div", { class: "td-result-empty errors", children: t === "zh" ? "无法查询合并视频" : "Unable to load merged videos" }) : y.length ? /* @__PURE__ */ n("div", { class: "td-delete-merged-list", children: y.map((v) => T(v, "merged", t === "zh" ? "合并视频" : "Merged video")) }) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "没有合并视频" : "No merged videos" })
+    ] }),
+    p && Pe(p.path, "output") && /* @__PURE__ */ n("div", { class: "td-post-preview-overlay", role: "presentation", onClick: () => m(null), children: /* @__PURE__ */ n("section", { role: "dialog", "aria-modal": "true", onClick: (v) => v.stopPropagation(), children: [
+      /* @__PURE__ */ n("header", { children: [
+        /* @__PURE__ */ n("strong", { children: p.title }),
+        /* @__PURE__ */ n("button", { "aria-label": t === "zh" ? "关闭预览" : "Close preview", onClick: () => m(null), children: "×" })
+      ] }),
+      /* @__PURE__ */ n("video", { src: Pe(p.path, "output") ?? "", controls: !0, autoPlay: !0, preload: "metadata", playsInline: !0 }),
+      /* @__PURE__ */ n("p", { title: p.path, children: ze(p.path) })
+    ] }) })
+  ] });
+}
+function $o(e, t) {
+  return `${t === "zh" ? "视频" : "Video"} ${ze(e.path)}`;
+}
+async function Zn(e) {
+  const t = await fetch(e), r = await t.json();
+  if (!t.ok) throw new Error(r.error || `HTTP ${t.status}`);
+  return r;
+}
+function Io(e, t, r) {
+  return `/theodore-director/v1/generated-video?${new URLSearchParams({
+    projectName: e.project.name,
+    runId: e.project.runId,
+    shotId: t,
+    activeIndex: String(r)
+  }).toString()}`;
+}
+function Po(e) {
+  return `/theodore-director/v1/postprocess/merged-videos?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId }).toString()}`;
+}
+function Co({ plan: e, language: t, queueSecondPass: r }) {
+  const [i, o] = G("merge");
+  return /* @__PURE__ */ n("section", { class: "td-postprocess-shell", children: [
+    /* @__PURE__ */ n("div", { class: "td-post-mode-tabs", role: "tablist", children: [
+      /* @__PURE__ */ n("button", { class: i === "merge" ? "active" : "", role: "tab", "aria-selected": i === "merge", onClick: () => o("merge"), children: t === "zh" ? "合并视频" : "Merge videos" }),
+      /* @__PURE__ */ n("button", { class: i === "second-pass" ? "active" : "", role: "tab", "aria-selected": i === "second-pass", onClick: () => o("second-pass"), children: t === "zh" ? "单独二采" : "Standalone second pass" }),
+      /* @__PURE__ */ n("button", { class: i === "delete" ? "active" : "", role: "tab", "aria-selected": i === "delete", onClick: () => o("delete"), children: t === "zh" ? "删除视频" : "Delete videos" })
+    ] }),
+    i === "merge" ? /* @__PURE__ */ n(Eo, { plan: e, language: t }) : i === "second-pass" ? /* @__PURE__ */ n(vo, { plan: e, language: t, queueSecondPass: r }) : /* @__PURE__ */ n(So, { plan: e, language: t })
+  ] });
+}
+function Eo({ plan: e, language: t }) {
+  const r = He(() => $n(e), [e]), [i, o] = G({}), [s, l] = G({}), [a, d] = G({}), [p, m] = G(null), [b, h] = G(!1), [c, g] = G(""), [S, T] = G(""), [y, v] = G({ found: !1, results: [] }), [x, u] = G(!1), [$, j] = G(!1), [E, P] = G(""), [C, N] = G(0), [R, F] = G("1"), [I, ne] = G(String(r.length || 1)), k = r.filter((z) => z.shot.enabled), D = k.length > 0 && k.every((z) => s[z.key]), M = ao(r, s, a), V = M.filter((z) => !z.path), Z = r.some((z) => {
+    var q;
+    return s[z.key] && ((q = i[z.key]) == null ? void 0 : q.loading);
+  }), Y = r.reduce(
+    (z, q) => z + (q.shot.enabled && s[q.key] ? q.shot.durationSeconds : 0),
+    0
+  ), L = He(() => Ge(y), [y]), _ = L.find((z) => z.path === E) ?? L[0];
+  Ee(() => {
+    let z = !1;
+    const q = {}, pe = {};
+    return r.forEach((re) => {
+      q[re.key] = re.shot.enabled, pe[re.key] = { loading: !0, response: { found: !1, results: [] } };
+    }), l((re) => {
+      const f = {};
+      return r.forEach((B) => {
+        f[B.key] = B.shot.enabled ? re[B.key] ?? q[B.key] : !1;
+      }), f;
+    }), o(pe), g(""), r.forEach((re) => {
+      Zn(Io(e, re.shot.id, re.activeIndex)).then((f) => {
+        if (z) return;
+        const B = Ge(f);
+        o((X) => ({ ...X, [re.key]: { loading: !1, response: f } })), d((X) => {
+          var le;
+          return {
+            ...X,
+            [re.key]: B.some((xe) => xe.path === X[re.key]) ? X[re.key] : ((le = B[0]) == null ? void 0 : le.path) ?? ""
+          };
+        });
+      }).catch((f) => {
+        z || o((B) => ({
+          ...B,
+          [re.key]: { loading: !1, response: { found: !1, results: [], error: String(f) } }
+        }));
+      });
+    }), () => {
+      z = !0;
+    };
+  }, [e.project.name, e.project.runId, e.shots.map((z) => `${z.id}:${z.enabled}`).join("|"), C]), Ee(() => {
+    let z = !1;
+    return u(!0), Zn(Po(e)).then((q) => {
+      if (z) return;
+      const pe = Ge(q);
+      v(q), P((re) => {
+        var f;
+        return pe.some((B) => B.path === re) ? re : ((f = pe[0]) == null ? void 0 : f.path) ?? "";
+      });
+    }).catch((q) => {
+      z || v({ found: !1, results: [], error: String(q) });
+    }).finally(() => {
+      z || u(!1);
+    }), () => {
+      z = !0;
+    };
+  }, [e.project.name, e.project.runId, C]);
+  const K = () => {
+    const z = !D;
+    l((q) => {
+      const pe = { ...q };
+      return k.forEach((re) => {
+        pe[re.key] = z;
+      }), pe;
+    });
+  }, ee = () => {
+    const z = Number(R), q = Number(I);
+    if (!Number.isInteger(z) || !Number.isInteger(q) || z < 1 || q < z || q > r.length) {
+      window.alert(t === "zh" ? `请输入有效范围：1 ≤ m ≤ n ≤ ${r.length}` : `Enter a valid range: 1 ≤ m ≤ n ≤ ${r.length}`);
+      return;
+    }
+    l(so(r, z, q));
+  }, Q = async () => {
+    if (!M.length) {
+      window.alert(t === "zh" ? "请至少选择一个镜头" : "Select at least one shot.");
+      return;
+    }
+    if (V.length) {
+      window.alert(t === "zh" ? `以下已选镜头没有可用结果：${V.map((z) => z.shotId).join("、")}` : `Selected shots without a result: ${V.map((z) => z.shotId).join(", ")}`);
+      return;
+    }
+    h(!0), g("");
+    try {
+      const z = await fetch("/theodore-director/v1/postprocess/merge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectName: e.project.name, runId: e.project.runId, selections: M })
+      }), q = await z.json();
+      if (!z.ok) throw new Error(q.error || `HTTP ${z.status}`);
+      N((pe) => pe + 1);
+    } catch (z) {
+      g(String(z instanceof Error ? z.message : z));
+    } finally {
+      h(!1);
+    }
+  }, te = async () => {
+    j(!0), T("");
+    try {
+      const z = await fetch("/theodore-director/v1/postprocess/open-folder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectName: e.project.name, runId: e.project.runId })
+      }), q = await z.json();
+      if (!z.ok) throw new Error(q.error || `HTTP ${z.status}`);
+    } catch (z) {
+      T(String(z instanceof Error ? z.message : z));
+    } finally {
+      j(!1);
+    }
+  }, ce = _ != null && _.path ? Pe(_.path, "output") : null;
+  return /* @__PURE__ */ n("section", { class: "td-postprocess", children: [
+    /* @__PURE__ */ n("div", { class: "td-post-header", children: [
+      /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ n("h2", { children: t === "zh" ? "合并视频" : "Merge videos" }),
+        /* @__PURE__ */ n("p", { children: t === "zh" ? "从每个镜头选择一个结果，按当前分镜顺序进行无损合并。" : "Choose one result per shot and merge them losslessly in storyboard order." })
+      ] }),
+      /* @__PURE__ */ n("div", { class: "td-post-actions", children: [
+        /* @__PURE__ */ n("button", { disabled: $, onClick: te, children: [
+          "📁 ",
+          $ ? t === "zh" ? "正在打开…" : "Opening…" : t === "zh" ? "打开结果文件夹" : "Open results folder"
+        ] }),
+        /* @__PURE__ */ n("button", { onClick: () => N((z) => z + 1), children: [
+          "↻ ",
+          t === "zh" ? "刷新结果" : "Refresh"
+        ] }),
+        /* @__PURE__ */ n("button", { onClick: K, children: D ? t === "zh" ? "全部取消" : "Clear all" : t === "zh" ? "一键全选" : "Select all" })
+      ] })
+    ] }),
+    S && /* @__PURE__ */ n("div", { class: "td-post-error", children: [
+      t === "zh" ? "打开结果文件夹失败：" : "Unable to open results folder: ",
+      S
+    ] }),
+    /* @__PURE__ */ n("div", { class: "td-post-summary", children: [
+      /* @__PURE__ */ n("span", { children: t === "zh" ? `已选择 ${M.length}/${k.length} 个启用镜头` : `${M.length}/${k.length} enabled shots selected` }),
+      /* @__PURE__ */ n("span", { children: t === "zh" ? `预计时长 ${Y.toFixed(1)} 秒` : `Estimated duration ${Y.toFixed(1)} sec` }),
+      /* @__PURE__ */ n("div", { class: "td-post-range", role: "group", "aria-label": t === "zh" ? "合并视频范围" : "Merge video range", children: [
+        /* @__PURE__ */ n("span", { children: t === "zh" ? "范围" : "Range" }),
+        /* @__PURE__ */ n("input", { type: "number", min: "1", max: r.length, step: "1", value: R, "aria-label": t === "zh" ? "起始镜头 m" : "Start shot m", onInput: (z) => F(z.currentTarget.value) }),
+        /* @__PURE__ */ n("span", { children: "—" }),
+        /* @__PURE__ */ n("input", { type: "number", min: "1", max: r.length, step: "1", value: I, "aria-label": t === "zh" ? "结束镜头 n" : "End shot n", onInput: (z) => ne(z.currentTarget.value) }),
+        /* @__PURE__ */ n("button", { disabled: !r.length, onClick: ee, children: t === "zh" ? "确认范围" : "Apply range" })
+      ] }),
+      /* @__PURE__ */ n("button", { class: "primary", disabled: b || Z || !M.length || !!V.length, onClick: Q, children: b ? t === "zh" ? "正在合并…" : "Merging…" : t === "zh" ? "合并所选视频" : "Merge selected videos" })
+    ] }),
+    c && /* @__PURE__ */ n("div", { class: "td-post-error", children: [
+      t === "zh" ? "合并失败：" : "Merge failed: ",
+      c
+    ] }),
+    V.length > 0 && /* @__PURE__ */ n("div", { class: "td-post-warning", children: t === "zh" ? "已选镜头中存在尚未生成视频的镜头。" : "Some selected shots do not have generated videos yet." }),
+    /* @__PURE__ */ n("div", { class: "td-post-shot-list", children: r.map((z) => {
+      const q = i[z.key], pe = Ge((q == null ? void 0 : q.response) ?? { results: [] }), re = !!s[z.key];
+      return /* @__PURE__ */ n("article", { class: `td-post-shot ${re ? "selected" : ""} ${z.shot.enabled ? "" : "disabled"}`, children: [
+        /* @__PURE__ */ n("header", { children: [
+          /* @__PURE__ */ n("label", { children: [
+            /* @__PURE__ */ n("input", { type: "checkbox", checked: re, disabled: !z.shot.enabled, onChange: (f) => l((B) => ({ ...B, [z.key]: f.currentTarget.checked })) }),
+            /* @__PURE__ */ n("span", { children: [
+              /* @__PURE__ */ n("strong", { children: z.shot.id }),
+              /* @__PURE__ */ n("em", { children: z.shot.title })
+            ] })
+          ] }),
+          /* @__PURE__ */ n("span", { children: [
+            z.shot.durationSeconds,
+            "s"
+          ] })
+        ] }),
+        !z.shot.enabled && /* @__PURE__ */ n("div", { class: "td-post-shot-disabled-note", children: t === "zh" ? "该镜头当前已禁用：历史结果可以预览，但不能参加合并。" : "This shot is disabled: historical results can be previewed but cannot be merged." }),
+        q != null && q.loading ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "正在查询生成结果…" : "Loading generated results…" }) : q != null && q.response.error ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty errors", children: t === "zh" ? "查询失败，请重启 ComfyUI 后重试。" : "Query failed. Restart ComfyUI and retry." }) : pe.length ? /* @__PURE__ */ n("div", { class: "td-post-result-list", children: pe.map((f, B) => {
+          const X = Pe(f.path, "output"), le = a[z.key] === f.path, xe = to(f.path, pe.length - B);
+          return /* @__PURE__ */ n("div", { class: `td-post-result ${le ? "selected" : ""}`, children: [
+            /* @__PURE__ */ n("button", { class: "td-post-result-choice", role: "radio", "aria-checked": le, onClick: () => d((de) => ({ ...de, [z.key]: f.path })), children: [
+              X ? /* @__PURE__ */ n(ct, { src: X, alt: `${z.shot.title} ${t === "zh" ? "结果" : "result"} ${xe}` }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
+              /* @__PURE__ */ n("span", { children: [
+                /* @__PURE__ */ n("strong", { children: [
+                  t === "zh" ? `结果 ${xe}` : `Result ${xe}`,
+                  B === 0 && /* @__PURE__ */ n("em", { children: t === "zh" ? "最新" : "Latest" })
+                ] }),
+                /* @__PURE__ */ n("span", { title: f.path, children: ze(f.path) }),
+                /* @__PURE__ */ n("small", { children: f.bytes ? `${(f.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
+              ] })
+            ] }),
+            /* @__PURE__ */ n("button", { class: "td-post-result-play", disabled: !X, title: t === "zh" ? "播放预览" : "Play preview", onClick: () => X && m({ path: f.path, title: `${z.shot.id} · ${z.shot.title}` }), children: "▶" })
+          ] }, f.path);
+        }) }) : /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "未找到这个镜头的生成结果" : "No generated result found for this shot" })
+      ] }, z.key);
+    }) }),
+    /* @__PURE__ */ n("section", { class: "td-post-merged", children: [
+      /* @__PURE__ */ n("header", { children: /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ n("h2", { children: t === "zh" ? "合并结果" : "Merged results" }),
+        /* @__PURE__ */ n("span", { class: `td-result-state ${L.length ? "found" : ""}`, children: x ? t === "zh" ? "查询中" : "Checking" : t === "zh" ? `${L.length} 个结果` : `${L.length} results` })
+      ] }) }),
+      x ? /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "正在查询合并结果…" : "Loading merged results…" }) : y.error ? /* @__PURE__ */ n("div", { class: "td-result-empty errors", children: t === "zh" ? "无法查询合并结果" : "Unable to query merged results" }) : _ && ce ? /* @__PURE__ */ n("div", { class: "td-generated-results", children: [
+        /* @__PURE__ */ n("div", { class: "td-generated-video", children: [
+          /* @__PURE__ */ n("video", { src: ce, controls: !0, preload: "metadata", playsInline: !0 }, _.path),
+          /* @__PURE__ */ n("div", { class: "td-generated-meta", title: _.path, children: _.path })
+        ] }),
+        /* @__PURE__ */ n("div", { class: "td-result-list", children: L.map((z, q) => {
+          const pe = Pe(z.path, "output");
+          return /* @__PURE__ */ n("button", { class: `td-result-item ${z.path === _.path ? "selected" : ""}`, onClick: () => P(z.path), children: [
+            pe ? /* @__PURE__ */ n(ct, { src: pe, alt: `${t === "zh" ? "合并结果" : "Merged result"} ${L.length - q}` }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
+            /* @__PURE__ */ n("span", { class: "td-result-item-copy", children: [
+              /* @__PURE__ */ n("strong", { children: [
+                t === "zh" ? `合并结果 ${L.length - q}` : `Merged result ${L.length - q}`,
+                q === 0 && /* @__PURE__ */ n("em", { children: t === "zh" ? "最新" : "Latest" })
+              ] }),
+              /* @__PURE__ */ n("span", { children: ze(z.path) }),
+              /* @__PURE__ */ n("small", { children: z.bytes ? `${(z.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
+            ] })
+          ] }, z.path);
+        }) })
+      ] }) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "还没有合并结果" : "No merged result yet" })
+    ] }),
+    p && Pe(p.path, "output") && /* @__PURE__ */ n("div", { class: "td-post-preview-overlay", role: "presentation", onClick: () => m(null), children: /* @__PURE__ */ n("section", { role: "dialog", "aria-modal": "true", onClick: (z) => z.stopPropagation(), children: [
+      /* @__PURE__ */ n("header", { children: [
+        /* @__PURE__ */ n("strong", { children: p.title }),
+        /* @__PURE__ */ n("button", { "aria-label": t === "zh" ? "关闭预览" : "Close preview", onClick: () => m(null), children: "×" })
+      ] }),
+      /* @__PURE__ */ n("video", { src: Pe(p.path, "output") ?? "", controls: !0, autoPlay: !0, preload: "metadata", playsInline: !0 }),
+      /* @__PURE__ */ n("p", { title: p.path, children: ze(p.path) })
+    ] }) })
+  ] });
+}
+const Xr = String.raw`\{\{ref:([^{}]+)}}`;
+function er() {
+  return new RegExp(Xr, "g");
+}
+function Zr(e, t) {
+  return e.assets.filter((r) => r.enabled && r.path.trim() && (!(r.shotIds ?? []).length || (r.shotIds ?? []).includes(t.id)) && !(t.disabledAssetIds ?? []).includes(r.id));
+}
+function ei(e, t) {
+  const r = /* @__PURE__ */ new Map();
+  for (const i of Zr(e, t)) r.set(i.alias, i);
+  return r;
+}
+function ti(e, t, r) {
+  const i = r.trim(), o = i.endsWith(".audio"), s = o ? i.slice(0, -6) : i, l = ei(e, t).get(s);
+  return l ? !o || l.kind === "video" && l.includeVideoAudio : !1;
+}
+function tr(e, t) {
+  const r = e.shots.filter((i) => i.enabled);
+  return r.length > 0 && r.every((i) => ti(e, i, t));
+}
+function zo(e) {
   return {
     ...e,
     assets: [],
     shots: e.shots.map((t) => ({ ...t, disabledAssetIds: [] }))
   };
 }
-function Rr(e, t) {
-  const r = [], o = Lr(e, t), i = [e.promptPrefix, t.prompt, e.promptSuffix].filter(Boolean).join(`
-`), a = [...i.matchAll(Vn())].map((g) => g[1].trim()), l = [], s = /* @__PURE__ */ new Set(), m = (g) => {
-    s.has(g.id) || (s.add(g.id), l.push(g));
+function ni(e, t) {
+  const r = [], i = ei(e, t), o = [e.promptPrefix, t.prompt, e.promptSuffix].filter(Boolean).join(`
+`), s = [...o.matchAll(er())].map((u) => u[1].trim()), l = [], a = /* @__PURE__ */ new Set(), d = (u) => {
+    a.has(u.id) || (a.add(u.id), l.push(u));
   };
-  [...o.values()].filter((g) => g.fixed).sort((g, $) => g.fixedOrder - $.fixedOrder || g.alias.localeCompare($.alias)).forEach(m);
-  for (const g of a) {
-    const $ = g.endsWith(".audio") ? g.slice(0, -6) : g, T = o.get($);
-    if (!T) {
-      r.push(`未找到或已禁用素材：${g}`);
+  [...i.values()].filter((u) => u.fixed).sort((u, $) => u.fixedOrder - $.fixedOrder || u.alias.localeCompare($.alias)).forEach(d);
+  for (const u of s) {
+    const $ = u.endsWith(".audio") ? u.slice(0, -6) : u, j = i.get($);
+    if (!j) {
+      r.push(`未找到或已禁用素材：${u}`);
       continue;
     }
-    g.endsWith(".audio") && (T.kind !== "video" || !T.includeVideoAudio) && r.push(`视频伴音未启用：${g}`), m(T);
+    u.endsWith(".audio") && (j.kind !== "video" || !j.includeVideoAudio) && r.push(`视频伴音未启用：${u}`), d(j);
   }
-  const h = l.filter((g) => g.kind === "image"), d = l.filter((g) => g.kind === "video"), f = d.filter((g) => g.includeVideoAudio), c = l.filter((g) => g.kind === "audio"), p = f.length + c.length, b = h.length + d.length + c.length;
-  h.length > 9 && r.push(`参考图 ${h.length}/9，超出 H3 上限`), d.length > 3 && r.push(`参考视频 ${d.length}/3，超出 H3 上限`), p > 3 && r.push(`有效音频 ${p}/3，超出 H3 总上限`), b > 12 && r.push(`混合文件 ${b}/12，超出 H3 上限`), p && !h.length && !d.length && r.push("音频参考不能单独使用");
-  const _ = d.filter((g) => typeof g.durationSeconds == "number");
-  for (const g of d) (g.durationSeconds == null || g.durationSeconds < 2 || g.durationSeconds > 15) && r.push(`视频 ${g.alias} 的时长必须为 2–15 秒`);
-  _.reduce((g, $) => g + ($.durationSeconds ?? 0), 0) > 15 && r.push("参考视频总时长超过 15 秒");
-  const N = [...f.map((g) => g.audioDurationSeconds ?? g.durationSeconds), ...c.map((g) => g.durationSeconds)];
-  N.some((g) => g == null || g < 2 || g > 15) && r.push("每路有效音频时长必须为 2–15 秒"), N.reduce((g, $) => g + ($ ?? 0), 0) > 15 && r.push("有效音频总时长超过 15 秒");
-  const k = /* @__PURE__ */ new Map();
-  h.forEach((g, $) => k.set(g.alias, `<Picture ${$ + 1}>`)), d.forEach((g, $) => k.set(g.alias, `<Video ${$ + 1}>`)), f.forEach((g, $) => k.set(`${g.alias}.audio`, `<Audio ${$ + 1}>`)), c.forEach((g, $) => k.set(g.alias, `<Audio ${f.length + $ + 1}>`));
-  const w = i.replace(Vn(), (g, $) => k.get($.trim()) ?? g), z = [...k.entries()].map(([g, $]) => ({ label: $, alias: g, kind: $.slice(1).split(" ")[0].toLowerCase() }));
-  return { compiledPrompt: w, errors: r, slots: z, mixedFiles: b, audioCount: p };
+  const p = l.filter((u) => u.kind === "image"), m = l.filter((u) => u.kind === "video"), b = m.filter((u) => u.includeVideoAudio), h = l.filter((u) => u.kind === "audio"), c = b.length + h.length, g = p.length + m.length + h.length;
+  p.length > 9 && r.push(`参考图 ${p.length}/9，超出 H3 上限`), m.length > 3 && r.push(`参考视频 ${m.length}/3，超出 H3 上限`), c > 3 && r.push(`有效音频 ${c}/3，超出 H3 总上限`), g > 12 && r.push(`混合文件 ${g}/12，超出 H3 上限`), c && !p.length && !m.length && r.push("音频参考不能单独使用");
+  const S = m.filter((u) => typeof u.durationSeconds == "number");
+  for (const u of m) (u.durationSeconds == null || u.durationSeconds < 2 || u.durationSeconds > 15) && r.push(`视频 ${u.alias} 的时长必须为 2–15 秒`);
+  S.reduce((u, $) => u + ($.durationSeconds ?? 0), 0) > 15 && r.push("参考视频总时长超过 15 秒");
+  const T = [...b.map((u) => u.audioDurationSeconds ?? u.durationSeconds), ...h.map((u) => u.durationSeconds)];
+  T.some((u) => u == null || u < 2 || u > 15) && r.push("每路有效音频时长必须为 2–15 秒"), T.reduce((u, $) => u + ($ ?? 0), 0) > 15 && r.push("有效音频总时长超过 15 秒");
+  const y = /* @__PURE__ */ new Map();
+  p.forEach((u, $) => y.set(u.alias, `<Picture ${$ + 1}>`)), m.forEach((u, $) => y.set(u.alias, `<Video ${$ + 1}>`)), b.forEach((u, $) => y.set(`${u.alias}.audio`, `<Audio ${$ + 1}>`)), h.forEach((u, $) => y.set(u.alias, `<Audio ${b.length + $ + 1}>`));
+  const v = o.replace(er(), (u, $) => y.get($.trim()) ?? u), x = [...y.entries()].map(([u, $]) => ({ label: $, alias: u, kind: $.slice(1).split(" ")[0].toLowerCase() }));
+  return { compiledPrompt: v, errors: r, slots: x, mixedFiles: g, audioCount: c };
 }
-function Jo(e, t) {
-  var s, m, h, d, f, c;
-  const r = [], o = /* @__PURE__ */ new Set(["off", "super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"]);
-  (m = (s = e.project) == null ? void 0 : s.name) != null && m.trim() || r.push("Project name 不能为空"), (d = (h = e.project) == null ? void 0 : h.runId) != null && d.trim() || r.push("Run ID 不能为空"), (!Array.isArray(e.shots) || !e.shots.some((p) => p.enabled)) && r.push("至少需要一个启用分镜");
-  const i = /* @__PURE__ */ new Set();
-  for (const p of e.shots ?? [])
-    (!((f = p.id) != null && f.trim()) || i.has(p.id)) && r.push(`分镜 ID 为空或重复：${p.id || "(空)"}`), i.add(p.id), p.durationSeconds > 0 || r.push(`分镜 ${p.id} 的时长必须大于 0`), o.has(p.secondSamplingMode) || r.push(`分镜 ${p.id} 的高清处理模式无效`);
-  const a = /* @__PURE__ */ new Set();
-  for (const p of e.assets ?? []) {
-    const b = (c = p.alias) == null ? void 0 : c.toLocaleLowerCase();
-    (!p.alias || /[\s{}]/.test(p.alias) || p.alias.endsWith(".audio") || a.has(b)) && r.push(`素材别名无效或重复：${p.alias || "(空)"}`), a.add(b), p.enabled && !p.path && !t && r.push(`素材 ${p.alias} 尚未选择文件`);
+function To(e, t) {
+  var a, d, p, m, b, h;
+  const r = [], i = /* @__PURE__ */ new Set(["off", "super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"]);
+  (d = (a = e.project) == null ? void 0 : a.name) != null && d.trim() || r.push("Project name 不能为空"), (m = (p = e.project) == null ? void 0 : p.runId) != null && m.trim() || r.push("Run ID 不能为空"), (!Array.isArray(e.shots) || !e.shots.some((c) => c.enabled)) && r.push("至少需要一个启用分镜");
+  const o = /* @__PURE__ */ new Set();
+  for (const c of e.shots ?? [])
+    (!((b = c.id) != null && b.trim()) || o.has(c.id)) && r.push(`分镜 ID 为空或重复：${c.id || "(空)"}`), o.add(c.id), c.durationSeconds > 0 || r.push(`分镜 ${c.id} 的时长必须大于 0`), i.has(c.secondSamplingMode) || r.push(`分镜 ${c.id} 的高清处理模式无效`);
+  const s = /* @__PURE__ */ new Set();
+  for (const c of e.assets ?? []) {
+    const g = (h = c.alias) == null ? void 0 : h.toLocaleLowerCase();
+    (!c.alias || /[\s{}]/.test(c.alias) || c.alias.endsWith(".audio") || s.has(g)) && r.push(`素材别名无效或重复：${c.alias || "(空)"}`), s.add(g), c.enabled && !c.path && !t && r.push(`素材 ${c.alias} 尚未选择文件`);
   }
-  const l = e.shots.filter((p) => p.enabled && (!t || t.includes(p.id)));
-  for (const p of l) {
-    const b = (k) => k.fixed && (!(k.shotIds ?? []).length || k.shotIds.includes(p.id)) && !(p.disabledAssetIds ?? []).includes(k.id), _ = e.assets.filter((k) => k.enabled && !k.path.trim() && (b(k) || p.prompt.includes(`{{ref:${k.alias}}}`) || p.prompt.includes(`{{ref:${k.alias}.audio}}`)));
-    _.forEach((k) => r.push(`${p.title}: 素材 ${k.alias} 尚未上传文件`));
-    const N = new Set(_.map((k) => k.alias));
-    r.push(...Rr(e, p).errors.filter((k) => ![...N].some((w) => k.endsWith(`：${w}`) || k.endsWith(`：${w}.audio`))).map((k) => `${p.title}: ${k}`));
+  const l = e.shots.filter((c) => c.enabled && (!t || t.includes(c.id)));
+  for (const c of l) {
+    const g = (y) => y.fixed && (!(y.shotIds ?? []).length || y.shotIds.includes(c.id)) && !(c.disabledAssetIds ?? []).includes(y.id), S = e.assets.filter((y) => y.enabled && !y.path.trim() && (g(y) || c.prompt.includes(`{{ref:${y.alias}}}`) || c.prompt.includes(`{{ref:${y.alias}.audio}}`)));
+    S.forEach((y) => r.push(`${c.title}: 素材 ${y.alias} 尚未上传文件`));
+    const T = new Set(S.map((y) => y.alias));
+    r.push(...ni(e, c).errors.filter((y) => ![...T].some((v) => y.endsWith(`：${v}`) || y.endsWith(`：${v}.audio`))).map((y) => `${c.title}: ${y}`));
   }
   return [...new Set(r)];
 }
-function qo(e, t) {
-  const r = [], o = new RegExp(jr, "g");
-  let i = 0;
-  for (const a of e.matchAll(o)) {
-    const l = a.index ?? 0;
-    l > i && r.push({ text: e.slice(i, l), reference: !1 }), r.push({ text: a[0], reference: !0, valid: t(a[1]) }), i = l + a[0].length;
-  }
-  return i < e.length && r.push({ text: e.slice(i), reference: !1 }), r;
+const Be = { kind: null, total: 0, done: 0, progress: { value: 0, max: 0 }, message: "" }, nr = {
+  super_resolution_second_pass: ["超分二采（RTX 1.5× + 低噪重采）", "Super-res 2nd pass"],
+  latent_upscale_second_pass: ["Latent 放大二采", "Latent upscale 2nd pass"],
+  super_resolution_only: ["只超分（不重采，接缝零变化）", "Super-res only"]
+};
+function Ao({ plan: e, language: t, results: r, run: i, supportsSecondPass: o, setReview: s, setPipeline: l, onRunFirstPass: a, onRunSecondPass: d, onMerge: p, onStop: m, onRefresh: b, onOpenShot: h }) {
+  var V, Z, Y;
+  const c = (L, _) => t === "zh" ? L : _, [g, S] = G("all"), [T, y] = G(!0), v = e.shots.filter((L) => L.enabled), x = (L) => Le(r.byShot[L.id] ?? []), u = v.filter((L) => !x(L).length), $ = v.filter((L) => {
+    var _;
+    return ((_ = L.review) == null ? void 0 : _.status) === "approved" && x(L).length;
+  }), j = v.filter((L) => {
+    var _;
+    return ((_ = L.review) == null ? void 0 : _.status) === "redo";
+  }), E = ((V = e.pipeline) == null ? void 0 : V.secondPassMode) ?? "super_resolution_second_pass", P = ((Z = e.pipeline) == null ? void 0 : Z.secondPassDenoise) ?? 0.3, C = v.filter((L) => {
+    const _ = Xe(L, x(L));
+    return _ && Dt(r.byShot[L.id] ?? [], _.path).length;
+  }).length, N = v.length > 0 && v.every((L) => Hr(L, r.byShot[L.id] ?? [])), R = v.length > 0 && C === v.length, F = i.kind !== null, I = (L) => {
+    var _;
+    return ((_ = L.review) == null ? void 0 : _.status) ?? "pending";
+  }, ne = e.shots.filter((L) => g === "all" || L.enabled && I(L) === g), k = i.progress.max ? Math.round(i.progress.value / i.progress.max * 100) : 0, D = (Y = e.shots.find((L) => L.id === i.currentShotId)) == null ? void 0 : Y.title, M = () => {
+    const L = $.map((K) => K.id);
+    if (!L.length) return;
+    const _ = v.length - $.length;
+    _ > 0 && !window.confirm(c(`还有 ${_} 段没有通过审片，本次只对已通过的 ${L.length} 段执行二采。继续？`, `${_} shots are not approved; only ${L.length} will be processed. Continue?`)) || d(L, T);
+  };
+  return /* @__PURE__ */ n("div", { class: "td-review", children: [
+    /* @__PURE__ */ n("section", { class: "td-review-steps", children: [
+      /* @__PURE__ */ n("div", { class: `td-step ${u.length ? "active" : "done"}`, children: [
+        /* @__PURE__ */ n("b", { children: "1" }),
+        /* @__PURE__ */ n("div", { children: [
+          /* @__PURE__ */ n("strong", { children: c("整体一采", "First pass") }),
+          /* @__PURE__ */ n("span", { children: c(`${v.length - u.length}/${v.length} 段已有结果`, `${v.length - u.length}/${v.length} generated`) })
+        ] })
+      ] }),
+      /* @__PURE__ */ n("div", { class: `td-step ${!u.length && $.length < v.length ? "active" : $.length === v.length && v.length ? "done" : ""}`, children: [
+        /* @__PURE__ */ n("b", { children: "2" }),
+        /* @__PURE__ */ n("div", { children: [
+          /* @__PURE__ */ n("strong", { children: c("审片 / 单段重生", "Review / re-roll") }),
+          /* @__PURE__ */ n("span", { children: c(`通过 ${$.length} · 需重生 ${j.length}`, `${$.length} approved · ${j.length} redo`) })
+        ] })
+      ] }),
+      /* @__PURE__ */ n("div", { class: `td-step ${$.length === v.length && v.length && C < v.length ? "active" : C === v.length && v.length ? "done" : ""}`, children: [
+        /* @__PURE__ */ n("b", { children: "3" }),
+        /* @__PURE__ */ n("div", { children: [
+          /* @__PURE__ */ n("strong", { children: c("整体二采", "Batch 2nd pass") }),
+          /* @__PURE__ */ n("span", { children: c(`${C}/${v.length} 段已二采`, `${C}/${v.length} processed`) })
+        ] })
+      ] }),
+      /* @__PURE__ */ n("div", { class: `td-step ${R ? "active" : ""}`, children: [
+        /* @__PURE__ */ n("b", { children: "4" }),
+        /* @__PURE__ */ n("div", { children: [
+          /* @__PURE__ */ n("strong", { children: c("合并成片", "Merge") }),
+          /* @__PURE__ */ n("span", { children: c("每段使用选定结果", "Uses each chosen take") })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ n("section", { class: "td-review-actions", children: [
+      /* @__PURE__ */ n("div", { class: "td-action-group", children: [
+        /* @__PURE__ */ n("span", { class: "td-action-title", children: c("一采", "First pass") }),
+        /* @__PURE__ */ n("button", { class: "primary", disabled: F || r.loading || !u.length, onClick: () => a(u.map((L) => L.id), !1), children: r.loading ? c("正在读取结果…", "Loading results…") : u.length ? c(`生成缺失的 ${u.length} 段`, `Generate ${u.length} missing`) : c("全部已有一采", "All generated") }),
+        j.length > 0 && /* @__PURE__ */ n("button", { disabled: F, onClick: () => a(j.map((L) => L.id), !0), children: [
+          "↻ ",
+          c(`重生标记的 ${j.length} 段`, `Re-roll ${j.length} marked`)
+        ] }),
+        /* @__PURE__ */ n("button", { disabled: F || !v.length, onClick: () => {
+          window.confirm(c(`为全部 ${v.length} 段换新种子重新一采？旧结果会保留。`, `Re-roll all ${v.length} shots with new seeds?`)) && a(v.map((L) => L.id), !0);
+        }, children: c("全部重新一采", "Re-roll all") })
+      ] }),
+      o && /* @__PURE__ */ n("div", { class: "td-action-group", children: [
+        /* @__PURE__ */ n("span", { class: "td-action-title", children: c("二采", "2nd pass") }),
+        /* @__PURE__ */ n("select", { value: E, disabled: F, onChange: (L) => l({ secondPassMode: L.currentTarget.value }), children: Object.keys(nr).map((L) => /* @__PURE__ */ n("option", { value: L, children: nr[L][t === "zh" ? 0 : 1] })) }),
+        E !== "super_resolution_only" && /* @__PURE__ */ n("label", { class: "td-denoise", title: c("重绘强度越低，段与段接缝越稳定、人物越不易变；越高细节越多但接缝可能跳变。接力镜头多时建议 0.20–0.25。", "Lower = steadier seams, higher = more detail"), children: [
+          /* @__PURE__ */ n("span", { children: c("重绘强度", "Denoise") }),
+          /* @__PURE__ */ n("input", { type: "range", min: "0.1", max: "0.45", step: "0.01", value: P, disabled: F, onInput: (L) => l({ secondPassDenoise: Number(L.currentTarget.value) }) }),
+          /* @__PURE__ */ n("b", { children: P.toFixed(2) })
+        ] }),
+        /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
+          /* @__PURE__ */ n("input", { type: "checkbox", checked: T, onChange: (L) => y(L.currentTarget.checked) }),
+          c("复用有效二采（校验选片与接力来源）", "Reuse valid results")
+        ] }),
+        /* @__PURE__ */ n("button", { class: "primary", disabled: F || !$.length, onClick: M, children: c(`整体二采（已通过 ${$.length} 段）`, `Batch 2nd pass (${$.length})`) })
+      ] }),
+      E !== "super_resolution_only" && /* @__PURE__ */ n("p", { class: "td-hint", children: c("二采按接力链执行，自动补齐已通过审片的上游段；接力段读取上一段的高清画面与 AV latent。更换选片、参数或上游结果后需重跑，原音轨和片段帧数保留。", "Second passes follow relay chains and include approved predecessors. Changed sources or settings invalidate cached results. Original audio and frame counts are preserved.") }),
+      /* @__PURE__ */ n("div", { class: "td-action-group", children: [
+        /* @__PURE__ */ n("button", { disabled: F || !N, title: c("把每段选定的一采结果拼成整片，审片时检查整体连贯性", "Concatenate chosen first-pass takes for review"), onClick: () => p(!1), children: c("合并一采样片", "Merge 1st-pass cut") }),
+        /* @__PURE__ */ n("button", { class: "accent", disabled: F || !R, title: R ? "" : c("全部镜头完成二采后才能合并成片（一采与二采分辨率不同，不能混拼）", "All shots need a 2nd pass first"), onClick: () => p(!0), children: c("合并二采成片", "Merge final") }),
+        /* @__PURE__ */ n("button", { disabled: F, onClick: b, children: [
+          "↻ ",
+          c("刷新", "Refresh")
+        ] })
+      ] })
+    ] }),
+    (F || i.error || i.message) && /* @__PURE__ */ n("section", { class: `td-run-bar ${i.error ? "error" : F ? "running" : "done"}`, children: [
+      /* @__PURE__ */ n("div", { children: [
+        /* @__PURE__ */ n("strong", { children: i.error ? c("执行中断", "Stopped") : F ? i.kind === "first" ? c("一采进行中", "First pass running") : i.kind === "second" ? c("二采进行中", "Second pass running") : c("合并中", "Merging") : c("完成", "Done") }),
+        /* @__PURE__ */ n("span", { children: i.error || (F ? `${i.done}/${i.total}${D ? ` · ${D}` : ""}` : i.message) })
+      ] }),
+      F && i.kind !== "merge" && /* @__PURE__ */ n("progress", { max: 100, value: k }),
+      F && i.kind !== "merge" && /* @__PURE__ */ n("b", { children: [
+        k,
+        "%"
+      ] }),
+      F && /* @__PURE__ */ n("button", { class: "danger", onClick: m, children: c("停止", "Stop") })
+    ] }),
+    /* @__PURE__ */ n("nav", { class: "td-review-filter", children: [
+      ["all", "pending", "approved", "redo"].map((L) => /* @__PURE__ */ n("button", { class: g === L ? "active" : "", onClick: () => S(L), children: { all: c(`全部 ${e.shots.length}`, `All ${e.shots.length}`), pending: c(`待审 ${v.filter((_) => I(_) === "pending").length}`, "Pending"), approved: c(`通过 ${$.length}`, "Approved"), redo: c(`需重生 ${j.length}`, "Redo") }[L] })),
+      /* @__PURE__ */ n("span", { class: "td-review-hint", children: c("提示：接力段读取的是上一段“最近一次生成”的 latent，重生上一段后请连同后续接力段一起重生。", "Relay shots continue from the previous shot's latest take.") })
+    ] }),
+    /* @__PURE__ */ n("div", { class: "td-review-grid", children: ne.map((L) => /* @__PURE__ */ n(jo, { plan: e, shot: L, language: t, results: r, busy: F, running: i.currentShotId === L.id, setReview: s, onRunFirstPass: a, onOpenShot: h }, L.id)) })
+  ] });
 }
-const Ko = [
+function jo({ plan: e, shot: t, language: r, results: i, busy: o, running: s, setReview: l, onRunFirstPass: a, onOpenShot: d }) {
+  var F;
+  const p = (I, ne) => r === "zh" ? I : ne, [m, b] = G(!1), h = i.byShot[t.id] ?? [], c = Le(h), g = Xe(t, c), S = g ? Dt(h, g.path) : [], T = m && S[0] ? S[0] : g, y = T ? Pe(T.path, "output") : null, v = e.shots.findIndex((I) => I.id === t.id), x = at(e, t), u = x ? kt(e, t.id) : void 0, $ = u ? Le(i.byShot[u.id] ?? []) : [], j = u ? mo(Xe(u, $), $, g, u.id, ho(t, g)) : "unknown", E = Jr(e, t.id), P = Wr(e, t.id), C = ((F = t.review) == null ? void 0 : F.status) ?? "pending", N = Qr(e, t), R = h.find((I) => I.stage === "second_pass" && I.sourcePath === (g == null ? void 0 : g.path) && I.relayValid === !1);
+  return /* @__PURE__ */ n("article", { class: `td-review-card ${C} ${t.enabled ? "" : "off"} ${s ? "running" : ""}`, children: [
+    /* @__PURE__ */ n("header", { children: [
+      /* @__PURE__ */ n("button", { class: "td-review-title", title: p("在分镜页打开", "Open in editor"), onClick: () => d(t.id), children: [
+        /* @__PURE__ */ n("em", { children: v + 1 }),
+        t.title
+      ] }),
+      /* @__PURE__ */ n("span", { class: "td-review-tags", children: [
+        /* @__PURE__ */ n("i", { children: [
+          t.durationSeconds,
+          "s"
+        ] }),
+        x && /* @__PURE__ */ n("i", { class: "relay", title: p(`接力自「${u == null ? void 0 : u.title}」`, "Relay"), children: [
+          "⛓ ",
+          p("接力", "relay")
+        ] }),
+        !t.enabled && /* @__PURE__ */ n("i", { children: p("禁用", "off") }),
+        /* @__PURE__ */ n("i", { class: C, children: C === "approved" ? p("✓ 通过", "✓ OK") : C === "redo" ? p("↻ 需重生", "↻ redo") : p("待审", "pending") })
+      ] })
+    ] }),
+    /* @__PURE__ */ n("div", { class: "td-review-media", children: [
+      s ? /* @__PURE__ */ n("div", { class: "td-result-empty running", children: p("正在生成…", "Generating…") }) : y ? /* @__PURE__ */ n(oo, { src: y }) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: p("还没有一采结果", "No take yet") }),
+      S.length > 0 && /* @__PURE__ */ n("div", { class: "td-review-media-switch", children: [
+        /* @__PURE__ */ n("button", { class: m ? "" : "active", onClick: () => b(!1), children: p("一采", "1st") }),
+        /* @__PURE__ */ n("button", { class: m ? "active" : "", onClick: () => b(!0), children: p("二采", "2nd") })
+      ] })
+    ] }),
+    c.length > 1 && /* @__PURE__ */ n("div", { class: "td-take-strip", children: c.map((I, ne) => {
+      const k = Pe(I.path, "output");
+      return /* @__PURE__ */ n("button", { class: `td-take ${I.path === (g == null ? void 0 : g.path) ? "selected" : ""}`, title: `${ze(I.path)}${I.modifiedAt ? `
+${new Date(I.modifiedAt * 1e3).toLocaleString()}` : ""}`, onClick: () => l(t.id, { take: I.path }), children: [
+        k ? /* @__PURE__ */ n(ct, { src: k, alt: I.path }) : null,
+        /* @__PURE__ */ n("span", { children: [
+          "#",
+          c.length - ne,
+          Dt(h, I.path).length ? " ★" : ""
+        ] })
+      ] }, I.path);
+    }) }),
+    j === "mismatch" && /* @__PURE__ */ n("p", { class: "td-review-warning", children: p(`接缝不匹配：本段结果生成时接力的是「${u == null ? void 0 : u.title}」的另一个结果。请把上一段选回对应结果，或重生本段。`, "Seam mismatch with the chosen take of the previous shot.") }),
+    j === "wrong_source" && /* @__PURE__ */ n("p", { class: "td-review-warning", children: p(`接力来源错误：本段结果生成时读取的不是「${u == null ? void 0 : u.title}」的 latent（镜头顺序或启用状态变过）。请连同上一段一起重生。`, "This take relayed from a different shot; re-roll it together with the previous shot.") }),
+    E && j !== "wrong_source" && /* @__PURE__ */ n("p", { class: "td-review-warning", children: p(`下次生成本段时将读到不属于「${u == null ? void 0 : u.title}」的 latent（镜头顺序或启用状态变过），重生时会建议连同上一段一起生成。`, "The relay slot no longer belongs to the previous shot.") }),
+    N && /* @__PURE__ */ n("p", { class: "td-review-warning", children: p("提示词或素材在生成后被修改过，当前结果不代表最新设置。", "Prompt changed after this take was generated.") }),
+    R && !S.length && /* @__PURE__ */ n("p", { class: "td-review-warning", children: p(R.relayReason || "二采接力状态已失效，请重新执行接力链。", "Second-pass relay is stale. Run this chain again.") }),
+    t.note && /* @__PURE__ */ n("p", { class: "td-review-note", title: t.note, children: t.note }),
+    /* @__PURE__ */ n("footer", { children: [
+      /* @__PURE__ */ n("button", { class: `ok ${C === "approved" ? "active" : ""}`, disabled: !g, onClick: () => l(t.id, { status: C === "approved" ? "pending" : "approved", take: g == null ? void 0 : g.path }), children: [
+        "✓ ",
+        p("通过", "Approve")
+      ] }),
+      /* @__PURE__ */ n("button", { class: `warn ${C === "redo" ? "active" : ""}`, onClick: () => l(t.id, { status: C === "redo" ? "pending" : "redo" }), children: [
+        "✗ ",
+        p("需重生", "Redo")
+      ] }),
+      /* @__PURE__ */ n("button", { disabled: o || !t.enabled, onClick: () => a([t.id], !0), children: [
+        "↻ ",
+        p("重生", "Re-roll")
+      ] }),
+      P.length > 1 && /* @__PURE__ */ n("button", { disabled: o || !t.enabled, title: p(`后面 ${P.length - 1} 段接力自本段；一起重生才能保证接缝衔接`, "Re-roll with following relay shots"), onClick: () => a(P, !0), children: [
+        "↻ ",
+        p(`连同后续 ${P.length - 1} 段`, `+${P.length - 1} relay`)
+      ] })
+    ] })
+  ] });
+}
+function No(e) {
+  const t = e.reduce((r, i) => {
+    const o = /^shot_(\d+)(?:_[a-z0-9]+)?$/i.exec(i.id.trim());
+    return o ? Math.max(r, Number(o[1])) : r;
+  }, 0);
+  return Math.max(t, e.length) + 1;
+}
+function un() {
+  return Math.random().toString(36).slice(2, 6);
+}
+function ri(e, t = 5, r, i = "super_resolution_second_pass") {
+  const o = `shot_${String(e).padStart(3, "0")}`;
+  return {
+    id: r ? `${o}_${r()}` : o,
+    title: `Shot ${e}`,
+    prompt: "",
+    negativePrompt: "",
+    durationSeconds: t,
+    enabled: !0,
+    latentRelay: !0,
+    secondSamplingMode: i,
+    seed: null,
+    disabledAssetIds: []
+  };
+}
+function ii(e, t, r, i, o = "super_resolution_second_pass") {
+  const s = No(e), l = Array.from({ length: t }, (a, d) => ri(s + d, r, i, o));
+  return [...e, ...l];
+}
+function Mo(e = 5, t, r = "super_resolution_second_pass") {
+  return [ri(1, e, t, r)];
+}
+async function Ro(e, t) {
+  const r = new URLSearchParams({ projectName: e.project.name, runId: e.project.runId, shotId: t, activeIndex: "-1" }), i = await fetch(`/theodore-director/v1/generated-video?${r.toString()}`), o = await i.json();
+  if (!i.ok) throw new Error(o.error || `HTTP ${i.status}`);
+  return Ge(o);
+}
+function Lo(e, t) {
+  const [r, i] = G({ byShot: {}, errors: {}, loading: !0 }), o = e.shots.map((s) => s.id).join("|");
+  return Ee(() => {
+    let s = !1;
+    i((a) => ({ ...a, loading: !0 }));
+    const l = e.shots.map((a) => a.id);
+    return Promise.all(l.map(async (a) => {
+      try {
+        return [a, await Ro(e, a), ""];
+      } catch (d) {
+        return [a, [], String(d instanceof Error ? d.message : d)];
+      }
+    })).then((a) => {
+      if (s) return;
+      const d = {}, p = {};
+      for (const [m, b, h] of a)
+        d[m] = b, h && (p[m] = h);
+      i({ byShot: d, errors: p, loading: !1 });
+    }), () => {
+      s = !0;
+    };
+  }, [e.project.name, e.project.runId, o, t]), r;
+}
+function Oo(e, t) {
+  if (!Number.isInteger(t) || t < 0 || t > e.length) return null;
+  const i = e.slice(0, t).lastIndexOf("@");
+  if (i < 0) return null;
+  const o = i > 0 ? e[i - 1] : "";
+  if (o && /[A-Za-z0-9_.+-]/.test(o)) return null;
+  const s = e.slice(i + 1, t);
+  return /[\s{}@]/u.test(s) ? null : { start: i, end: t, query: s };
+}
+function Do(e, t) {
+  const r = t.trim().toLocaleLowerCase();
+  if (!r) return e;
+  const i = [], o = [];
+  for (const s of e)
+    s.alias.toLocaleLowerCase().includes(r) ? i.push(s) : ze(s.path).toLocaleLowerCase().includes(r) && o.push(s);
+  return [...i, ...o];
+}
+function Go(e, t, r) {
+  const i = `{{ref:${r}}}`;
+  return {
+    value: `${e.slice(0, t.start)}${i}${e.slice(t.end)}`,
+    caret: t.start + i.length
+  };
+}
+function Fo(e, t) {
+  const r = [], i = new RegExp(Xr, "g");
+  let o = 0;
+  for (const s of e.matchAll(i)) {
+    const l = s.index ?? 0;
+    l > o && r.push({ text: e.slice(o, l), reference: !1 }), r.push({ text: s[0], reference: !0, valid: t(s[1]) }), o = l + s[0].length;
+  }
+  return o < e.length && r.push({ text: e.slice(o), reference: !1 }), r;
+}
+const Uo = [
   "boxSizing",
   "borderTopWidth",
   "borderRightWidth",
@@ -1161,1308 +2286,194 @@ const Ko = [
   "overflowWrap",
   "wordBreak"
 ];
-function Qo(e, t) {
-  const r = window.getComputedStyle(e), o = e.getBoundingClientRect(), i = document.createElement("div");
-  i.setAttribute("aria-hidden", "true"), i.style.position = "fixed", i.style.visibility = "hidden", i.style.pointerEvents = "none", i.style.left = `${o.left}px`, i.style.top = `${o.top}px`, i.style.width = `${e.offsetWidth}px`, i.style.height = `${e.offsetHeight}px`, i.style.overflow = "hidden", i.style.whiteSpace = "pre-wrap";
-  for (const m of Ko) i.style[m] = r[m];
-  i.append(document.createTextNode(e.value.slice(0, t)));
-  const a = document.createElement("span");
-  a.textContent = "​", i.append(a), document.body.append(i), i.scrollTop = e.scrollTop, i.scrollLeft = e.scrollLeft;
-  const l = a.getBoundingClientRect(), s = Number.parseFloat(r.lineHeight) || Number.parseFloat(r.fontSize) * 1.45 || 20;
-  return i.remove(), { left: l.left, top: l.top, bottom: l.top + s };
+function Bo(e, t) {
+  const r = window.getComputedStyle(e), i = e.getBoundingClientRect(), o = document.createElement("div");
+  o.setAttribute("aria-hidden", "true"), o.style.position = "fixed", o.style.visibility = "hidden", o.style.pointerEvents = "none", o.style.left = `${i.left}px`, o.style.top = `${i.top}px`, o.style.width = `${e.offsetWidth}px`, o.style.height = `${e.offsetHeight}px`, o.style.overflow = "hidden", o.style.whiteSpace = "pre-wrap";
+  for (const d of Uo) o.style[d] = r[d];
+  o.append(document.createTextNode(e.value.slice(0, t)));
+  const s = document.createElement("span");
+  s.textContent = "​", o.append(s), document.body.append(o), o.scrollTop = e.scrollTop, o.scrollLeft = e.scrollLeft;
+  const l = s.getBoundingClientRect(), a = Number.parseFloat(r.lineHeight) || Number.parseFloat(r.fontSize) * 1.45 || 20;
+  return o.remove(), { left: l.left, top: l.top, bottom: l.top + a };
 }
-const Yo = {
+const Vo = {
   zh: { image: "图片", video: "视频", audio: "音频" },
   en: { image: "Image", video: "Video", audio: "Audio" }
 };
-function dn({ value: e, rows: t, onInput: r, isReferenceValid: o, mentionAssets: i, mentionLanguage: a = "zh" }) {
-  const l = ke(null), s = ke(null), m = ke(null), h = ke(null), d = ke(!1), f = ke(!1), c = ke([]), p = ke([]), b = ke(`td-reference-mention-${Math.random().toString(36).slice(2)}`).current, [_, N] = R(null), [k, w] = R(0), [z, g] = R(null), $ = qo(e, o), T = Ve(
-    () => _ && i ? Ho(i, _.query) : [],
-    [_, i]
-  ), C = () => {
-    N(null), g(null), w(0);
-  }, S = (y) => {
-    if (!i || y.selectionStart !== y.selectionEnd) {
-      C();
+function mn({ value: e, rows: t, onInput: r, isReferenceValid: i, mentionAssets: o, mentionLanguage: s = "zh" }) {
+  const l = ke(null), a = ke(null), d = ke(null), p = ke(null), m = ke(!1), b = ke(!1), h = ke([]), c = ke([]), g = ke(`td-reference-mention-${Math.random().toString(36).slice(2)}`).current, [S, T] = G(null), [y, v] = G(0), [x, u] = G(null), $ = Fo(e, i), j = He(
+    () => S && o ? Do(o, S.query) : [],
+    [S, o]
+  ), E = () => {
+    T(null), u(null), v(0);
+  }, P = (k) => {
+    if (!o || k.selectionStart !== k.selectionEnd) {
+      E();
       return;
     }
-    const D = Vo(y.value, y.selectionStart);
+    const D = Oo(k.value, k.selectionStart);
     if (!D) {
-      C();
+      E();
       return;
     }
-    N((j) => j && j.start === D.start && j.end === D.end && j.query === D.query ? j : D);
-  }, L = () => {
+    T((M) => M && M.start === D.start && M.end === D.end && M.query === D.query ? M : D);
+  }, C = () => {
     var K;
-    if (!_ || !m.current) return;
-    const y = Qo(m.current, _.end), D = 8, j = Math.min(390, Math.max(240, window.innerWidth - D * 2)), H = Math.min(320, Math.max(150, window.innerHeight - D * 2)), te = Math.min(((K = h.current) == null ? void 0 : K.offsetHeight) || H, H), X = Math.min(Math.max(y.left, D), window.innerWidth - j - D), v = y.bottom + 6 + te > window.innerHeight - D && y.top - te - 6 >= D ? y.top - te - 6 : Math.min(y.bottom + 6, window.innerHeight - te - D);
-    g((Z) => Z && Z.left === X && Z.top === v && Z.width === j && Z.maxHeight === H ? Z : { left: X, top: v, width: j, maxHeight: H });
+    if (!S || !d.current) return;
+    const k = Bo(d.current, S.end), D = 8, M = Math.min(390, Math.max(240, window.innerWidth - D * 2)), V = Math.min(320, Math.max(150, window.innerHeight - D * 2)), Z = Math.min(((K = p.current) == null ? void 0 : K.offsetHeight) || V, V), Y = Math.min(Math.max(k.left, D), window.innerWidth - M - D), _ = k.bottom + 6 + Z > window.innerHeight - D && k.top - Z - 6 >= D ? k.top - Z - 6 : Math.min(k.bottom + 6, window.innerHeight - Z - D);
+    u((ee) => ee && ee.left === Y && ee.top === _ && ee.width === M && ee.maxHeight === V ? ee : { left: Y, top: _, width: M, maxHeight: V });
   };
-  wo(L, [_, T.length, !!z]), Pe(() => {
-    if (!_) return;
-    const y = () => L(), D = (j) => {
-      var H, te;
-      j.target instanceof Node && ((H = l.current) != null && H.contains(j.target) || (te = h.current) != null && te.contains(j.target)) || C();
+  Ii(C, [S, j.length, !!x]), Ee(() => {
+    if (!S) return;
+    const k = () => C(), D = (M) => {
+      var V, Z;
+      M.target instanceof Node && ((V = l.current) != null && V.contains(M.target) || (Z = p.current) != null && Z.contains(M.target)) || E();
     };
-    return window.addEventListener("resize", y), document.addEventListener("scroll", y, !0), document.addEventListener("mousedown", D), () => {
-      window.removeEventListener("resize", y), document.removeEventListener("scroll", y, !0), document.removeEventListener("mousedown", D);
+    return window.addEventListener("resize", k), document.addEventListener("scroll", k, !0), document.addEventListener("mousedown", D), () => {
+      window.removeEventListener("resize", k), document.removeEventListener("scroll", k, !0), document.removeEventListener("mousedown", D);
     };
-  }, [_]), Pe(() => w(0), [_ == null ? void 0 : _.query]), Pe(() => {
-    k >= T.length && w(Math.max(0, T.length - 1));
-  }, [k, T.length]), Pe(() => {
-    var y, D;
-    (D = (y = h.current) == null ? void 0 : y.querySelector('[aria-selected="true"]')) == null || D.scrollIntoView({ block: "nearest" });
-  }, [k, T.length]);
-  const V = (y) => {
-    s.current && (s.current.scrollTop = y.currentTarget.scrollTop, s.current.scrollLeft = y.currentTarget.scrollLeft), _ && L();
-  }, O = (y, D) => {
-    if (!m.current) return;
-    const j = m.current;
-    f.current = !0, j.value = y, j.dispatchEvent(new Event("input", { bubbles: !0 })), f.current = !1, C(), window.requestAnimationFrame(() => {
-      j.focus({ preventScroll: !0 }), j.setSelectionRange(D, D);
+  }, [S]), Ee(() => v(0), [S == null ? void 0 : S.query]), Ee(() => {
+    y >= j.length && v(Math.max(0, j.length - 1));
+  }, [y, j.length]), Ee(() => {
+    var k, D;
+    (D = (k = p.current) == null ? void 0 : k.querySelector('[aria-selected="true"]')) == null || D.scrollIntoView({ block: "nearest" });
+  }, [y, j.length]);
+  const N = (k) => {
+    a.current && (a.current.scrollTop = k.currentTarget.scrollTop, a.current.scrollLeft = k.currentTarget.scrollLeft), S && C();
+  }, R = (k, D) => {
+    if (!d.current) return;
+    const M = d.current;
+    b.current = !0, M.value = k, M.dispatchEvent(new Event("input", { bubbles: !0 })), b.current = !1, E(), window.requestAnimationFrame(() => {
+      M.focus({ preventScroll: !0 }), M.setSelectionRange(D, D);
     });
-  }, U = (y) => {
-    if (!(y.ctrlKey || y.metaKey) || y.altKey) return !1;
-    const D = y.key.toLocaleLowerCase(), j = D === "y" || D === "z" && y.shiftKey;
-    if (!(D === "z" && !y.shiftKey) && !j) return !1;
-    const te = j ? p.current : c.current, X = te[te.length - 1], M = j ? X == null ? void 0 : X.beforeValue : X == null ? void 0 : X.afterValue;
-    return !X || y.currentTarget.value !== M ? !1 : (y.preventDefault(), te.pop(), (j ? c.current : p.current).push(X), O(j ? X.afterValue : X.beforeValue, j ? X.afterCaret : X.beforeCaret), !0);
-  }, P = (y) => {
-    if (!_ || !m.current) return;
-    const D = m.current, j = Bo(D.value, _, y.alias), H = `{{ref:${y.alias}}}`, te = {
+  }, F = (k) => {
+    if (!(k.ctrlKey || k.metaKey) || k.altKey) return !1;
+    const D = k.key.toLocaleLowerCase(), M = D === "y" || D === "z" && k.shiftKey;
+    if (!(D === "z" && !k.shiftKey) && !M) return !1;
+    const Z = M ? c.current : h.current, Y = Z[Z.length - 1], L = M ? Y == null ? void 0 : Y.beforeValue : Y == null ? void 0 : Y.afterValue;
+    return !Y || k.currentTarget.value !== L ? !1 : (k.preventDefault(), Z.pop(), (M ? h.current : c.current).push(Y), R(M ? Y.afterValue : Y.beforeValue, M ? Y.afterCaret : Y.beforeCaret), !0);
+  }, I = (k) => {
+    if (!S || !d.current) return;
+    const D = d.current, M = Go(D.value, S, k.alias), V = `{{ref:${k.alias}}}`, Z = {
       beforeValue: D.value,
-      afterValue: j.value,
-      beforeCaret: _.end,
-      afterCaret: j.caret
+      afterValue: M.value,
+      beforeCaret: S.end,
+      afterCaret: M.caret
     };
-    D.focus({ preventScroll: !0 }), D.setSelectionRange(_.start, _.end);
-    let X = !1;
+    D.focus({ preventScroll: !0 }), D.setSelectionRange(S.start, S.end);
+    let Y = !1;
     try {
-      document.execCommand("insertText", !1, H), X = D.value === j.value;
+      document.execCommand("insertText", !1, V), Y = D.value === M.value;
     } catch {
     }
-    X || (D.value = j.value, D.dispatchEvent(new Event("input", { bubbles: !0 }))), c.current.push(te), c.current.length > 100 && c.current.shift(), p.current = [], C(), window.requestAnimationFrame(() => {
-      var M, v;
-      (M = m.current) == null || M.focus({ preventScroll: !0 }), (v = m.current) == null || v.setSelectionRange(j.caret, j.caret);
+    Y || (D.value = M.value, D.dispatchEvent(new Event("input", { bubbles: !0 }))), h.current.push(Z), h.current.length > 100 && h.current.shift(), c.current = [], E(), window.requestAnimationFrame(() => {
+      var L, _;
+      (L = d.current) == null || L.focus({ preventScroll: !0 }), (_ = d.current) == null || _.setSelectionRange(M.caret, M.caret);
     });
-  }, oe = (y) => {
-    if (!(y.isComposing || d.current) && !U(y) && _) {
-      if (y.key === "Escape") {
-        y.preventDefault(), C();
+  }, ne = (k) => {
+    if (!(k.isComposing || m.current) && !F(k) && S) {
+      if (k.key === "Escape") {
+        k.preventDefault(), E();
         return;
       }
-      if (T.length) {
-        if (y.key === "ArrowDown" || y.key === "ArrowUp") {
-          y.preventDefault();
-          const D = y.key === "ArrowDown" ? 1 : -1;
-          w((j) => (j + D + T.length) % T.length);
+      if (j.length) {
+        if (k.key === "ArrowDown" || k.key === "ArrowUp") {
+          k.preventDefault();
+          const D = k.key === "ArrowDown" ? 1 : -1;
+          v((M) => (M + D + j.length) % j.length);
           return;
         }
-        (y.key === "Enter" || y.key === "Tab") && (y.preventDefault(), P(T[k] ?? T[0]));
+        (k.key === "Enter" || k.key === "Tab") && (k.preventDefault(), I(j[y] ?? j[0]));
       }
     }
   };
   return /* @__PURE__ */ n("span", { ref: l, class: "td-highlight-textarea", children: [
-    /* @__PURE__ */ n("pre", { ref: s, class: "td-highlight-backdrop", "aria-hidden": "true", children: [
-      $.map((y, D) => y.reference ? /* @__PURE__ */ n("mark", { class: y.valid ? "valid" : "invalid", children: y.text }, D) : y.text),
+    /* @__PURE__ */ n("pre", { ref: a, class: "td-highlight-backdrop", "aria-hidden": "true", children: [
+      $.map((k, D) => k.reference ? /* @__PURE__ */ n("mark", { class: k.valid ? "valid" : "invalid", children: k.text }, D) : k.text),
       e.endsWith(`
 `) && " "
     ] }),
     /* @__PURE__ */ n(
       "textarea",
       {
-        ref: m,
+        ref: d,
         class: "td-highlight-input",
         rows: t,
         value: e,
-        "aria-autocomplete": i ? "list" : void 0,
-        "aria-controls": _ ? b : void 0,
-        "aria-expanded": i ? !!_ : void 0,
-        "aria-activedescendant": _ && T[k] ? `${b}-${T[k].id}` : void 0,
-        onInput: (y) => {
-          r(y);
-          const D = y instanceof InputEvent ? y.inputType : "";
-          !f.current && D !== "historyUndo" && D !== "historyRedo" && (p.current = []), d.current || S(y.currentTarget);
+        "aria-autocomplete": o ? "list" : void 0,
+        "aria-controls": S ? g : void 0,
+        "aria-expanded": o ? !!S : void 0,
+        "aria-activedescendant": S && j[y] ? `${g}-${j[y].id}` : void 0,
+        onInput: (k) => {
+          r(k);
+          const D = k instanceof InputEvent ? k.inputType : "";
+          !b.current && D !== "historyUndo" && D !== "historyRedo" && (c.current = []), m.current || P(k.currentTarget);
         },
-        onClick: (y) => S(y.currentTarget),
-        onSelect: (y) => {
-          d.current || S(y.currentTarget);
+        onClick: (k) => P(k.currentTarget),
+        onSelect: (k) => {
+          m.current || P(k.currentTarget);
         },
-        onKeyDown: oe,
-        onKeyUp: (y) => {
-          !d.current && !["ArrowDown", "ArrowUp", "Enter", "Tab", "Escape"].includes(y.key) && S(y.currentTarget);
+        onKeyDown: ne,
+        onKeyUp: (k) => {
+          !m.current && !["ArrowDown", "ArrowUp", "Enter", "Tab", "Escape"].includes(k.key) && P(k.currentTarget);
         },
         onCompositionStart: () => {
-          d.current = !0;
+          m.current = !0;
         },
-        onCompositionEnd: (y) => {
-          d.current = !1, S(y.currentTarget);
+        onCompositionEnd: (k) => {
+          m.current = !1, P(k.currentTarget);
         },
         onBlur: () => window.setTimeout(() => {
-          document.activeElement !== m.current && C();
+          document.activeElement !== d.current && E();
         }, 0),
-        onScroll: V
+        onScroll: N
       }
     ),
-    _ && z && /* @__PURE__ */ n(
+    S && x && /* @__PURE__ */ n(
       "div",
       {
-        ref: h,
-        id: b,
+        ref: p,
+        id: g,
         class: "td-reference-mention-menu",
         role: "listbox",
-        "aria-label": a === "zh" ? "选择参考素材" : "Choose reference media",
-        style: { left: z.left, top: z.top, width: z.width, maxHeight: z.maxHeight },
-        onMouseDown: (y) => y.preventDefault(),
+        "aria-label": s === "zh" ? "选择参考素材" : "Choose reference media",
+        style: { left: x.left, top: x.top, width: x.width, maxHeight: x.maxHeight },
+        onMouseDown: (k) => k.preventDefault(),
         children: [
           /* @__PURE__ */ n("header", { children: [
-            /* @__PURE__ */ n("strong", { children: a === "zh" ? "@ 参考素材" : "@ Reference media" }),
-            /* @__PURE__ */ n("span", { children: T.length })
+            /* @__PURE__ */ n("strong", { children: s === "zh" ? "@ 参考素材" : "@ Reference media" }),
+            /* @__PURE__ */ n("span", { children: j.length })
           ] }),
-          T.length ? /* @__PURE__ */ n("div", { class: "td-reference-mention-options", children: T.map((y, D) => {
-            const j = y.kind === "image" ? Ir(y.path) : null, H = Ce(y.path);
+          j.length ? /* @__PURE__ */ n("div", { class: "td-reference-mention-options", children: j.map((k, D) => {
+            const M = k.kind === "image" ? Tr(k.path) : null, V = ze(k.path);
             return /* @__PURE__ */ n(
               "button",
               {
-                id: `${b}-${y.id}`,
+                id: `${g}-${k.id}`,
                 type: "button",
                 role: "option",
-                "aria-selected": D === k,
-                class: D === k ? "active" : "",
-                onMouseEnter: () => w(D),
-                onClick: () => P(y),
+                "aria-selected": D === y,
+                class: D === y ? "active" : "",
+                onMouseEnter: () => v(D),
+                onClick: () => I(k),
                 children: [
-                  /* @__PURE__ */ n("span", { class: `td-reference-mention-thumb ${y.kind}`, children: j ? /* @__PURE__ */ n("img", { src: j, alt: "", loading: "lazy" }) : /* @__PURE__ */ n("span", { children: y.kind === "image" ? "▧" : y.kind === "video" ? "▶" : "♫" }) }),
+                  /* @__PURE__ */ n("span", { class: `td-reference-mention-thumb ${k.kind}`, children: M ? /* @__PURE__ */ n("img", { src: M, alt: "", loading: "lazy" }) : /* @__PURE__ */ n("span", { children: k.kind === "image" ? "▧" : k.kind === "video" ? "▶" : "♫" }) }),
                   /* @__PURE__ */ n("span", { class: "td-reference-mention-copy", children: [
-                    /* @__PURE__ */ n("strong", { children: y.alias }),
-                    /* @__PURE__ */ n("small", { children: H || y.path })
+                    /* @__PURE__ */ n("strong", { children: k.alias }),
+                    /* @__PURE__ */ n("small", { children: V || k.path })
                   ] }),
-                  /* @__PURE__ */ n("em", { children: Yo[a][y.kind] })
+                  /* @__PURE__ */ n("em", { children: Vo[s][k.kind] })
                 ]
               },
-              y.id
+              k.id
             );
-          }) }) : /* @__PURE__ */ n("p", { class: "td-reference-mention-empty", children: a === "zh" ? "没有匹配的可用素材" : "No available media matches" })
+          }) }) : /* @__PURE__ */ n("p", { class: "td-reference-mention-empty", children: s === "zh" ? "没有匹配的可用素材" : "No available media matches" })
         ]
       }
     )
   ] });
 }
-const Xo = {
-  zh: { title: "YuQ 导播台", save: "保存", close: "关闭", shots: "分镜", assets: "素材库", settings: "项目设置", postprocess: "后处理", addShot: "添加分镜", addAsset: "添加素材", preview: "H3 编译预览", noErrors: "当前分镜通过预检" },
-  en: { title: "YuQ Director", save: "Save", close: "Close", shots: "Shots", assets: "Media", settings: "Project", postprocess: "Post-process", addShot: "Add shot", addAsset: "Add asset", preview: "H3 compile preview", noErrors: "Current shot passes validation" }
-}, Dr = "theodore-director-language";
-function Bn(e, t) {
-  return Xo[e][t];
-}
-function Zo() {
-  try {
-    return window.localStorage.getItem(Dr) === "en" ? "en" : "zh";
-  } catch {
-    return "zh";
-  }
-}
-function ei(e) {
-  try {
-    window.localStorage.setItem(Dr, e);
-  } catch {
-  }
-}
-const gn = (e) => `${e}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 7)}`, et = (e) => JSON.parse(JSON.stringify(e)), Or = 0.3;
-function ft(e) {
-  var r, o, i, a, l, s, m, h, d, f, c, p, b, _, N, k, w, z;
-  const t = et(e);
-  return t.schemaVersion = 5, t.project = { ...t.project, name: ((r = t.project) == null ? void 0 : r.name) ?? "YuQ Project", runId: ((o = t.project) == null ? void 0 : o.runId) ?? "run_001", id: ((i = t.project) == null ? void 0 : i.id) ?? "" }, (a = t.project.id) != null && a.trim() || (t.project.id = gn("project")), t.defaults = { fps: ((l = t.defaults) == null ? void 0 : l.fps) ?? 24, baseSeed: ((s = t.defaults) == null ? void 0 : s.baseSeed) ?? 123456790, durationSeconds: ((m = t.defaults) == null ? void 0 : m.durationSeconds) ?? 6, secondSamplingMode: ((h = t.defaults) == null ? void 0 : h.secondSamplingMode) ?? "off" }, t.promptPrefix = t.promptPrefix ?? "", t.promptSuffix = t.promptSuffix ?? "", t.continuity = {
-    mode: ((d = t.continuity) == null ? void 0 : d.mode) ?? "h3_av_latent",
-    videoContextFrames: ((f = t.continuity) == null ? void 0 : f.videoContextFrames) ?? 22,
-    audioContextFrames: ((c = t.continuity) == null ? void 0 : c.audioContextFrames) ?? 24,
-    durationMode: ((p = t.continuity) == null ? void 0 : p.durationMode) ?? "final_output"
-  }, t.shots = (t.shots ?? []).map((g, $) => {
-    const T = g, C = g.id || `shot_${String($ + 1).padStart(3, "0")}`;
-    return {
-      ...g,
-      id: C,
-      title: g.title || C,
-      prompt: g.prompt ?? "",
-      negativePrompt: g.negativePrompt ?? "",
-      durationSeconds: Number(g.durationSeconds) || 5,
-      enabled: g.enabled ?? !0,
-      latentRelay: g.latentRelay ?? !0,
-      // 旧 BOOL 开关无损迁移到 V7.2 原有的超分二采模式。
-      secondSamplingMode: g.secondSamplingMode ?? (T.secondSampling === !1 ? "off" : t.defaults.secondSamplingMode ?? "super_resolution_second_pass"),
-      seed: g.seed ?? null,
-      disabledAssetIds: g.disabledAssetIds ?? []
-    };
-  }), t.assets = (t.assets ?? []).map((g, $) => ({
-    ...g,
-    id: g.id || `asset_${String($ + 1).padStart(3, "0")}`,
-    path: g.path ?? "",
-    enabled: g.enabled ?? !0,
-    fixed: g.fixed ?? !1,
-    fixedOrder: g.fixedOrder ?? $ + 1,
-    shotIds: g.shotIds ?? [],
-    includeVideoAudio: g.includeVideoAudio ?? !1,
-    durationSeconds: g.durationSeconds ?? null,
-    audioDurationSeconds: g.audioDurationSeconds ?? null,
-    fingerprint: g.fingerprint ?? ""
-  })), t.pipeline = {
-    ...t.pipeline,
-    phase: ((b = t.pipeline) == null ? void 0 : b.phase) ?? "first_pass",
-    firstPassConfirmed: !!((_ = t.pipeline) != null && _.firstPassConfirmed),
-    secondPassMode: ((N = t.pipeline) == null ? void 0 : N.secondPassMode) ?? "super_resolution_second_pass",
-    secondPassDenoise: ((k = t.pipeline) == null ? void 0 : k.secondPassDenoise) ?? Or
-  }, t.uiPreferences = { autoSave: ((w = t.uiPreferences) == null ? void 0 : w.autoSave) ?? !1, compactMode: ((z = t.uiPreferences) == null ? void 0 : z.compactMode) ?? !1 }, t;
-}
-function Zt(e) {
-  const t = e;
-  if (!t || typeof t != "object" || !t.project || !Array.isArray(t.shots) || !Array.isArray(t.assets))
-    throw new Error("不是有效的 Theodore Director 计划：需要 project、assets 和 shots 字段");
-}
-function Ur(e, t) {
-  var h;
-  const r = ft(t), o = new Map(e.assets.map((d) => [`${d.kind}:${d.alias.toLocaleLowerCase()}`, d])), i = [];
-  r.assets = r.assets.map((d) => {
-    const f = o.get(`${d.kind}:${d.alias.toLocaleLowerCase()}`);
-    if (!f) return d;
-    const c = {
-      imageGeneration: d.imageGeneration ?? f.imageGeneration,
-      imageGenerationPending: d.imageGenerationPending ?? f.imageGenerationPending
-    };
-    return d.path.trim() || !f.path.trim() ? { ...d, ...c } : (i.push(d.alias), {
-      ...d,
-      ...c,
-      path: f.path,
-      // 已上传文件的真实时长比 skill 中的计划时长更可靠。
-      durationSeconds: f.durationSeconds ?? d.durationSeconds,
-      audioDurationSeconds: f.audioDurationSeconds ?? d.audioDurationSeconds,
-      fingerprint: f.fingerprint || d.fingerprint
-    });
-  });
-  const a = e.project.name === r.project.name && e.project.runId === r.project.runId, l = new Map((a ? e.shots : []).map((d) => [d.id, d]));
-  let s = 0, m = 0;
-  return r.shots = r.shots.map((d) => {
-    const f = l.get(d.id);
-    if (!f) return d;
-    const c = { ...d };
-    return !c.review && f.review && (c.review = f.review, s += 1), c.seed == null && f.seed != null && (c.seed = f.seed, m += 1), c;
-  }), e.pipeline && r.pipeline && (r.pipeline.secondPassDenoise = ((h = t.pipeline) == null ? void 0 : h.secondPassDenoise) ?? e.pipeline.secondPassDenoise ?? Or), { plan: r, keptPaths: i, keptReviews: s, keptSeeds: m };
-}
-function en(e) {
-  return e.trim().replace(/[<>:"/\\|?*\u0000-\u001f]+/g, "_").replace(/[. ]+$/g, "").slice(0, 96) || "theodore_project";
-}
-const je = (e) => e.trim().toLocaleLowerCase(), ti = /* @__PURE__ */ new Set(["image", "video", "audio"]);
-function Fr(e) {
-  if (!Array.isArray(e)) throw new Error("素材清单必须为数组 / Expected an asset list");
-  const t = /* @__PURE__ */ new Set();
-  for (const r of e) {
-    if (!r || typeof r.alias != "string" || !r.alias.trim() || /[\s{}]/.test(r.alias) || je(r.alias).endsWith(".audio") || !ti.has(r.kind)) throw new Error("素材别名或类型无效 / Invalid asset alias or kind");
-    if (t.has(je(r.alias))) throw new Error(`素材别名重复 / Duplicate alias: ${r.alias}`);
-    if (t.add(je(r.alias)), r.path != null && typeof r.path != "string") throw new Error("素材路径必须为字符串 / Expected a string path");
-  }
-}
-function Gr(e) {
-  var r, o;
-  const t = e;
-  if (!t || t.format !== "theodore-assets" || t.version !== 1 || typeof ((r = t.library) == null ? void 0 : r.id) != "string" || !t.library.id.trim() || typeof ((o = t.library) == null ? void 0 : o.name) != "string") throw new Error("不是有效的素材库 JSON / Invalid asset library JSON");
-  Fr(t.assets);
-}
-function bn(e) {
-  var o;
-  const t = e;
-  if (!t || t.format !== "theodore-episode" || t.version !== 1 || typeof ((o = t.project) == null ? void 0 : o.name) != "string" || !t.project.name.trim() || !Array.isArray(t.shots) || !Array.isArray(t.requiredAssets)) throw new Error("不是有效的分镜 JSON / Invalid episode JSON");
-  Fr(t.requiredAssets);
-  const r = new Set(t.requiredAssets.map((i) => je(i.alias)));
-  for (const i of Vr(t)) if (!r.has(i)) throw new Error(`分镜未声明素材 / Undeclared asset: ${i}`);
-}
-function Vr(e) {
-  const t = /* @__PURE__ */ new Set();
-  for (const r of [e.promptPrefix, e.promptSuffix, ...e.shots.flatMap((o) => [o.prompt, o.negativePrompt])])
-    for (const o of (r ?? "").matchAll(/\{\{ref:([^}]+)\}\}/g)) t.add(je(o[1].replace(/\.audio$/i, "")));
-  return t;
-}
-function Wn(e) {
-  return {
-    format: "theodore-assets",
-    version: 1,
-    library: et(e.assetLibrary ?? { id: `library_${e.project.id}`, name: e.project.name }),
-    // 镜头适用范围属于当集，系列清单不携带其他集的镜头 ID。
-    assets: e.assets.map((t) => ({ ...et(t), enabled: !0, fixed: !1, shotIds: [] }))
-  };
-}
-function Jn(e) {
-  const { assets: t, ...r } = et(e), o = Vr(e), i = new Set(e.shots.flatMap((s) => s.disabledAssetIds)), a = t.filter((s) => o.has(je(s.alias)) || s.fixed || i.has(s.id)).map(({ id: s, alias: m, kind: h, enabled: d, fixed: f, shotIds: c, includeVideoAudio: p }) => ({ id: s, alias: m, kind: h, enabled: d, fixed: f, shotIds: c, includeVideoAudio: p })), l = { ...r, format: "theodore-episode", version: 1, requiredAssets: a };
-  return bn(l), l;
-}
-function ni(e, t) {
-  Gr(t);
-  const r = ft({ ...e, assets: t.assets }).assets, o = et(e), i = new Map(o.assets.map((h) => [je(h.alias), h])), a = new Set(o.assets.map((h) => h.id));
-  let l = 0, s = 0;
-  const m = [];
-  for (const h of r) {
-    const d = i.get(je(h.alias));
-    if (d) {
-      if (d.kind !== h.kind) throw new Error(`同名素材类型不同 / Asset kind mismatch: ${h.alias}`);
-      const f = !h.path.trim() && !!d.path.trim(), c = {
-        ...d,
-        ...h,
-        id: d.id,
-        alias: d.alias,
-        enabled: d.enabled,
-        fixed: d.fixed,
-        fixedOrder: d.fixedOrder,
-        shotIds: d.shotIds,
-        imageGeneration: h.imageGeneration ?? d.imageGeneration,
-        imageGenerationPending: h.imageGenerationPending ?? d.imageGenerationPending
-      };
-      f && (c.path = d.path, c.durationSeconds = d.durationSeconds, c.audioDurationSeconds = d.audioDurationSeconds, c.fingerprint = d.fingerprint, m.push(d.alias)), Object.assign(d, c), s += 1;
-    } else {
-      const f = { ...h, id: a.has(h.id) ? gn("asset") : h.id, shotIds: [] };
-      a.add(f.id), i.set(je(h.alias), f), o.assets.push(f), l += 1;
-    }
-  }
-  return o.assetLibrary = et(t.library), { plan: o, added: l, updated: s, keptPaths: m };
-}
-function ri(e, t) {
-  bn(t);
-  const r = et(e.assets).map((c) => ({ ...c, fixed: !1, shotIds: [] })), o = new Map(r.map((c) => [je(c.alias), c])), i = new Set(r.map((c) => c.id)), a = /* @__PURE__ */ new Map(), l = [];
-  for (const c of t.requiredAssets) {
-    let p = o.get(je(c.alias));
-    if (p && p.kind !== c.kind) throw new Error(`同名素材类型不同 / Asset kind mismatch: ${c.alias}`);
-    if (!p) {
-      const b = c.id && !i.has(c.id) ? c.id : gn("asset");
-      p = { id: b, alias: c.alias, kind: c.kind, path: "", enabled: !0, fixed: !1, fixedOrder: r.length + 1, shotIds: [], includeVideoAudio: !1, durationSeconds: null, audioDurationSeconds: null, fingerprint: "" }, r.push(p), o.set(je(c.alias), p), i.add(b);
-    }
-    p.enabled = c.enabled ?? !0, p.fixed = c.fixed ?? !1, p.shotIds = [...c.shotIds ?? []], p.includeVideoAudio = c.includeVideoAudio ?? p.includeVideoAudio, c.id && a.set(c.id, p.id), p.path.trim() || l.push(c.alias);
-  }
-  const { format: s, version: m, requiredAssets: h, ...d } = t, f = Ur(e, { ...d, assetLibrary: t.assetLibrary ?? e.assetLibrary, assets: r });
-  return f.plan.assets = r, f.plan.shots = f.plan.shots.map((c) => ({ ...c, disabledAssetIds: c.disabledAssetIds.map((p) => a.get(p) ?? p) })), { ...f, keptPaths: r.filter((c) => c.path.trim()).map((c) => c.alias), missingAssets: l };
-}
-function Fe(e) {
-  return (Array.isArray(e.results) && e.results.length ? e.results : e.path ? [{ path: e.path, bytes: e.bytes, modifiedAt: e.modifiedAt, stage: e.stage, processingMode: e.processingMode, sourcePath: e.sourcePath, completedAt: e.completedAt }] : []).filter((r) => typeof r.path == "string" && r.path.trim().length > 0).sort((r, o) => (o.modifiedAt ?? 0) - (r.modifiedAt ?? 0));
-}
-function oi(e, t) {
-  const r = /_video_(\d+)/i.exec(e.replace(/\\/g, "/"));
-  return r ? Number(r[1]) : t;
-}
-function ii(e, t) {
-  return e.stage === "second_pass" && t !== "super_resolution_only" ? "second_pass_requires_upscale_only" : e.stage === "upscaled" ? "upscaled_is_terminal" : null;
-}
-function si(e, t) {
-  return ii(e, t) === null;
-}
-function ai(e) {
-  return ["super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"].filter((r) => si(e, r));
-}
-function Hr(e) {
-  const t = ke(null), [r, o] = R(!1);
-  return Pe(() => {
-    const i = t.current;
-    if (!i) return;
-    if (!("IntersectionObserver" in window)) {
-      o(!0);
-      return;
-    }
-    const a = new IntersectionObserver((l) => {
-      o(l.some((s) => s.isIntersecting));
-    }, { rootMargin: e });
-    return a.observe(i), () => a.disconnect();
-  }, []), { hostRef: t, active: r };
-}
-function di({ src: e, className: t }) {
-  const { hostRef: r, active: o } = Hr("320px");
-  return /* @__PURE__ */ n("div", { class: `td-lazy-player ${t ?? ""}`, ref: r, children: o ? /* @__PURE__ */ n("video", { src: e, controls: !0, preload: "metadata", playsInline: !0 }, e) : /* @__PURE__ */ n("span", { children: "…" }) });
-}
-function st({ src: e, alt: t }) {
-  const { hostRef: r, active: o } = Hr("160px");
-  return /* @__PURE__ */ n("div", { class: "td-result-thumb", ref: r, children: o ? /* @__PURE__ */ n("video", { src: e, "aria-label": t, muted: !0, playsInline: !0, preload: "metadata", onLoadedMetadata: (i) => {
-    const a = i.currentTarget;
-    Number.isFinite(a.duration) && a.duration > 0.02 && (a.currentTime = Math.min(0.25, Math.max(0, a.duration - 0.05)));
-  } }) : /* @__PURE__ */ n("span", { children: "…" }) });
-}
-function xn(e) {
-  let t = 0;
-  return e.shots.map((r, o) => {
-    const i = {
-      key: `${o}:${r.id}`,
-      shot: r,
-      sourceIndex: o,
-      activeIndex: r.enabled ? t : -1
-    };
-    return r.enabled && (t += 1), i;
-  });
-}
-function li(e, t, r) {
-  return e.filter((o) => o.shot.enabled && t[o.key]).map((o) => ({
-    shotId: o.shot.id,
-    activeIndex: o.activeIndex,
-    path: r[o.key] ?? ""
-  }));
-}
-function ci(e, t, r) {
-  const o = {};
-  return e.forEach((i) => {
-    const a = i.sourceIndex + 1;
-    o[i.key] = i.shot.enabled && a >= t && a <= r;
-  }), o;
-}
-function pi(e, t, r) {
-  return `/theodore-director/v1/generated-video?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId, shotId: t, activeIndex: String(r) }).toString()}`;
-}
-function ui(e, t, r) {
-  return t === "latent_upscale_second_pass" ? r === "zh" ? "Latent 放大二采" : "Latent upscale 2nd pass" : t === "super_resolution_second_pass" || e === "second_pass" ? r === "zh" ? "超分二采" : "Super-res 2nd pass" : t === "super_resolution_only" || e === "upscaled" ? r === "zh" ? "只超分" : "Super-res only" : e === "first_pass" ? r === "zh" ? "一采" : "1st pass" : r === "zh" ? "旧结果" : "Legacy";
-}
-function hi(e, t) {
-  return e === "latent_upscale_second_pass" ? t === "zh" ? "Latent 放大二采" : "Latent upscale 2nd pass" : e === "super_resolution_only" ? t === "zh" ? "只超分" : "Super-res only" : t === "zh" ? "超分二采" : "Super-res 2nd pass";
-}
-function mi({ plan: e, language: t, queueSecondPass: r }) {
-  var g;
-  const o = Ve(() => xn(e), [e]), [i, a] = R({}), [l, s] = R({}), [m, h] = R(null), [d, f] = R(0), [c, p] = R({}), [b, _] = R({ value: 0, max: 0 }), N = ke(!1), k = ((g = e.pipeline) == null ? void 0 : g.secondPassDenoise) ?? 0.3;
-  Pe(() => {
-    let $ = !1;
-    const T = {};
-    return o.forEach((C) => {
-      T[C.key] = { loading: !0, response: { found: !1, results: [] } };
-    }), a(T), o.forEach((C) => {
-      fetch(pi(e, C.shot.id, C.activeIndex)).then(async (S) => {
-        const L = await S.json();
-        if (!S.ok) throw new Error(L.error || `HTTP ${S.status}`);
-        $ || a((V) => ({ ...V, [C.key]: { loading: !1, response: L } }));
-      }).catch((S) => {
-        $ || a((L) => ({ ...L, [C.key]: { loading: !1, response: { found: !1, results: [], error: String(S) } } }));
-      });
-    }), () => {
-      $ = !0;
-    };
-  }, [e.project.name, e.project.runId, e.shots.map(($) => $.id).join("|"), d]);
-  const w = async ($, T, C) => {
-    if (!r || N.current) return;
-    N.current = !0;
-    const S = `${T}:${C}`;
-    s((L) => ({ ...L, [S]: { state: "queued" } }));
-    try {
-      await r({
-        plan: e,
-        shotId: $,
-        sourcePath: T,
-        requestId: `td2_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`,
-        processingMode: C,
-        phase: "second_pass",
-        denoise: C === "super_resolution_only" ? void 0 : k,
-        onProgress: _
-      }), s((L) => ({ ...L, [S]: { state: "done" } })), f((L) => L + 1);
-    } catch (L) {
-      s((V) => ({ ...V, [S]: { state: "error", message: String(L instanceof Error ? L.message : L) } }));
-    } finally {
-      N.current = !1;
-    }
-  }, z = Object.values(l).some(($) => $.state === "queued");
-  return /* @__PURE__ */ n("section", { class: "td-postprocess td-second-pass-panel", children: [
-    /* @__PURE__ */ n("div", { class: "td-post-header", children: [
-      /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: t === "zh" ? "单独二采" : "Standalone processing" }),
-        /* @__PURE__ */ n("p", { children: t === "zh" ? "对满意结果执行所选高清处理；二采结果只能继续只超分，不重跑一采或启动 Impact 循环。" : "Process a selected result; second-pass outputs may only continue with Super-res only, without rerunning the first pass or Impact loop." })
-      ] }),
-      /* @__PURE__ */ n("div", { class: "td-post-actions", children: /* @__PURE__ */ n("button", { onClick: () => f(($) => $ + 1), children: [
-        "↻ ",
-        t === "zh" ? "刷新结果" : "Refresh"
-      ] }) })
-    ] }),
-    /* @__PURE__ */ n("div", { class: "td-post-warning", children: t === "zh" ? `整体二采请到「审片与生成」页执行（使用每段选定的结果，按分镜顺序）。这里用于单独处理某一个结果；重绘强度沿用审片页设置：${k.toFixed(2)}。` : `Run the batch second pass from Review & generate. Denoise: ${k.toFixed(2)}.` }),
-    z && /* @__PURE__ */ n("div", { class: "td-batch-progress", children: [
-      /* @__PURE__ */ n("span", { children: t === "zh" ? "当前任务进度" : "Current task" }),
-      /* @__PURE__ */ n("progress", { max: b.max || 1, value: b.value }),
-      /* @__PURE__ */ n("b", { children: b.max ? `${Math.round(b.value / b.max * 100)}%` : "…" })
-    ] }),
-    !r && /* @__PURE__ */ n("div", { class: "td-post-warning", children: t === "zh" ? "当前工作流缺少后处理二采支流，请重新载入仓库中的 V7 导播台示例工作流。" : "This workflow does not contain the standalone second-pass branch. Reload the V7 example workflow from the repository." }),
-    /* @__PURE__ */ n("div", { class: "td-post-shot-list", children: o.map(($) => {
-      const T = i[$.key], C = Fe((T == null ? void 0 : T.response) ?? { results: [] });
-      return /* @__PURE__ */ n("article", { class: "td-post-shot", children: [
-        /* @__PURE__ */ n("header", { children: [
-          /* @__PURE__ */ n("span", { children: [
-            /* @__PURE__ */ n("strong", { children: $.shot.id }),
-            /* @__PURE__ */ n("em", { children: $.shot.title })
-          ] }),
-          /* @__PURE__ */ n("span", { children: [
-            $.shot.durationSeconds,
-            "s"
-          ] })
-        ] }),
-        !$.shot.enabled && /* @__PURE__ */ n("div", { class: "td-post-shot-disabled-note", children: t === "zh" ? "镜头已禁用，但仍可对历史一采结果进行后处理。" : "This shot is disabled, but its historical first-pass results remain available." }),
-        T != null && T.loading ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "正在查询生成结果…" : "Loading results…" }) : T != null && T.response.error ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty errors", children: t === "zh" ? "查询失败，请重启 ComfyUI 后重试。" : "Query failed. Restart ComfyUI and retry." }) : C.length ? /* @__PURE__ */ n("div", { class: "td-post-result-list", children: C.map((S) => {
-          const L = Ie(S.path, "output"), V = ai(S), O = V.includes(c[S.path]) ? c[S.path] : V[0], U = O ? l[`${S.path}:${O}`] : void 0;
-          return /* @__PURE__ */ n("div", { class: "td-second-pass-result", children: [
-            /* @__PURE__ */ n("button", { class: "td-post-result-choice", onClick: () => L && h({ path: S.path, title: `${$.shot.id} · ${$.shot.title}` }), children: [
-              L ? /* @__PURE__ */ n(st, { src: L, alt: Ce(S.path) }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
-              /* @__PURE__ */ n("span", { children: [
-                /* @__PURE__ */ n("strong", { children: [
-                  ui(S.stage, S.processingMode, t),
-                  (S.stage === "legacy_unknown" || !S.stage) && /* @__PURE__ */ n("em", { children: t === "zh" ? "兼容" : "Compatible" })
-                ] }),
-                /* @__PURE__ */ n("span", { title: S.path, children: Ce(S.path) }),
-                /* @__PURE__ */ n("small", { children: S.bytes ? `${(S.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
-              ] })
-            ] }),
-            /* @__PURE__ */ n("div", { class: "td-second-pass-actions", children: [
-              O ? /* @__PURE__ */ n("select", { "aria-label": t === "zh" ? "该视频可用的处理方式" : "Available processing modes for this video", value: O, disabled: z, onChange: (P) => p((oe) => ({ ...oe, [S.path]: P.currentTarget.value })), children: V.map((P) => /* @__PURE__ */ n("option", { value: P, children: hi(P, t) })) }) : /* @__PURE__ */ n("span", { class: "td-second-pass-terminal", children: t === "zh" ? "只超分后不可再处理" : "Upscaled: no further processing" }),
-              /* @__PURE__ */ n("button", { class: "primary td-second-pass-run", disabled: !r || !O || z, onClick: () => O && void w($.shot.id, S.path, O), children: (U == null ? void 0 : U.state) === "queued" ? t === "zh" ? "排队/执行中…" : "Queued/running…" : (U == null ? void 0 : U.state) === "done" ? t === "zh" ? "处理完成" : "Completed" : t === "zh" ? "开始处理" : "Process" })
-            ] }),
-            (U == null ? void 0 : U.state) === "error" && /* @__PURE__ */ n("div", { class: "td-second-pass-error", children: U.message })
-          ] }, S.path);
-        }) }) : /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "没有可用的生成结果" : "No generated result available" })
-      ] }, $.key);
-    }) }),
-    m && Ie(m.path, "output") && /* @__PURE__ */ n("div", { class: "td-post-preview-overlay", role: "presentation", onClick: () => h(null), children: /* @__PURE__ */ n("section", { role: "dialog", "aria-modal": "true", onClick: ($) => $.stopPropagation(), children: [
-      /* @__PURE__ */ n("header", { children: [
-        /* @__PURE__ */ n("strong", { children: m.title }),
-        /* @__PURE__ */ n("button", { onClick: () => h(null), children: "×" })
-      ] }),
-      /* @__PURE__ */ n("video", { src: Ie(m.path, "output") ?? "", controls: !0, autoPlay: !0, preload: "metadata", playsInline: !0 }),
-      /* @__PURE__ */ n("p", { children: Ce(m.path) })
-    ] }) })
-  ] });
-}
-function fi(e, t, r) {
-  return `/theodore-director/v1/generated-video?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId, shotId: t, activeIndex: String(r) }).toString()}`;
-}
-function gi(e) {
-  return `/theodore-director/v1/postprocess/merged-videos?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId }).toString()}`;
-}
-async function qn(e) {
-  const t = await fetch(e), r = await t.json();
-  if (!t.ok) throw new Error(r.error || `HTTP ${t.status}`);
-  return r;
-}
-function Kn(e, t) {
-  const r = Fe(e).filter((o) => o.path !== t);
-  return { found: !!r.length, count: r.length, results: r };
-}
-function bi(e, t, r, o = "") {
-  return { projectName: e.project.name, runId: e.project.runId, kind: t, shotId: o, path: r };
-}
-function xi(e, t) {
-  return e.processingMode === "latent_upscale_second_pass" ? t === "zh" ? "Latent 放大二采" : "Latent upscale 2nd pass" : e.processingMode === "super_resolution_second_pass" || e.stage === "second_pass" ? t === "zh" ? "超分二采" : "Super-res 2nd pass" : e.processingMode === "super_resolution_only" || e.stage === "upscaled" ? t === "zh" ? "只超分" : "Super-res only" : e.stage === "first_pass" ? t === "zh" ? "一采" : "1st pass" : t === "zh" ? "旧结果" : "Legacy";
-}
-function vi({ plan: e, language: t }) {
-  const r = Ve(() => xn(e), [e]), [o, i] = R({}), [a, l] = R({ loading: !0, response: { found: !1, results: [] } }), [s, m] = R({}), [h, d] = R(null), [f, c] = R(""), [p, b] = R(0);
-  Pe(() => {
-    let w = !1;
-    const z = {};
-    return r.forEach((g) => {
-      z[g.key] = { loading: !0, response: { found: !1, results: [] } };
-    }), i(z), c(""), r.forEach((g) => {
-      qn(fi(e, g.shot.id, g.activeIndex)).then(($) => {
-        w || i((T) => ({ ...T, [g.key]: { loading: !1, response: $ } }));
-      }).catch(($) => {
-        w || i((T) => ({ ...T, [g.key]: { loading: !1, response: { found: !1, results: [], error: String($) } } }));
-      });
-    }), () => {
-      w = !0;
-    };
-  }, [e.project.name, e.project.runId, e.shots.map((w) => w.id).join("|"), p]), Pe(() => {
-    let w = !1;
-    return l({ loading: !0, response: { found: !1, results: [] } }), qn(gi(e)).then((z) => {
-      w || l({ loading: !1, response: z });
-    }).catch((z) => {
-      w || l({ loading: !1, response: { found: !1, results: [], error: String(z) } });
-    }), () => {
-      w = !0;
-    };
-  }, [e.project.name, e.project.runId, p]);
-  const _ = async (w, z, g = "", $ = "") => {
-    const T = Ce(z.path);
-    if (window.confirm(t === "zh" ? `确定将“${T}”移入系统回收站吗？
-可从系统回收站恢复。` : `Move “${T}” to the system trash?
-You can restore it from the trash.`)) {
-      (h == null ? void 0 : h.path) === z.path && d(null), m((S) => ({ ...S, [z.path]: !0 })), c(""), await new Promise((S) => requestAnimationFrame(() => requestAnimationFrame(() => S())));
-      try {
-        const S = await fetch("/theodore-director/v1/postprocess/delete-video", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bi(e, w, z.path, g))
-        }), L = await S.json();
-        if (!S.ok) throw new Error(L.error || `HTTP ${S.status}`);
-        w === "merged" ? l((V) => ({ ...V, response: Kn(V.response, z.path) })) : i((V) => {
-          var O;
-          return {
-            ...V,
-            [$]: { ...V[$], response: Kn(((O = V[$]) == null ? void 0 : O.response) ?? { found: !1, results: [] }, z.path) }
-          };
-        });
-      } catch (S) {
-        c(String(S instanceof Error ? S.message : S));
-      } finally {
-        m((S) => {
-          const L = { ...S };
-          return delete L[z.path], L;
-        });
-      }
-    }
-  }, N = (w, z, g, $ = "", T = "") => {
-    const C = Ie(w.path, "output"), S = !!s[w.path];
-    return /* @__PURE__ */ n("div", { class: `td-delete-result ${S ? "deleting" : ""}`, children: [
-      /* @__PURE__ */ n("button", { class: "td-post-result-choice", disabled: S || !C, onClick: () => C && d({ path: w.path, title: g }), children: [
-        S ? /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "…" }) : C ? /* @__PURE__ */ n(st, { src: C, alt: wi(w, t) }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
-        /* @__PURE__ */ n("span", { children: [
-          /* @__PURE__ */ n("strong", { children: z === "merged" ? t === "zh" ? "合并视频" : "Merged video" : xi(w, t) }),
-          /* @__PURE__ */ n("span", { title: w.path, children: Ce(w.path) }),
-          /* @__PURE__ */ n("small", { children: w.bytes ? `${(w.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
-        ] })
-      ] }),
-      /* @__PURE__ */ n("button", { class: "danger td-delete-video-button", disabled: S, onClick: () => void _(z, w, $, T), children: S ? t === "zh" ? "正在移动…" : "Moving…" : t === "zh" ? "移入回收站" : "Move to trash" })
-    ] }, w.path);
-  }, k = Fe(a.response);
-  return /* @__PURE__ */ n("section", { class: "td-postprocess td-delete-panel", children: [
-    /* @__PURE__ */ n("div", { class: "td-post-header", children: [
-      /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: t === "zh" ? "删除视频" : "Delete videos" }),
-        /* @__PURE__ */ n("p", { children: t === "zh" ? "逐条预览并将当前项目的视频移入系统回收站；不会删除素材、latent 或尾帧。" : "Preview videos and move them to the system trash one at a time. Assets, latent files, and tail frames are preserved." })
-      ] }),
-      /* @__PURE__ */ n("div", { class: "td-post-actions", children: /* @__PURE__ */ n("button", { onClick: () => b((w) => w + 1), children: [
-        "↻ ",
-        t === "zh" ? "刷新结果" : "Refresh"
-      ] }) })
-    ] }),
-    f && /* @__PURE__ */ n("div", { class: "td-post-error", children: [
-      t === "zh" ? "删除失败：" : "Delete failed: ",
-      f
-    ] }),
-    /* @__PURE__ */ n("div", { class: "td-post-shot-list", children: r.map((w) => {
-      const z = o[w.key], g = Fe((z == null ? void 0 : z.response) ?? { results: [] });
-      return /* @__PURE__ */ n("article", { class: "td-post-shot", children: [
-        /* @__PURE__ */ n("header", { children: [
-          /* @__PURE__ */ n("span", { children: [
-            /* @__PURE__ */ n("strong", { children: w.shot.id }),
-            /* @__PURE__ */ n("em", { children: w.shot.title })
-          ] }),
-          /* @__PURE__ */ n("span", { children: [
-            w.shot.durationSeconds,
-            "s"
-          ] })
-        ] }),
-        !w.shot.enabled && /* @__PURE__ */ n("div", { class: "td-post-shot-disabled-note", children: t === "zh" ? "镜头已禁用，仍可管理其历史视频。" : "This shot is disabled; its historical videos can still be managed." }),
-        z != null && z.loading ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "正在查询生成结果…" : "Loading results…" }) : z != null && z.response.error ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty errors", children: t === "zh" ? "查询失败" : "Unable to load results" }) : g.length ? /* @__PURE__ */ n("div", { class: "td-post-result-list", children: g.map(($) => N($, "shot", `${w.shot.id} · ${w.shot.title}`, w.shot.id, w.key)) }) : /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "没有生成视频" : "No generated videos" })
-      ] }, w.key);
-    }) }),
-    /* @__PURE__ */ n("section", { class: "td-post-merged td-delete-merged", children: [
-      /* @__PURE__ */ n("header", { children: /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: t === "zh" ? "合并视频" : "Merged videos" }),
-        /* @__PURE__ */ n("span", { class: `td-result-state ${k.length ? "found" : ""}`, children: a.loading ? t === "zh" ? "查询中" : "Loading" : t === "zh" ? `${k.length} 个结果` : `${k.length} results` })
-      ] }) }),
-      a.loading ? /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "正在查询合并视频…" : "Loading merged videos…" }) : a.response.error ? /* @__PURE__ */ n("div", { class: "td-result-empty errors", children: t === "zh" ? "无法查询合并视频" : "Unable to load merged videos" }) : k.length ? /* @__PURE__ */ n("div", { class: "td-delete-merged-list", children: k.map((w) => N(w, "merged", t === "zh" ? "合并视频" : "Merged video")) }) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "没有合并视频" : "No merged videos" })
-    ] }),
-    h && Ie(h.path, "output") && /* @__PURE__ */ n("div", { class: "td-post-preview-overlay", role: "presentation", onClick: () => d(null), children: /* @__PURE__ */ n("section", { role: "dialog", "aria-modal": "true", onClick: (w) => w.stopPropagation(), children: [
-      /* @__PURE__ */ n("header", { children: [
-        /* @__PURE__ */ n("strong", { children: h.title }),
-        /* @__PURE__ */ n("button", { "aria-label": t === "zh" ? "关闭预览" : "Close preview", onClick: () => d(null), children: "×" })
-      ] }),
-      /* @__PURE__ */ n("video", { src: Ie(h.path, "output") ?? "", controls: !0, autoPlay: !0, preload: "metadata", playsInline: !0 }),
-      /* @__PURE__ */ n("p", { title: h.path, children: Ce(h.path) })
-    ] }) })
-  ] });
-}
-function wi(e, t) {
-  return `${t === "zh" ? "视频" : "Video"} ${Ce(e.path)}`;
-}
-async function Qn(e) {
-  const t = await fetch(e), r = await t.json();
-  if (!t.ok) throw new Error(r.error || `HTTP ${t.status}`);
-  return r;
-}
-function yi(e, t, r) {
-  return `/theodore-director/v1/generated-video?${new URLSearchParams({
-    projectName: e.project.name,
-    runId: e.project.runId,
-    shotId: t,
-    activeIndex: String(r)
-  }).toString()}`;
-}
-function _i(e) {
-  return `/theodore-director/v1/postprocess/merged-videos?${new URLSearchParams({ projectName: e.project.name, runId: e.project.runId }).toString()}`;
-}
-function ki({ plan: e, language: t, queueSecondPass: r }) {
-  const [o, i] = R("merge");
-  return /* @__PURE__ */ n("section", { class: "td-postprocess-shell", children: [
-    /* @__PURE__ */ n("div", { class: "td-post-mode-tabs", role: "tablist", children: [
-      /* @__PURE__ */ n("button", { class: o === "merge" ? "active" : "", role: "tab", "aria-selected": o === "merge", onClick: () => i("merge"), children: t === "zh" ? "合并视频" : "Merge videos" }),
-      /* @__PURE__ */ n("button", { class: o === "second-pass" ? "active" : "", role: "tab", "aria-selected": o === "second-pass", onClick: () => i("second-pass"), children: t === "zh" ? "单独二采" : "Standalone second pass" }),
-      /* @__PURE__ */ n("button", { class: o === "delete" ? "active" : "", role: "tab", "aria-selected": o === "delete", onClick: () => i("delete"), children: t === "zh" ? "删除视频" : "Delete videos" })
-    ] }),
-    o === "merge" ? /* @__PURE__ */ n(Si, { plan: e, language: t }) : o === "second-pass" ? /* @__PURE__ */ n(mi, { plan: e, language: t, queueSecondPass: r }) : /* @__PURE__ */ n(vi, { plan: e, language: t })
-  ] });
-}
-function Si({ plan: e, language: t }) {
-  const r = Ve(() => xn(e), [e]), [o, i] = R({}), [a, l] = R({}), [s, m] = R({}), [h, d] = R(null), [f, c] = R(!1), [p, b] = R(""), [_, N] = R(""), [k, w] = R({ found: !1, results: [] }), [z, g] = R(!1), [$, T] = R(!1), [C, S] = R(""), [L, V] = R(0), [O, U] = R("1"), [P, oe] = R(String(r.length || 1)), y = r.filter((E) => E.shot.enabled), D = y.length > 0 && y.every((E) => a[E.key]), j = li(r, a, s), H = j.filter((E) => !E.path), te = r.some((E) => {
-    var B;
-    return a[E.key] && ((B = o[E.key]) == null ? void 0 : B.loading);
-  }), X = r.reduce(
-    (E, B) => E + (B.shot.enabled && a[B.key] ? B.shot.durationSeconds : 0),
-    0
-  ), M = Ve(() => Fe(k), [k]), v = M.find((E) => E.path === C) ?? M[0];
-  Pe(() => {
-    let E = !1;
-    const B = {}, ue = {};
-    return r.forEach((ne) => {
-      B[ne.key] = ne.shot.enabled, ue[ne.key] = { loading: !0, response: { found: !1, results: [] } };
-    }), l((ne) => {
-      const u = {};
-      return r.forEach((G) => {
-        u[G.key] = G.shot.enabled ? ne[G.key] ?? B[G.key] : !1;
-      }), u;
-    }), i(ue), b(""), r.forEach((ne) => {
-      Qn(yi(e, ne.shot.id, ne.activeIndex)).then((u) => {
-        if (E) return;
-        const G = Fe(u);
-        i((Y) => ({ ...Y, [ne.key]: { loading: !1, response: u } })), m((Y) => {
-          var ce;
-          return {
-            ...Y,
-            [ne.key]: G.some((be) => be.path === Y[ne.key]) ? Y[ne.key] : ((ce = G[0]) == null ? void 0 : ce.path) ?? ""
-          };
-        });
-      }).catch((u) => {
-        E || i((G) => ({
-          ...G,
-          [ne.key]: { loading: !1, response: { found: !1, results: [], error: String(u) } }
-        }));
-      });
-    }), () => {
-      E = !0;
-    };
-  }, [e.project.name, e.project.runId, e.shots.map((E) => `${E.id}:${E.enabled}`).join("|"), L]), Pe(() => {
-    let E = !1;
-    return g(!0), Qn(_i(e)).then((B) => {
-      if (E) return;
-      const ue = Fe(B);
-      w(B), S((ne) => {
-        var u;
-        return ue.some((G) => G.path === ne) ? ne : ((u = ue[0]) == null ? void 0 : u.path) ?? "";
-      });
-    }).catch((B) => {
-      E || w({ found: !1, results: [], error: String(B) });
-    }).finally(() => {
-      E || g(!1);
-    }), () => {
-      E = !0;
-    };
-  }, [e.project.name, e.project.runId, L]);
-  const K = () => {
-    const E = !D;
-    l((B) => {
-      const ue = { ...B };
-      return y.forEach((ne) => {
-        ue[ne.key] = E;
-      }), ue;
-    });
-  }, Z = () => {
-    const E = Number(O), B = Number(P);
-    if (!Number.isInteger(E) || !Number.isInteger(B) || E < 1 || B < E || B > r.length) {
-      window.alert(t === "zh" ? `请输入有效范围：1 ≤ m ≤ n ≤ ${r.length}` : `Enter a valid range: 1 ≤ m ≤ n ≤ ${r.length}`);
-      return;
-    }
-    l(ci(r, E, B));
-  }, Q = async () => {
-    if (!j.length) {
-      window.alert(t === "zh" ? "请至少选择一个镜头" : "Select at least one shot.");
-      return;
-    }
-    if (H.length) {
-      window.alert(t === "zh" ? `以下已选镜头没有可用结果：${H.map((E) => E.shotId).join("、")}` : `Selected shots without a result: ${H.map((E) => E.shotId).join(", ")}`);
-      return;
-    }
-    c(!0), b("");
-    try {
-      const E = await fetch("/theodore-director/v1/postprocess/merge", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ projectName: e.project.name, runId: e.project.runId, selections: j })
-      }), B = await E.json();
-      if (!E.ok) throw new Error(B.error || `HTTP ${E.status}`);
-      V((ue) => ue + 1);
-    } catch (E) {
-      b(String(E instanceof Error ? E.message : E));
-    } finally {
-      c(!1);
-    }
-  }, ee = async () => {
-    T(!0), N("");
-    try {
-      const E = await fetch("/theodore-director/v1/postprocess/open-folder", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ projectName: e.project.name, runId: e.project.runId })
-      }), B = await E.json();
-      if (!E.ok) throw new Error(B.error || `HTTP ${E.status}`);
-    } catch (E) {
-      N(String(E instanceof Error ? E.message : E));
-    } finally {
-      T(!1);
-    }
-  }, pe = v != null && v.path ? Ie(v.path, "output") : null;
-  return /* @__PURE__ */ n("section", { class: "td-postprocess", children: [
-    /* @__PURE__ */ n("div", { class: "td-post-header", children: [
-      /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: t === "zh" ? "合并视频" : "Merge videos" }),
-        /* @__PURE__ */ n("p", { children: t === "zh" ? "从每个镜头选择一个结果，按当前分镜顺序进行无损合并。" : "Choose one result per shot and merge them losslessly in storyboard order." })
-      ] }),
-      /* @__PURE__ */ n("div", { class: "td-post-actions", children: [
-        /* @__PURE__ */ n("button", { disabled: $, onClick: ee, children: [
-          "📁 ",
-          $ ? t === "zh" ? "正在打开…" : "Opening…" : t === "zh" ? "打开结果文件夹" : "Open results folder"
-        ] }),
-        /* @__PURE__ */ n("button", { onClick: () => V((E) => E + 1), children: [
-          "↻ ",
-          t === "zh" ? "刷新结果" : "Refresh"
-        ] }),
-        /* @__PURE__ */ n("button", { onClick: K, children: D ? t === "zh" ? "全部取消" : "Clear all" : t === "zh" ? "一键全选" : "Select all" })
-      ] })
-    ] }),
-    _ && /* @__PURE__ */ n("div", { class: "td-post-error", children: [
-      t === "zh" ? "打开结果文件夹失败：" : "Unable to open results folder: ",
-      _
-    ] }),
-    /* @__PURE__ */ n("div", { class: "td-post-summary", children: [
-      /* @__PURE__ */ n("span", { children: t === "zh" ? `已选择 ${j.length}/${y.length} 个启用镜头` : `${j.length}/${y.length} enabled shots selected` }),
-      /* @__PURE__ */ n("span", { children: t === "zh" ? `预计时长 ${X.toFixed(1)} 秒` : `Estimated duration ${X.toFixed(1)} sec` }),
-      /* @__PURE__ */ n("div", { class: "td-post-range", role: "group", "aria-label": t === "zh" ? "合并视频范围" : "Merge video range", children: [
-        /* @__PURE__ */ n("span", { children: t === "zh" ? "范围" : "Range" }),
-        /* @__PURE__ */ n("input", { type: "number", min: "1", max: r.length, step: "1", value: O, "aria-label": t === "zh" ? "起始镜头 m" : "Start shot m", onInput: (E) => U(E.currentTarget.value) }),
-        /* @__PURE__ */ n("span", { children: "—" }),
-        /* @__PURE__ */ n("input", { type: "number", min: "1", max: r.length, step: "1", value: P, "aria-label": t === "zh" ? "结束镜头 n" : "End shot n", onInput: (E) => oe(E.currentTarget.value) }),
-        /* @__PURE__ */ n("button", { disabled: !r.length, onClick: Z, children: t === "zh" ? "确认范围" : "Apply range" })
-      ] }),
-      /* @__PURE__ */ n("button", { class: "primary", disabled: f || te || !j.length || !!H.length, onClick: Q, children: f ? t === "zh" ? "正在合并…" : "Merging…" : t === "zh" ? "合并所选视频" : "Merge selected videos" })
-    ] }),
-    p && /* @__PURE__ */ n("div", { class: "td-post-error", children: [
-      t === "zh" ? "合并失败：" : "Merge failed: ",
-      p
-    ] }),
-    H.length > 0 && /* @__PURE__ */ n("div", { class: "td-post-warning", children: t === "zh" ? "已选镜头中存在尚未生成视频的镜头。" : "Some selected shots do not have generated videos yet." }),
-    /* @__PURE__ */ n("div", { class: "td-post-shot-list", children: r.map((E) => {
-      const B = o[E.key], ue = Fe((B == null ? void 0 : B.response) ?? { results: [] }), ne = !!a[E.key];
-      return /* @__PURE__ */ n("article", { class: `td-post-shot ${ne ? "selected" : ""} ${E.shot.enabled ? "" : "disabled"}`, children: [
-        /* @__PURE__ */ n("header", { children: [
-          /* @__PURE__ */ n("label", { children: [
-            /* @__PURE__ */ n("input", { type: "checkbox", checked: ne, disabled: !E.shot.enabled, onChange: (u) => l((G) => ({ ...G, [E.key]: u.currentTarget.checked })) }),
-            /* @__PURE__ */ n("span", { children: [
-              /* @__PURE__ */ n("strong", { children: E.shot.id }),
-              /* @__PURE__ */ n("em", { children: E.shot.title })
-            ] })
-          ] }),
-          /* @__PURE__ */ n("span", { children: [
-            E.shot.durationSeconds,
-            "s"
-          ] })
-        ] }),
-        !E.shot.enabled && /* @__PURE__ */ n("div", { class: "td-post-shot-disabled-note", children: t === "zh" ? "该镜头当前已禁用：历史结果可以预览，但不能参加合并。" : "This shot is disabled: historical results can be previewed but cannot be merged." }),
-        B != null && B.loading ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "正在查询生成结果…" : "Loading generated results…" }) : B != null && B.response.error ? /* @__PURE__ */ n("div", { class: "td-post-shot-empty errors", children: t === "zh" ? "查询失败，请重启 ComfyUI 后重试。" : "Query failed. Restart ComfyUI and retry." }) : ue.length ? /* @__PURE__ */ n("div", { class: "td-post-result-list", children: ue.map((u, G) => {
-          const Y = Ie(u.path, "output"), ce = s[E.key] === u.path, be = oi(u.path, ue.length - G);
-          return /* @__PURE__ */ n("div", { class: `td-post-result ${ce ? "selected" : ""}`, children: [
-            /* @__PURE__ */ n("button", { class: "td-post-result-choice", role: "radio", "aria-checked": ce, onClick: () => m((le) => ({ ...le, [E.key]: u.path })), children: [
-              Y ? /* @__PURE__ */ n(st, { src: Y, alt: `${E.shot.title} ${t === "zh" ? "结果" : "result"} ${be}` }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
-              /* @__PURE__ */ n("span", { children: [
-                /* @__PURE__ */ n("strong", { children: [
-                  t === "zh" ? `结果 ${be}` : `Result ${be}`,
-                  G === 0 && /* @__PURE__ */ n("em", { children: t === "zh" ? "最新" : "Latest" })
-                ] }),
-                /* @__PURE__ */ n("span", { title: u.path, children: Ce(u.path) }),
-                /* @__PURE__ */ n("small", { children: u.bytes ? `${(u.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
-              ] })
-            ] }),
-            /* @__PURE__ */ n("button", { class: "td-post-result-play", disabled: !Y, title: t === "zh" ? "播放预览" : "Play preview", onClick: () => Y && d({ path: u.path, title: `${E.shot.id} · ${E.shot.title}` }), children: "▶" })
-          ] }, u.path);
-        }) }) : /* @__PURE__ */ n("div", { class: "td-post-shot-empty", children: t === "zh" ? "未找到这个镜头的生成结果" : "No generated result found for this shot" })
-      ] }, E.key);
-    }) }),
-    /* @__PURE__ */ n("section", { class: "td-post-merged", children: [
-      /* @__PURE__ */ n("header", { children: /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: t === "zh" ? "合并结果" : "Merged results" }),
-        /* @__PURE__ */ n("span", { class: `td-result-state ${M.length ? "found" : ""}`, children: z ? t === "zh" ? "查询中" : "Checking" : t === "zh" ? `${M.length} 个结果` : `${M.length} results` })
-      ] }) }),
-      z ? /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "正在查询合并结果…" : "Loading merged results…" }) : k.error ? /* @__PURE__ */ n("div", { class: "td-result-empty errors", children: t === "zh" ? "无法查询合并结果" : "Unable to query merged results" }) : v && pe ? /* @__PURE__ */ n("div", { class: "td-generated-results", children: [
-        /* @__PURE__ */ n("div", { class: "td-generated-video", children: [
-          /* @__PURE__ */ n("video", { src: pe, controls: !0, preload: "metadata", playsInline: !0 }, v.path),
-          /* @__PURE__ */ n("div", { class: "td-generated-meta", title: v.path, children: v.path })
-        ] }),
-        /* @__PURE__ */ n("div", { class: "td-result-list", children: M.map((E, B) => {
-          const ue = Ie(E.path, "output");
-          return /* @__PURE__ */ n("button", { class: `td-result-item ${E.path === v.path ? "selected" : ""}`, onClick: () => S(E.path), children: [
-            ue ? /* @__PURE__ */ n(st, { src: ue, alt: `${t === "zh" ? "合并结果" : "Merged result"} ${M.length - B}` }) : /* @__PURE__ */ n("div", { class: "td-result-thumb", children: "×" }),
-            /* @__PURE__ */ n("span", { class: "td-result-item-copy", children: [
-              /* @__PURE__ */ n("strong", { children: [
-                t === "zh" ? `合并结果 ${M.length - B}` : `Merged result ${M.length - B}`,
-                B === 0 && /* @__PURE__ */ n("em", { children: t === "zh" ? "最新" : "Latest" })
-              ] }),
-              /* @__PURE__ */ n("span", { children: Ce(E.path) }),
-              /* @__PURE__ */ n("small", { children: E.bytes ? `${(E.bytes / 1024 / 1024).toFixed(1)} MB` : "" })
-            ] })
-          ] }, E.path);
-        }) })
-      ] }) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: t === "zh" ? "还没有合并结果" : "No merged result yet" })
-    ] }),
-    h && Ie(h.path, "output") && /* @__PURE__ */ n("div", { class: "td-post-preview-overlay", role: "presentation", onClick: () => d(null), children: /* @__PURE__ */ n("section", { role: "dialog", "aria-modal": "true", onClick: (E) => E.stopPropagation(), children: [
-      /* @__PURE__ */ n("header", { children: [
-        /* @__PURE__ */ n("strong", { children: h.title }),
-        /* @__PURE__ */ n("button", { "aria-label": t === "zh" ? "关闭预览" : "Close preview", onClick: () => d(null), children: "×" })
-      ] }),
-      /* @__PURE__ */ n("video", { src: Ie(h.path, "output") ?? "", controls: !0, autoPlay: !0, preload: "metadata", playsInline: !0 }),
-      /* @__PURE__ */ n("p", { title: h.path, children: Ce(h.path) })
-    ] }) })
-  ] });
-}
-const Br = 5;
-function $i(e) {
-  return !e.stage || e.stage === "first_pass" || e.stage === "legacy_unknown";
-}
-function Re(e) {
-  return e.filter($i).sort((t, r) => (r.modifiedAt ?? 0) - (t.modifiedAt ?? 0));
-}
-function tt(e, t) {
-  var o;
-  const r = (o = e.review) == null ? void 0 : o.take;
-  return r && t.find((i) => i.path === r) || t[0];
-}
-const Yn = (e) => (e ?? "").replace(/\\/g, "/").replace(/^\.\//, "");
-function gt(e, t, r) {
-  const o = Yn(t);
-  return e.filter((i) => (i.stage === "second_pass" || i.stage === "upscaled") && Yn(i.sourcePath) === o).filter((i) => !r || !i.processingMode || i.processingMode === r).sort((i, a) => (a.modifiedAt ?? 0) - (i.modifiedAt ?? 0));
-}
-function Wr(e, t) {
-  const r = tt(e, Re(t));
-  if (!r) return;
-  const o = gt(t, r.path)[0];
-  return o ? { item: o, processed: !0 } : { item: r, processed: !1 };
-}
-function Bt(e, t) {
-  const r = e.shots.findIndex((o) => o.id === t);
-  for (let o = r - 1; o >= 0; o -= 1)
-    if (e.shots[o].enabled) return e.shots[o];
-}
-function xt(e, t) {
-  return t.enabled && t.latentRelay && e.continuity.mode === "h3_av_latent" && !!Bt(e, t.id);
-}
-function Jr(e, t) {
-  const r = e.shots.findIndex((i) => i.id === t);
-  if (r < 0) return [];
-  const o = [t];
-  for (let i = r + 1; i < e.shots.length; i += 1) {
-    const a = e.shots[i];
-    if (a.enabled) {
-      if (!xt(e, a)) break;
-      o.push(a.id);
-    }
-  }
-  return o;
-}
-function Nt(e, t) {
-  return e.shots.filter((r) => r.enabled).findIndex((r) => r.id === t);
-}
-function Ii(e, t) {
-  const r = e.shots.filter((i) => i.enabled), o = r.findIndex((i) => i.id === t);
-  return o >= 0 && o + 1 < r.length ? o + 1 : 0;
-}
-function qr(e, t) {
-  var a, l;
-  const r = (a = e.pipeline) == null ? void 0 : a.latentWriters, o = e.shots.find((s) => s.id === t);
-  if (!r || !o || !xt(e, o)) return null;
-  const i = r[String(Nt(e, t))];
-  return i ? i.shotId === ((l = Bt(e, t)) == null ? void 0 : l.id) ? null : "wrong" : "missing";
-}
-function Pi(e, t) {
-  const r = new Set(t), o = [];
-  let i = !0;
-  for (; i; ) {
-    i = !1;
-    for (const l of [...r]) {
-      const s = Bt(e, l);
-      !s || r.has(s.id) || !qr(e, l) || (r.add(s.id), o.push(s.id), i = !0);
-    }
-  }
-  return { shotIds: e.shots.filter((l) => r.has(l.id)).map((l) => l.id), added: e.shots.filter((l) => o.includes(l.id)).map((l) => l.id) };
-}
-function Ci(e, t) {
-  var o;
-  if (!t) return;
-  const r = (t.modifiedAt ?? 0) + Br;
-  return [...((o = e.review) == null ? void 0 : o.relayHistory) ?? []].sort((i, a) => a.at - i.at).find((i) => i.at <= r);
-}
-function Ei(e, t, r) {
-  const o = r != null ? r + Br : t.modifiedAt ?? 0;
-  return [...e].sort((i, a) => (a.modifiedAt ?? 0) - (i.modifiedAt ?? 0)).find((i) => (i.modifiedAt ?? 0) <= o);
-}
-function zi(e, t, r, o, i) {
-  if (!e || !r) return "unknown";
-  if (i) {
-    if (i.source == null) return "unknown";
-    if (o && i.source !== o) return "wrong_source";
-  }
-  const a = Ei(t, r, i == null ? void 0 : i.sourceAt);
-  return a ? a.path === e.path ? "ok" : "mismatch" : "unknown";
-}
-function Ai(e) {
-  let t = 5381;
-  for (let r = 0; r < e.length; r += 1) t = (t << 5) + t + e.charCodeAt(r) | 0;
-  return (t >>> 0).toString(36);
-}
-function Kr(e, t) {
-  const r = e.assets.filter((o) => !(o.shotIds ?? []).length || o.shotIds.includes(t.id)).map((o) => [o.alias, o.kind, o.path, o.enabled, o.includeVideoAudio, o.durationSeconds, o.fixed, o.fixedOrder]);
-  return Ai(JSON.stringify([
-    t.prompt,
-    t.negativePrompt,
-    t.durationSeconds,
-    t.latentRelay,
-    t.seed,
-    [...t.disabledAssetIds ?? []].sort(),
-    e.promptPrefix,
-    e.promptSuffix,
-    e.continuity,
-    r
-  ]));
-}
-function Qr(e, t) {
-  var o;
-  const r = (o = t.review) == null ? void 0 : o.generatedSig;
-  return !!r && r !== Kr(e, t);
-}
-function Yr() {
-  return Math.floor(Math.random() * 4294967295);
-}
-const Je = { kind: null, total: 0, done: 0, progress: { value: 0, max: 0 }, message: "" }, Xn = {
-  super_resolution_second_pass: ["超分二采（RTX 1.5× + 低噪重采）", "Super-res 2nd pass"],
-  latent_upscale_second_pass: ["Latent 放大二采", "Latent upscale 2nd pass"],
-  super_resolution_only: ["只超分（不重采，接缝零变化）", "Super-res only"]
-};
-function Ti({ plan: e, language: t, results: r, run: o, supportsSecondPass: i, setReview: a, setPipeline: l, onRunFirstPass: s, onRunSecondPass: m, onMerge: h, onStop: d, onRefresh: f, onOpenShot: c }) {
-  var H, te, X;
-  const p = (M, v) => t === "zh" ? M : v, [b, _] = R("all"), [N, k] = R(!0), w = e.shots.filter((M) => M.enabled), z = (M) => Re(r.byShot[M.id] ?? []), g = w.filter((M) => !z(M).length), $ = w.filter((M) => {
-    var v;
-    return ((v = M.review) == null ? void 0 : v.status) === "approved" && z(M).length;
-  }), T = w.filter((M) => {
-    var v;
-    return ((v = M.review) == null ? void 0 : v.status) === "redo";
-  }), C = ((H = e.pipeline) == null ? void 0 : H.secondPassMode) ?? "super_resolution_second_pass", S = ((te = e.pipeline) == null ? void 0 : te.secondPassDenoise) ?? 0.3, L = w.filter((M) => {
-    const v = tt(M, z(M));
-    return v && gt(r.byShot[M.id] ?? [], v.path).length;
-  }).length, V = w.length > 0 && w.every((M) => Wr(M, r.byShot[M.id] ?? [])), O = w.length > 0 && L === w.length, U = o.kind !== null, P = (M) => {
-    var v;
-    return ((v = M.review) == null ? void 0 : v.status) ?? "pending";
-  }, oe = e.shots.filter((M) => b === "all" || M.enabled && P(M) === b), y = o.progress.max ? Math.round(o.progress.value / o.progress.max * 100) : 0, D = (X = e.shots.find((M) => M.id === o.currentShotId)) == null ? void 0 : X.title, j = () => {
-    const M = $.map((K) => K.id);
-    if (!M.length) return;
-    const v = w.length - $.length;
-    v > 0 && !window.confirm(p(`还有 ${v} 段没有通过审片，本次只对已通过的 ${M.length} 段执行二采。继续？`, `${v} shots are not approved; only ${M.length} will be processed. Continue?`)) || m(M, N);
-  };
-  return /* @__PURE__ */ n("div", { class: "td-review", children: [
-    /* @__PURE__ */ n("section", { class: "td-review-steps", children: [
-      /* @__PURE__ */ n("div", { class: `td-step ${g.length ? "active" : "done"}`, children: [
-        /* @__PURE__ */ n("b", { children: "1" }),
-        /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("strong", { children: p("整体一采", "First pass") }),
-          /* @__PURE__ */ n("span", { children: p(`${w.length - g.length}/${w.length} 段已有结果`, `${w.length - g.length}/${w.length} generated`) })
-        ] })
-      ] }),
-      /* @__PURE__ */ n("div", { class: `td-step ${!g.length && $.length < w.length ? "active" : $.length === w.length && w.length ? "done" : ""}`, children: [
-        /* @__PURE__ */ n("b", { children: "2" }),
-        /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("strong", { children: p("审片 / 单段重生", "Review / re-roll") }),
-          /* @__PURE__ */ n("span", { children: p(`通过 ${$.length} · 需重生 ${T.length}`, `${$.length} approved · ${T.length} redo`) })
-        ] })
-      ] }),
-      /* @__PURE__ */ n("div", { class: `td-step ${$.length === w.length && w.length && L < w.length ? "active" : L === w.length && w.length ? "done" : ""}`, children: [
-        /* @__PURE__ */ n("b", { children: "3" }),
-        /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("strong", { children: p("整体二采", "Batch 2nd pass") }),
-          /* @__PURE__ */ n("span", { children: p(`${L}/${w.length} 段已二采`, `${L}/${w.length} processed`) })
-        ] })
-      ] }),
-      /* @__PURE__ */ n("div", { class: `td-step ${O ? "active" : ""}`, children: [
-        /* @__PURE__ */ n("b", { children: "4" }),
-        /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("strong", { children: p("合并成片", "Merge") }),
-          /* @__PURE__ */ n("span", { children: p("每段使用选定结果", "Uses each chosen take") })
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ n("section", { class: "td-review-actions", children: [
-      /* @__PURE__ */ n("div", { class: "td-action-group", children: [
-        /* @__PURE__ */ n("span", { class: "td-action-title", children: p("一采", "First pass") }),
-        /* @__PURE__ */ n("button", { class: "primary", disabled: U || r.loading || !g.length, onClick: () => s(g.map((M) => M.id), !1), children: r.loading ? p("正在读取结果…", "Loading results…") : g.length ? p(`生成缺失的 ${g.length} 段`, `Generate ${g.length} missing`) : p("全部已有一采", "All generated") }),
-        T.length > 0 && /* @__PURE__ */ n("button", { disabled: U, onClick: () => s(T.map((M) => M.id), !0), children: [
-          "↻ ",
-          p(`重生标记的 ${T.length} 段`, `Re-roll ${T.length} marked`)
-        ] }),
-        /* @__PURE__ */ n("button", { disabled: U || !w.length, onClick: () => {
-          window.confirm(p(`为全部 ${w.length} 段换新种子重新一采？旧结果会保留。`, `Re-roll all ${w.length} shots with new seeds?`)) && s(w.map((M) => M.id), !0);
-        }, children: p("全部重新一采", "Re-roll all") })
-      ] }),
-      i && /* @__PURE__ */ n("div", { class: "td-action-group", children: [
-        /* @__PURE__ */ n("span", { class: "td-action-title", children: p("二采", "2nd pass") }),
-        /* @__PURE__ */ n("select", { value: C, disabled: U, onChange: (M) => l({ secondPassMode: M.currentTarget.value }), children: Object.keys(Xn).map((M) => /* @__PURE__ */ n("option", { value: M, children: Xn[M][t === "zh" ? 0 : 1] })) }),
-        C !== "super_resolution_only" && /* @__PURE__ */ n("label", { class: "td-denoise", title: p("重绘强度越低，段与段接缝越稳定、人物越不易变；越高细节越多但接缝可能跳变。接力镜头多时建议 0.20–0.25。", "Lower = steadier seams, higher = more detail"), children: [
-          /* @__PURE__ */ n("span", { children: p("重绘强度", "Denoise") }),
-          /* @__PURE__ */ n("input", { type: "range", min: "0.1", max: "0.45", step: "0.01", value: S, disabled: U, onInput: (M) => l({ secondPassDenoise: Number(M.currentTarget.value) }) }),
-          /* @__PURE__ */ n("b", { children: S.toFixed(2) })
-        ] }),
-        /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
-          /* @__PURE__ */ n("input", { type: "checkbox", checked: N, onChange: (M) => k(M.currentTarget.checked) }),
-          p("跳过已二采的段", "Skip processed")
-        ] }),
-        /* @__PURE__ */ n("button", { class: "primary", disabled: U || !$.length, onClick: j, children: p(`整体二采（已通过 ${$.length} 段）`, `Batch 2nd pass (${$.length})`) })
-      ] }),
-      /* @__PURE__ */ n("div", { class: "td-action-group", children: [
-        /* @__PURE__ */ n("button", { disabled: U || !V, title: p("把每段选定的一采结果拼成整片，审片时检查整体连贯性", "Concatenate chosen first-pass takes for review"), onClick: () => h(!1), children: p("合并一采样片", "Merge 1st-pass cut") }),
-        /* @__PURE__ */ n("button", { class: "accent", disabled: U || !O, title: O ? "" : p("全部镜头完成二采后才能合并成片（一采与二采分辨率不同，不能混拼）", "All shots need a 2nd pass first"), onClick: () => h(!0), children: p("合并二采成片", "Merge final") }),
-        /* @__PURE__ */ n("button", { disabled: U, onClick: f, children: [
-          "↻ ",
-          p("刷新", "Refresh")
-        ] })
-      ] })
-    ] }),
-    (U || o.error || o.message) && /* @__PURE__ */ n("section", { class: `td-run-bar ${o.error ? "error" : U ? "running" : "done"}`, children: [
-      /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("strong", { children: o.error ? p("执行中断", "Stopped") : U ? o.kind === "first" ? p("一采进行中", "First pass running") : o.kind === "second" ? p("二采进行中", "Second pass running") : p("合并中", "Merging") : p("完成", "Done") }),
-        /* @__PURE__ */ n("span", { children: o.error || (U ? `${o.done}/${o.total}${D ? ` · ${D}` : ""}` : o.message) })
-      ] }),
-      U && o.kind !== "merge" && /* @__PURE__ */ n("progress", { max: 100, value: y }),
-      U && o.kind !== "merge" && /* @__PURE__ */ n("b", { children: [
-        y,
-        "%"
-      ] }),
-      U && /* @__PURE__ */ n("button", { class: "danger", onClick: d, children: p("停止", "Stop") })
-    ] }),
-    /* @__PURE__ */ n("nav", { class: "td-review-filter", children: [
-      ["all", "pending", "approved", "redo"].map((M) => /* @__PURE__ */ n("button", { class: b === M ? "active" : "", onClick: () => _(M), children: { all: p(`全部 ${e.shots.length}`, `All ${e.shots.length}`), pending: p(`待审 ${w.filter((v) => P(v) === "pending").length}`, "Pending"), approved: p(`通过 ${$.length}`, "Approved"), redo: p(`需重生 ${T.length}`, "Redo") }[M] })),
-      /* @__PURE__ */ n("span", { class: "td-review-hint", children: p("提示：接力段读取的是上一段“最近一次生成”的 latent，重生上一段后请连同后续接力段一起重生。", "Relay shots continue from the previous shot's latest take.") })
-    ] }),
-    /* @__PURE__ */ n("div", { class: "td-review-grid", children: oe.map((M) => /* @__PURE__ */ n(ji, { plan: e, shot: M, language: t, results: r, busy: U, running: o.currentShotId === M.id, setReview: a, onRunFirstPass: s, onOpenShot: c }, M.id)) })
-  ] });
-}
-function ji({ plan: e, shot: t, language: r, results: o, busy: i, running: a, setReview: l, onRunFirstPass: s, onOpenShot: m }) {
-  var O;
-  const h = (U, P) => r === "zh" ? U : P, [d, f] = R(!1), c = o.byShot[t.id] ?? [], p = Re(c), b = tt(t, p), _ = b ? gt(c, b.path) : [], N = d && _[0] ? _[0] : b, k = N ? Ie(N.path, "output") : null, w = e.shots.findIndex((U) => U.id === t.id), z = xt(e, t), g = z ? Bt(e, t.id) : void 0, $ = g ? Re(o.byShot[g.id] ?? []) : [], T = g ? zi(tt(g, $), $, b, g.id, Ci(t, b)) : "unknown", C = qr(e, t.id), S = Jr(e, t.id), L = ((O = t.review) == null ? void 0 : O.status) ?? "pending", V = Qr(e, t);
-  return /* @__PURE__ */ n("article", { class: `td-review-card ${L} ${t.enabled ? "" : "off"} ${a ? "running" : ""}`, children: [
-    /* @__PURE__ */ n("header", { children: [
-      /* @__PURE__ */ n("button", { class: "td-review-title", title: h("在分镜页打开", "Open in editor"), onClick: () => m(t.id), children: [
-        /* @__PURE__ */ n("em", { children: w + 1 }),
-        t.title
-      ] }),
-      /* @__PURE__ */ n("span", { class: "td-review-tags", children: [
-        /* @__PURE__ */ n("i", { children: [
-          t.durationSeconds,
-          "s"
-        ] }),
-        z && /* @__PURE__ */ n("i", { class: "relay", title: h(`接力自「${g == null ? void 0 : g.title}」`, "Relay"), children: [
-          "⛓ ",
-          h("接力", "relay")
-        ] }),
-        !t.enabled && /* @__PURE__ */ n("i", { children: h("禁用", "off") }),
-        /* @__PURE__ */ n("i", { class: L, children: L === "approved" ? h("✓ 通过", "✓ OK") : L === "redo" ? h("↻ 需重生", "↻ redo") : h("待审", "pending") })
-      ] })
-    ] }),
-    /* @__PURE__ */ n("div", { class: "td-review-media", children: [
-      a ? /* @__PURE__ */ n("div", { class: "td-result-empty running", children: h("正在生成…", "Generating…") }) : k ? /* @__PURE__ */ n(di, { src: k }) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: h("还没有一采结果", "No take yet") }),
-      _.length > 0 && /* @__PURE__ */ n("div", { class: "td-review-media-switch", children: [
-        /* @__PURE__ */ n("button", { class: d ? "" : "active", onClick: () => f(!1), children: h("一采", "1st") }),
-        /* @__PURE__ */ n("button", { class: d ? "active" : "", onClick: () => f(!0), children: h("二采", "2nd") })
-      ] })
-    ] }),
-    p.length > 1 && /* @__PURE__ */ n("div", { class: "td-take-strip", children: p.map((U, P) => {
-      const oe = Ie(U.path, "output");
-      return /* @__PURE__ */ n("button", { class: `td-take ${U.path === (b == null ? void 0 : b.path) ? "selected" : ""}`, title: `${Ce(U.path)}${U.modifiedAt ? `
-${new Date(U.modifiedAt * 1e3).toLocaleString()}` : ""}`, onClick: () => l(t.id, { take: U.path }), children: [
-        oe ? /* @__PURE__ */ n(st, { src: oe, alt: U.path }) : null,
-        /* @__PURE__ */ n("span", { children: [
-          "#",
-          p.length - P,
-          gt(c, U.path).length ? " ★" : ""
-        ] })
-      ] }, U.path);
-    }) }),
-    T === "mismatch" && /* @__PURE__ */ n("p", { class: "td-review-warning", children: h(`接缝不匹配：本段结果生成时接力的是「${g == null ? void 0 : g.title}」的另一个结果。请把上一段选回对应结果，或重生本段。`, "Seam mismatch with the chosen take of the previous shot.") }),
-    T === "wrong_source" && /* @__PURE__ */ n("p", { class: "td-review-warning", children: h(`接力来源错误：本段结果生成时读取的不是「${g == null ? void 0 : g.title}」的 latent（镜头顺序或启用状态变过）。请连同上一段一起重生。`, "This take relayed from a different shot; re-roll it together with the previous shot.") }),
-    C && T !== "wrong_source" && /* @__PURE__ */ n("p", { class: "td-review-warning", children: h(`下次生成本段时将读到不属于「${g == null ? void 0 : g.title}」的 latent（镜头顺序或启用状态变过），重生时会建议连同上一段一起生成。`, "The relay slot no longer belongs to the previous shot.") }),
-    V && /* @__PURE__ */ n("p", { class: "td-review-warning", children: h("提示词或素材在生成后被修改过，当前结果不代表最新设置。", "Prompt changed after this take was generated.") }),
-    t.note && /* @__PURE__ */ n("p", { class: "td-review-note", title: t.note, children: t.note }),
-    /* @__PURE__ */ n("footer", { children: [
-      /* @__PURE__ */ n("button", { class: `ok ${L === "approved" ? "active" : ""}`, disabled: !b, onClick: () => l(t.id, { status: L === "approved" ? "pending" : "approved", take: b == null ? void 0 : b.path }), children: [
-        "✓ ",
-        h("通过", "Approve")
-      ] }),
-      /* @__PURE__ */ n("button", { class: `warn ${L === "redo" ? "active" : ""}`, onClick: () => l(t.id, { status: L === "redo" ? "pending" : "redo" }), children: [
-        "✗ ",
-        h("需重生", "Redo")
-      ] }),
-      /* @__PURE__ */ n("button", { disabled: i || !t.enabled, onClick: () => s([t.id], !0), children: [
-        "↻ ",
-        h("重生", "Re-roll")
-      ] }),
-      S.length > 1 && /* @__PURE__ */ n("button", { disabled: i || !t.enabled, title: h(`后面 ${S.length - 1} 段接力自本段；一起重生才能保证接缝衔接`, "Re-roll with following relay shots"), onClick: () => s(S, !0), children: [
-        "↻ ",
-        h(`连同后续 ${S.length - 1} 段`, `+${S.length - 1} relay`)
-      ] })
-    ] })
-  ] });
-}
-function Ni(e) {
-  const t = e.reduce((r, o) => {
-    const i = /^shot_(\d+)(?:_[a-z0-9]+)?$/i.exec(o.id.trim());
-    return i ? Math.max(r, Number(i[1])) : r;
-  }, 0);
-  return Math.max(t, e.length) + 1;
-}
-function ln() {
-  return Math.random().toString(36).slice(2, 6);
-}
-function Xr(e, t = 5, r, o = "super_resolution_second_pass") {
-  const i = `shot_${String(e).padStart(3, "0")}`;
-  return {
-    id: r ? `${i}_${r()}` : i,
-    title: `Shot ${e}`,
-    prompt: "",
-    negativePrompt: "",
-    durationSeconds: t,
-    enabled: !0,
-    latentRelay: !0,
-    secondSamplingMode: o,
-    seed: null,
-    disabledAssetIds: []
-  };
-}
-function Zr(e, t, r, o, i = "super_resolution_second_pass") {
-  const a = Ni(e), l = Array.from({ length: t }, (s, m) => Xr(a + m, r, o, i));
-  return [...e, ...l];
-}
-function Li(e = 5, t, r = "super_resolution_second_pass") {
-  return [Xr(1, e, t, r)];
-}
-async function Mi(e, t) {
-  const r = new URLSearchParams({ projectName: e.project.name, runId: e.project.runId, shotId: t, activeIndex: "-1" }), o = await fetch(`/theodore-director/v1/generated-video?${r.toString()}`), i = await o.json();
-  if (!o.ok) throw new Error(i.error || `HTTP ${o.status}`);
-  return Fe(i);
-}
-function Ri(e, t) {
-  const [r, o] = R({ byShot: {}, errors: {}, loading: !0 }), i = e.shots.map((a) => a.id).join("|");
-  return Pe(() => {
-    let a = !1;
-    o((s) => ({ ...s, loading: !0 }));
-    const l = e.shots.map((s) => s.id);
-    return Promise.all(l.map(async (s) => {
-      try {
-        return [s, await Mi(e, s), ""];
-      } catch (m) {
-        return [s, [], String(m instanceof Error ? m.message : m)];
-      }
-    })).then((s) => {
-      if (a) return;
-      const m = {}, h = {};
-      for (const [d, f, c] of s)
-        m[d] = f, c && (h[d] = c);
-      o({ byShot: m, errors: h, loading: !1 });
-    }), () => {
-      a = !0;
-    };
-  }, [e.project.name, e.project.runId, i, t]), r;
-}
-const Zn = [
+const rr = [
   { value: "pushes in", label: ["推近", "Push in"] },
   { value: "pulls back", label: ["拉远", "Pull back"] },
   { value: "zooms in", label: ["变焦推近", "Zoom in"] },
@@ -2484,327 +2495,331 @@ const Zn = [
   { value: "rolls counterclockwise", label: ["逆时针旋转", "Roll counterclockwise"] },
   { value: "remains static", label: ["静机", "Static"] },
   { value: "holds position and racks focus", label: ["静机移焦", "Rack focus"] }
-], Di = [
+], qo = [
   { value: "", label: ["默认", "Default"] },
   { value: "small amplitude", label: ["小幅度", "Small"] },
   { value: "large amplitude", label: ["大幅度", "Large"] }
-], Oi = [
+], Ho = [
   { value: "", label: ["默认", "Default"] },
   { value: "slow", label: ["缓慢", "Slow"] },
   { value: "fast", label: ["快速", "Fast"] }
 ];
-function Ui(e, t, r, o, i = "", a = "", l = "") {
+function Wo(e, t, r, i, o = "", s = "", l = "") {
   if (e === "remains static")
-    return o.trim() ? `The camera remains static on ${o.trim()}.` : "The camera remains static.";
+    return i.trim() ? `The camera remains static on ${i.trim()}.` : "The camera remains static.";
   if (e === "holds position and racks focus") {
-    const d = r.trim() ? `from ${r.trim()}` : "from the foreground", f = o.trim() ? ` to ${o.trim()}` : " to the background";
-    return `The camera holds position and racks focus ${d}${f}.`;
+    const m = r.trim() ? `from ${r.trim()}` : "from the foreground", b = i.trim() ? ` to ${i.trim()}` : " to the background";
+    return `The camera holds position and racks focus ${m}${b}.`;
   }
   if (e === "uses a POV shot")
-    return `The camera adopts a POV perspective ${r.trim() ? `from ${r.trim()}` : "from the subject's viewpoint"}${o.trim() ? `, settling on ${o.trim()}` : ""}.`;
-  const s = [`As ${t.trim() || "the action unfolds"}, the camera ${e}`], m = !e.startsWith("shakes") && !e.startsWith("rolls");
-  m && r.trim() && s.push(`toward ${r.trim()}`), m && l.trim() && s.push(`along ${l.trim()}`), i.trim() && s.push(`with ${i.trim()}`), a.trim() && s.push(`at ${a.trim()} speed`);
-  let h = s.join(" ");
-  return o.trim() && (h += `, settling on ${o.trim()}`), `${h}.`;
+    return `The camera adopts a POV perspective ${r.trim() ? `from ${r.trim()}` : "from the subject's viewpoint"}${i.trim() ? `, settling on ${i.trim()}` : ""}.`;
+  const a = [`As ${t.trim() || "the action unfolds"}, the camera ${e}`], d = !e.startsWith("shakes") && !e.startsWith("rolls");
+  d && r.trim() && a.push(`toward ${r.trim()}`), d && l.trim() && a.push(`along ${l.trim()}`), o.trim() && a.push(`with ${o.trim()}`), s.trim() && a.push(`at ${s.trim()} speed`);
+  let p = a.join(" ");
+  return i.trim() && (p += `, settling on ${i.trim()}`), `${p}.`;
 }
-const Fi = ["off", "super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"], Gi = {
+const Jo = ["off", "super_resolution_second_pass", "latent_upscale_second_pass", "super_resolution_only"], Ko = {
   off: ["关闭（推荐）", "Off (recommended)"],
   super_resolution_second_pass: ["超分二采", "Super-res 2nd pass"],
   latent_upscale_second_pass: ["Latent 放大二采", "Latent upscale 2nd pass"],
   super_resolution_only: ["只超分", "Super-res only"]
 };
-function Lt(e) {
+function Ft(e) {
   const t = Math.round(e);
   return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`;
 }
-function Vi({ plan: e, language: t, selected: r, setSelected: o, mutate: i, setReview: a, results: l, supportsSecondSampling: s, running: m, runningShotId: h, onRegenerate: d, onOpenBatch: f, notify: c }) {
-  var ne;
-  const p = ke(null);
-  Pe(() => {
-    const u = p.current, G = u == null ? void 0 : u.querySelector(".selected");
-    if (!u || !G) return;
-    const Y = u.getBoundingClientRect(), ce = G.getBoundingClientRect();
-    ce.left < Y.left ? u.scrollLeft -= Y.left - ce.left : ce.right > Y.right && (u.scrollLeft += ce.right - Y.right);
+function Qo({ plan: e, language: t, selected: r, setSelected: i, mutate: o, setReview: s, results: l, supportsSecondSampling: a, running: d, runningShotId: p, onRegenerate: m, onOpenBatch: b, notify: h }) {
+  var re;
+  const c = ke(null);
+  Ee(() => {
+    const f = c.current, B = f == null ? void 0 : f.querySelector(".selected");
+    if (!f || !B) return;
+    const X = f.getBoundingClientRect(), le = B.getBoundingClientRect();
+    le.left < X.left ? f.scrollLeft -= X.left - le.left : le.right > X.right && (f.scrollLeft += le.right - X.right);
   }, [r]);
-  const b = (u, G) => t === "zh" ? u : G, [_, N] = R(!1), [k, w] = R(Zn[0].value), [z, g] = R(""), [$, T] = R(""), [C, S] = R(""), [L, V] = R(""), [O, U] = R(""), [P, oe] = R(""), y = e.shots[Math.min(r, e.shots.length - 1)], D = Ve(() => y ? Rr(e, y) : null, [e, y]), j = Ve(() => y ? Nr(e, y) : [], [e, y]), H = e.shots.filter((u) => u.enabled), te = H.reduce((u, G) => u + G.durationSeconds, 0), X = y ? ((ne = H[0]) == null ? void 0 : ne.id) === y.id : !1, M = y ? Re(l.byShot[y.id] ?? []) : [], v = y ? tt(y, M) : void 0, K = v ? Ie(v.path, "output") : null, Z = y ? Jr(e, y.id) : [], Q = k === "remains static", ee = k === "holds position and racks focus", pe = k.startsWith("shakes") || k.startsWith("rolls"), E = (u) => i((G) => {
-    const Y = G.shots[r];
-    Y && u(Y);
-  }), B = (u, G) => i((Y) => {
-    const ce = u + G;
-    ce < 0 || ce >= Y.shots.length || ([Y.shots[u], Y.shots[ce]] = [Y.shots[ce], Y.shots[u]], o(ce));
-  }), ue = (u) => {
-    const G = e.shots[u];
-    e.shots.length <= 1 || !G || window.confirm(b(`删除镜头「${G.title}」？已生成的视频文件不会被删除。`, `Delete "${G.title}"? Generated files are kept.`)) && (i((Y) => {
-      Y.shots.splice(u, 1);
-    }), o(Math.max(0, Math.min(r > u ? r - 1 : r, e.shots.length - 2))));
+  const g = (f, B) => t === "zh" ? f : B, [S, T] = G(!1), [y, v] = G(rr[0].value), [x, u] = G(""), [$, j] = G(""), [E, P] = G(""), [C, N] = G(""), [R, F] = G(""), [I, ne] = G(""), k = e.shots[Math.min(r, e.shots.length - 1)], D = He(() => k ? ni(e, k) : null, [e, k]), M = He(() => k ? Zr(e, k) : [], [e, k]), V = e.shots.filter((f) => f.enabled), Z = V.reduce((f, B) => f + B.durationSeconds, 0), Y = k ? ((re = V[0]) == null ? void 0 : re.id) === k.id : !1, L = k ? Le(l.byShot[k.id] ?? []) : [], _ = k ? Xe(k, L) : void 0, K = _ ? Pe(_.path, "output") : null, ee = k ? Wr(e, k.id) : [], Q = y === "remains static", te = y === "holds position and racks focus", ce = y.startsWith("shakes") || y.startsWith("rolls"), z = (f) => o((B) => {
+    const X = B.shots[r];
+    X && f(X);
+  }), q = (f, B) => o((X) => {
+    const le = f + B;
+    le < 0 || le >= X.shots.length || ([X.shots[f], X.shots[le]] = [X.shots[le], X.shots[f]], i(le));
+  }), pe = (f) => {
+    const B = e.shots[f];
+    e.shots.length <= 1 || !B || window.confirm(g(`删除镜头「${B.title}」？已生成的视频文件不会被删除。`, `Delete "${B.title}"? Generated files are kept.`)) && (o((X) => {
+      X.shots.splice(f, 1);
+    }), i(Math.max(0, Math.min(r > f ? r - 1 : r, e.shots.length - 2))));
   };
   return /* @__PURE__ */ n("div", { class: "td-shots", children: [
     /* @__PURE__ */ n("aside", { class: "td-shot-sidebar", children: [
       /* @__PURE__ */ n("div", { class: "td-timeline-heading", children: [
-        /* @__PURE__ */ n("strong", { children: b("分镜时间线", "SHOT TIMELINE") }),
-        /* @__PURE__ */ n("span", { children: b("按顺序选择镜头 · 接力镜头保持相邻", "Select shots in sequence · keep relay shots together") })
+        /* @__PURE__ */ n("strong", { children: g("分镜时间线", "SHOT TIMELINE") }),
+        /* @__PURE__ */ n("span", { children: g("按顺序选择镜头 · 接力镜头保持相邻", "Select shots in sequence · keep relay shots together") })
       ] }),
-      /* @__PURE__ */ n("div", { class: "td-shot-list", ref: p, children: e.shots.map((u, G) => {
-        var le;
-        const Y = Re(l.byShot[u.id] ?? []), ce = xt(e, u), be = (le = u.review) == null ? void 0 : le.status;
-        return /* @__PURE__ */ n("div", { class: `td-shot-card ${G === r ? "selected" : ""} ${u.enabled ? "" : "off"} ${ce ? "relay" : ""} ${h === u.id ? "running" : ""}`, onClick: () => o(G), children: [
-          ce && /* @__PURE__ */ n("span", { class: "td-relay-link", title: b("latent 接力：本段从上一段末尾无缝延续", "Latent relay from previous shot") }),
+      /* @__PURE__ */ n("div", { class: "td-shot-list", ref: c, children: e.shots.map((f, B) => {
+        var de;
+        const X = Le(l.byShot[f.id] ?? []), le = at(e, f), xe = (de = f.review) == null ? void 0 : de.status;
+        return /* @__PURE__ */ n("div", { class: `td-shot-card ${B === r ? "selected" : ""} ${f.enabled ? "" : "off"} ${le ? "relay" : ""} ${p === f.id ? "running" : ""}`, onClick: () => i(B), children: [
+          le && /* @__PURE__ */ n("span", { class: "td-relay-link", title: g("latent 接力：本段从上一段末尾无缝延续", "Latent relay from previous shot") }),
           /* @__PURE__ */ n("div", { class: "td-shot-card-main", children: [
             /* @__PURE__ */ n("strong", { children: [
-              /* @__PURE__ */ n("em", { children: G + 1 }),
-              u.title
+              /* @__PURE__ */ n("em", { children: B + 1 }),
+              f.title
             ] }),
             /* @__PURE__ */ n("span", { class: "td-shot-card-meta", children: [
               /* @__PURE__ */ n("b", { children: [
-                u.durationSeconds,
+                f.durationSeconds,
                 "s"
               ] }),
-              ce && /* @__PURE__ */ n("i", { class: "relay", children: b("接力", "relay") }),
-              !u.enabled && /* @__PURE__ */ n("i", { children: b("已禁用", "off") }),
-              Y.length > 0 && /* @__PURE__ */ n("i", { children: b(`${Y.length} 个结果`, `${Y.length} takes`) }),
-              be === "approved" && /* @__PURE__ */ n("i", { class: "ok", children: [
+              le && /* @__PURE__ */ n("i", { class: "relay", children: g("接力", "relay") }),
+              !f.enabled && /* @__PURE__ */ n("i", { children: g("已禁用", "off") }),
+              X.length > 0 && /* @__PURE__ */ n("i", { children: g(`${X.length} 个结果`, `${X.length} takes`) }),
+              xe === "approved" && /* @__PURE__ */ n("i", { class: "ok", children: [
                 "✓ ",
-                b("通过", "OK")
+                g("通过", "OK")
               ] }),
-              be === "redo" && /* @__PURE__ */ n("i", { class: "warn", children: [
+              xe === "redo" && /* @__PURE__ */ n("i", { class: "warn", children: [
                 "↻ ",
-                b("需重生", "redo")
+                g("需重生", "redo")
               ] }),
-              Qr(e, u) && /* @__PURE__ */ n("i", { class: "warn", children: b("已修改", "edited") }),
-              h === u.id && /* @__PURE__ */ n("i", { class: "run", children: b("生成中", "running") })
+              Qr(e, f) && /* @__PURE__ */ n("i", { class: "warn", children: g("已修改", "edited") }),
+              p === f.id && /* @__PURE__ */ n("i", { class: "run", children: g("生成中", "running") })
             ] })
           ] }),
-          /* @__PURE__ */ n("div", { class: "td-shot-card-actions", onClick: (Me) => Me.stopPropagation(), children: [
-            /* @__PURE__ */ n("button", { title: b("上移", "Move up"), disabled: G === 0, onClick: () => B(G, -1), children: "↑" }),
-            /* @__PURE__ */ n("button", { title: b("下移", "Move down"), disabled: G === e.shots.length - 1, onClick: () => B(G, 1), children: "↓" }),
-            /* @__PURE__ */ n("button", { class: "danger", title: b("删除镜头", "Delete"), disabled: e.shots.length <= 1, onClick: () => ue(G), children: "×" })
+          /* @__PURE__ */ n("div", { class: "td-shot-card-actions", onClick: (Oe) => Oe.stopPropagation(), children: [
+            /* @__PURE__ */ n("button", { title: g("上移", "Move up"), disabled: B === 0, onClick: () => q(B, -1), children: "↑" }),
+            /* @__PURE__ */ n("button", { title: g("下移", "Move down"), disabled: B === e.shots.length - 1, onClick: () => q(B, 1), children: "↓" }),
+            /* @__PURE__ */ n("button", { class: "danger", title: g("删除镜头", "Delete"), disabled: e.shots.length <= 1, onClick: () => pe(B), children: "×" })
           ] })
-        ] }, u.id);
+        ] }, f.id);
       }) }),
       /* @__PURE__ */ n("div", { class: "td-shot-sidebar-footer", children: [
-        /* @__PURE__ */ n("span", { class: "td-total", children: b(`${H.length} 段启用 · 总时长 ${Lt(te)}`, `${H.length} enabled · ${Lt(te)}`) }),
+        /* @__PURE__ */ n("span", { class: "td-total", children: g(`${V.length} 段启用 · 总时长 ${Ft(Z)}`, `${V.length} enabled · ${Ft(Z)}`) }),
         /* @__PURE__ */ n("div", { class: "td-two-buttons", children: [
-          /* @__PURE__ */ n("button", { onClick: () => i((u) => {
-            const G = u.shots.length;
-            u.shots = Zr(u.shots, 1, u.defaults.durationSeconds ?? 6, ln, u.defaults.secondSamplingMode ?? "off").map((Y, ce) => ce === G ? { ...Y, latentRelay: !1, title: b(`镜头 ${G + 1}`, `Shot ${G + 1}`) } : Y), o(G);
+          /* @__PURE__ */ n("button", { onClick: () => o((f) => {
+            const B = f.shots.length;
+            f.shots = ii(f.shots, 1, f.defaults.durationSeconds ?? 6, un, f.defaults.secondSamplingMode ?? "off").map((X, le) => le === B ? { ...X, latentRelay: !1, title: g(`镜头 ${B + 1}`, `Shot ${B + 1}`) } : X), i(B);
           }), children: [
             "＋ ",
-            b("添加镜头", "Add shot")
+            g("添加镜头", "Add shot")
           ] }),
-          /* @__PURE__ */ n("button", { onClick: f, children: b("批量编辑", "Batch edit") })
+          /* @__PURE__ */ n("button", { onClick: b, children: g("批量编辑", "Batch edit") })
         ] })
       ] })
     ] }),
-    y && /* @__PURE__ */ n("section", { class: "td-form td-shot-form", children: [
+    k && /* @__PURE__ */ n("section", { class: "td-form td-shot-form", children: [
       /* @__PURE__ */ n("div", { class: "td-composer-heading", children: [
         /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("small", { children: b(`镜头 ${String(r + 1).padStart(2, "0")} / ${e.shots.length}`, `SHOT ${String(r + 1).padStart(2, "0")} / ${e.shots.length}`) }),
-          /* @__PURE__ */ n("h3", { children: b("镜头编排", "Shot composer") })
+          /* @__PURE__ */ n("small", { children: g(`镜头 ${String(r + 1).padStart(2, "0")} / ${e.shots.length}`, `SHOT ${String(r + 1).padStart(2, "0")} / ${e.shots.length}`) }),
+          /* @__PURE__ */ n("h3", { children: g("镜头编排", "Shot composer") })
         ] }),
         /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("button", { disabled: r === 0, onClick: () => o(r - 1), "aria-label": b("上一镜头", "Previous shot"), children: "←" }),
-          /* @__PURE__ */ n("button", { disabled: r === e.shots.length - 1, onClick: () => o(r + 1), "aria-label": b("下一镜头", "Next shot"), children: "→" })
+          /* @__PURE__ */ n("button", { disabled: r === 0, onClick: () => i(r - 1), "aria-label": g("上一镜头", "Previous shot"), children: "←" }),
+          /* @__PURE__ */ n("button", { disabled: r === e.shots.length - 1, onClick: () => i(r + 1), "aria-label": g("下一镜头", "Next shot"), children: "→" })
         ] })
       ] }),
       /* @__PURE__ */ n("div", { class: "td-shot-head", children: [
         /* @__PURE__ */ n("label", { class: "grow", children: [
-          b("标题", "Title"),
-          /* @__PURE__ */ n("input", { value: y.title, onInput: (u) => E((G) => {
-            G.title = u.currentTarget.value;
+          g("标题", "Title"),
+          /* @__PURE__ */ n("input", { value: k.title, onInput: (f) => z((B) => {
+            B.title = f.currentTarget.value;
           }) })
         ] }),
         /* @__PURE__ */ n("label", { class: "narrow", children: [
-          b("时长（秒）", "Duration (s)"),
-          /* @__PURE__ */ n("input", { type: "number", min: "1", max: "15", step: "0.5", value: y.durationSeconds, onInput: (u) => E((G) => {
-            G.durationSeconds = Number(u.currentTarget.value);
+          g("时长（秒）", "Duration (s)"),
+          /* @__PURE__ */ n("input", { type: "number", min: "1", max: "15", step: "0.5", value: k.durationSeconds, onInput: (f) => z((B) => {
+            B.durationSeconds = Number(f.currentTarget.value);
           }) })
         ] }),
         /* @__PURE__ */ n("label", { class: "seed", children: [
-          b("种子", "Seed"),
+          g("种子", "Seed"),
           /* @__PURE__ */ n("span", { class: "td-seed-input", children: [
-            /* @__PURE__ */ n("input", { type: "number", placeholder: b("自动", "auto"), value: y.seed ?? "", onInput: (u) => E((G) => {
-              G.seed = u.currentTarget.value === "" ? null : Number(u.currentTarget.value);
+            /* @__PURE__ */ n("input", { type: "number", placeholder: g("自动", "auto"), value: k.seed ?? "", onInput: (f) => z((B) => {
+              B.seed = f.currentTarget.value === "" ? null : Number(f.currentTarget.value);
             }) }),
-            /* @__PURE__ */ n("button", { title: b("随机新种子（重生时会自动换）", "Random seed"), onClick: () => E((u) => {
-              u.seed = Yr();
+            /* @__PURE__ */ n("button", { title: g("随机新种子（重生时会自动换）", "Random seed"), onClick: () => z((f) => {
+              f.seed = Yr();
             }), children: "🎲" })
           ] })
         ] })
       ] }),
-      (y.durationSeconds < 5 || y.durationSeconds > 15) && /* @__PURE__ */ n("div", { class: "td-inline-warning", children: b("H3 单段建议 5–15 秒；超出范围容易出现动作压缩或拖沓。", "H3 segments work best between 5 and 15 seconds.") }),
+      (k.durationSeconds < 5 || k.durationSeconds > 15) && /* @__PURE__ */ n("div", { class: "td-inline-warning", children: g("H3 单段建议 5–15 秒；超出范围容易出现动作压缩或拖沓。", "H3 segments work best between 5 and 15 seconds.") }),
       /* @__PURE__ */ n("div", { class: "td-shot-switches", children: [
         /* @__PURE__ */ n("label", { class: "td-toggle", children: [
-          /* @__PURE__ */ n("input", { type: "checkbox", checked: y.enabled, onChange: (u) => E((G) => {
-            G.enabled = u.currentTarget.checked;
+          /* @__PURE__ */ n("input", { type: "checkbox", checked: k.enabled, onChange: (f) => z((B) => {
+            B.enabled = f.currentTarget.checked;
           }) }),
-          /* @__PURE__ */ n("span", { children: b("启用", "Enabled") })
+          /* @__PURE__ */ n("span", { children: g("启用", "Enabled") })
         ] }),
-        /* @__PURE__ */ n("label", { class: "td-toggle", title: b("只在与上一段是同一个不切镜的连续长镜头时开启。开启后本段开头会钉住上一段末尾约 0.9 秒画面与声音。", "Only for an uninterrupted long take."), children: [
-          /* @__PURE__ */ n("input", { type: "checkbox", checked: y.latentRelay, disabled: X, onChange: (u) => E((G) => {
-            G.latentRelay = u.currentTarget.checked;
+        /* @__PURE__ */ n("label", { class: "td-toggle", title: g("只在与上一段是同一个不切镜的连续长镜头时开启。开启后本段开头会钉住上一段末尾约 0.9 秒画面与声音。", "Only for an uninterrupted long take."), children: [
+          /* @__PURE__ */ n("input", { type: "checkbox", checked: k.latentRelay, disabled: Y, onChange: (f) => z((B) => {
+            B.latentRelay = f.currentTarget.checked;
           }) }),
-          /* @__PURE__ */ n("span", { children: X ? b("接力上一段（首段不可用）", "Relay (n/a for first)") : b("接力上一段（同一长镜头）", "Relay from previous (long take)") })
+          /* @__PURE__ */ n("span", { children: Y ? g("接力上一段（首段不可用）", "Relay (n/a for first)") : g("接力上一段（同一长镜头）", "Relay from previous (long take)") })
         ] }),
         /* @__PURE__ */ n("details", { class: "td-advanced", children: [
-          /* @__PURE__ */ n("summary", { children: b("高级", "Advanced") }),
+          /* @__PURE__ */ n("summary", { children: g("高级", "Advanced") }),
           /* @__PURE__ */ n("div", { class: "td-advanced-body", children: [
             /* @__PURE__ */ n("label", { children: [
-              b("镜头 ID", "Shot ID"),
-              /* @__PURE__ */ n("input", { value: y.id, onInput: (u) => E((G) => {
-                G.id = u.currentTarget.value;
+              g("镜头 ID", "Shot ID"),
+              /* @__PURE__ */ n("input", { value: k.id, onInput: (f) => z((B) => {
+                B.id = f.currentTarget.value;
               }) })
             ] }),
-            s && /* @__PURE__ */ n("label", { title: b("导播台的“一采”始终关闭高清处理；该选项只在直接点击 ComfyUI 原生 Queue 时生效。", "The director's first pass always disables this."), children: [
-              b("原生 Queue 时的高清处理", "Processing for native Queue"),
-              /* @__PURE__ */ n("select", { value: y.secondSamplingMode, onChange: (u) => E((G) => {
-                G.secondSamplingMode = u.currentTarget.value;
-              }), children: Fi.map((u) => /* @__PURE__ */ n("option", { value: u, children: Gi[u][t === "zh" ? 0 : 1] })) })
+            a && /* @__PURE__ */ n("label", { title: g("导播台的“一采”始终关闭高清处理；该选项只在直接点击 ComfyUI 原生 Queue 时生效。", "The director's first pass always disables this."), children: [
+              g("原生 Queue 时的高清处理", "Processing for native Queue"),
+              /* @__PURE__ */ n("select", { value: k.secondSamplingMode, onChange: (f) => z((B) => {
+                B.secondSamplingMode = f.currentTarget.value;
+              }), children: Jo.map((f) => /* @__PURE__ */ n("option", { value: f, children: Ko[f][t === "zh" ? 0 : 1] })) })
             ] })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ n("details", { class: "td-note", open: !!y.note, children: [
-        /* @__PURE__ */ n("summary", { children: b("分镜说明（中文，审片对照用）", "Shot notes") }),
-        /* @__PURE__ */ n("textarea", { rows: 4, placeholder: b("画面、站位、动作与对白摘要。只供审片对照，不会发送给模型。", "Not sent to the model."), value: y.note ?? "", onInput: (u) => E((G) => {
-          G.note = u.currentTarget.value;
+      /* @__PURE__ */ n("details", { class: "td-note", open: !!k.note, children: [
+        /* @__PURE__ */ n("summary", { children: g("分镜说明（中文，审片对照用）", "Shot notes") }),
+        /* @__PURE__ */ n("textarea", { rows: 4, placeholder: g("画面、站位、动作与对白摘要。只供审片对照，不会发送给模型。", "Not sent to the model."), value: k.note ?? "", onInput: (f) => z((B) => {
+          B.note = f.currentTarget.value;
         }) })
       ] }),
       /* @__PURE__ */ n("label", { class: "td-prompt-field", children: [
         /* @__PURE__ */ n("span", { class: "td-field-label", children: [
-          b("正向提示词", "Prompt"),
-          /* @__PURE__ */ n("small", { children: b("用 {{ref:别名}} 引用素材，输入 @ 快速选择", "Use {{ref:alias}}; type @ to pick") })
+          g("正向提示词", "Prompt"),
+          /* @__PURE__ */ n("small", { children: g("用 {{ref:别名}} 引用素材，输入 @ 快速选择", "Use {{ref:alias}}; type @ to pick") })
         ] }),
-        /* @__PURE__ */ n(dn, { rows: 18, value: y.prompt, mentionAssets: j, mentionLanguage: t, isReferenceValid: (u) => Mr(e, y, u), onInput: (u) => E((G) => {
-          G.prompt = u.currentTarget.value;
-        }) }, y.id)
+        /* @__PURE__ */ n(mn, { rows: 18, value: k.prompt, mentionAssets: M, mentionLanguage: t, isReferenceValid: (f) => ti(e, k, f), onInput: (f) => z((B) => {
+          B.prompt = f.currentTarget.value;
+        }) }, k.id)
       ] }),
       /* @__PURE__ */ n("details", { class: "td-camera-builder", children: [
-        /* @__PURE__ */ n("summary", { children: b("运镜句构造", "Camera move") }),
+        /* @__PURE__ */ n("summary", { children: g("运镜句构造", "Camera move") }),
         /* @__PURE__ */ n("div", { class: "td-camera-builder-fields", children: [
           /* @__PURE__ */ n("label", { children: [
-            b("主运动", "Main move"),
-            /* @__PURE__ */ n("select", { value: k, onChange: (u) => w(u.currentTarget.value), children: Zn.map((u) => /* @__PURE__ */ n("option", { value: u.value, children: u.label[t === "zh" ? 0 : 1] })) })
+            g("主运动", "Main move"),
+            /* @__PURE__ */ n("select", { value: y, onChange: (f) => v(f.currentTarget.value), children: rr.map((f) => /* @__PURE__ */ n("option", { value: f.value, children: f.label[t === "zh" ? 0 : 1] })) })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            b("幅度", "Amplitude"),
-            /* @__PURE__ */ n("select", { value: z, disabled: Q || ee || k === "uses a POV shot", onChange: (u) => g(u.currentTarget.value), children: Di.map((u) => /* @__PURE__ */ n("option", { value: u.value, children: u.label[t === "zh" ? 0 : 1] })) })
+            g("幅度", "Amplitude"),
+            /* @__PURE__ */ n("select", { value: x, disabled: Q || te || y === "uses a POV shot", onChange: (f) => u(f.currentTarget.value), children: qo.map((f) => /* @__PURE__ */ n("option", { value: f.value, children: f.label[t === "zh" ? 0 : 1] })) })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            b("速度", "Speed"),
-            /* @__PURE__ */ n("select", { value: $, disabled: Q || ee || k === "uses a POV shot", onChange: (u) => T(u.currentTarget.value), children: Oi.map((u) => /* @__PURE__ */ n("option", { value: u.value, children: u.label[t === "zh" ? 0 : 1] })) })
+            g("速度", "Speed"),
+            /* @__PURE__ */ n("select", { value: $, disabled: Q || te || y === "uses a POV shot", onChange: (f) => j(f.currentTarget.value), children: Ho.map((f) => /* @__PURE__ */ n("option", { value: f.value, children: f.label[t === "zh" ? 0 : 1] })) })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            b("触发动作", "Action trigger"),
-            /* @__PURE__ */ n("input", { value: C, disabled: Q || ee || k === "uses a POV shot", onInput: (u) => S(u.currentTarget.value), placeholder: b("可选", "Optional") })
+            g("触发动作", "Action trigger"),
+            /* @__PURE__ */ n("input", { value: E, disabled: Q || te || y === "uses a POV shot", onInput: (f) => P(f.currentTarget.value), placeholder: g("可选", "Optional") })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            b(ee ? "起始焦点" : k === "uses a POV shot" ? "视点主体" : "运动目标", ee ? "Focus from" : k === "uses a POV shot" ? "POV subject" : "Movement target"),
-            /* @__PURE__ */ n("input", { value: L, disabled: Q || pe, onInput: (u) => V(u.currentTarget.value), placeholder: b("可选", "Optional") })
+            g(te ? "起始焦点" : y === "uses a POV shot" ? "视点主体" : "运动目标", te ? "Focus from" : y === "uses a POV shot" ? "POV subject" : "Movement target"),
+            /* @__PURE__ */ n("input", { value: C, disabled: Q || ce, onInput: (f) => N(f.currentTarget.value), placeholder: g("可选", "Optional") })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            b("经过路径", "Path"),
-            /* @__PURE__ */ n("input", { value: O, disabled: Q || ee || pe || k === "uses a POV shot", onInput: (u) => U(u.currentTarget.value), placeholder: b("可选", "Optional") })
+            g("经过路径", "Path"),
+            /* @__PURE__ */ n("input", { value: R, disabled: Q || te || ce || y === "uses a POV shot", onInput: (f) => F(f.currentTarget.value), placeholder: g("可选", "Optional") })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            b(ee ? "结束焦点" : "结束构图", ee ? "Focus to" : "End framing"),
-            /* @__PURE__ */ n("input", { value: P, onInput: (u) => oe(u.currentTarget.value), placeholder: b("可选", "Optional") })
+            g(te ? "结束焦点" : "结束构图", te ? "Focus to" : "End framing"),
+            /* @__PURE__ */ n("input", { value: I, onInput: (f) => ne(f.currentTarget.value), placeholder: g("可选", "Optional") })
           ] }),
-          /* @__PURE__ */ n("button", { onClick: () => E((u) => {
-            const G = Ui(k, C, L, P, z, $, O);
-            u.prompt = [u.prompt.trimEnd(), G].filter(Boolean).join(`
+          /* @__PURE__ */ n("button", { onClick: () => z((f) => {
+            const B = Wo(y, E, C, I, x, $, R);
+            f.prompt = [f.prompt.trimEnd(), B].filter(Boolean).join(`
 `);
-          }), children: b("追加到提示词", "Append to prompt") })
+          }), children: g("追加到提示词", "Append to prompt") })
         ] })
       ] }),
       /* @__PURE__ */ n("label", { children: [
-        /* @__PURE__ */ n("span", { class: "td-field-label", children: b("负向提示词", "Negative prompt") }),
-        /* @__PURE__ */ n("textarea", { rows: 3, value: y.negativePrompt, onInput: (u) => E((G) => {
-          G.negativePrompt = u.currentTarget.value;
+        /* @__PURE__ */ n("span", { class: "td-field-label", children: g("负向提示词", "Negative prompt") }),
+        /* @__PURE__ */ n("textarea", { rows: 3, value: k.negativePrompt, onInput: (f) => z((B) => {
+          B.negativePrompt = f.currentTarget.value;
         }) })
       ] }),
       e.assets.length > 0 && /* @__PURE__ */ n("fieldset", { class: "td-shot-media", children: [
-        /* @__PURE__ */ n("legend", { children: b("本镜头可用素材（点名称复制引用，取消勾选=本镜头禁用）", "Shot media") }),
-        e.assets.map((u) => {
-          const G = !y.disabledAssetIds.includes(u.id), Y = `{{ref:${u.alias}}}`, ce = y.prompt.includes(Y) || y.prompt.includes(`{{ref:${u.alias}.audio}}`);
-          return /* @__PURE__ */ n("div", { class: `td-shot-media-card ${G ? "" : "disabled"} ${ce ? "used" : ""}`, children: [
+        /* @__PURE__ */ n("legend", { children: g("本镜头可用素材（点名称复制引用，取消勾选=本镜头禁用）", "Shot media") }),
+        e.assets.map((f) => {
+          const B = !k.disabledAssetIds.includes(f.id), X = `{{ref:${f.alias}}}`, le = k.prompt.includes(X) || k.prompt.includes(`{{ref:${f.alias}.audio}}`);
+          return /* @__PURE__ */ n("div", { class: `td-shot-media-card ${B ? "" : "disabled"} ${le ? "used" : ""}`, children: [
             /* @__PURE__ */ n("div", { class: "td-shot-media-frame", children: [
-              /* @__PURE__ */ n(Pr, { asset: u, compact: !0 }),
-              /* @__PURE__ */ n("label", { class: "td-shot-media-toggle", title: G ? b("在本镜头禁用", "Disable in this shot") : b("在本镜头启用", "Enable"), children: /* @__PURE__ */ n("input", { type: "checkbox", checked: G, onChange: (be) => E((le) => {
-                le.disabledAssetIds = be.currentTarget.checked ? le.disabledAssetIds.filter((Me) => Me !== u.id) : [.../* @__PURE__ */ new Set([...le.disabledAssetIds, u.id])];
+              /* @__PURE__ */ n(Ar, { asset: f, compact: !0 }),
+              /* @__PURE__ */ n("label", { class: "td-shot-media-toggle", title: B ? g("在本镜头禁用", "Disable in this shot") : g("在本镜头启用", "Enable"), children: /* @__PURE__ */ n("input", { type: "checkbox", checked: B, onChange: (xe) => z((de) => {
+                de.disabledAssetIds = xe.currentTarget.checked ? de.disabledAssetIds.filter((Oe) => Oe !== f.id) : [.../* @__PURE__ */ new Set([...de.disabledAssetIds, f.id])];
               }) }) })
             ] }),
-            /* @__PURE__ */ n("button", { class: "td-shot-media-name", title: `${u.note ?? ""}
-${b("点击复制", "Copy")} ${Y}`, onMouseDown: (be) => be.preventDefault(), onClick: async () => {
+            /* @__PURE__ */ n("button", { class: "td-shot-media-name", title: `${f.note ?? ""}
+${g("点击复制", "Copy")} ${X}`, onMouseDown: (xe) => xe.preventDefault(), onClick: async () => {
               try {
-                await $r(Y), c(b(`已复制 ${Y}`, `Copied ${Y}`));
-              } catch (be) {
-                c(String(be), "error");
+                await zr(X), h(g(`已复制 ${X}`, `Copied ${X}`));
+              } catch (xe) {
+                h(String(xe), "error");
               }
             }, children: [
-              ce && /* @__PURE__ */ n("i", { children: "●" }),
-              u.alias
+              le && /* @__PURE__ */ n("i", { children: "●" }),
+              f.alias
             ] })
-          ] }, u.id);
+          ] }, f.id);
         })
       ] })
     ] }),
-    y && /* @__PURE__ */ n("aside", { class: "td-preview", children: [
+    k && /* @__PURE__ */ n("aside", { class: "td-preview", children: [
       /* @__PURE__ */ n("section", { class: "td-card", children: [
         /* @__PURE__ */ n("header", { children: [
-          /* @__PURE__ */ n("strong", { children: b("H3 预检", "H3 check") }),
+          /* @__PURE__ */ n("strong", { children: g("H3 预检", "H3 check") }),
           /* @__PURE__ */ n("span", { class: "td-summary-counts", children: [
-            b("图", "Img"),
+            g("图", "Img"),
             " ",
-            (D == null ? void 0 : D.slots.filter((u) => u.kind === "picture").length) ?? 0,
+            (D == null ? void 0 : D.slots.filter((f) => f.kind === "picture").length) ?? 0,
             "/9 · ",
-            b("视频", "Vid"),
+            g("视频", "Vid"),
             " ",
-            (D == null ? void 0 : D.slots.filter((u) => u.kind === "video").length) ?? 0,
+            (D == null ? void 0 : D.slots.filter((f) => f.kind === "video").length) ?? 0,
             "/3 · ",
-            b("音频", "Aud"),
+            g("音频", "Aud"),
             " ",
             (D == null ? void 0 : D.audioCount) ?? 0,
             "/3"
           ] })
         ] }),
         /* @__PURE__ */ n("div", { class: "td-card-body", children: [
-          D != null && D.errors.length ? /* @__PURE__ */ n("ul", { class: "errors", children: D.errors.map((u) => /* @__PURE__ */ n("li", { children: u })) }) : /* @__PURE__ */ n("p", { class: "ok", children: [
+          D != null && D.errors.length ? /* @__PURE__ */ n("ul", { class: "errors", children: D.errors.map((f) => /* @__PURE__ */ n("li", { children: f })) }) : /* @__PURE__ */ n("p", { class: "ok", children: [
             "✓ ",
-            b("本镜头通过预检", "This shot passes")
+            g("本镜头通过预检", "This shot passes")
           ] }),
-          D && D.slots.length > 0 && /* @__PURE__ */ n("ol", { class: "td-slot-list", children: D.slots.map((u) => /* @__PURE__ */ n("li", { children: [
-            /* @__PURE__ */ n("code", { children: u.label }),
-            /* @__PURE__ */ n("span", { children: u.alias })
+          D && D.slots.length > 0 && /* @__PURE__ */ n("ol", { class: "td-slot-list", children: D.slots.map((f) => /* @__PURE__ */ n("li", { children: [
+            /* @__PURE__ */ n("code", { children: f.label }),
+            /* @__PURE__ */ n("span", { children: f.alias })
           ] })) }),
-          /* @__PURE__ */ n("button", { class: "td-link-button", onClick: () => N((u) => !u), children: _ ? b("收起编译结果", "Hide compiled prompt") : b("查看发送给 H3 的最终提示词", "Show compiled prompt") }),
-          _ && /* @__PURE__ */ n("pre", { class: "td-compiled", children: D == null ? void 0 : D.compiledPrompt })
+          at(e, k) && e.continuity.durationMode === "final_output" && /* @__PURE__ */ n("p", { class: "td-hint", children: g(
+            `分镜时间从本段成片第 0 秒计算。生成时自动加上 ${(e.continuity.videoContextFrames / e.defaults.fps).toFixed(3)} 秒接力前缀，动作和台词同步换算。`,
+            `Shot times start at the delivered segment's zero. Generation adds ${(e.continuity.videoContextFrames / e.defaults.fps).toFixed(3)} seconds of overlap and shifts action and dialogue windows together.`
+          ) }),
+          /* @__PURE__ */ n("button", { class: "td-link-button", onClick: () => T((f) => !f), children: S ? g("收起编译结果", "Hide reference compilation") : g("查看素材编译结果（成片时间）", "Show reference compilation (delivered times)") }),
+          S && /* @__PURE__ */ n("pre", { class: "td-compiled", children: D == null ? void 0 : D.compiledPrompt })
         ] })
       ] }),
       /* @__PURE__ */ n("section", { class: "td-card", children: [
         /* @__PURE__ */ n("header", { children: [
-          /* @__PURE__ */ n("strong", { children: b("本段结果", "Takes") }),
-          /* @__PURE__ */ n("span", { class: `td-chip ${M.length ? "ok" : ""}`, children: l.loading ? b("查询中", "Loading") : b(`${M.length} 个一采`, `${M.length} takes`) })
+          /* @__PURE__ */ n("strong", { children: g("本段结果", "Takes") }),
+          /* @__PURE__ */ n("span", { class: `td-chip ${L.length ? "ok" : ""}`, children: l.loading ? g("查询中", "Loading") : g(`${L.length} 个一采`, `${L.length} takes`) })
         ] }),
         /* @__PURE__ */ n("div", { class: "td-card-body", children: [
-          v && K ? /* @__PURE__ */ n("video", { class: "td-take-player", src: K, controls: !0, preload: "metadata", playsInline: !0 }, v.path) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: b("还没有一采结果", "No first-pass take yet") }),
-          M.length > 1 && /* @__PURE__ */ n("div", { class: "td-take-strip", children: M.map((u, G) => {
-            const Y = Ie(u.path, "output");
-            return /* @__PURE__ */ n("button", { class: `td-take ${u.path === (v == null ? void 0 : v.path) ? "selected" : ""}`, title: Ce(u.path), onClick: () => a(y.id, { take: u.path }), children: [
-              Y ? /* @__PURE__ */ n(st, { src: Y, alt: u.path }) : null,
+          _ && K ? /* @__PURE__ */ n("video", { class: "td-take-player", src: K, controls: !0, preload: "metadata", playsInline: !0 }, _.path) : /* @__PURE__ */ n("div", { class: "td-result-empty", children: g("还没有一采结果", "No first-pass take yet") }),
+          L.length > 1 && /* @__PURE__ */ n("div", { class: "td-take-strip", children: L.map((f, B) => {
+            const X = Pe(f.path, "output");
+            return /* @__PURE__ */ n("button", { class: `td-take ${f.path === (_ == null ? void 0 : _.path) ? "selected" : ""}`, title: ze(f.path), onClick: () => s(k.id, { take: f.path }), children: [
+              X ? /* @__PURE__ */ n(ct, { src: X, alt: f.path }) : null,
               /* @__PURE__ */ n("span", { children: [
                 "#",
-                M.length - G
+                L.length - B
               ] })
-            ] }, u.path);
+            ] }, f.path);
           }) }),
           /* @__PURE__ */ n("div", { class: "td-take-actions", children: [
-            /* @__PURE__ */ n("button", { class: "primary", disabled: m || !y.enabled, onClick: () => d([y.id]), children: [
+            /* @__PURE__ */ n("button", { class: "primary", disabled: d || !k.enabled, onClick: () => m([k.id]), children: [
               "↻ ",
-              M.length ? b("重生本段", "Re-roll") : b("生成本段", "Generate")
+              L.length ? g("重生本段", "Re-roll") : g("生成本段", "Generate")
             ] }),
-            Z.length > 1 && /* @__PURE__ */ n("button", { disabled: m || !y.enabled, title: b("后面这些镜头接力自本段，本段换结果后它们的接缝会失配", "Following shots relay from this one"), onClick: () => d(Z), children: [
+            ee.length > 1 && /* @__PURE__ */ n("button", { disabled: d || !k.enabled, title: g("后面这些镜头接力自本段，本段换结果后它们的接缝会失配", "Following shots relay from this one"), onClick: () => m(ee), children: [
               "↻ ",
-              b(`连同后续 ${Z.length - 1} 段接力`, `+${Z.length - 1} relay shots`)
+              g(`连同后续 ${ee.length - 1} 段接力`, `+${ee.length - 1} relay shots`)
             ] })
           ] })
         ] })
@@ -2812,80 +2827,84 @@ ${b("点击复制", "Copy")} ${Y}`, onMouseDown: (be) => be.preventDefault(), on
     ] })
   ] });
 }
-function Ge() {
+function qe() {
   const e = new Error("已停止");
   return e.name = "AbortError", e;
 }
-function Hi(e) {
+function Yo(e) {
   return e.detail ?? {};
 }
-const Bi = ["execution_start", "executing", "progress", "execution_success", "execution_error", "execution_interrupted"];
-function tn(e, t, r, o, i, a = 6e4, l) {
-  return new Promise((s, m) => {
-    let h = "", d = !1, f = !1, c = !1, p = !1, b;
-    const _ = [], N = Bi.map((C) => [C, (S) => $(C, Hi(S))]), k = () => {
-      p || (p = !0, clearTimeout(b), N.forEach(([C, S]) => e.removeEventListener(C, S)), i == null || i.removeEventListener("abort", T));
-    }, w = (C) => {
-      f || (f = !0, c || k(), C ? m(C) : s());
-    }, z = () => {
-      var S, L;
-      if (!h) return;
-      const C = d ? (S = e.interrupt) == null ? void 0 : S.call(e, h) : (L = e.deleteItem) == null ? void 0 : L.call(e, "queue", h);
-      Promise.resolve(C).catch(() => {
+const Xo = ["execution_start", "executing", "progress", "execution_success", "execution_error", "execution_interrupted"];
+function sn(e, t, r, i, o, s = 6e4, l) {
+  return new Promise((a, d) => {
+    let p = "", m = !1, b = !1, h = !1, c = !1, g;
+    const S = [], T = Xo.map((E) => [E, (P) => $(E, Yo(P))]), y = () => {
+      c || (c = !0, clearTimeout(g), T.forEach(([E, P]) => e.removeEventListener(E, P)), o == null || o.removeEventListener("abort", j));
+    }, v = (E) => {
+      b || (b = !0, h || y(), E ? d(E) : a());
+    }, x = () => {
+      var P, C;
+      if (!p) return;
+      const E = m ? (P = e.interrupt) == null ? void 0 : P.call(e, p) : (C = e.deleteItem) == null ? void 0 : C.call(e, "queue", p);
+      Promise.resolve(E).catch(() => {
       });
-    }, g = async () => {
-      if (!(!l || f)) {
+    }, u = async () => {
+      if (!(!l || b)) {
         try {
-          if (await l.probe(h) === "success") {
-            w();
+          if (await l.probe(p) === "success") {
+            v();
             return;
           }
-        } catch (C) {
-          w(C instanceof Error ? C : new Error(String(C)));
+        } catch (E) {
+          v(E instanceof Error ? E : new Error(String(E)));
           return;
         }
-        f || (b = setTimeout(() => void g(), l.pollMs ?? 2500));
+        b || (g = setTimeout(() => void u(), l.pollMs ?? 2500));
       }
     };
-    function $(C, S) {
-      const L = String(S.prompt_id ?? "");
-      if (!h) {
-        L && _.push([C, S]);
+    function $(E, P) {
+      const C = String(P.prompt_id ?? "");
+      if (!p) {
+        C && S.push([E, P]);
         return;
       }
-      if (!(L !== h && (C !== "progress" || L || !d))) {
-        if (C === "execution_start" || C === "executing" || C === "progress") {
-          const V = d;
-          if (d = !0, c) {
-            V || z();
+      if (!(C !== p && (E !== "progress" || C || !m))) {
+        if (E === "execution_start" || E === "executing" || E === "progress") {
+          const N = m;
+          if (m = !0, h) {
+            N || x();
             return;
           }
         }
-        if (C === "progress") {
-          const V = Number(S.value ?? 0), O = Number(S.max ?? 0);
-          Number.isFinite(V) && Number.isFinite(O) && O > 0 && (r == null || r({ value: V, max: O, node: String(S.node ?? "") }));
-        } else C === "execution_success" ? c ? k() : w() : (C === "execution_error" || C === "execution_interrupted") && (c ? k() : w(new Error(String(S.exception_message ?? S.error ?? o))));
+        if (E === "progress") {
+          const N = Number(P.value ?? 0), R = Number(P.max ?? 0);
+          Number.isFinite(N) && Number.isFinite(R) && R > 0 && (r == null || r({ value: N, max: R, node: String(P.node ?? "") }));
+        } else E === "execution_success" ? h ? y() : v() : (E === "execution_error" || E === "execution_interrupted") && (h ? y() : v(new Error(String(P.exception_message ?? P.error ?? i))));
       }
     }
-    function T() {
-      c || (c = !0, z(), w(Ge()), setTimeout(k, a));
+    function j() {
+      h || (h = !0, x(), v(qe()), setTimeout(y, s));
     }
-    if (N.forEach(([C, S]) => e.addEventListener(C, S)), i == null || i.addEventListener("abort", T), i != null && i.aborted) {
-      T();
+    if (T.forEach(([E, P]) => e.addEventListener(E, P)), o == null || o.addEventListener("abort", j), o != null && o.aborted) {
+      j();
       return;
     }
-    t().then((C) => {
-      if (!C.prompt_id) {
-        w(new Error("ComfyUI 没有返回任务 ID"));
+    t().then((E) => {
+      if (!E.prompt_id) {
+        v(new Error("ComfyUI 没有返回任务 ID"));
         return;
       }
-      h = C.prompt_id;
-      for (const [S, L] of _.splice(0)) $(S, L);
-      c && !d && z(), l && !f && (b = setTimeout(() => void g(), l.pollMs ?? 2500));
-    }, (C) => w(C instanceof Error ? C : new Error(String(C))));
+      p = E.prompt_id;
+      for (const [P, C] of S.splice(0)) $(P, C);
+      h && !m && x(), l && !b && (g = setTimeout(() => void u(), l.pollMs ?? 2500));
+    }, (E) => v(E instanceof Error ? E : new Error(String(E))));
   });
 }
-const vn = {
+function Zo(e) {
+  const t = Object.values(e), r = t.find((s) => s.class_type === "ManualSigmas"), i = t.find((s) => s.class_type === "KSampler"), o = t.find((s) => s.class_type === "CFGGuider");
+  return { steps: r ? String(r.inputs.sigmas).split(",").filter((s) => s.trim()).length - 1 : Number((i == null ? void 0 : i.inputs.steps) ?? 12), cfg: Number((o == null ? void 0 : o.inputs.cfg) ?? (i == null ? void 0 : i.inputs.cfg) ?? 1), fixedSteps: !!r };
+}
+const In = {
   KSampler: ["seed", "control_after_generate", "steps", "cfg", "sampler_name", "scheduler", "denoise"],
   EmptySD3LatentImage: ["width", "height", "batch_size"],
   CLIPTextEncode: ["text"],
@@ -2894,8 +2913,19 @@ const vn = {
   VAELoader: ["vae_name"],
   SaveImage: ["filename_prefix"],
   ModelSamplingAuraFlow: ["shift"],
-  VAEDecode: []
-}, Wi = {
+  VAEDecode: [],
+  EmptyLatentImage: ["width", "height", "batch_size"],
+  TextEncodeQwenImage21: ["prompt", "negative_prompt", "resolution"],
+  QwenImage21Cache: ["device", "dtype"],
+  ManualSigmas: ["sigmas"],
+  RandomNoise: ["noise_seed", "control_after_generate"],
+  CFGGuider: ["cfg"],
+  KSamplerSelect: ["sampler_name"],
+  SamplerCustomAdvanced: [],
+  ComfySwitchNode: ["switch"],
+  PrimitiveStringMultiline: ["value"],
+  TextGenerate: ["prompt", "max_length", "sampling_mode", "sampling_mode.temperature", "sampling_mode.top_k", "sampling_mode.top_p", "sampling_mode.min_p", "sampling_mode.repetition_penalty", "sampling_mode.seed", "sampling_mode.presence_penalty", "thinking", "use_default_template", "mtp"]
+}, ea = {
   KSampler: ["model", "positive", "negative", "latent_image", "seed", "steps", "cfg", "sampler_name", "scheduler", "denoise"],
   EmptySD3LatentImage: ["width", "height", "batch_size"],
   CLIPTextEncode: ["text", "clip"],
@@ -2904,232 +2934,269 @@ const vn = {
   VAELoader: ["vae_name"],
   SaveImage: ["images", "filename_prefix"],
   ModelSamplingAuraFlow: ["model", "shift"],
-  VAEDecode: ["samples", "vae"]
-}, er = "画面干净，无文字、字幕、标语、水印、Logo 或画面叠字。", tr = "text, subtitles, captions, watermark, logo, letters, typography, signature";
-function Mt(e) {
+  VAEDecode: ["samples", "vae"],
+  EmptyLatentImage: ["width", "height", "batch_size"],
+  TextEncodeQwenImage21: ["clip", "prompt", "negative_prompt", "resolution"],
+  QwenImage21Cache: ["model", "device", "dtype"],
+  ManualSigmas: ["sigmas"],
+  RandomNoise: ["noise_seed"],
+  CFGGuider: ["model", "positive", "negative", "cfg"],
+  KSamplerSelect: ["sampler_name"],
+  SamplerCustomAdvanced: ["noise", "guider", "sampler", "sigmas", "latent_image"],
+  ComfySwitchNode: ["switch"],
+  PrimitiveStringMultiline: ["value"],
+  TextGenerate: ["clip", "prompt", "max_length", "sampling_mode"]
+}, ir = "画面干净，无文字、字幕、标语、水印、Logo 或画面叠字。", or = "text, subtitles, captions, watermark, logo, letters, typography, signature";
+function Ut(e) {
   const t = /(?:^|\n)\s*(?:Negative\s+prompt|负向提示词|负面提示词)\s*[:：]\s*/i.exec(e);
   return t ? { positive: e.slice(0, t.index).trim(), negative: e.slice(t.index + t[0].length).trim() } : { positive: e.trim(), negative: "" };
 }
-function cn(e, t) {
+function gn(e, t) {
   return t.trim() ? `${e.trim()}
 Negative prompt: ${t.trim()}` : e.trim();
 }
-function eo(e) {
+function oi(e) {
   return JSON.parse(JSON.stringify(e));
 }
-function Le(e) {
+function Ie(e) {
   const t = {};
-  return (vn[e.type] ?? []).forEach((r, o) => {
-    var a, l;
-    const i = ((a = e.widgets_values_named) == null ? void 0 : a[r]) ?? ((l = e.widgets_values) == null ? void 0 : l[o]);
-    i !== void 0 && (t[r] = i);
+  return (In[e.type] ?? []).forEach((r, i) => {
+    var s, l;
+    const o = ((s = e.widgets_values_named) == null ? void 0 : s[r]) ?? ((l = e.widgets_values) == null ? void 0 : l[i]);
+    o !== void 0 && (t[r] = o);
   }), t;
 }
-function Oe(e, t) {
-  const r = e.nodes.filter((o) => o.type === t);
+function De(e, t) {
+  const r = e.nodes.filter((i) => i.type === t);
   if (r.length !== 1) throw new Error(`生图工作流需要一个 ${t} 节点，当前为 ${r.length} 个`);
   return r[0];
 }
-function bt(e, t) {
-  var l;
-  const o = (l = Oe(e, "KSampler").inputs) == null ? void 0 : l.find((s) => s.name === t), i = e.links.find((s) => Array.isArray(s) && s[0] === (o == null ? void 0 : o.link)), a = i && e.nodes.find((s) => String(s.id) === String(i[1]));
-  if (!a || a.type !== "CLIPTextEncode") throw new Error(`生图工作流的 ${t} 未直连 CLIPTextEncode`);
-  return a;
+function pt(e, t) {
+  var a;
+  const r = e.nodes.find((d) => d.type === "TextEncodeQwenImage21");
+  if (r) return r;
+  const o = (a = De(e, "KSampler").inputs) == null ? void 0 : a.find((d) => d.name === t), s = e.links.find((d) => Array.isArray(d) && d[0] === (o == null ? void 0 : o.link)), l = s && e.nodes.find((d) => String(d.id) === String(s[1]));
+  if (!l || l.type !== "CLIPTextEncode") throw new Error(`生图工作流的 ${t} 未直连 CLIPTextEncode`);
+  return l;
 }
-const nr = 4;
-function Ji(e) {
+function fn(e) {
+  var o, s;
+  const t = (s = (o = pt(e, "positive").inputs) == null ? void 0 : o.find((l) => l.name === "clip")) == null ? void 0 : s.link, r = e.links.find((l) => Array.isArray(l) && l[0] === t), i = e.nodes.find((l) => String(l.id) === String(r == null ? void 0 : r[1]));
+  if (!i || i.type !== "CLIPLoader") throw new Error("生图文本编码器未连接 CLIPLoader");
+  return i;
+}
+const ar = 4;
+function ta(e) {
   if (!Array.isArray(e == null ? void 0 : e.nodes) || !Array.isArray(e.links)) throw new Error("生图工作流需要 nodes 与 links");
-  const t = new Map(e.nodes.map((s) => [String(s.id), s]));
+  const t = new Map(e.nodes.map((a) => [String(a.id), a]));
   if (t.size !== e.nodes.length) throw new Error("生图工作流节点 ID 重复");
   const r = /* @__PURE__ */ new Map();
-  for (const s of e.links) {
-    if (!Array.isArray(s) || s.length < 6 || !t.has(String(s[1])) || !t.has(String(s[3])) || !Number.isInteger(s[2]) || s[2] < 0) throw new Error("生图工作流存在无效连线");
-    if (r.has(String(s[0]))) throw new Error("生图工作流连线 ID 重复");
-    r.set(String(s[0]), s);
+  for (const a of e.links) {
+    if (!Array.isArray(a) || a.length < 6 || !t.has(String(a[1])) || !t.has(String(a[3])) || !Number.isInteger(a[2]) || a[2] < 0) throw new Error("生图工作流存在无效连线");
+    if (r.has(String(a[0]))) throw new Error("生图工作流连线 ID 重复");
+    r.set(String(a[0]), a);
   }
-  const o = {}, i = /* @__PURE__ */ new Set(), a = (s, m) => {
-    var d;
-    const h = String(s.id);
-    if (s.mode === nr) {
-      if (m !== 0) throw new Error(`旁路节点 ${h} 不支持输出端口 ${m}`);
-      const f = (s.inputs ?? []).filter((_) => _.link != null);
-      if (f.length !== 1) throw new Error(`旁路节点 ${h} 需要恰好一个输入连线`);
-      const c = r.get(String(f[0].link)), p = c && t.get(String(c[1])), b = (s.inputs ?? []).indexOf(f[0]);
-      if (!c || !p || String(c[3]) !== h || c[4] !== b || !((d = p.outputs) != null && d[Number(c[2])]))
-        throw new Error(`旁路节点 ${h} 的输入连线无效`);
-      if (i.has(h)) throw new Error("生图工作流连线形成循环");
-      i.add(h);
+  const i = {}, o = /* @__PURE__ */ new Set(), s = (a, d) => {
+    var m, b, h, c;
+    const p = String(a.id);
+    if (a.type === "ComfySwitchNode" && !((b = (m = a.inputs) == null ? void 0 : m.find((g) => g.name === "switch")) != null && b.link) && typeof Ie(a).switch == "boolean") {
+      if (o.has(p)) throw new Error("生图工作流连线形成循环");
+      const g = (h = a.inputs) == null ? void 0 : h.find((y) => y.name === (Ie(a).switch ? "on_true" : "on_false")), S = r.get(String(g == null ? void 0 : g.link)), T = S && t.get(String(S[1]));
+      if (!T) throw new Error("提示词增强开关缺少所选输入");
+      o.add(p);
       try {
-        return a(p, Number(c[2]));
+        return s(T, Number(S[2]));
       } finally {
-        i.delete(h);
+        o.delete(p);
       }
     }
-    return l(s), [h, m];
-  }, l = (s) => {
-    var d;
-    const m = String(s.id);
-    if (i.has(m)) throw new Error("生图工作流连线形成循环");
-    if (o[m]) return;
-    if (!(s.type in vn)) throw new Error(`生图工作流包含未支持的节点：${s.type}`);
-    if (s.mode === nr) return;
-    if (s.mode && s.mode !== 0) throw new Error(`生图节点 ${m} 已静音或旁路`);
-    i.add(m);
-    const h = Le(s);
-    delete h.control_after_generate;
-    for (const [f, c] of (s.inputs ?? []).entries()) {
-      if (c.link == null) continue;
-      const p = r.get(String(c.link)), b = p && t.get(String(p[1]));
-      if (!p || !b || String(p[3]) !== m || p[4] !== f || !((d = b.outputs) != null && d[Number(p[2])])) throw new Error(`生图节点 ${m}.${c.name} 的连线无效`);
-      h[c.name] = a(b, Number(p[2]));
+    if (a.mode === ar) {
+      if (d !== 0) throw new Error(`旁路节点 ${p} 不支持输出端口 ${d}`);
+      const g = (a.inputs ?? []).filter((v) => v.link != null);
+      if (g.length !== 1) throw new Error(`旁路节点 ${p} 需要恰好一个输入连线`);
+      const S = r.get(String(g[0].link)), T = S && t.get(String(S[1])), y = (a.inputs ?? []).indexOf(g[0]);
+      if (!S || !T || String(S[3]) !== p || S[4] !== y || !((c = T.outputs) != null && c[Number(S[2])]))
+        throw new Error(`旁路节点 ${p} 的输入连线无效`);
+      if (o.has(p)) throw new Error("生图工作流连线形成循环");
+      o.add(p);
+      try {
+        return s(T, Number(S[2]));
+      } finally {
+        o.delete(p);
+      }
     }
-    for (const f of Wi[s.type]) if (h[f] == null) throw new Error(`生图节点 ${m} 缺少输入 ${f}`);
-    o[m] = { class_type: s.type, inputs: h, _meta: { title: s.title ?? s.type } }, i.delete(m);
+    return l(a), [p, d];
+  }, l = (a) => {
+    var m;
+    const d = String(a.id);
+    if (o.has(d)) throw new Error("生图工作流连线形成循环");
+    if (i[d]) return;
+    if (!(a.type in In)) throw new Error(`生图工作流包含未支持的节点：${a.type}`);
+    if (a.mode === ar) return;
+    if (a.mode && a.mode !== 0) throw new Error(`生图节点 ${d} 已静音或旁路`);
+    o.add(d);
+    const p = Ie(a);
+    delete p.control_after_generate;
+    for (const [b, h] of (a.inputs ?? []).entries()) {
+      if (h.link == null) continue;
+      const c = r.get(String(h.link)), g = c && t.get(String(c[1]));
+      if (!c || !g || String(c[3]) !== d || c[4] !== b || !((m = g.outputs) != null && m[Number(c[2])])) throw new Error(`生图节点 ${d}.${h.name} 的连线无效`);
+      p[h.name] = s(g, Number(c[2]));
+    }
+    for (const b of ea[a.type]) if (p[b] == null) throw new Error(`生图节点 ${d} 缺少输入 ${b}`);
+    i[d] = { class_type: a.type, inputs: p, _meta: { title: a.title ?? a.type } }, o.delete(d);
   };
-  return l(Oe(e, "SaveImage")), bt(e, "positive"), bt(e, "negative"), o;
+  return l(De(e, "SaveImage")), pt(e, "positive"), pt(e, "negative"), i;
 }
-function ut(e, t, r, o, i = 1) {
-  if (!Number.isSafeInteger(e) || e < r || e > o || e % i) throw new Error(`${t} 必须为 ${r}–${o} 的整数${i > 1 ? `，且为 ${i} 的倍数` : ""}`);
+function xt(e, t, r, i, o = 1) {
+  if (!Number.isSafeInteger(e) || e < r || e > i || e % o) throw new Error(`${t} 必须为 ${r}–${i} 的整数${o > 1 ? `，且为 ${o} 的倍数` : ""}`);
 }
-function qi(e) {
+function na(e) {
   if (!e.positivePrompt.trim()) throw new Error("请填写生图提示词");
-  if (ut(e.width, "宽度", 256, 2048, 8), ut(e.height, "高度", 256, 2048, 8), ut(e.steps, "步数", 1, 100), ut(e.batchSize, "生成数量", 1, 4), ut(e.seed, "种子", 0, Number.MAX_SAFE_INTEGER), !Number.isFinite(e.cfg) || e.cfg < 0 || e.cfg > 30) throw new Error("CFG 范围为 0–30");
+  if (xt(e.width, "宽度", 256, 2048, 8), xt(e.height, "高度", 256, 2048, 8), xt(e.steps, "步数", 1, 100), xt(e.batchSize, "生成数量", 1, 4), xt(e.seed, "种子", 0, Number.MAX_SAFE_INTEGER), !Number.isFinite(e.cfg) || e.cfg < 0 || e.cfg > 30) throw new Error("CFG 范围为 0–30");
   if (!e.filenamePrefix.startsWith("TheodoreDirector/ImageGen/") || /[\\:*?"<>|\u0000-\u001f]/.test(e.filenamePrefix) || e.filenamePrefix.split("/").some((t) => !t || t === "." || t === "..")) throw new Error("生图保存路径无效");
 }
-function Wt(e) {
-  return qi(e), {
+function Qt(e) {
+  return na(e), {
     ...e,
-    positivePrompt: e.positivePrompt.includes(er) ? e.positivePrompt.trim() : `${e.positivePrompt.trim()}
-${er}`,
-    negativePrompt: e.negativePrompt.includes(tr) ? e.negativePrompt.trim() : [e.negativePrompt.trim(), tr].filter(Boolean).join(", ")
+    positivePrompt: e.positivePrompt.includes(ir) ? e.positivePrompt.trim() : `${e.positivePrompt.trim()}
+${ir}`,
+    negativePrompt: e.negativePrompt.includes(or) ? e.negativePrompt.trim() : [e.negativePrompt.trim(), or].filter(Boolean).join(", ")
   };
 }
-function Ki(e) {
-  const t = Le(Oe(e, "KSampler")), r = Le(Oe(e, "EmptySD3LatentImage")), o = e.nodes.flatMap((i) => [Le(i).unet_name, Le(i).clip_name, Le(i).vae_name].filter((a) => typeof a == "string"));
+function ra(e) {
+  const t = e.nodes.some((s) => s.type === "TextEncodeQwenImage21"), r = t ? { seed: Ie(De(e, "RandomNoise")).noise_seed, cfg: Ie(De(e, "CFGGuider")).cfg, steps: String(Ie(De(e, "ManualSigmas")).sigmas).split(",").length - 1 } : Ie(De(e, "KSampler")), i = Ie(De(e, t ? "EmptyLatentImage" : "EmptySD3LatentImage")), o = e.nodes.flatMap((s) => [Ie(s).unet_name, Ie(s).clip_name, Ie(s).vae_name].filter((l) => typeof l == "string"));
   return {
-    negativePrompt: String(Le(bt(e, "negative")).text ?? ""),
-    width: Number(r.width),
-    height: Number(r.height),
-    batchSize: Number(r.batch_size),
-    steps: Number(t.steps),
-    cfg: Number(t.cfg),
-    seed: Number(t.seed),
+    negativePrompt: String(Ie(pt(e, "negative"))[t ? "negative_prompt" : "text"] ?? ""),
+    width: Number(i.width),
+    height: Number(i.height),
+    batchSize: Number(i.batch_size),
+    steps: Number(r.steps),
+    cfg: Number(r.cfg),
+    seed: Number(r.seed),
     models: o,
-    unetName: String(Le(Oe(e, "UNETLoader")).unet_name),
-    clipName: String(Le(Oe(e, "CLIPLoader")).clip_name),
-    clipType: String(Le(Oe(e, "CLIPLoader")).type),
-    vaeName: String(Le(Oe(e, "VAELoader")).vae_name)
+    fixedSteps: t,
+    unetName: String(Ie(De(e, "UNETLoader")).unet_name),
+    clipName: String(Ie(fn(e)).clip_name),
+    clipType: String(Ie(fn(e)).type),
+    vaeName: String(Ie(De(e, "VAELoader")).vae_name)
   };
 }
-async function Qi(e = fetch, t) {
-  var s, m, h;
-  const r = [["unetName", "UNETLoader", "unet_name"], ["clipName", "CLIPLoader", "clip_name"], ["vaeName", "VAELoader", "vae_name"], ["clipType", "CLIPLoader", "type"]], o = [...new Set(r.map(([, d]) => d))], i = await Promise.all(o.map(async (d) => {
-    const f = await e(`/object_info/${d}`, { signal: t });
-    if (!f.ok) throw new Error(`读取生图模型列表失败：${d} HTTP ${f.status}`);
-    return await f.json();
-  })), a = Object.assign({}, ...i), l = {};
-  for (const [d, f, c] of r) {
-    const p = (h = (m = (s = a[f]) == null ? void 0 : s.input) == null ? void 0 : m.required) == null ? void 0 : h[c], b = Array.isArray(p) && Array.isArray(p[0]) ? p[0] : [];
-    if (l[d] = [...new Set(b.filter((_) => typeof _ == "string" && !!_.trim()))], !l[d].length) throw new Error(`当前 ComfyUI 的 ${f}.${c} 没有可用选项`);
+async function ia(e = fetch, t) {
+  var a, d, p;
+  const r = [["unetName", "UNETLoader", "unet_name"], ["clipName", "CLIPLoader", "clip_name"], ["vaeName", "VAELoader", "vae_name"], ["clipType", "CLIPLoader", "type"]], i = [...new Set(r.map(([, m]) => m))], o = await Promise.all(i.map(async (m) => {
+    const b = await e(`/object_info/${m}`, { signal: t });
+    if (!b.ok) throw new Error(`读取生图模型列表失败：${m} HTTP ${b.status}`);
+    return await b.json();
+  })), s = Object.assign({}, ...o), l = {};
+  for (const [m, b, h] of r) {
+    const c = (p = (d = (a = s[b]) == null ? void 0 : a.input) == null ? void 0 : d.required) == null ? void 0 : p[h], g = Array.isArray(c) && Array.isArray(c[0]) ? c[0] : [];
+    if (l[m] = [...new Set(g.filter((S) => typeof S == "string" && !!S.trim()))], !l[m].length) throw new Error(`当前 ComfyUI 的 ${b}.${h} 没有可用选项`);
   }
   return l;
 }
-function Yi(e, t, r) {
-  const o = Wt(r), i = eo(e), a = (l) => {
-    var m;
-    const s = String(Oe(t, l).id);
-    if (((m = i[s]) == null ? void 0 : m.class_type) !== l) throw new Error(`生图 API 缺少节点 ${s} (${l})`);
-    return i[s];
-  };
-  i[String(bt(t, "positive").id)].inputs.text = o.positivePrompt, i[String(bt(t, "negative").id)].inputs.text = o.negativePrompt, Object.assign(a("KSampler").inputs, { seed: o.seed, steps: o.steps, cfg: o.cfg }), Object.assign(a("EmptySD3LatentImage").inputs, { width: o.width, height: o.height, batch_size: o.batchSize });
-  for (const [l, s, m] of [["unetName", "UNETLoader", "unet_name"], ["clipName", "CLIPLoader", "clip_name"], ["clipType", "CLIPLoader", "type"], ["vaeName", "VAELoader", "vae_name"]])
-    o[l] && (a(s).inputs[m] = o[l]);
-  return a("SaveImage").inputs.filename_prefix = o.filenamePrefix, i;
+function oa(e, t, r) {
+  const i = Qt(r), o = oi(e), s = (a) => {
+    var p;
+    const d = String(De(t, a).id);
+    if (((p = o[d]) == null ? void 0 : p.class_type) !== a) throw new Error(`生图 API 缺少节点 ${d} (${a})`);
+    return o[d];
+  }, l = t.nodes.some((a) => a.type === "TextEncodeQwenImage21");
+  if (l) {
+    s("TextEncodeQwenImage21").inputs.negative_prompt = i.negativePrompt;
+    const a = t.nodes.find((d) => d.type === "TextGenerate");
+    a && o[String(a.id)] ? (o[String(a.id)].inputs.prompt = i.positivePrompt, o[String(a.id)].inputs["sampling_mode.seed"] = i.seed) : s("TextEncodeQwenImage21").inputs.prompt = i.positivePrompt, s("RandomNoise").inputs.noise_seed = i.seed, s("CFGGuider").inputs.cfg = i.cfg;
+  } else
+    o[String(pt(t, "positive").id)].inputs.text = i.positivePrompt, o[String(pt(t, "negative").id)].inputs.text = i.negativePrompt, Object.assign(s("KSampler").inputs, { seed: i.seed, steps: i.steps, cfg: i.cfg });
+  Object.assign(s(l ? "EmptyLatentImage" : "EmptySD3LatentImage").inputs, { width: i.width, height: i.height, batch_size: i.batchSize });
+  for (const [a, d, p] of [["unetName", "UNETLoader", "unet_name"], ["clipName", "CLIPLoader", "clip_name"], ["clipType", "CLIPLoader", "type"], ["vaeName", "VAELoader", "vae_name"]])
+    i[a] && ((d === "CLIPLoader" ? o[String(fn(t).id)] : s(d)).inputs[p] = i[a]);
+  return s("SaveImage").inputs.filename_prefix = i.filenamePrefix, o;
 }
-function Xi(e, t) {
-  var o;
-  const r = eo(e);
-  for (const i of r.nodes) {
-    const a = (o = t[String(i.id)]) == null ? void 0 : o.inputs;
-    if (a)
-      for (const [l, s] of (vn[i.type] ?? []).entries()) {
-        const m = s === "control_after_generate" ? "fixed" : a[s];
-        m === void 0 || Array.isArray(m) || (i.widgets_values && (i.widgets_values[l] = m), i.widgets_values_named && (i.widgets_values_named[s] = m));
+function aa(e, t) {
+  var i;
+  const r = oi(e);
+  for (const o of r.nodes) {
+    const s = (i = t[String(o.id)]) == null ? void 0 : i.inputs;
+    if (s)
+      for (const [l, a] of (In[o.type] ?? []).entries()) {
+        const d = a === "control_after_generate" ? "fixed" : s[a];
+        d === void 0 || Array.isArray(d) || (o.widgets_values && (o.widgets_values[l] = d), o.widgets_values_named && (o.widgets_values_named[a] = d));
       }
   }
   return r;
 }
-function rr(e) {
+function sr(e) {
   return e.trim().replace(/[^\p{L}\p{N}._-]+/gu, "_").replace(/^[_.]+|[_.]+$/g, "").slice(0, 72) || "asset";
 }
-function to(e, t) {
-  return `TheodoreDirector/ImageGen/${rr(e)}/${rr(t)}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+function ai(e, t) {
+  return `TheodoreDirector/ImageGen/${sr(e)}/${sr(t)}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
-function no() {
+function si() {
   return Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
 }
-function Zi(e) {
+function sa(e) {
   return `/view?${new URLSearchParams({ filename: e.filename, subfolder: e.subfolder, type: e.type })}`;
 }
-function es(e, t, r) {
-  const o = ro(e, t), i = o == null ? void 0 : o.outputs;
-  if (!i || typeof i != "object") return [];
-  const a = Object.values(i), l = /* @__PURE__ */ new Map();
-  for (const s of a) {
-    const m = s == null ? void 0 : s.images;
-    if (Array.isArray(m))
-      for (const h of m) {
-        const d = h;
-        if (!d || typeof d.filename != "string" || !/\.(png|jpe?g|webp|bmp)$/i.test(d.filename) || d.type && d.type !== "output") continue;
-        const f = { filename: d.filename, subfolder: typeof d.subfolder == "string" ? d.subfolder : "", type: "output" };
-        l.set(`${f.subfolder}/${f.filename}`, { ...f, url: Zi(f) });
+function da(e, t, r) {
+  const i = di(e, t), o = i == null ? void 0 : i.outputs;
+  if (!o || typeof o != "object") return [];
+  const s = r ? [o[r]] : Object.values(o), l = /* @__PURE__ */ new Map();
+  for (const a of s) {
+    const d = a == null ? void 0 : a.images;
+    if (Array.isArray(d))
+      for (const p of d) {
+        const m = p;
+        if (!m || typeof m.filename != "string" || !/\.(png|jpe?g|webp|bmp)$/i.test(m.filename) || m.type && m.type !== "output") continue;
+        const b = { filename: m.filename, subfolder: typeof m.subfolder == "string" ? m.subfolder : "", type: "output" };
+        l.set(`${b.subfolder}/${b.filename}`, { ...b, url: sa(b) });
       }
   }
   return [...l.values()];
 }
-function ro(e, t) {
+function di(e, t) {
   if (!e || typeof e != "object") return;
   const r = e[t];
   return r && typeof r == "object" ? r : void 0;
 }
-function oo(e, t) {
-  var o;
-  const r = (o = ro(e, t)) == null ? void 0 : o.status;
+function li(e, t) {
+  var i;
+  const r = (i = di(e, t)) == null ? void 0 : i.status;
   if ((r == null ? void 0 : r.status_str) === "error") {
-    for (const i of r.messages ?? [])
-      if (Array.isArray(i) && i[1] && typeof i[1] == "object") {
-        const a = i[1];
-        if (a.exception_message) throw new Error(String(a.exception_message));
-        if (i[0] === "execution_interrupted") throw new Error("生图任务已中断");
+    for (const o of r.messages ?? [])
+      if (Array.isArray(o) && o[1] && typeof o[1] == "object") {
+        const s = o[1];
+        if (s.exception_message) throw new Error(String(s.exception_message));
+        if (o[0] === "execution_interrupted") throw new Error("生图任务已中断");
       }
     throw new Error("生图任务执行失败，请查看 ComfyUI 执行记录");
   }
   return r != null && r.completed ? "success" : "pending";
 }
-async function or(e, t, r = fetch, o) {
-  for (let i = 0; i < 40; i++) {
-    if (t != null && t.aborted) throw Ge();
-    const a = await r(`/history/${encodeURIComponent(e)}`, { signal: t });
-    if (!a.ok) throw new Error(`读取生图结果失败：HTTP ${a.status}`);
-    const l = await a.json();
-    oo(l, e);
-    const s = es(l, e);
-    if (s.length) return s;
-    i < 39 && await new Promise((m, h) => {
-      const d = () => {
-        clearTimeout(f), h(Ge());
-      }, f = setTimeout(() => {
-        t == null || t.removeEventListener("abort", d), m();
+async function dr(e, t, r = fetch, i) {
+  for (let o = 0; o < 40; o++) {
+    if (t != null && t.aborted) throw qe();
+    const s = await r(`/history/${encodeURIComponent(e)}`, { signal: t });
+    if (!s.ok) throw new Error(`读取生图结果失败：HTTP ${s.status}`);
+    const l = await s.json();
+    li(l, e);
+    const a = da(l, e, i);
+    if (a.length) return a;
+    o < 39 && await new Promise((d, p) => {
+      const m = () => {
+        clearTimeout(b), p(qe());
+      }, b = setTimeout(() => {
+        t == null || t.removeEventListener("abort", m), d();
       }, 500);
-      t == null || t.addEventListener("abort", d, { once: !0 });
+      t == null || t.addEventListener("abort", m, { once: !0 });
     });
   }
   throw new Error("任务已结束，但没有 SaveImage 图片输出；可用任务 ID 在 ComfyUI 历史记录中核查");
 }
-function ts(e, t, r, o, i) {
-  const a = new Set(o.map((s) => s.alias.toLowerCase()));
+function la(e, t, r, i, o) {
+  const s = new Set(i.map((a) => a.alias.toLowerCase()));
   let l = 1;
-  for (; a.has(`${e.alias}_${l}`.toLowerCase()); ) l++;
+  for (; s.has(`${e.alias}_${l}`.toLowerCase()); ) l++;
   return {
     ...e,
     id: `image_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`,
@@ -3140,16 +3207,16 @@ function ts(e, t, r, o, i) {
     fingerprint: "",
     fixed: !1,
     enabled: !0,
-    fixedOrder: Math.max(0, ...o.map((s) => s.fixedOrder)) + 1,
+    fixedOrder: Math.max(0, ...i.map((a) => a.fixedOrder)) + 1,
     shotIds: [],
-    imageGeneration: i,
+    imageGeneration: o,
     imageGenerationPending: void 0,
     includeVideoAudio: !1,
     durationSeconds: null,
     audioDurationSeconds: null
   };
 }
-const io = "theodore-director-image-settings-v1", ns = {
+const ci = "theodore-director-image-settings-v2-qwen21", ca = {
   width: 1080,
   height: 720,
   steps: 12,
@@ -3158,445 +3225,894 @@ const io = "theodore-director-image-settings-v1", ns = {
   seed: 0,
   randomSeed: !1
 };
-let Rt = {};
-function so() {
+let Bt = {};
+function pi() {
   try {
     return globalThis.localStorage;
   } catch {
     return;
   }
 }
-function Dt(e) {
+function Vt(e) {
   if (!e || typeof e != "object") return {};
   const t = e, r = {};
-  for (const o of ["width", "height", "steps", "cfg", "batchSize", "seed"]) {
-    const i = t[o];
-    if (typeof i != "number" || !Number.isFinite(i)) continue;
-    (o === "width" || o === "height" ? Number.isSafeInteger(i) && i >= 256 && i <= 2048 && i % 8 === 0 : o === "steps" ? Number.isSafeInteger(i) && i >= 1 && i <= 100 : o === "batchSize" ? Number.isSafeInteger(i) && i >= 1 && i <= 4 : o === "seed" ? Number.isSafeInteger(i) && i >= 0 : i >= 0 && i <= 30) && (r[o] = i);
+  for (const i of ["width", "height", "steps", "cfg", "batchSize", "seed"]) {
+    const o = t[i];
+    if (typeof o != "number" || !Number.isFinite(o)) continue;
+    (i === "width" || i === "height" ? Number.isSafeInteger(o) && o >= 256 && o <= 2048 && o % 8 === 0 : i === "steps" ? Number.isSafeInteger(o) && o >= 1 && o <= 100 : i === "batchSize" ? Number.isSafeInteger(o) && o >= 1 && o <= 4 : i === "seed" ? Number.isSafeInteger(o) && o >= 0 : o >= 0 && o <= 30) && (r[i] = o);
   }
   typeof t.randomSeed == "boolean" && (r.randomSeed = t.randomSeed);
-  for (const o of ["unetName", "clipName", "vaeName", "clipType"])
-    typeof t[o] == "string" && t[o].trim() && !/[\u0000-\u001f]/.test(t[o]) && (r[o] = t[o]);
+  for (const i of ["unetName", "clipName", "vaeName", "clipType"])
+    typeof t[i] == "string" && t[i].trim() && !/[\u0000-\u001f]/.test(t[i]) && (r[i] = t[i]);
   return r;
 }
-function ao(e = so()) {
+function hi(e = pi()) {
   try {
-    const t = e == null ? void 0 : e.getItem(io);
-    return { ...Dt(t ? JSON.parse(t) : null), ...Rt };
+    const t = e == null ? void 0 : e.getItem(ci);
+    return { ...Vt(t ? JSON.parse(t) : null), ...Bt };
   } catch {
-    return { ...Rt };
+    return { ...Bt };
   }
 }
-function ir(e, t = ao()) {
-  return { ...ns, ...Dt(e), ...Dt(t) };
+function lr(e, t = hi()) {
+  return { ...ca, ...Vt(e), ...Vt(t) };
 }
-function rs(e, t = so()) {
-  Rt = { ...ao(t), ...Dt(e) };
+function pa(e, t = pi()) {
+  Bt = { ...hi(t), ...Vt(e) };
   try {
-    t == null || t.setItem(io, JSON.stringify(Rt));
+    t == null || t.setItem(ci, JSON.stringify(Bt));
   } catch {
   }
 }
-function Ot(e) {
-  return e.filter((t) => t.enabled && t.kind === "image" && !!Mt(t.genPrompt ?? "").positive);
+function qt(e) {
+  return e.filter((t) => t.enabled && t.kind === "image" && !!Ut(t.genPrompt ?? "").positive);
 }
-async function os(e) {
-  var a, l;
+async function ha(e) {
+  var s, l;
   const { signal: t } = e, r = () => {
-    if (t.aborted) throw Ge();
-  }, i = Ot(e.assets).map((s) => {
-    const m = Mt(s.genPrompt ?? ""), { randomSeed: h, ...d } = e.preferences;
-    return { asset: s, settings: Wt({
-      ...d,
-      positivePrompt: m.positive,
-      negativePrompt: m.negative || e.negativePrompt,
-      seed: h ? no() : d.seed,
-      filenamePrefix: to(e.projectName, s.alias)
+    if (t.aborted) throw qe();
+  }, o = qt(e.assets).map((a) => {
+    const d = Ut(a.genPrompt ?? ""), { randomSeed: p, ...m } = e.preferences;
+    return { asset: a, settings: Qt({
+      ...m,
+      positivePrompt: d.positive,
+      negativePrompt: d.negative || e.negativePrompt,
+      seed: p ? si() : m.seed,
+      filenamePrefix: ai(e.projectName, a.alias)
     }) };
   });
-  for (const [s, { asset: m, settings: h }] of i.entries()) {
-    r(), (a = e.onItem) == null || a.call(e, m, s, i.length);
+  for (const [a, { asset: d, settings: p }] of o.entries()) {
+    r(), (s = e.onItem) == null || s.call(e, d, a, o.length);
     try {
-      const d = Date.now(), f = m.imageGenerationPending ? await e.recover(m.imageGenerationPending) : await e.queue({
-        ...h,
+      const m = Date.now(), b = d.imageGenerationPending ? await e.recover(d.imageGenerationPending) : await e.queue({
+        ...p,
         signal: t,
         onProgress: e.onProgress,
-        onQueued: (N) => e.onPending(m.id, { promptId: N, createdAt: d, settings: h })
+        onQueued: (T) => e.onPending(d.id, { promptId: T, createdAt: m, settings: p })
       });
-      await e.onRecord(m.id, f), e.onPending(m.id, null), r();
-      const c = f.images[0];
-      if (!c) throw new Error("任务完成，但没有可用图片结果");
-      const p = `${c.subfolder}/${c.filename}`, b = ((l = f.registeredPaths) == null ? void 0 : l[p]) ?? await e.register(e.projectName, c), _ = { ...f, registeredPaths: { ...f.registeredPaths, [p]: b } };
-      await e.onApply(m.id, b, cn(f.settings.positivePrompt, f.settings.negativePrompt), _), e.onResult({ assetId: m.id, alias: m.alias, status: "success" });
-    } catch (d) {
-      if (t.aborted || d instanceof Error && d.name === "AbortError") throw Ge();
-      e.onResult({ assetId: m.id, alias: m.alias, status: "error", error: d instanceof Error ? d.message : String(d) });
+      await e.onRecord(d.id, b), e.onPending(d.id, null), r();
+      const h = b.images[0];
+      if (!h) throw new Error("任务完成，但没有可用图片结果");
+      const c = `${h.subfolder}/${h.filename}`, g = ((l = b.registeredPaths) == null ? void 0 : l[c]) ?? await e.register(e.projectName, h), S = { ...b, registeredPaths: { ...b.registeredPaths, [c]: g } };
+      await e.onApply(d.id, g, gn(b.settings.positivePrompt, b.settings.negativePrompt), S), e.onResult({ assetId: d.id, alias: d.alias, status: "success" });
+    } catch (m) {
+      if (t.aborted || m instanceof Error && m.name === "AbortError") throw qe();
+      e.onResult({ assetId: d.id, alias: d.alias, status: "error", error: m instanceof Error ? m.message : String(m) });
     }
   }
 }
-const sr = { negativePrompt: "blurry ugly bad", width: 1080, height: 720, batchSize: 1, steps: 12, cfg: 1, seed: 0, models: [] };
-function is({ asset: e, batchAssets: t, projectName: r, language: o, defaults: i, queue: a, recover: l, running: s, progress: m, register: h, onPending: d, onRecord: f, onPromptChange: c, onStart: p, onProgress: b, onFinish: _, onApply: N, onCreateAsset: k, onStop: w, onClose: z }) {
-  var ot, _t;
-  const g = (A, se) => o === "zh" ? A : se, [$, T] = R(sr), [C, S] = R(!0), [L, V] = R(""), O = Mt(e.genPrompt ?? ""), U = (ot = e.imageGeneration) == null ? void 0 : ot.settings, [P, oe] = R(O.positive || (U == null ? void 0 : U.positivePrompt) || ""), [y, D] = R(O.negative || ""), [j, H] = R(() => ir()), { width: te, height: X, steps: M, cfg: v, batchSize: K, seed: Z, randomSeed: Q } = j, ee = [["unetName", "扩散模型 / UNet"], ["clipName", "文本编码器 / CLIP"], ["vaeName", "VAE"], ["clipType", "CLIP 类型"]], pe = ee.filter(([A]) => $.modelOptions && (!j[A] || !$.modelOptions[A].includes(j[A]))), E = pe.length ? g(`当前选择不可用：${pe.map(([, A]) => A).join("、")}。请选择服务器已安装的模型。`, "Some selected model files or types are unavailable. Choose installed models.") : "", B = (A, se) => {
-    rs({ [A]: se }), H((de) => ({ ...de, [A]: se }));
-  }, ue = Ot(t ?? []), [ne, u] = R(() => Ot(t ?? []).filter((A) => !A.path.trim()).map((A) => A.id)), [G, Y] = R([]), [ce, be] = R(""), le = !!t, [Me, xe] = R(((_t = e.imageGeneration) == null ? void 0 : _t.images) ?? []), [ae, nt] = R(e.imageGeneration ?? null), [at, ye] = R(""), [Ne, dt] = R(""), [vt, rt] = R(0);
-  Pe(() => {
+const cr = { negativePrompt: "blurry ugly bad", width: 1080, height: 720, batchSize: 1, steps: 12, cfg: 1, seed: 0, models: [] };
+function ua({ asset: e, batchAssets: t, projectName: r, language: i, defaults: o, queue: s, recover: l, running: a, progress: d, register: p, onPending: m, onRecord: b, onPromptChange: h, onStart: c, onProgress: g, onFinish: S, onApply: T, onCreateAsset: y, onStop: v, onClose: x }) {
+  var dt, Pt;
+  const u = (A, ie) => i === "zh" ? A : ie, [$, j] = G(cr), [E, P] = G(!0), [C, N] = G(""), R = Ut(e.genPrompt ?? ""), F = (dt = e.imageGeneration) == null ? void 0 : dt.settings, [I, ne] = G(R.positive || (F == null ? void 0 : F.positivePrompt) || ""), [k, D] = G(R.negative || ""), [M, V] = G(() => lr()), { width: Z, height: Y, steps: L, cfg: _, batchSize: K, seed: ee, randomSeed: Q } = M, te = [["unetName", "扩散模型 / UNet"], ["clipName", "文本编码器 / CLIP"], ["vaeName", "VAE"], ["clipType", "CLIP 类型"]], ce = te.filter(([A]) => $.modelOptions && (!M[A] || !$.modelOptions[A].includes(M[A]))), z = ce.length ? u(`当前选择不可用：${ce.map(([, A]) => A).join("、")}。请选择服务器已安装的模型。`, "Some selected model files or types are unavailable. Choose installed models.") : "", q = (A, ie) => {
+    pa({ [A]: ie }), V((se) => ({ ...se, [A]: ie }));
+  }, pe = qt(t ?? []), [re, f] = G(() => qt(t ?? []).filter((A) => !A.path.trim()).map((A) => A.id)), [B, X] = G([]), [le, xe] = G(""), de = !!t, [Oe, ve] = G(((Pt = e.imageGeneration) == null ? void 0 : Pt.images) ?? []), [ue, st] = G(e.imageGeneration ?? null), [ht, _e] = G(""), [Re, ut] = G(""), [St, Ze] = G(0);
+  Ee(() => {
     let A = !0;
-    return i().then((se) => {
-      A && (T(se), D((de) => de.trim() ? de : se.negativePrompt), H(ir(se)), S(!1));
-    }).catch((se) => {
-      A && (V(se instanceof Error ? se.message : String(se)), D((de) => de.trim() ? de : sr.negativePrompt), S(!1));
+    return o().then((ie) => {
+      A && (j(ie), D((se) => se.trim() ? se : ie.negativePrompt), V({ ...lr(ie), ...ie.fixedSteps ? { steps: ie.steps } : {} }), P(!1));
+    }).catch((ie) => {
+      A && (N(ie instanceof Error ? ie.message : String(ie)), D((se) => se.trim() ? se : cr.negativePrompt), P(!1));
     }), () => {
       A = !1;
     };
-  }, [i, vt]);
-  const Jt = () => cn(P, y), qt = async () => {
-    ye("");
+  }, [o, St]);
+  const Xt = () => gn(I, k), Zt = async () => {
+    _e("");
     let A;
     try {
-      const { randomSeed: fe, ...$e } = j;
-      A = Wt({ ...$e, positivePrompt: P, negativePrompt: y, width: te, height: X, steps: M, cfg: v, batchSize: K, seed: Q ? no() : Z, filenamePrefix: to(r, e.alias) });
-    } catch (fe) {
-      ye(fe instanceof Error ? fe.message : String(fe));
+      const { randomSeed: ge, ...$e } = M;
+      A = Qt({ ...$e, positivePrompt: I, negativePrompt: k, width: Z, height: Y, steps: L, cfg: _, batchSize: K, seed: Q ? si() : ee, filenamePrefix: ai(r, e.alias) });
+    } catch (ge) {
+      _e(ge instanceof Error ? ge.message : String(ge));
       return;
     }
-    c(e.id, Jt());
-    const se = new AbortController();
-    p(se);
-    const de = Date.now();
+    h(e.id, Xt());
+    const ie = new AbortController();
+    c(ie);
+    const se = Date.now();
     try {
-      const fe = await a({ ...A, signal: se.signal, onProgress: b, onQueued: ($e) => d(e.id, { promptId: $e, createdAt: de, settings: A }) });
-      nt(fe), xe(fe.images), await f(e.id, fe), d(e.id, null), fe.images.length || ye(g("任务完成，但没有可用图片结果。", "The job finished without image results."));
-    } catch (fe) {
-      fe instanceof Error && fe.name === "AbortError" || ye(fe instanceof Error ? fe.message : String(fe));
+      const ge = await s({ ...A, signal: ie.signal, onProgress: g, onQueued: ($e) => m(e.id, { promptId: $e, createdAt: se, settings: A }) });
+      st(ge), ve(ge.images), await b(e.id, ge), m(e.id, null), ge.images.length || _e(u("任务完成，但没有可用图片结果。", "The job finished without image results."));
+    } catch (ge) {
+      ge instanceof Error && ge.name === "AbortError" || _e(ge instanceof Error ? ge.message : String(ge));
     } finally {
-      _(se);
+      S(ie);
     }
-  }, wt = async (A = !1) => {
-    if (s) return;
-    const se = new Set(G.filter((he) => he.status === "error").map((he) => he.assetId)), de = ue.filter((he) => ne.includes(he.id) && (!A || se.has(he.id)));
-    if (!de.length) {
-      ye(g("请先勾选要生成的图片素材。", "Select image assets first."));
+  }, $t = async (A = !1) => {
+    if (a) return;
+    const ie = new Set(B.filter((he) => he.status === "error").map((he) => he.assetId)), se = pe.filter((he) => re.includes(he.id) && (!A || ie.has(he.id)));
+    if (!se.length) {
+      _e(u("请先勾选要生成的图片素材。", "Select image assets first."));
       return;
     }
-    const fe = de.filter((he) => he.path.trim());
-    if (fe.length && !window.confirm(g(`将替换 ${fe.length} 项已有素材，生成并绑定成功后清理未被其他素材使用的旧资源。继续？`, `Replace ${fe.length} existing assets and remove their unused old resources after assigning the new images?`))) return;
+    const ge = se.filter((he) => he.path.trim());
+    if (ge.length && !window.confirm(u(`将替换 ${ge.length} 项已有素材，生成并绑定成功后清理未被其他素材使用的旧资源。继续？`, `Replace ${ge.length} existing assets and remove their unused old resources after assigning the new images?`))) return;
     const $e = new AbortController();
-    ye(""), Y(A ? (he) => he.filter((ge) => !de.some((Ee) => Ee.id === ge.assetId)) : []), p($e);
+    _e(""), X(A ? (he) => he.filter((fe) => !se.some((Te) => Te.id === fe.assetId)) : []), c($e);
     try {
-      await os({
-        assets: de,
+      await ha({
+        assets: se,
         projectName: r,
-        preferences: { ...j },
-        negativePrompt: y,
+        preferences: { ...M },
+        negativePrompt: k,
         signal: $e.signal,
-        queue: a,
+        queue: s,
         recover: l,
-        register: h,
-        onPending: d,
-        onRecord: f,
-        onApply: N,
-        onProgress: b,
-        onItem: (he, ge, Ee) => {
-          be(`${ge + 1}/${Ee} · ${he.alias}`), b({ value: 0, max: 0 });
+        register: p,
+        onPending: m,
+        onRecord: b,
+        onApply: T,
+        onProgress: g,
+        onItem: (he, fe, Te) => {
+          xe(`${fe + 1}/${Te} · ${he.alias}`), g({ value: 0, max: 0 });
         },
-        onResult: (he) => Y((ge) => [...ge, he])
+        onResult: (he) => X((fe) => [...fe, he])
       });
     } catch (he) {
-      ye(he instanceof Error && he.name === "AbortError" ? g("批量生成已停止，完成项已保存，未完成任务可在对应素材中恢复结果。", "Batch stopped. Completed assets are saved; recover pending jobs from their asset panels.") : he instanceof Error ? he.message : String(he));
+      _e(he instanceof Error && he.name === "AbortError" ? u("批量生成已停止，完成项已保存，未完成任务可在对应素材中恢复结果。", "Batch stopped. Completed assets are saved; recover pending jobs from their asset panels.") : he instanceof Error ? he.message : String(he));
     } finally {
-      _($e), be("");
+      S($e), xe("");
     }
-  }, lt = async () => {
+  }, mt = async () => {
     const A = e.imageGenerationPending;
-    if (!A || s) return;
-    const se = new AbortController();
-    p(se), ye("");
+    if (!A || a) return;
+    const ie = new AbortController();
+    c(ie), _e("");
     try {
-      const de = await l(A);
-      nt(de), xe(de.images), await f(e.id, de), d(e.id, null);
-    } catch (de) {
-      ye(de instanceof Error ? de.message : String(de));
+      const se = await l(A);
+      st(se), ve(se.images), await b(e.id, se), m(e.id, null);
+    } catch (se) {
+      _e(se instanceof Error ? se.message : String(se));
     } finally {
-      _(se);
+      S(ie);
     }
-  }, yt = async (A, se, de) => {
-    var fe;
-    if (!Ne && !(se === "replace" && e.path && !window.confirm(g(`当前素材“${e.alias}”已有文件。新图绑定成功后将清理未被其他素材使用的旧资源。继续？`, `Replace “${e.alias}” and remove its unused old resources after assigning the new image?`)))) {
-      dt(A.filename), ye("");
+  }, It = async (A, ie, se) => {
+    var ge;
+    if (!Re && !(ie === "replace" && e.path && !window.confirm(u(`当前素材“${e.alias}”已有文件。新图绑定成功后将清理未被其他素材使用的旧资源。继续？`, `Replace “${e.alias}” and remove its unused old resources after assigning the new image?`)))) {
+      ut(A.filename), _e("");
       try {
-        if (!ae) throw new Error("生成记录不存在，请重新生成");
+        if (!ue) throw new Error("生成记录不存在，请重新生成");
         const $e = `${A.subfolder}/${A.filename}`;
-        let he = ae, ge = (fe = ae.registeredPaths) == null ? void 0 : fe[$e];
-        ge || (ge = await h(r, A), he = { ...ae, registeredPaths: { ...ae.registeredPaths, [$e]: ge } }, nt(he), await f(e.id, he));
-        const Ee = cn(ae.settings.positivePrompt, ae.settings.negativePrompt);
-        se === "replace" ? await N(e.id, ge, Ee, he) : k(e, ge, Ee, de, he);
+        let he = ue, fe = (ge = ue.registeredPaths) == null ? void 0 : ge[$e];
+        fe || (fe = await p(r, A), he = { ...ue, registeredPaths: { ...ue.registeredPaths, [$e]: fe } }, st(he), await b(e.id, he));
+        const Te = gn(ue.settings.positivePrompt, ue.settings.negativePrompt);
+        ie === "replace" ? await T(e.id, fe, Te, he) : y(e, fe, Te, se, he);
       } catch ($e) {
-        ye($e instanceof Error ? $e.message : String($e));
+        _e($e instanceof Error ? $e.message : String($e));
       } finally {
-        dt("");
+        ut("");
       }
     }
-  }, ct = m.max > 0 ? Math.max(0, Math.min(100, Math.round(m.value / m.max * 100))) : 0;
-  return /* @__PURE__ */ n("div", { class: "td-batch-overlay td-imagegen-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-imagegen-panel", role: "dialog", "aria-modal": "true", "aria-label": g("自动生图", "Generate image"), children: [
+  }, gt = d.max > 0 ? Math.max(0, Math.min(100, Math.round(d.value / d.max * 100))) : 0;
+  return /* @__PURE__ */ n("div", { class: "td-batch-overlay td-imagegen-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-imagegen-panel", role: "dialog", "aria-modal": "true", "aria-label": u("自动生图", "Generate image"), children: [
     /* @__PURE__ */ n("header", { class: "td-batch-header", children: [
       /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: le ? g("批量生图", "Batch image generation") : g("导播台内自动生图", "Generate inside Director") }),
-        /* @__PURE__ */ n("p", { children: le ? g("逐项使用各自提示词生成并自动绑定首张结果；完成项立即保存。", "Generate each asset with its own prompt and assign its first image; save each completed item immediately.") : g(`目标素材：${e.alias}`, `Target: ${e.alias}`) }),
-        /* @__PURE__ */ n("small", { children: g("参数修改自动记住，下一个素材、重开窗口和刷新后沿用。", "Settings are remembered across assets, panels and page reloads.") })
+        /* @__PURE__ */ n("h2", { children: de ? u("批量生图", "Batch image generation") : u("导播台内自动生图", "Generate inside Director") }),
+        /* @__PURE__ */ n("p", { children: de ? u("逐项使用各自提示词生成并自动绑定首张结果；完成项立即保存。", "Generate each asset with its own prompt and assign its first image; save each completed item immediately.") : u(`目标素材：${e.alias}`, `Target: ${e.alias}`) }),
+        /* @__PURE__ */ n("small", { children: u("参数修改自动记住，下一个素材、重开窗口和刷新后沿用。", "Settings are remembered across assets, panels and page reloads.") })
       ] }),
-      /* @__PURE__ */ n("button", { "aria-label": g("关闭", "Close"), disabled: s || !!Ne, onClick: z, children: "×" })
+      /* @__PURE__ */ n("button", { "aria-label": u("关闭", "Close"), disabled: a || !!Re, onClick: x, children: "×" })
     ] }),
-    le && /* @__PURE__ */ n("section", { class: "td-imagegen-batch-selection", children: [
+    de && /* @__PURE__ */ n("section", { class: "td-imagegen-batch-selection", children: [
       /* @__PURE__ */ n("header", { children: [
-        /* @__PURE__ */ n("strong", { children: g(`已选 ${ne.length} / ${ue.length} 项`, `${ne.length} / ${ue.length} selected`) }),
-        /* @__PURE__ */ n("button", { disabled: s, onClick: () => u(ue.filter((A) => !A.path.trim()).map((A) => A.id)), children: g("只选缺图", "Missing only") }),
-        /* @__PURE__ */ n("button", { disabled: s, onClick: () => u(ue.map((A) => A.id)), children: g("全选", "Select all") }),
-        /* @__PURE__ */ n("button", { disabled: s, onClick: () => u([]), children: g("全不选", "Clear selection") })
+        /* @__PURE__ */ n("strong", { children: u(`已选 ${re.length} / ${pe.length} 项`, `${re.length} / ${pe.length} selected`) }),
+        /* @__PURE__ */ n("button", { disabled: a, onClick: () => f(pe.filter((A) => !A.path.trim()).map((A) => A.id)), children: u("只选缺图", "Missing only") }),
+        /* @__PURE__ */ n("button", { disabled: a, onClick: () => f(pe.map((A) => A.id)), children: u("全选", "Select all") }),
+        /* @__PURE__ */ n("button", { disabled: a, onClick: () => f([]), children: u("全不选", "Clear selection") })
       ] }),
-      /* @__PURE__ */ n("div", { class: "td-imagegen-batch-list", children: ue.map((A) => /* @__PURE__ */ n("label", { children: [
-        /* @__PURE__ */ n("input", { type: "checkbox", checked: ne.includes(A.id), disabled: s, onChange: (se) => u((de) => se.currentTarget.checked ? [...de, A.id] : de.filter((fe) => fe !== A.id)) }),
+      /* @__PURE__ */ n("div", { class: "td-imagegen-batch-list", children: pe.map((A) => /* @__PURE__ */ n("label", { children: [
+        /* @__PURE__ */ n("input", { type: "checkbox", checked: re.includes(A.id), disabled: a, onChange: (ie) => f((se) => ie.currentTarget.checked ? [...se, A.id] : se.filter((ge) => ge !== A.id)) }),
         /* @__PURE__ */ n("strong", { children: A.alias }),
-        /* @__PURE__ */ n("span", { children: A.path.trim() ? g("已有图（将替换）", "Existing image (replace)") : g("缺图", "Missing") }),
-        /* @__PURE__ */ n("small", { title: A.genPrompt, children: Mt(A.genPrompt ?? "").positive.slice(0, 120) })
+        /* @__PURE__ */ n("span", { children: A.path.trim() ? u("已有图（将替换）", "Existing image (replace)") : u("缺图", "Missing") }),
+        /* @__PURE__ */ n("small", { title: A.genPrompt, children: Ut(A.genPrompt ?? "").positive.slice(0, 120) })
       ] }, A.id)) }),
-      /* @__PURE__ */ n("small", { children: g("仅列出已启用且填写了生图提示词的图片素材。每项结果可回到“自动生图”查看或换选。", "Only enabled image assets with prompts are listed. View or choose other results from each asset's Generate image panel.") })
+      /* @__PURE__ */ n("small", { children: u("仅列出已启用且填写了生图提示词的图片素材。每项结果可回到“自动生图”查看或换选。", "Only enabled image assets with prompts are listed. View or choose other results from each asset's Generate image panel.") })
     ] }),
-    /* @__PURE__ */ n("div", { class: "td-imagegen-models", children: [
+    $.canvasWorkflow ? /* @__PURE__ */ n("div", { class: "td-imagegen-models", children: [
       /* @__PURE__ */ n("header", { children: [
-        /* @__PURE__ */ n("strong", { children: g("生图模型", "Image models") }),
-        /* @__PURE__ */ n("button", { disabled: s || C, onClick: () => {
-          S(!0), V(""), rt((A) => A + 1);
-        }, children: g("刷新模型列表", "Refresh models") })
+        /* @__PURE__ */ n("strong", { children: u("使用画布上的生图链", "Use the canvas image workflow") }),
+        /* @__PURE__ */ n("button", { disabled: a || E, onClick: () => {
+          P(!0), N(""), Ze((A) => A + 1);
+        }, children: u("重新读取工作流", "Reload workflow") })
       ] }),
-      $.modelOptions ? /* @__PURE__ */ n("div", { class: "td-imagegen-model-selects", children: ee.map(([A, se]) => /* @__PURE__ */ n("label", { children: [
-        se,
-        /* @__PURE__ */ n("select", { "aria-label": se, value: j[A] ?? "", disabled: s || C, onChange: (de) => B(A, de.currentTarget.value), children: [
-          !$.modelOptions[A].includes(j[A] ?? "") && /* @__PURE__ */ n("option", { value: j[A] ?? "", children: j[A] ? `${j[A]} ${g("（不可用）", "(unavailable)")}` : g("请选择", "Select") }),
-          $.modelOptions[A].map((de) => /* @__PURE__ */ n("option", { value: de, children: de }, de))
+      /* @__PURE__ */ n("small", { children: u("关闭导播台，在画布的「07 · 自由生图链」中修改模型、LoRA、采样器及后处理。这里负责提示词、尺寸、种子与批量生成；每次提交都会读取当前连线。", "Edit models, LoRAs, sampling and postprocessing in canvas group 07. This panel controls prompts, dimensions, seeds and batches; each job reads the current graph.") })
+    ] }) : /* @__PURE__ */ n("div", { class: "td-imagegen-models", children: [
+      /* @__PURE__ */ n("header", { children: [
+        /* @__PURE__ */ n("strong", { children: u("生图模型", "Image models") }),
+        /* @__PURE__ */ n("button", { disabled: a || E, onClick: () => {
+          P(!0), N(""), Ze((A) => A + 1);
+        }, children: u("刷新模型列表", "Refresh models") })
+      ] }),
+      $.modelOptions ? /* @__PURE__ */ n("div", { class: "td-imagegen-model-selects", children: te.map(([A, ie]) => /* @__PURE__ */ n("label", { children: [
+        ie,
+        /* @__PURE__ */ n("select", { "aria-label": ie, value: M[A] ?? "", disabled: a || E, onChange: (se) => q(A, se.currentTarget.value), children: [
+          !$.modelOptions[A].includes(M[A] ?? "") && /* @__PURE__ */ n("option", { value: M[A] ?? "", children: M[A] ? `${M[A]} ${u("（不可用）", "(unavailable)")}` : u("请选择", "Select") }),
+          $.modelOptions[A].map((se) => /* @__PURE__ */ n("option", { value: se, children: se }, se))
         ] })
       ] }, A)) }) : $.models.map((A) => /* @__PURE__ */ n("code", { children: A }, A)),
-      /* @__PURE__ */ n("small", { children: g("选择会自动记住，并用于单张和批量生图。UNet、CLIP、VAE 及类型需与当前工作流架构匹配。当前为文生图，不接收参考图片。", "Selections are remembered for single and batch jobs. Match UNet, CLIP, VAE and encoder type to the workflow architecture. This workflow is text-to-image.") })
+      /* @__PURE__ */ n("small", { children: u("选择会自动记住，并用于单张和批量生图。UNet、CLIP、VAE 及类型需与当前工作流架构匹配。当前为文生图，不接收参考图片。", "Selections are remembered for single and batch jobs. Match UNet, CLIP, VAE and encoder type to the workflow architecture. This workflow is text-to-image.") })
     ] }),
-    E && /* @__PURE__ */ n("div", { class: "td-imagegen-error", children: E }),
-    L && /* @__PURE__ */ n("div", { class: "td-imagegen-error", children: [
-      g("读取内置生图工作流失败", "Could not load bundled image workflow"),
+    z && /* @__PURE__ */ n("div", { class: "td-imagegen-error", children: z }),
+    C && /* @__PURE__ */ n("div", { class: "td-imagegen-error", children: [
+      u("读取内置生图工作流失败", "Could not load bundled image workflow"),
       ": ",
-      L,
+      C,
       /* @__PURE__ */ n("button", { onClick: () => {
-        S(!0), V(""), rt((A) => A + 1);
-      }, children: g("重试", "Retry") })
+        P(!0), N(""), Ze((A) => A + 1);
+      }, children: u("重试", "Retry") })
     ] }),
     /* @__PURE__ */ n("div", { class: "td-imagegen-form", children: [
-      !le && /* @__PURE__ */ n("label", { class: "wide", children: [
-        g("正向提示词", "Positive prompt"),
-        /* @__PURE__ */ n("textarea", { rows: 5, value: P, disabled: s, onInput: (A) => oe(A.currentTarget.value), placeholder: g("描述主体、外观、场景、构图与光线", "Describe subject, appearance, scene, framing and light") })
+      !de && /* @__PURE__ */ n("label", { class: "wide", children: [
+        u("正向提示词", "Positive prompt"),
+        /* @__PURE__ */ n("textarea", { rows: 5, value: I, disabled: a, onInput: (A) => ne(A.currentTarget.value), placeholder: u("描述主体、外观、场景、构图与光线", "Describe subject, appearance, scene, framing and light") })
       ] }),
       /* @__PURE__ */ n("label", { class: "wide", children: [
-        g("负向提示词", "Negative prompt"),
-        /* @__PURE__ */ n("textarea", { rows: 3, value: y, disabled: s, onInput: (A) => D(A.currentTarget.value) }),
-        /* @__PURE__ */ n("small", { children: g("画面无文字、字幕、水印或标识为固定约束。", "No text, captions, watermarks or logos are enforced.") })
+        u("负向提示词", "Negative prompt"),
+        /* @__PURE__ */ n("textarea", { rows: 3, value: k, disabled: a, onInput: (A) => D(A.currentTarget.value) }),
+        /* @__PURE__ */ n("small", { children: u("画面无文字、字幕、水印或标识为固定约束。", "No text, captions, watermarks or logos are enforced.") })
       ] }),
       /* @__PURE__ */ n("label", { children: [
-        g("宽度", "Width"),
-        /* @__PURE__ */ n("input", { type: "number", min: "256", max: "2048", step: "8", value: te, disabled: s, onInput: (A) => B("width", A.currentTarget.valueAsNumber) })
+        u("宽度", "Width"),
+        /* @__PURE__ */ n("input", { type: "number", min: "256", max: "2048", step: "8", value: Z, disabled: a, onInput: (A) => q("width", A.currentTarget.valueAsNumber) })
       ] }),
       /* @__PURE__ */ n("label", { children: [
-        g("高度", "Height"),
-        /* @__PURE__ */ n("input", { type: "number", min: "256", max: "2048", step: "8", value: X, disabled: s, onInput: (A) => B("height", A.currentTarget.valueAsNumber) })
+        u("高度", "Height"),
+        /* @__PURE__ */ n("input", { type: "number", min: "256", max: "2048", step: "8", value: Y, disabled: a, onInput: (A) => q("height", A.currentTarget.valueAsNumber) })
       ] }),
-      /* @__PURE__ */ n("label", { children: [
-        g("采样步数", "Steps"),
-        /* @__PURE__ */ n("input", { type: "number", min: "1", max: "100", step: "1", value: M, disabled: s, onInput: (A) => B("steps", A.currentTarget.valueAsNumber) })
+      !$.canvasWorkflow && /* @__PURE__ */ n("label", { children: [
+        u("采样步数", "Steps"),
+        /* @__PURE__ */ n("input", { type: "number", min: "1", max: "100", step: "1", value: L, disabled: a || $.fixedSteps, onInput: (A) => q("steps", A.currentTarget.valueAsNumber) })
       ] }),
-      /* @__PURE__ */ n("label", { children: [
+      !$.canvasWorkflow && /* @__PURE__ */ n("label", { children: [
         "CFG",
-        /* @__PURE__ */ n("input", { type: "number", min: "0", max: "30", step: "0.1", value: v, disabled: s, onInput: (A) => B("cfg", A.currentTarget.valueAsNumber) })
+        /* @__PURE__ */ n("input", { type: "number", min: "0", max: "30", step: "0.1", value: _, disabled: a, onInput: (A) => q("cfg", A.currentTarget.valueAsNumber) })
       ] }),
       /* @__PURE__ */ n("label", { children: [
-        g("每项出图数（1–4）", "Images per asset (1–4)"),
-        /* @__PURE__ */ n("input", { type: "number", min: "1", max: "4", step: "1", value: K, disabled: s, onInput: (A) => B("batchSize", A.currentTarget.valueAsNumber) })
+        u("每项出图数（1–4）", "Images per asset (1–4)"),
+        /* @__PURE__ */ n("input", { type: "number", min: "1", max: "4", step: "1", value: K, disabled: a, onInput: (A) => q("batchSize", A.currentTarget.valueAsNumber) })
       ] }),
       /* @__PURE__ */ n("label", { class: "td-imagegen-seed", children: [
-        /* @__PURE__ */ n("span", { children: g("种子", "Seed") }),
-        /* @__PURE__ */ n("input", { type: "number", min: "0", max: Number.MAX_SAFE_INTEGER, value: Z, disabled: s || Q, onInput: (A) => B("seed", A.currentTarget.valueAsNumber) })
+        /* @__PURE__ */ n("span", { children: u("种子", "Seed") }),
+        /* @__PURE__ */ n("input", { type: "number", min: "0", max: Number.MAX_SAFE_INTEGER, value: ee, disabled: a || Q, onInput: (A) => q("seed", A.currentTarget.valueAsNumber) })
       ] }),
       /* @__PURE__ */ n("label", { class: "td-imagegen-random", children: [
-        /* @__PURE__ */ n("input", { type: "checkbox", checked: Q, disabled: s, onChange: (A) => B("randomSeed", A.currentTarget.checked) }),
-        g("每次随机", "Randomize")
+        /* @__PURE__ */ n("input", { type: "checkbox", checked: Q, disabled: a, onChange: (A) => q("randomSeed", A.currentTarget.checked) }),
+        u("每次随机", "Randomize")
       ] })
     ] }),
-    s && /* @__PURE__ */ n("div", { class: "td-batch-progress", children: [
-      /* @__PURE__ */ n("span", { children: ce || g("生图进行中", "Generating") }),
-      /* @__PURE__ */ n("progress", { max: "100", value: ct }),
-      /* @__PURE__ */ n("b", { children: m.max ? `${ct}%` : g("排队中", "Queued") })
+    a && /* @__PURE__ */ n("div", { class: "td-batch-progress", children: [
+      /* @__PURE__ */ n("span", { children: le || u("生图进行中", "Generating") }),
+      /* @__PURE__ */ n("progress", { max: "100", value: gt }),
+      /* @__PURE__ */ n("b", { children: d.max ? `${gt}%` : u("排队中", "Queued") })
     ] }),
-    le && G.length > 0 && /* @__PURE__ */ n("section", { class: "td-imagegen-batch-outcomes", children: [
-      /* @__PURE__ */ n("header", { children: /* @__PURE__ */ n("strong", { children: g(`完成 ${G.filter((A) => A.status === "success").length} · 失败 ${G.filter((A) => A.status === "error").length}`, `${G.filter((A) => A.status === "success").length} completed · ${G.filter((A) => A.status === "error").length} failed`) }) }),
-      /* @__PURE__ */ n("div", { class: "td-imagegen-batch-log", role: "log", "aria-label": g("批量生图日志", "Batch generation log"), tabIndex: 0, children: G.map((A) => /* @__PURE__ */ n("div", { class: `td-imagegen-log-row ${A.status}`, children: [
+    de && B.length > 0 && /* @__PURE__ */ n("section", { class: "td-imagegen-batch-outcomes", children: [
+      /* @__PURE__ */ n("header", { children: /* @__PURE__ */ n("strong", { children: u(`完成 ${B.filter((A) => A.status === "success").length} · 失败 ${B.filter((A) => A.status === "error").length}`, `${B.filter((A) => A.status === "success").length} completed · ${B.filter((A) => A.status === "error").length} failed`) }) }),
+      /* @__PURE__ */ n("div", { class: "td-imagegen-batch-log", role: "log", "aria-label": u("批量生图日志", "Batch generation log"), tabIndex: 0, children: B.map((A) => /* @__PURE__ */ n("div", { class: `td-imagegen-log-row ${A.status}`, children: [
         /* @__PURE__ */ n("strong", { children: A.alias }),
-        /* @__PURE__ */ n("span", { children: A.status === "success" ? g("已生成并绑定", "Generated and assigned") : A.error })
+        /* @__PURE__ */ n("span", { children: A.status === "success" ? u("已生成并绑定", "Generated and assigned") : A.error })
       ] }, A.assetId)) }),
-      G.some((A) => A.status === "error") && /* @__PURE__ */ n("button", { disabled: s || C || !!L || !!E, onClick: () => void wt(!0), children: g("重试勾选的失败项", "Retry selected failures") })
+      B.some((A) => A.status === "error") && /* @__PURE__ */ n("button", { disabled: a || E || !!C || !!z, onClick: () => void $t(!0), children: u("重试勾选的失败项", "Retry selected failures") })
     ] }),
-    !le && e.imageGenerationPending && !s && /* @__PURE__ */ n("div", { class: "td-imagegen-pending", children: [
-      /* @__PURE__ */ n("span", { children: g(`未完成任务：${e.imageGenerationPending.promptId}`, `Pending task: ${e.imageGenerationPending.promptId}`) }),
-      /* @__PURE__ */ n("button", { onClick: () => void lt(), children: g("恢复结果", "Recover results") })
+    !de && e.imageGenerationPending && !a && /* @__PURE__ */ n("div", { class: "td-imagegen-pending", children: [
+      /* @__PURE__ */ n("span", { children: u(`未完成任务：${e.imageGenerationPending.promptId}`, `Pending task: ${e.imageGenerationPending.promptId}`) }),
+      /* @__PURE__ */ n("button", { onClick: () => void mt(), children: u("恢复结果", "Recover results") })
     ] }),
-    at && /* @__PURE__ */ n("div", { class: "td-imagegen-error", children: at }),
-    !le && ae && /* @__PURE__ */ n("div", { class: "td-imagegen-record", children: [
+    ht && /* @__PURE__ */ n("div", { class: "td-imagegen-error", children: ht }),
+    !de && ue && /* @__PURE__ */ n("div", { class: "td-imagegen-record", children: [
       /* @__PURE__ */ n("span", { children: [
-        g("实际种子", "Seed"),
+        u("实际种子", "Seed"),
         ": ",
-        ae.settings.seed
+        ue.settings.seed
       ] }),
       /* @__PURE__ */ n("span", { children: [
-        ae.settings.width,
+        ue.settings.width,
         " × ",
-        ae.settings.height
+        ue.settings.height
       ] }),
-      /* @__PURE__ */ n("span", { children: [
-        ae.settings.steps,
-        " steps · CFG ",
-        ae.settings.cfg
-      ] }),
-      /* @__PURE__ */ n("span", { title: ae.promptId, children: [
+      /* @__PURE__ */ n("span", { children: ue.settings.workflowSource === "canvas" ? u("采样使用画布设置", "Canvas sampling") : `${ue.settings.steps} steps · CFG ${ue.settings.cfg}` }),
+      /* @__PURE__ */ n("span", { title: ue.promptId, children: [
         "ID ",
-        ae.promptId
+        ue.promptId
       ] })
     ] }),
-    !le && Me.length > 0 && /* @__PURE__ */ n("section", { class: "td-imagegen-results", children: [
+    !de && Oe.length > 0 && /* @__PURE__ */ n("section", { class: "td-imagegen-results", children: [
       /* @__PURE__ */ n("header", { children: [
-        /* @__PURE__ */ n("strong", { children: g(`生成结果（${Me.length}）`, `Generated images (${Me.length})`) }),
-        /* @__PURE__ */ n("span", { children: g("选一张绑定当前素材，或登记为新素材", "Assign an image to this asset or add it as a new asset") })
+        /* @__PURE__ */ n("strong", { children: u(`生成结果（${Oe.length}）`, `Generated images (${Oe.length})`) }),
+        /* @__PURE__ */ n("span", { children: u("选一张绑定当前素材，或登记为新素材", "Assign an image to this asset or add it as a new asset") })
       ] }),
-      /* @__PURE__ */ n("div", { class: "td-imagegen-grid", children: Me.map((A, se) => /* @__PURE__ */ n("article", { children: [
-        /* @__PURE__ */ n("img", { src: A.url, alt: `${e.alias} ${se + 1}`, loading: "lazy" }),
+      /* @__PURE__ */ n("div", { class: "td-imagegen-grid", children: Oe.map((A, ie) => /* @__PURE__ */ n("article", { children: [
+        /* @__PURE__ */ n("img", { src: A.url, alt: `${e.alias} ${ie + 1}`, loading: "lazy" }),
         /* @__PURE__ */ n("small", { title: A.filename, children: A.filename }),
-        /* @__PURE__ */ n("button", { class: "primary", disabled: s || !!Ne, onClick: () => void yt(A, "replace", se), children: Ne === A.filename ? g("正在登记…", "Saving…") : g("设为当前素材", "Use for this asset") }),
-        /* @__PURE__ */ n("button", { disabled: s || !!Ne, onClick: () => void yt(A, "new", se), children: Ne === A.filename ? g("正在登记…", "Saving…") : g("登记为新素材", "Add as new asset") })
+        /* @__PURE__ */ n("button", { class: "primary", disabled: a || !!Re, onClick: () => void It(A, "replace", ie), children: Re === A.filename ? u("正在登记…", "Saving…") : u("设为当前素材", "Use for this asset") }),
+        /* @__PURE__ */ n("button", { disabled: a || !!Re, onClick: () => void It(A, "new", ie), children: Re === A.filename ? u("正在登记…", "Saving…") : u("登记为新素材", "Add as new asset") })
       ] }, `${A.subfolder}/${A.filename}`)) })
     ] }),
     /* @__PURE__ */ n("footer", { children: [
-      /* @__PURE__ */ n("span", { class: "td-imagegen-footer-note", children: g("按当前选择加载模型；采样器与调度器沿用工作流，入队前检查实际模型。", "Load selected models; retain workflow sampler and scheduler. Validate selected files before queueing.") }),
-      s && /* @__PURE__ */ n("button", { class: "danger", onClick: w, children: g("停止生图", "Stop") }),
-      /* @__PURE__ */ n("button", { disabled: s || C || !!L || !!E || le && !ne.length, onClick: () => void (le ? wt() : qt()), class: "primary", children: s ? g("正在生成…", "Generating…") : le ? g(`开始批量生成（${ne.length}项）`, `Generate selected (${ne.length})`) : g("开始生图", "Generate") })
+      /* @__PURE__ */ n("span", { class: "td-imagegen-footer-note", children: u("按当前选择加载模型；采样器与调度器沿用工作流；Qwen Turbo 使用工作流中的 8 步 Sigma 序列。", "Load selected models; retain workflow sampler and scheduler. Validate selected files before queueing.") }),
+      a && /* @__PURE__ */ n("button", { class: "danger", onClick: v, children: u("停止生图", "Stop") }),
+      /* @__PURE__ */ n("button", { disabled: a || E || !!C || !!z || de && !re.length, onClick: () => void (de ? $t() : Zt()), class: "primary", children: a ? u("正在生成…", "Generating…") : de ? u(`开始批量生成（${re.length}项）`, `Generate selected (${re.length})`) : u("开始生图", "Generate") })
     ] })
   ] }) });
 }
-function ss(e, t, r) {
-  const i = e.assets.filter((l) => !t.some((s) => s.id === l.id)).flatMap((l) => {
-    var h;
-    const s = l.path ? [{ type: "input", path: l.path }] : [];
-    for (const d of Object.values(((h = l.imageGeneration) == null ? void 0 : h.registeredPaths) ?? {})) s.push({ type: "input", path: d });
-    const m = l.id === (r == null ? void 0 : r.assetId) ? [] : l.imageGenerationHistory ?? [];
-    for (const d of [l.imageGeneration, ...m]) {
-      for (const f of (d == null ? void 0 : d.images) ?? []) s.push({ type: "output", path: `${f.subfolder}/${f.filename}` });
-      for (const f of Object.values((d == null ? void 0 : d.registeredPaths) ?? {})) s.push({ type: "input", path: f });
+function ma(e, t, r) {
+  const o = e.assets.filter((l) => !t.some((a) => a.id === l.id)).flatMap((l) => {
+    var p;
+    const a = l.path ? [{ type: "input", path: l.path }] : [];
+    for (const m of Object.values(((p = l.imageGeneration) == null ? void 0 : p.registeredPaths) ?? {})) a.push({ type: "input", path: m });
+    const d = l.id === (r == null ? void 0 : r.assetId) ? [] : l.imageGenerationHistory ?? [];
+    for (const m of [l.imageGeneration, ...d]) {
+      for (const b of (m == null ? void 0 : m.images) ?? []) a.push({ type: "output", path: `${b.subfolder}/${b.filename}` });
+      for (const b of Object.values((m == null ? void 0 : m.registeredPaths) ?? {})) a.push({ type: "input", path: b });
     }
-    return s;
-  }), a = t.flatMap((l) => l.path ? [{ type: "input", path: l.path }] : []);
-  r != null && r.oldPath && a.push({ type: "input", path: r.oldPath });
+    return a;
+  }), s = t.flatMap((l) => l.path ? [{ type: "input", path: l.path }] : []);
+  r != null && r.oldPath && s.push({ type: "input", path: r.oldPath });
   for (const l of [r == null ? void 0 : r.oldGeneration, ...(r == null ? void 0 : r.oldGenerations) ?? []]) {
-    for (const s of Object.values((l == null ? void 0 : l.registeredPaths) ?? {})) a.push({ type: "input", path: s });
-    for (const s of (l == null ? void 0 : l.images) ?? []) a.push({ type: "output", path: `${s.subfolder}/${s.filename}` });
+    for (const a of Object.values((l == null ? void 0 : l.registeredPaths) ?? {})) s.push({ type: "input", path: a });
+    for (const a of (l == null ? void 0 : l.images) ?? []) s.push({ type: "output", path: `${a.subfolder}/${a.filename}` });
   }
-  return { candidates: a, keep: i };
+  return { candidates: s, keep: o };
 }
-async function as(e, t) {
-  const r = await fetch("/theodore-director/v1/storyboard/resources/clear", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ projectName: e, runId: t }) }), o = await r.json();
-  if (!r.ok || !o.ok) throw new Error(o.error || `HTTP ${r.status}`);
-  return { deleted: o.deleted ?? [], bytes: o.bytes ?? 0 };
+async function ga(e, t) {
+  const r = await fetch("/theodore-director/v1/storyboard/resources/clear", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ projectName: e, runId: t }) }), i = await r.json();
+  if (!r.ok || !i.ok) throw new Error(i.error || `HTTP ${r.status}`);
+  return { deleted: i.deleted ?? [], bytes: i.bytes ?? 0 };
 }
-async function ds(e, t) {
-  var i;
-  const r = await fetch("/theodore-director/v1/assets/cleanup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ projectName: e, ...t }) }), o = await r.json();
-  if (!r.ok && r.status !== 409) throw new Error(o.error || `HTTP ${r.status}`);
-  if ((i = o.failures) != null && i.length) throw new Error(`资源清理失败：${o.failures.map((a) => a.path).join(", ")}`);
-  return o;
+async function fa(e, t) {
+  var o;
+  const r = await fetch("/theodore-director/v1/assets/cleanup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ projectName: e, ...t }) }), i = await r.json();
+  if (!r.ok && r.status !== 409) throw new Error(i.error || `HTTP ${r.status}`);
+  if ((o = i.failures) != null && o.length) throw new Error(`资源清理失败：${i.failures.map((s) => s.path).join(", ")}`);
+  return i;
 }
-const ls = { unet_name: "H3 主模型", weight_dtype: "模型精度", clip_name: "文本编码器", type: "编码器类型", device: "设备", vae_name: "VAE 模型", aspect_ratio: "画幅比例", megapixels: "画面大小（百万像素）", multiple: "尺寸对齐倍数", scheduler: "调度器", steps: "采样步数", denoise: "重绘强度", sampler_name: "采样算法", lora_name: "LoRA 模型", strength_model: "LoRA 强度", strength: "Turbo LoRA 强度", low_vram: "低显存模式", shift_video: "视频 Sigma Shift", shift_audio: "音频 Sigma Shift", scale: "超分倍数", scale_factor: "超分倍数", quality: "超分质量", solver: "求解器", eta: "Eta" };
-function cs({ controller: e, language: t, busy: r, notify: o }) {
-  const i = (c, p) => t === "zh" ? c : p, [a, l] = R(() => e.read()), [s, m] = R({}), h = [...new Set(a.map((c) => c.group))], d = (c, p) => m((b) => {
-    const _ = { ...b };
-    return p === c.value ? delete _[c.id] : _[c.id] = p, _;
-  }), f = () => {
-    try {
-      e.apply(s), l(e.read()), m({}), o(i("生成参数已写入当前画布；保存 ComfyUI 工作流后，重新加载也会保留。", "Generation settings applied. Save the ComfyUI workflow to retain them after reloading."));
-    } catch (c) {
-      o(c instanceof Error ? c.message : String(c), "error");
+const Yt = [
+  { id: "16:9", width: 1024, height: 576 },
+  { id: "9:16", width: 576, height: 1024 },
+  { id: "1:1", width: 768, height: 768 },
+  { id: "4:3", width: 1024, height: 768 },
+  { id: "3:4", width: 768, height: 1024 }
+], ui = (e) => {
+  const t = Yt.find((r) => r.id === e);
+  if (!t) throw new Error(`Unknown frame ratio: ${e}`);
+  return t;
+}, pr = (e) => Math.max(32, Math.round(e / 32) * 32);
+function bn(e, t) {
+  const r = ui(e);
+  return { width: pr(r.width * t), height: pr(r.height * t) };
+}
+function ba(e) {
+  for (const t of Yt)
+    for (let r = 3; r <= 20; r++) {
+      const i = r / 10, o = bn(t.id, i);
+      if (o.width === e.width && o.height === e.height) return { ratio: t.id, scale: i };
+    }
+  return null;
+}
+function hr(e, t) {
+  const r = ui(t);
+  return Math.min(20, Math.max(3, Math.round(Math.sqrt(e.width * e.height / (r.width * r.height)) * 10))) / 10;
+}
+function xa(e) {
+  return [...Yt].sort(
+    (t, r) => Math.abs(Math.log(e.width / e.height / (t.width / t.height))) - Math.abs(Math.log(e.width / e.height / (r.width / r.height)))
+  )[0].id;
+}
+function va({ plan: e, language: t, busy: r, builtInControls: i, mutate: o, onDuration: s, children: l }) {
+  var y, v;
+  const a = (x, u) => t === "zh" ? x : u, [d, p] = G("project"), m = [
+    { id: "project", title: a("项目与默认值", "Project & defaults"), description: a("输出目录、新分镜与保存", "Folders, new shots & saving") },
+    { id: "generation", title: a("一采画幅与镜头接力", "First-pass framing & shot relay"), description: a("生成尺寸、帧率与前段衔接", "Generation size, FPS & continuity") },
+    { id: "prompts", title: a("全局提示词", "Global prompts"), description: a("每个镜头共用的内容", "Shared across shots") },
+    { id: "storage", title: a("资源管理", "Storage"), description: a("分镜、素材与运行文件", "Shots, media & generated files") }
+  ], b = e.generation ?? { width: 416, height: 224 }, h = (x, u) => o(($) => {
+    $.generation = { width: x, height: u };
+  }), c = ba(b), g = (c == null ? void 0 : c.ratio) ?? xa(b), S = (c == null ? void 0 : c.scale) ?? hr(b, g), T = (x) => {
+    const u = x.target;
+    if (u.tagName === "INPUT" && u.type === "number" && !u.checkValidity()) {
+      const $ = u.dataset.saved;
+      $ !== void 0 && (u.value = $);
     }
   };
-  return /* @__PURE__ */ n("section", { class: "td-workflow-settings", children: [
-    /* @__PURE__ */ n("header", { children: [
+  return /* @__PURE__ */ n("section", { class: "td-config-page", children: [
+    /* @__PURE__ */ n("header", { class: "td-config-intro", children: [
       /* @__PURE__ */ n("div", { children: [
-        /* @__PURE__ */ n("h2", { children: i("生成引擎", "Generation engine") }),
-        /* @__PURE__ */ n("p", { children: i("直接调整当前工作流的模型、画幅、采样和 LoRA。应用后用于下一次生成。", "Edit the current workflow's models, framing, sampling and LoRAs for the next run.") })
+        /* @__PURE__ */ n("span", { class: "td-eyebrow", children: a("导播台内置功能", "BUILT-IN CONTROLS") }),
+        /* @__PURE__ */ n("h2", { children: a("配置保持简单，工作流自由连接", "Simple settings, flexible workflows") }),
+        /* @__PURE__ */ n("p", { children: a("这里只管理项目、画幅和连续性。模型、LoRA 与采样器直接在 ComfyUI 画布调整。", "Manage the project, framing and continuity here. Edit models, LoRAs and samplers on the ComfyUI canvas.") })
       ] }),
-      /* @__PURE__ */ n("button", { class: "primary", disabled: r || !Object.keys(s).length, onClick: f, children: [
-        i("应用生成参数", "Apply engine settings"),
-        Object.keys(s).length ? ` (${Object.keys(s).length})` : ""
-      ] })
+      /* @__PURE__ */ n("span", { class: "td-chip", children: i ? a("内置控制已连接", "Built-in controls connected") : a("兼容旧工作流", "Legacy workflow") })
     ] }),
-    h.map((c) => /* @__PURE__ */ n("section", { class: "td-workflow-group", children: [
-      /* @__PURE__ */ n("h3", { children: c }),
-      /* @__PURE__ */ n("div", { class: "td-workflow-fields", children: a.filter((p) => p.group === c).map((p) => {
-        const b = s[p.id] ?? p.value;
-        return /* @__PURE__ */ n("label", { children: [
-          t === "zh" ? ls[p.label] ?? p.label : p.label,
-          p.choices ? /* @__PURE__ */ n("select", { disabled: r, value: String(b), onChange: (_) => d(p, _.currentTarget.value), children: [
-            !p.choices.includes(String(b)) && /* @__PURE__ */ n("option", { value: String(b), children: String(b) }),
-            p.choices.map((_) => /* @__PURE__ */ n("option", { value: _, children: _ }, _))
-          ] }) : typeof p.value == "boolean" ? /* @__PURE__ */ n("input", { disabled: r, type: "checkbox", checked: !!b, onChange: (_) => d(p, _.currentTarget.checked) }) : /* @__PURE__ */ n("input", { disabled: r, type: typeof p.value == "number" ? "number" : "text", min: p.min, max: p.max, step: "any", value: String(b), onInput: (_) => d(p, typeof p.value == "number" ? _.currentTarget.value === "" ? NaN : Number(_.currentTarget.value) : _.currentTarget.value) })
-        ] }, p.id);
-      }) })
-    ] }, c)),
-    !a.length && /* @__PURE__ */ n("p", { class: "td-hint", children: i("当前画布没有可编辑的生成控件。", "No editable engine controls in the current graph.") })
+    /* @__PURE__ */ n("div", { class: "td-config-layout", children: [
+      /* @__PURE__ */ n("nav", { class: "td-config-nav", "aria-label": a("配置分类", "Settings categories"), children: m.map((x) => /* @__PURE__ */ n("button", { class: d === x.id ? "active" : "", "aria-current": d === x.id ? "page" : void 0, onClick: () => p(x.id), children: [
+        /* @__PURE__ */ n("strong", { children: x.title }),
+        /* @__PURE__ */ n("small", { children: x.description })
+      ] }, x.id)) }),
+      /* @__PURE__ */ n("div", { class: "td-config-content", onFocusOut: T, children: [
+        /* @__PURE__ */ n("fieldset", { class: "td-config-card td-form", disabled: r, hidden: d !== "project", children: [
+          /* @__PURE__ */ n("legend", { children: a("项目与默认值", "Project & defaults") }),
+          /* @__PURE__ */ n("div", { class: "td-settings-grid", children: [
+            /* @__PURE__ */ n("label", { children: [
+              a("项目名", "Project name"),
+              /* @__PURE__ */ n("input", { value: e.project.name, onInput: (x) => o((u) => {
+                u.project.name = x.currentTarget.value;
+              }) })
+            ] }),
+            /* @__PURE__ */ n("label", { children: [
+              "Run ID",
+              /* @__PURE__ */ n("input", { value: e.project.runId, onInput: (x) => o((u) => {
+                u.project.runId = x.currentTarget.value;
+              }) })
+            ] }),
+            /* @__PURE__ */ n("label", { children: [
+              a("新分镜默认时长（秒）", "Default shot duration (sec)"),
+              /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: e.defaults.durationSeconds ?? 6, "data-saved": e.defaults.durationSeconds ?? 6, onChange: (x) => {
+                const u = Number(x.currentTarget.value);
+                Number.isFinite(u) && u >= 0.1 && (o(($) => {
+                  $.defaults.durationSeconds = u;
+                }), s(String(u)));
+              } })
+            ] }),
+            /* @__PURE__ */ n("label", { children: [
+              a("基础种子", "Base seed"),
+              /* @__PURE__ */ n("input", { type: "number", min: "0", max: Number.MAX_SAFE_INTEGER, step: "1", value: e.defaults.baseSeed, "data-saved": e.defaults.baseSeed, onChange: (x) => {
+                const u = Number(x.currentTarget.value);
+                Number.isSafeInteger(u) && u >= 0 && o(($) => {
+                  $.defaults.baseSeed = u;
+                });
+              } })
+            ] })
+          ] }),
+          /* @__PURE__ */ n("p", { class: "td-hint", children: a("项目名与 Run ID 决定输出目录；修改后会切换目录。保存项目将配置写入当前工作流。", "The project name and Run ID select the output folder. Save the project to store settings in the current workflow.") }),
+          /* @__PURE__ */ n("label", { class: "td-config-check", children: [
+            /* @__PURE__ */ n("input", { type: "checkbox", checked: ((y = e.uiPreferences) == null ? void 0 : y.autoSave) ?? !1, onChange: (x) => o((u) => {
+              u.uiPreferences = { ...u.uiPreferences, autoSave: x.currentTarget.checked };
+            }) }),
+            a("编辑后自动保存项目", "Auto-save project edits")
+          ] })
+        ] }),
+        /* @__PURE__ */ n("fieldset", { class: "td-config-card td-form", disabled: r || !i, hidden: d !== "generation", children: [
+          /* @__PURE__ */ n("legend", { children: a("一采画幅与镜头接力", "First-pass framing & shot relay") }),
+          !i && /* @__PURE__ */ n("p", { class: "td-hint", children: a("当前为旧版分散控制工作流。导入新版 YuQ 工作流后，画幅与连续性将由此页统一控制。", "Import the new YuQ workflow to control framing and continuity here.") }),
+          /* @__PURE__ */ n("p", { class: "td-hint", children: a("1.0× 为所选比例的基准尺寸；每次调整 0.1×。实际像素自动对齐到 32 的倍数，比例可能略有偏差。", "1.0× is the base size for the selected ratio; dimensions are rounded to multiples of 32.") }),
+          /* @__PURE__ */ n("div", { class: "td-settings-grid", children: [
+            /* @__PURE__ */ n("label", { children: [
+              a("一采画幅比例", "First-pass aspect ratio"),
+              /* @__PURE__ */ n("select", { "aria-label": a("一采画幅比例", "First-pass aspect ratio"), value: (c == null ? void 0 : c.ratio) ?? "custom", onChange: (x) => {
+                const u = x.currentTarget.value;
+                if (u !== "custom") {
+                  const $ = bn(u, (c == null ? void 0 : c.scale) ?? hr(b, u));
+                  h($.width, $.height);
+                }
+              }, children: [
+                !c && /* @__PURE__ */ n("option", { value: "custom", children: a("自定义（保留原尺寸）", "Custom (existing size)") }),
+                Yt.map((x) => /* @__PURE__ */ n("option", { value: x.id, children: x.id }, x.id))
+              ] })
+            ] }),
+            /* @__PURE__ */ n("label", { children: [
+              a("一采尺寸倍率", "First-pass size scale"),
+              /* @__PURE__ */ n("input", { "aria-label": a("一采尺寸倍率", "First-pass size scale"), type: "number", min: "0.3", max: "2", step: "0.1", value: S, "data-saved": S, onChange: (x) => {
+                const u = x.currentTarget.valueAsNumber;
+                if (Number.isFinite(u) && u >= 0.3 && u <= 2 && Math.abs(u * 10 - Math.round(u * 10)) < 1e-6) {
+                  const $ = bn(g, u);
+                  h($.width, $.height);
+                }
+              } })
+            ] })
+          ] }),
+          /* @__PURE__ */ n("p", { class: "td-hint", "aria-live": "polite", children: a(`实际一采尺寸：${b.width} × ${b.height} 像素${c ? ` · ${c.scale.toFixed(1)}×` : ` · 保留原尺寸；调整倍率将采用最接近的 ${g} 比例`}`, `Actual first-pass size: ${b.width} × ${b.height} px${c ? ` · ${c.scale.toFixed(1)}×` : " · existing custom size; changing scale uses the nearest ratio"}`) }),
+          /* @__PURE__ */ n("label", { children: [
+            a("二采放大倍率", "Second-pass upscale factor"),
+            /* @__PURE__ */ n("select", { value: ((v = e.pipeline) == null ? void 0 : v.secondPassScale) === void 0 ? "workflow" : String(e.pipeline.secondPassScale), onChange: (x) => o((u) => {
+              if (!u.pipeline) return;
+              const $ = x.currentTarget.value;
+              $ === "workflow" ? delete u.pipeline.secondPassScale : u.pipeline.secondPassScale = Number($);
+            }), children: [
+              /* @__PURE__ */ n("option", { value: "workflow", children: a("跟随工作流画布", "Use workflow setting") }),
+              [1, 1.2, 1.4, 1.6, 1.8, 2].map((x) => /* @__PURE__ */ n("option", { value: String(x), children: [
+                x.toFixed(1),
+                "×"
+              ] }, x))
+            ] })
+          ] }),
+          /* @__PURE__ */ n("p", { class: "td-hint", children: a("修改倍率后，请从接力链第一段重新运行二采；实际尺寸会按节点规则对齐。", "After changing the factor, rerun the second-pass chain from the first shot; output dimensions follow the upscaler alignment.") }),
+          /* @__PURE__ */ n("div", { class: "td-settings-grid", children: [
+            /* @__PURE__ */ n("label", { children: [
+              a("输出帧率（FPS）", "Output frame rate (FPS)"),
+              /* @__PURE__ */ n("input", { "aria-label": "FPS", type: "number", min: "1", max: "120", step: "1", value: e.defaults.fps, "data-saved": e.defaults.fps, onChange: (x) => {
+                const u = Number(x.currentTarget.value);
+                Number.isInteger(u) && u >= 1 && u <= 120 && o(($) => {
+                  $.defaults.fps = u;
+                });
+              } })
+            ] }),
+            /* @__PURE__ */ n("label", { children: [
+              a("视频接力帧数", "Video context frames"),
+              /* @__PURE__ */ n("select", { "aria-label": a("视频接力帧数", "Video context frames"), value: e.continuity.videoContextFrames, onChange: (x) => o((u) => {
+                u.continuity.videoContextFrames = Number(x.currentTarget.value);
+              }), children: [5, 22, 39, 56].map((x) => /* @__PURE__ */ n("option", { value: x, children: x }, x)) })
+            ] }),
+            /* @__PURE__ */ n("label", { children: [
+              a("音频接力帧数", "Audio context frames"),
+              /* @__PURE__ */ n("input", { type: "number", min: "0", max: "240", step: "1", value: e.continuity.audioContextFrames, "data-saved": e.continuity.audioContextFrames, onChange: (x) => {
+                const u = Number(x.currentTarget.value);
+                Number.isInteger(u) && u >= 0 && u <= 240 && o(($) => {
+                  $.continuity.audioContextFrames = u;
+                });
+              } })
+            ] })
+          ] }),
+          /* @__PURE__ */ n("p", { class: "td-hint", children: a(`视频接力：借用上一段末尾的 ${e.continuity.videoContextFrames} 帧画面（按当前 FPS 约 ${(e.continuity.videoContextFrames / e.defaults.fps).toFixed(2)} 秒）衔接本段，成片会裁去重复的接力画面。只对开启接力的后续分镜生效，首段不使用。`, `Video relay borrows the previous shot's last ${e.continuity.videoContextFrames} frames (about ${(e.continuity.videoContextFrames / e.defaults.fps).toFixed(2)} sec at the current FPS). Duplicate context frames are trimmed from the result. Only subsequent shots with relay enabled use it.`) }),
+          /* @__PURE__ */ n("p", { class: "td-hint", children: a("音频接力：独立控制上一段尾音的衔接窗口；0 表示跟随画面窗口。音频使用独立的 latent 时间网格，不能直接用此数值除以 FPS 换算。可先保留画面 22、音频 24，再按接缝效果调整。", "Audio relay independently controls the tail-audio context window; 0 follows the video window. Audio uses its own latent time grid, so dividing this value by video FPS does not give its duration. Start with video 22 / audio 24 and adjust after reviewing joins.") })
+        ] }),
+        /* @__PURE__ */ n("fieldset", { class: "td-config-card td-form", disabled: r, hidden: d !== "prompts", children: [
+          /* @__PURE__ */ n("legend", { children: a("全局提示词", "Global prompts") }),
+          /* @__PURE__ */ n("p", { class: "td-hint", children: a("只填写全片共用的内容；具体动作、对白和素材引用在分镜中编辑。", "Use shared instructions here; edit action, dialogue and references per shot.") }),
+          /* @__PURE__ */ n("label", { children: [
+            a("全局前缀", "Global prefix"),
+            /* @__PURE__ */ n(mn, { value: e.promptPrefix, isReferenceValid: (x) => tr(e, x), onInput: (x) => o((u) => {
+              u.promptPrefix = x.currentTarget.value;
+            }) })
+          ] }),
+          /* @__PURE__ */ n("label", { children: [
+            a("全局后缀", "Global suffix"),
+            /* @__PURE__ */ n(mn, { value: e.promptSuffix, isReferenceValid: (x) => tr(e, x), onInput: (x) => o((u) => {
+              u.promptSuffix = x.currentTarget.value;
+            }) })
+          ] }),
+          /* @__PURE__ */ n("details", { class: "td-config-notes", children: [
+            /* @__PURE__ */ n("summary", { children: a("项目备注（不发送给模型）", "Project notes (not sent to the model)") }),
+            /* @__PURE__ */ n("textarea", { "aria-label": a("项目备注", "Project notes"), rows: 5, value: e.project.notes ?? "", onInput: (x) => o((u) => {
+              u.project.notes = x.currentTarget.value;
+            }) })
+          ] })
+        ] }),
+        /* @__PURE__ */ n("section", { class: "td-config-card", hidden: d !== "storage", children: l }),
+        r && /* @__PURE__ */ n("p", { class: "td-hint", role: "status", children: a("任务执行中，完成后可以修改配置。", "Settings are locked while a job is running.") })
+      ] })
+    ] })
   ] });
 }
-const Ye = (e) => JSON.parse(JSON.stringify(e));
-async function ar(e, t, r) {
-  const o = new FormData();
-  o.append("projectName", e), o.append("kind", t), o.append("file", r);
-  const i = await fetch("/theodore-director/v1/assets", { method: "POST", body: o }), a = await i.json();
-  if (!i.ok || !a.path) throw new Error(a.error || `HTTP ${i.status}`);
-  return a.path;
+function je(e) {
+  return Array.isArray(e) && e.length === 2 && (typeof e[0] == "string" || typeof e[0] == "number") && typeof e[1] == "number";
 }
-function dr(e) {
+function Ye(e) {
+  return je(e) ? String(e[0]) : null;
+}
+function Ne(e, t) {
+  return Object.keys(e).filter((r) => {
+    var i;
+    return ((i = e[r]) == null ? void 0 : i.class_type) === t;
+  });
+}
+function wa(e, t, r) {
+  const i = Ne(e, t);
+  if (!i.length) throw new Error(`当前工作流缺少 ${r}（${t}）节点`);
+  if (i.length > 1) throw new Error(`当前工作流存在多个 ${r}（${t}）节点，无法确定要控制哪一个`);
+  return i[0];
+}
+function mi(e, t, r, i, o = 0) {
+  const s = e[t];
+  if (!s || o > 6) return !1;
+  const l = s.inputs[r];
+  if (typeof l == "number")
+    return s.inputs[r] = i, !0;
+  const a = Ye(l);
+  if (!a || !e[a]) return !1;
+  const d = e[a];
+  return typeof d.inputs.value == "number" || je(d.inputs.value) ? mi(e, a, "value", i, o + 1) : !1;
+}
+function Ae(e, t, r, i = /* @__PURE__ */ new Set()) {
+  var o;
+  return t === r ? !0 : i.has(t) ? !1 : (i.add(t), Object.values(((o = e[t]) == null ? void 0 : o.inputs) ?? {}).some((s) => je(s) && Ae(e, String(s[0]), r, i)));
+}
+function gi(e, t) {
+  const r = {}, i = [t];
+  for (; i.length; ) {
+    const o = i.pop();
+    if (!r[o]) {
+      if (!e[o]) throw new Error(`工作流依赖节点 ${o} 不存在`);
+      r[o] = e[o];
+      for (const s of Object.values(e[o].inputs)) je(s) && i.push(String(s[0]));
+    }
+  }
+  return r;
+}
+function ur(e, t, r) {
+  const i = JSON.parse(JSON.stringify(e)), o = Ne(i, "TheodoreDirector_ImageControls").filter((a) => Ae(i, a, t));
+  if (o.length !== 1) throw new Error(`当前项目需要连接一个生图控制节点，找到 ${o.length} 个`);
+  const s = o[0], l = Ne(i, "SaveImage").filter((a) => {
+    const d = i[a].inputs.filename_prefix;
+    return je(d) && String(d[0]) === s && d[1] === 6 && Ae(i, String(Ye(i[a].inputs.images)), s);
+  });
+  if (l.length !== 1) throw new Error("请将生图控制的保存路径连接到唯一的 SaveImage，图像链也须连接生图控制");
+  Object.assign(i[s].inputs, {
+    positive_prompt: r.positivePrompt,
+    negative_prompt: r.negativePrompt,
+    width: r.width,
+    height: r.height,
+    batch_size: r.batchSize,
+    seed: r.seed,
+    filename_prefix: r.filenamePrefix
+  });
+  for (const a of Object.values(i)) for (const [d, p] of Object.entries(a.inputs)) {
+    let m = p;
+    const b = /* @__PURE__ */ new Set();
+    for (; je(m); ) {
+      const h = String(m[0]), c = i[h];
+      if (m[1] !== 0 || (c == null ? void 0 : c.class_type) !== "ComfySwitchNode" || typeof c.inputs.switch != "boolean") break;
+      if (b.has(h)) throw new Error("生图提示词开关形成循环");
+      if (b.add(h), m = c.inputs[c.inputs.switch ? "on_true" : "on_false"], m === void 0) throw new Error("生图提示词开关缺少所选输入");
+    }
+    a.inputs[d] = m;
+  }
+  return { output: gi(i, l[0]), targetId: l[0], sourceId: s };
+}
+function ya(e, t) {
+  var a;
+  const r = JSON.parse(JSON.stringify(e)), i = t.projectId ?? wa(r, "TheodoreDirector_Project", "Theodore 项目");
+  if (((a = r[i]) == null ? void 0 : a.class_type) !== "TheodoreDirector_Project") throw new Error("当前导播台的项目节点不存在或已被旁路");
+  r[i].inputs.plan_json = t.planJson;
+  const o = Object.keys(r).filter((d) => ["TheodoreDirector_SelectShot", "TheodoreDirector_ShotControl"].includes(r[d].class_type) && Ae(r, d, i));
+  if (o.length !== 1) throw new Error(`当前项目需要连接一个分镜控制节点，找到 ${o.length} 个`);
+  const s = o[0], l = r[s];
+  if ("resume_mode" in l.inputs && (l.inputs.resume_mode = "fresh"), l.class_type === "TheodoreDirector_ShotControl")
+    l.inputs.queue_index = t.activeIndex;
+  else if (!mi(r, s, "queue_index", t.activeIndex))
+    throw new Error("无法定位当前片段序号节点（SelectShot.queue_index 的上游整数）");
+  l.class_type === "TheodoreDirector_SelectShot" && t.baseSeed !== void 0 && (l.inputs.base_seed = t.baseSeed);
+  for (const d of Ne(r, "ImpactQueueTrigger"))
+    (!t.projectId || Ae(r, d, s)) && (r[d].inputs.mode = !1);
+  if (l.class_type === "TheodoreDirector_ShotControl") {
+    const d = Ne(r, "TheodoreDirector_CommitResult").filter((p) => Ae(r, p, s));
+    if (d.length !== 1) throw new Error("当前分镜控制需要连接一个结果提交节点");
+    return gi(r, d[0]);
+  }
+  return r;
+}
+function _a(e) {
+  var o;
+  const t = new Set(Ne(e, "TheodoreDirector_PostprocessSecondPassSource"));
+  if (!t.size) return [];
+  const r = new Set(Object.keys(e).filter((s) => {
+    const l = e[s];
+    return l.class_type === "RandomNoise" && t.has(Ye(l.inputs.noise_seed) ?? "");
+  })), i = /* @__PURE__ */ new Set();
+  for (const s of Object.keys(e)) {
+    const l = e[s];
+    if (l.class_type !== "SamplerCustomAdvanced" || !r.has(Ye(l.inputs.noise) ?? "")) continue;
+    const a = Ye(l.inputs.sigmas);
+    a && ((o = e[a]) == null ? void 0 : o.class_type) === "BasicScheduler" && i.add(a);
+  }
+  return [...i];
+}
+function ka(e, t) {
+  const r = _a(e);
+  for (const i of r) e[i].inputs.denoise = t;
+  return r.length;
+}
+function Sa(e, t) {
+  var i;
+  const r = Ne(e, "VAEEncodeAudio").filter((o) => Ae(e, o, t));
+  for (const o of Ne(e, "MiniMaxH3ReferenceToVideo"))
+    Ae(e, o, t) && (e[o].inputs.length = [t, 13]);
+  for (const o of Ne(e, "CreateVideo"))
+    Ae(e, o, t) && (e[o].inputs.audio = [t, 14]);
+  for (const o of Ne(e, "SamplerCustomAdvanced")) {
+    if (!Ae(e, o, t)) continue;
+    const s = e[o], l = Ye(s.inputs.guider), a = l ? e[l] : void 0;
+    if (!a || a.class_type !== "BasicGuider") throw new Error("二采接力需要连接 BasicGuider，请使用新版工作流的后处理支流");
+    const d = Ye(a.inputs.conditioning);
+    if (d && ((i = e[d]) == null ? void 0 : i.class_type) === "TheodoreDirector_SecondPassRelay") continue;
+    if (r.length !== 1) throw new Error("二采接力无法定位唯一的源音轨编码节点");
+    const p = Ne(e, "VAEDecode").find((c) => Ye(e[c].inputs.samples) === o);
+    if (!p) throw new Error("二采接力找不到采样器对应的视频解码节点");
+    const m = `yuq_relay_${o}`, b = `yuq_guide_${o}`, h = `yuq_finalize_${o}`;
+    if ([m, b, h].some((c) => e[c])) throw new Error("二采接力自动节点 ID 冲突");
+    e[m] = { class_type: "TheodoreDirector_SecondPassRelay", inputs: {
+      conditioning: a.inputs.conditioning,
+      latent: s.inputs.latent_image,
+      vae: e[p].inputs.vae,
+      request: [t, 2]
+    } }, e[b] = { ...a, inputs: { ...a.inputs, conditioning: [m, 0] } }, s.inputs.guider = [b, 0];
+    for (const c of Object.values(e)) for (const [g, S] of Object.entries(c.inputs))
+      je(S) && String(S[0]) === p && S[1] === 0 && (c.inputs[g] = [h, 0]);
+    e[h] = { class_type: "TheodoreDirector_SecondPassFinalize", inputs: {
+      images: [p, 0],
+      latent: [o, 0],
+      audio_latent: [r[0], 0],
+      request: [t, 2]
+    } };
+  }
+}
+function $a(e, t) {
+  var l, a;
+  const r = JSON.parse(JSON.stringify(e));
+  if (((l = r[t.sourceId]) == null ? void 0 : l.class_type) !== "TheodoreDirector_PostprocessSecondPassSource")
+    throw new Error("无法序列化后处理二采源节点");
+  if (((a = r[t.targetId]) == null ? void 0 : a.class_type) !== "TheodoreDirector_SaveSecondPass")
+    throw new Error("无法序列化后处理二采保存节点");
+  if (r[t.sourceId].inputs.request_json = t.requestJson, t.processingMode === "latent_upscale_second_pass") {
+    const d = r[t.sourceId].inputs;
+    for (const [p, m] of Object.entries(r))
+      if (!(m.class_type !== "MinimaxH3LatentUpscaler3D" || !Ae(r, p, t.sourceId)) && (d.latent_full_sequence === !0 && (m.inputs.enable_temporal_chunking = !1, m.inputs.precision = "fp32"), d.diagnose_latent === !0)) {
+        const b = m.inputs.latent;
+        if (!je(b)) throw new Error("latent 诊断需要放大器直接连接 latent 输入");
+        const h = `yuq_probe_before_${p}`, c = `yuq_probe_after_${p}`;
+        if (r[h] || r[c]) throw new Error("latent 诊断节点 ID 冲突");
+        for (const g of Object.values(r))
+          for (const [S, T] of Object.entries(g.inputs))
+            je(T) && String(T[0]) === p && T[1] === 0 && (g.inputs[S] = [c, 0]);
+        r[h] = { class_type: "TheodoreDirector_LatentProbe", inputs: { latent: b, request: [t.sourceId, 2], stage: "encoded" } }, m.inputs.latent = [h, 0], r[c] = { class_type: "TheodoreDirector_LatentProbe", inputs: { latent: [p, 0], request: [t.sourceId, 2], stage: "upscaled" } };
+      }
+  }
+  if (t.processingMode === "super_resolution_second_pass")
+    for (const [d, p] of Object.entries(r)) {
+      const m = p.inputs.pixels;
+      if (p.class_type !== "VAEEncode" || !je(m)) continue;
+      const b = r[String(m[0])];
+      if ((b == null ? void 0 : b.class_type) !== "RTXVideoSuperResolution" || !Ae(r, String(m[0]), t.sourceId)) continue;
+      const h = `yuq_align_${d}`;
+      if (r[h]) throw new Error("二采画幅对齐节点 ID 冲突");
+      r[h] = { class_type: "TheodoreDirector_SecondPassAlign", inputs: { images: m } }, p.inputs.pixels = [h, 0];
+    }
+  if (JSON.parse(t.requestJson).relayVersion === 1 && t.processingMode !== "super_resolution_only" && Sa(r, t.sourceId), typeof t.denoise == "number" && t.processingMode !== "super_resolution_only" && !ka(r, t.denoise))
+    throw new Error("当前工作流的后处理二采支流中找不到 BasicScheduler，无法设置重绘强度");
+  const i = {
+    8: "super_resolution_second_pass",
+    9: "latent_upscale_second_pass",
+    10: "super_resolution_only"
+  };
+  for (const d of Object.values(r)) {
+    const p = d.inputs.cond;
+    if (d.class_type !== "ImpactConditionalBranch" || !je(p) || String(p[0]) !== t.sourceId) continue;
+    const m = i[p[1]];
+    if (!m) continue;
+    const b = t.processingMode === m, h = d.inputs[b ? "tt_value" : "ff_value"];
+    if (h === void 0) throw new Error("后处理二采模式选择节点缺少输入");
+    d.inputs = { cond: b, tt_value: h, ff_value: h };
+  }
+  const o = {}, s = [t.targetId];
+  for (; s.length; ) {
+    const d = s.pop();
+    if (o[d]) continue;
+    const p = r[d];
+    if (!p) throw new Error(`后处理二采依赖节点 ${d} 不存在`);
+    if (["TheodoreDirector_Project", "TheodoreDirector_SelectShot", "TheodoreDirector_ShotControl", "TheodoreDirector_ImageControls", "TheodoreDirector_CommitResult", "ImpactQueueTrigger", "ImpactSetWidgetValue"].includes(p.class_type))
+      throw new Error(`后处理二采支流错误连接到主循环节点 ${d}（${p.class_type}）`);
+    o[d] = p;
+    for (const m of Object.values(p.inputs))
+      je(m) && s.push(String(m[0]));
+  }
+  if (!o[t.sourceId]) throw new Error("后处理二采保存目标未连接到所选源节点");
+  if (t.scale !== void 0) {
+    const d = t.scale;
+    if (!Number.isFinite(d) || d < 1 || d > 2) throw new Error("二采倍率必须在 1 到 2 之间");
+    const p = t.processingMode === "latent_upscale_second_pass", m = p ? "MinimaxH3LatentUpscaler3D" : "RTXVideoSuperResolution", b = Object.values(o).filter((c) => c.class_type === m), h = p ? "mode" : "resize_type";
+    if (b.length !== 1 || b[0].inputs[h] !== "scale by multiplier" || typeof b[0].inputs[`${h}.scale`] != "number")
+      throw new Error("当前二采支路没有唯一的倍率模式放大节点，请在画布设置倍率或切回跟随工作流");
+    if (b[0].inputs[`${h}.scale`] = d, p) {
+      const c = Object.values(o).filter((g) => g.class_type === "MiniMaxH3ConditioningUpscale");
+      if (c.length !== 1 || typeof c[0].inputs.scale_by != "number") throw new Error("当前 latent 二采支路缺少唯一可设置的条件倍率节点");
+      c[0].inputs.scale_by = d;
+    }
+  }
+  return o;
+}
+function Ia(e, t, r, i) {
+  var p, m;
+  const o = (p = e[t]) == null ? void 0 : p.inputs.native_continuity;
+  if (o !== void 0 && typeof o != "boolean")
+    throw new Error("请在二采源节点直接设置 native_continuity 开关，接力预检需要确定其状态");
+  const { onProgress: s, signal: l, ...a } = i;
+  a.relayVersion = 1, delete a.continuityMode, o && (a.continuityMode = "h3_native_prefix_right_context_v1");
+  const d = $a(e, {
+    sourceId: t,
+    targetId: r,
+    requestJson: JSON.stringify(a),
+    processingMode: i.processingMode,
+    denoise: i.denoise,
+    scale: (m = i.plan.pipeline) == null ? void 0 : m.secondPassScale
+  });
+  return a.workflowSignature = Ca(d), d[t].inputs.request_json = JSON.stringify(a), { payload: a, output: d };
+}
+function Pa(e, t, r, i, o) {
+  const s = {};
+  for (const d of e.shots) {
+    const p = Xe(d, Le(r[d.id] ?? []));
+    p && (s[d.id] = p.path);
+  }
+  const l = new Set(t), a = (d) => {
+    var m;
+    if (!s[d.id]) throw new Error(`「${d.title}」缺少选定的一采结果`);
+    if (((m = d.review) == null ? void 0 : m.status) !== "approved") throw new Error(`接力链中的「${d.title}」尚未通过审片，请先确认其一采结果`);
+    if (i === "super_resolution_only" || !at(e, d)) return;
+    const p = kt(e, d.id);
+    l.add(p.id), a(p);
+  };
+  for (const d of e.shots) l.has(d.id) && a(d);
+  return {
+    selections: s,
+    jobs: e.shots.filter((d) => l.has(d.id)).map((d) => ({
+      shot: d,
+      sourcePath: s[d.id],
+      skipIfValid: o || !t.includes(d.id)
+    }))
+  };
+}
+function Ca(e) {
+  const t = Object.fromEntries(Object.keys(e).sort().map((r) => {
+    const i = e[r], o = Object.fromEntries(Object.keys(i.inputs).sort().map((s) => [
+      s,
+      i.class_type === "TheodoreDirector_PostprocessSecondPassSource" && s === "request_json" ? "" : i.inputs[s]
+    ]));
+    return [r, { class_type: i.class_type, inputs: o }];
+  }));
+  return JSON.stringify(t);
+}
+const nt = (e) => JSON.parse(JSON.stringify(e));
+async function mr(e, t, r) {
+  const i = new FormData();
+  i.append("projectName", e), i.append("kind", t), i.append("file", r);
+  const o = await fetch("/theodore-director/v1/assets", { method: "POST", body: i }), s = await o.json();
+  if (!o.ok || !s.path) throw new Error(s.error || `HTTP ${o.status}`);
+  return s.path;
+}
+function gr(e) {
   return e instanceof Error && e.name === "AbortError";
 }
-function ps({ language: e, projectName: t, runId: r, busy: o, onClearShots: i, onClearAssets: a, onProjectCleared: l }) {
-  const [s, m] = R(!1), [h, d] = R(!1), f = !!(t.trim() && r.trim()), c = async () => {
-    const _ = `${t.trim()} / Run ${r.trim()}`, N = e === "zh" ? `确认清空 ${_}？
+function Ea({ language: e, projectName: t, runId: r, busy: i, onClearShots: o, onClearAssets: s, onProjectCleared: l }) {
+  const [a, d] = G(!1), [p, m] = G(!1), b = !!(t.trim() && r.trim()), h = async () => {
+    const S = `${t.trim()} / Run ${r.trim()}`, T = e === "zh" ? `确认清空 ${S}？
 
-该运行目录内的全部视频、latent、尾帧、结果文件和元数据都会移入系统回收站。输入素材及其他 Run 不会被删除。` : `Clear ${_}?
+该运行目录内的全部视频、latent、尾帧、结果文件和元数据都会移入系统回收站。输入素材及其他 Run 不会被删除。` : `Clear ${S}?
 
 All videos, latent files, tail frames, result files, and metadata in this run will be moved to the system trash. Input assets and other runs will not be deleted.`;
-    if (window.confirm(N)) {
-      m(!0);
+    if (window.confirm(T)) {
+      d(!0);
       try {
-        const k = await Go(t, r);
-        l(), window.alert(e === "zh" ? `已移入系统回收站：${k}` : `Moved to system trash: ${k}`);
-      } catch (k) {
-        window.alert(`${e === "zh" ? "清空项目失败" : "Failed to clear project"}: ${k instanceof Error ? k.message : String(k)}`);
+        const y = await Ji(t, r);
+        l(), window.alert(e === "zh" ? `已移入系统回收站：${y}` : `Moved to system trash: ${y}`);
+      } catch (y) {
+        window.alert(`${e === "zh" ? "清空项目失败" : "Failed to clear project"}: ${y instanceof Error ? y.message : String(y)}`);
       } finally {
-        m(!1);
+        d(!1);
       }
     }
-  }, p = async () => {
-    const _ = e === "zh" ? `确认清空全部分镜及其正向、负向提示词？
+  }, c = async () => {
+    const S = e === "zh" ? `确认清空全部分镜及其正向、负向提示词？
 
-操作后会保留一个空白镜头以便继续编辑。${h ? "当前 Run 的生成文件也会删除。" : "磁盘生成文件会保留。"}` : `Clear every shot and its positive and negative prompts?
+操作后会保留一个空白镜头以便继续编辑。${p ? "当前 Run 的生成文件也会删除。" : "磁盘生成文件会保留。"}` : `Clear every shot and its positive and negative prompts?
 
-One blank shot will remain. ${h ? "Generated files for this Run will also be deleted." : "Generated files remain on disk."}`;
-    if (window.confirm(_)) {
-      m(!0);
+One blank shot will remain. ${p ? "Generated files for this Run will also be deleted." : "Generated files remain on disk."}`;
+    if (window.confirm(S)) {
+      d(!0);
       try {
-        await i(h);
-      } catch (N) {
-        window.alert(`${e === "zh" ? "清理失败" : "Cleanup failed"}: ${N instanceof Error ? N.message : String(N)}`);
+        await o(p);
+      } catch (T) {
+        window.alert(`${e === "zh" ? "清理失败" : "Cleanup failed"}: ${T instanceof Error ? T.message : String(T)}`);
       } finally {
-        m(!1);
+        d(!1);
       }
     }
   };
@@ -3607,11 +4123,11 @@ One blank shot will remain. ${h ? "Generated files for this Run will also be del
         /* @__PURE__ */ n("strong", { children: e === "zh" ? "清空分镜" : "Clear shots" }),
         /* @__PURE__ */ n("p", { children: e === "zh" ? "删除全部分镜及其提示词，并保留一个空白镜头。" : "Remove all shots and their prompts, leaving one blank shot." }),
         /* @__PURE__ */ n("label", { class: "td-inline-check", children: [
-          /* @__PURE__ */ n("input", { type: "checkbox", checked: h, disabled: s || o, onChange: (_) => d(_.currentTarget.checked) }),
+          /* @__PURE__ */ n("input", { type: "checkbox", checked: p, disabled: a || i, onChange: (S) => m(S.currentTarget.checked) }),
           e === "zh" ? "同时删除当前 Run 的生成资源" : "Also delete generated resources for this Run"
         ] })
       ] }),
-      /* @__PURE__ */ n("button", { class: "danger", disabled: s || o, onClick: () => void p(), children: s ? e === "zh" ? "清理中…" : "Cleaning…" : e === "zh" ? "清空分镜" : "Clear shots" })
+      /* @__PURE__ */ n("button", { class: "danger", disabled: a || i, onClick: () => void c(), children: a ? e === "zh" ? "清理中…" : "Cleaning…" : e === "zh" ? "清空分镜" : "Clear shots" })
     ] }),
     /* @__PURE__ */ n("article", { children: [
       /* @__PURE__ */ n("div", { children: [
@@ -3619,12 +4135,12 @@ One blank shot will remain. ${h ? "Generated files for this Run will also be del
         /* @__PURE__ */ n("p", { children: e === "zh" ? "只移除当前工作流中的素材引用；本地图片、视频和音频文件保持不变。" : "Remove media references from this workflow only; local image, video, and audio files remain untouched." })
       ] }),
       /* @__PURE__ */ n("button", { class: "danger", onClick: () => {
-        const _ = e === "zh" ? `确认清空素材库中的全部引用？
+        const S = e === "zh" ? `确认清空素材库中的全部引用？
 
 素材条目会从当前工作流中移除，但本地图片、视频和音频文件不会被删除。提示词中的引用文本会保留并显示为不可用。` : `Clear every media reference from this workflow?
 
 Media entries will be removed, but local image, video, and audio files will not be deleted. Reference text in prompts will remain and be shown as unavailable.`;
-        window.confirm(_) && a();
+        window.confirm(S) && s();
       }, children: e === "zh" ? "清空素材库" : "Clear media" })
     ] }),
     /* @__PURE__ */ n("article", { children: [
@@ -3632,1562 +4148,2064 @@ Media entries will be removed, but local image, video, and audio files will not 
         /* @__PURE__ */ n("strong", { children: e === "zh" ? "清空当前项目的生成文件" : "Clear generated files" }),
         /* @__PURE__ */ n("p", { children: e === "zh" ? "把当前 Project name + Run ID 的全部生成文件移入系统回收站。输入素材和其他 Run 不受影响。" : "Move every generated file for the current Project name + Run ID to the system trash. Input assets and other runs are unaffected." })
       ] }),
-      /* @__PURE__ */ n("button", { class: "danger", disabled: !f || s, onClick: () => void c(), children: s ? e === "zh" ? "正在移入回收站…" : "Moving to trash…" : e === "zh" ? "清空项目" : "Clear project" })
+      /* @__PURE__ */ n("button", { class: "danger", disabled: !b || a, onClick: () => void h(), children: a ? e === "zh" ? "正在移入回收站…" : "Moving to trash…" : e === "zh" ? "清空项目" : "Clear project" })
     ] })
   ] });
 }
-function us({ initial: e, onSave: t, onPersist: r, onClose: o, supportsSecondSampling: i, queueSecondPass: a, queueFirstPass: l, imageGeneration: s, workflowSettings: m }) {
-  var kn, Sn, $n;
-  const [h] = R(() => ft(e)), [d, f] = R(h), [c, p] = R(() => JSON.stringify(h)), b = ke(d);
-  b.current = d;
-  const [_, N] = R("shots"), [k, w] = R(0), [z, g] = R(Zo), [$, T] = R(0), [C, S] = R([]), [L, V] = R(Je), [O, U] = R(!1), [P, oe] = R(!1), [y, D] = R(null), [j, H] = R(!1), [te, X] = R(!1), [M, v] = R([]), [K, Z] = R(() => String(h.defaults.durationSeconds ?? 6)), [Q, ee] = R("1"), [pe, E] = R(() => String(h.defaults.durationSeconds ?? 6)), B = ke(null), ue = ke(0), ne = Ri(d, $), u = (x, I) => z === "zh" ? x : I, Y = Ve(() => JSON.stringify(d), [d]) !== c, ce = M.length > 0 && M.every((x) => x.enabled), be = d.assets.filter((x) => x.enabled && !x.path.trim()).length, le = L.kind !== null, Me = (x) => {
-    g(x), ei(x);
-  }, xe = (x, I = "info") => {
-    const F = ++ue.current;
-    S((q) => [...q.slice(-3), { id: F, message: x, tone: I }]), window.setTimeout(() => S((q) => q.filter((W) => W.id !== F)), I === "error" ? 7e3 : 3200);
-  }, ae = (x) => f((I) => {
-    var q;
-    const F = Ye(I);
-    return x(F), (q = I.uiPreferences) != null && q.autoSave && queueMicrotask(() => ye(F)), F;
-  }), nt = (x, I) => ae((F) => {
-    const q = F.shots.find((W) => W.id === x);
-    q && (q.review = { status: "pending", ...q.review, ...I, updatedAt: Date.now() });
-  }), at = (x) => ae((I) => {
-    I.pipeline = { phase: "first_pass", firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass", ...I.pipeline, ...x };
-  }), ye = (x) => {
-    (r ?? t)(x), p(JSON.stringify(x));
-  }, Ne = (x, I, F = !0) => {
-    const q = Ye(b.current), W = q.assets.find((J) => J.id === x);
-    W && (I(W), b.current = q, f(q), F && ye(q));
-  }, dt = () => {
-    ye(d), xe(u("已保存到工作流", "Saved to workflow"));
-  }, vt = () => {
-    if (le) {
-      xe(u("任务执行中，请先停止或等待完成再关闭", "A job is running"), "error");
+function za({ initial: e, onSave: t, onPersist: r, onClose: i, supportsSecondSampling: o, queueSecondPass: s, queueFirstPass: l, imageGeneration: a, builtInControls: d = !1 }) {
+  var En;
+  const [p] = G(() => _t(e)), [m, b] = G(p), [h, c] = G(() => JSON.stringify(p)), g = ke(m);
+  g.current = m;
+  const [S, T] = G("shots"), [y, v] = G(0), [x, u] = G(Qi), [$, j] = G(0), [E, P] = G([]), [C, N] = G(Be), [R, F] = G(!1), [I, ne] = G(!1), [k, D] = G(null), [M, V] = G(!1), [Z, Y] = G(!1), [L, _] = G([]), [K, ee] = G(() => String(p.defaults.durationSeconds ?? 6)), [Q, te] = G("1"), [ce, z] = G(() => String(p.defaults.durationSeconds ?? 6)), q = ke(null), pe = ke(0), re = Lo(m, $), f = (w, O) => x === "zh" ? w : O, X = He(() => JSON.stringify(m), [m]) !== h, le = L.length > 0 && L.every((w) => w.enabled), xe = m.assets.filter((w) => w.enabled && !w.path.trim()).length, de = C.kind !== null, Oe = (w) => {
+    u(w), Yi(w);
+  }, ve = (w, O = "info") => {
+    const U = ++pe.current;
+    P((J) => [...J.slice(-3), { id: U, message: w, tone: O }]), window.setTimeout(() => P((J) => J.filter((W) => W.id !== U)), O === "error" ? 7e3 : 3200);
+  }, ue = (w) => b((O) => {
+    var J;
+    const U = nt(O);
+    return w(U), (J = O.uiPreferences) != null && J.autoSave && queueMicrotask(() => _e(U)), U;
+  }), st = (w, O) => ue((U) => {
+    const J = U.shots.find((W) => W.id === w);
+    J && (J.review = { status: "pending", ...J.review, ...O, updatedAt: Date.now() });
+  }), ht = (w) => ue((O) => {
+    O.pipeline = { phase: "first_pass", firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass", ...O.pipeline, ...w };
+  }), _e = (w) => {
+    (r ?? t)(w), c(JSON.stringify(w));
+  }, Re = (w, O, U = !0) => {
+    const J = nt(g.current), W = J.assets.find((H) => H.id === w);
+    W && (O(W), g.current = J, b(J), U && _e(J));
+  }, ut = () => {
+    _e(m), ve(f("已保存到工作流", "Saved to workflow"));
+  }, St = () => {
+    if (de) {
+      ve(f("任务执行中，请先停止或等待完成再关闭", "A job is running"), "error");
       return;
     }
-    Y ? X(!0) : o();
-  }, rt = (x, I) => {
-    const F = URL.createObjectURL(new Blob([JSON.stringify(x, null, 2)], { type: "application/json" })), q = document.createElement("a");
-    q.href = F, q.download = I, q.click(), URL.revokeObjectURL(F);
-  }, Jt = () => rt(d, `${en(d.project.name)}.director.json`), qt = () => {
+    X ? Y(!0) : i();
+  }, Ze = (w, O) => {
+    const U = URL.createObjectURL(new Blob([JSON.stringify(w, null, 2)], { type: "application/json" })), J = document.createElement("a");
+    J.href = U, J.download = O, J.click(), URL.revokeObjectURL(U);
+  }, Xt = () => Ze(m, `${an(m.project.name)}.director.json`), Zt = () => {
     try {
-      rt(Jn(d), `${en(d.project.name)}.episode.json`);
-    } catch (x) {
-      xe(String(x), "error");
+      Ze(Kn(m), `${an(m.project.name)}.episode.json`);
+    } catch (w) {
+      ve(String(w), "error");
     }
-  }, wt = () => {
-    const x = Wn(d);
-    rt(x, `${en(x.library.name)}.assets.json`);
-  }, lt = async (x, I = "auto") => {
-    if (!le)
+  }, $t = () => {
+    const w = Jn(m);
+    Ze(w, `${an(w.library.name)}.assets.json`);
+  }, mt = async (w, O = "auto") => {
+    if (!de)
       try {
-        const F = JSON.parse(await x.text()), q = F == null ? void 0 : F.format;
-        if (I === "assets" || q === "theodore-assets") {
+        const U = JSON.parse(await w.text()), J = U == null ? void 0 : U.format;
+        if (O === "assets" || J === "theodore-assets") {
           let W;
-          q === "theodore-assets" ? (Gr(F), W = F) : (Zt(F), W = Wn(ft(F)));
-          const J = ni(d, W);
-          f(J.plan), N("assets"), xe(u(`已导入素材库：新增 ${J.added} 项，更新 ${J.updated} 项，沿用 ${J.keptPaths.length} 个已上传文件。分镜保持原样。`, `Library imported: ${J.added} added, ${J.updated} updated, ${J.keptPaths.length} uploaded files kept. Shots preserved.`));
-        } else if (I === "episode" || q === "theodore-episode") {
+          J === "theodore-assets" ? (Ur(U), W = U) : (on(U), W = Jn(_t(U)));
+          const H = Zi(m, W);
+          b(H.plan), T("assets"), ve(f(`已导入素材库：新增 ${H.added} 项，更新 ${H.updated} 项，沿用 ${H.keptPaths.length} 个已上传文件。分镜保持原样。`, `Library imported: ${H.added} added, ${H.updated} updated, ${H.keptPaths.length} uploaded files kept. Shots preserved.`));
+        } else if (O === "episode" || J === "theodore-episode") {
           let W;
-          q === "theodore-episode" ? (bn(F), W = F) : (Zt(F), W = Jn(ft(F)));
-          const J = ri(d, W);
-          f(J.plan), w(0), N("shots"), xe(u(`已导入 ${J.plan.shots.length} 个分镜，保留素材库 ${J.keptPaths.length} 个已上传文件${J.missingAssets.length ? `；待补素材：${J.missingAssets.join("、")}` : ""}。点“保存”写入工作流。`, `Imported ${J.plan.shots.length} shots; ${J.keptPaths.length} uploaded assets kept${J.missingAssets.length ? `; missing: ${J.missingAssets.join(", ")}` : ""}. Click Save.`));
+          J === "theodore-episode" ? (Sn(U), W = U) : (on(U), W = Kn(_t(U)));
+          const H = eo(m, W);
+          b(H.plan), v(0), T("shots"), ve(f(`已导入 ${H.plan.shots.length} 个分镜，保留素材库 ${H.keptPaths.length} 个已上传文件${H.missingAssets.length ? `；待补素材：${H.missingAssets.join("、")}` : ""}。点“保存”写入工作流。`, `Imported ${H.plan.shots.length} shots; ${H.keptPaths.length} uploaded assets kept${H.missingAssets.length ? `; missing: ${H.missingAssets.join(", ")}` : ""}. Click Save.`));
         } else {
-          Zt(F);
-          const W = Ur(d, F);
-          f(W.plan), w(0), N("shots"), xe(u(`已导入 ${W.plan.shots.length} 个镜头，沿用 ${W.keptPaths.length} 个已上传素材。点“保存”写入工作流。`, `Imported ${W.plan.shots.length} shots; kept ${W.keptPaths.length} uploaded assets. Click Save.`));
+          on(U);
+          const W = Gr(m, U);
+          b(W.plan), v(0), T("shots"), ve(f(`已导入 ${W.plan.shots.length} 个镜头，沿用 ${W.keptPaths.length} 个已上传素材。点“保存”写入工作流。`, `Imported ${W.plan.shots.length} shots; kept ${W.keptPaths.length} uploaded assets. Click Save.`));
         }
-        oe(!1);
-      } catch (F) {
-        xe(`${u("导入失败", "Import failed")}：${F instanceof Error ? F.message : String(F)}`, "error");
+        ne(!1);
+      } catch (U) {
+        ve(`${f("导入失败", "Import failed")}：${U instanceof Error ? U.message : String(U)}`, "error");
       }
-  }, yt = (x) => {
-    const I = Jo(b.current, x);
-    return I.length ? (window.alert(`${u("计划未通过校验，请先修正", "Plan validation failed")}：
+  }, It = (w) => {
+    const O = To(g.current, w);
+    return O.length ? (window.alert(`${f("计划未通过校验，请先修正", "Plan validation failed")}：
 
-${I.slice(0, 20).join(`
-`)}${I.length > 20 ? `
+${O.slice(0, 20).join(`
+`)}${O.length > 20 ? `
 …` : ""}`), !1) : !0;
-  }, ct = (x) => {
-    b.current = x, f(x), ye(x);
-  }, ot = async (x, I) => {
-    var ze;
+  }, gt = (w) => {
+    g.current = w, b(w), _e(w);
+  }, dt = async (w, O) => {
+    var tt;
     if (!l) {
-      xe(u("当前环境无法排队（未连接 ComfyUI）", "Queue unavailable"), "error");
+      ve(f("当前环境无法排队（未连接 ComfyUI）", "Queue unavailable"), "error");
       return;
     }
-    if (le || !x.length) return;
-    const F = b.current, q = Pi(F, x);
-    let W = F.shots.filter((re) => x.includes(re.id)).map((re) => re.id), J = new Set(I ? W : []);
-    if (q.added.length) {
-      const re = q.added.map((Se) => {
-        var Qe;
-        return ((Qe = F.shots.find((Be) => Be.id === Se)) == null ? void 0 : Qe.title) ?? Se;
+    if (de || !w.length) return;
+    const U = g.current, J = po(U, w);
+    let W = U.shots.filter((oe) => w.includes(oe.id)).map((oe) => oe.id), H = new Set(O ? W : []);
+    if (J.added.length) {
+      const oe = J.added.map((be) => {
+        var Ue;
+        return ((Ue = U.shots.find((Je) => Je.id === be)) == null ? void 0 : Ue.title) ?? be;
       }).join("、");
-      window.confirm(u(
+      window.confirm(f(
         `接力段需要的上一段 latent 不是当前顺序下生成的（插入、删除、禁用或调换过镜头后会这样）。
 
-建议连同上一段一起生成：${re}
+建议连同上一段一起生成：${oe}
 
 点“确定”一起生成（推荐，上一段会换种子重生）；点“取消”只生成所选镜头，接缝可能不衔接。`,
-        `Relay shots would read a latent not written by their current previous shot. Also regenerate: ${re}?`
-      )) && (W = q.shotIds, J = /* @__PURE__ */ new Set([...J, ...q.added]));
+        `Relay shots would read a latent not written by their current previous shot. Also regenerate: ${oe}?`
+      )) && (W = J.shotIds, H = /* @__PURE__ */ new Set([...H, ...J.added]));
     }
-    if (!yt(W)) return;
-    const ie = Ye(F);
-    for (const re of J) {
-      const Ae = ie.shots.find((Se) => Se.id === re);
-      Ae && (Ae.seed = Yr());
+    if (!It(W)) return;
+    const ae = nt(U);
+    for (const oe of H) {
+      const Ce = ae.shots.find((be) => be.id === oe);
+      Ce && (Ce.seed = Yr());
     }
-    ie.pipeline = { phase: "first_pass", firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass", ...ie.pipeline, latentWriters: ((ze = ie.pipeline) == null ? void 0 : ze.latentWriters) ?? {} };
-    const De = new Map(W.map((re) => [re, Kr(ie, ie.shots.find((Ae) => Ae.id === re))])), He = new Map(W.map((re) => [re, Ii(ie, re)])), _e = new Set(W.filter((re) => xt(ie, ie.shots.find((Ae) => Ae.id === re)))), Te = /* @__PURE__ */ new Map();
-    ct(ie);
-    const Ke = new AbortController();
-    B.current = Ke, V({ kind: "first", total: W.length, done: 0, progress: { value: 0, max: 0 }, message: "" });
+    ae.pipeline = { phase: "first_pass", firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass", ...ae.pipeline, latentWriters: ((tt = ae.pipeline) == null ? void 0 : tt.latentWriters) ?? {} };
+    const Fe = new Map(W.map((oe) => [oe, Kr(ae, ae.shots.find((Ce) => Ce.id === oe))])), We = new Map(W.map((oe) => [oe, co(ae, oe)])), et = new Set(W.filter((oe) => at(ae, ae.shots.find((Ce) => Ce.id === oe)))), bt = /* @__PURE__ */ new Map();
+    gt(ae);
+    const Se = new AbortController();
+    q.current = Se, N({ kind: "first", total: W.length, done: 0, progress: { value: 0, max: 0 }, message: "" });
     try {
       await l({
-        plan: ie,
+        plan: ae,
         shotIds: W,
-        signal: Ke.signal,
-        onProgress: (re) => V((Ae) => ({ ...Ae, progress: re })),
-        onShotStart: (re, Ae) => {
-          var Qe, Be;
-          const Se = (Be = (Qe = b.current.pipeline) == null ? void 0 : Qe.latentWriters) == null ? void 0 : Be[String(Nt(ie, re))];
-          Te.set(re, { at: Date.now() / 1e3, source: (Se == null ? void 0 : Se.shotId) ?? null, sourceAt: (Se == null ? void 0 : Se.at) ?? null }), V((kt) => ({ ...kt, currentShotId: re, done: Ae, progress: { value: 0, max: 0 } }));
+        signal: Se.signal,
+        onProgress: (oe) => N((Ce) => ({ ...Ce, progress: oe })),
+        onShotStart: (oe, Ce) => {
+          var Ue, Je;
+          const be = (Je = (Ue = g.current.pipeline) == null ? void 0 : Ue.latentWriters) == null ? void 0 : Je[String(Gt(ae, oe))];
+          bt.set(oe, { at: Date.now() / 1e3, source: (be == null ? void 0 : be.shotId) ?? null, sourceAt: (be == null ? void 0 : be.at) ?? null }), N((Ct) => ({ ...Ct, currentShotId: oe, done: Ce, progress: { value: 0, max: 0 } }));
         },
-        onShotDone: (re, Ae) => {
-          var kt, In;
-          const Se = Ye(b.current), Qe = Date.now() / 1e3, Be = Se.shots.find((We) => We.id === re);
-          if (Be) {
-            const We = ((kt = Be.review) == null ? void 0 : kt.relayHistory) ?? [], Pn = Te.get(re);
-            Be.review = {
+        onShotDone: (oe, Ce) => {
+          var Ct, zn;
+          const be = nt(g.current), Ue = Date.now() / 1e3, Je = be.shots.find((Ke) => Ke.id === oe);
+          if (Je) {
+            const Ke = ((Ct = Je.review) == null ? void 0 : Ct.relayHistory) ?? [], Tn = bt.get(oe);
+            Je.review = {
               status: "pending",
-              generatedSig: De.get(re),
+              generatedSig: Fe.get(oe),
               updatedAt: Date.now(),
-              relayHistory: _e.has(re) && Pn ? [...We, Pn].slice(-20) : We
+              relayHistory: et.has(oe) && Tn ? [...Ke, Tn].slice(-20) : Ke
             };
           }
-          Se.pipeline = { phase: "first_pass", firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass", ...Se.pipeline, latentWriters: { ...(In = Se.pipeline) == null ? void 0 : In.latentWriters, [String(He.get(re) ?? 0)]: { shotId: re, at: Qe } } }, ct(Se), V((We) => ({ ...We, done: Ae + 1 })), T((We) => We + 1);
+          be.pipeline = { phase: "first_pass", firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass", ...be.pipeline, latentWriters: { ...(zn = be.pipeline) == null ? void 0 : zn.latentWriters, [String(We.get(oe) ?? 0)]: { shotId: oe, at: Ue } } }, gt(be), N((Ke) => ({ ...Ke, done: Ce + 1 })), j((Ke) => Ke + 1);
         }
-      }), V({ ...Je, message: u(`一采完成：${W.length} 段。请在“审片”页逐段确认。`, `First pass done: ${W.length} shots.`) }), xe(u(`一采完成 ${W.length} 段`, `First pass done (${W.length})`)), N("review");
-    } catch (re) {
-      V({ ...Je, error: dr(re) ? u("已停止", "Stopped") : String(re instanceof Error ? re.message : re) });
+      }), N({ ...Be, message: f(`一采完成：${W.length} 段。请在“审片”页逐段确认。`, `First pass done: ${W.length} shots.`) }), ve(f(`一采完成 ${W.length} 段`, `First pass done (${W.length})`)), T("review");
+    } catch (oe) {
+      N({ ...Be, error: gr(oe) ? f("已停止", "Stopped") : String(oe instanceof Error ? oe.message : oe) });
     } finally {
-      B.current = null, T((re) => re + 1);
+      q.current = null, j((oe) => oe + 1);
     }
-  }, _t = async (x, I) => {
-    var De, He;
-    if (!a || le) return;
-    const F = ((De = d.pipeline) == null ? void 0 : De.secondPassMode) ?? "super_resolution_second_pass", q = ((He = d.pipeline) == null ? void 0 : He.secondPassDenoise) ?? 0.3, W = x.flatMap((_e) => {
-      const Te = d.shots.find((re) => re.id === _e), Ke = ne.byShot[_e] ?? [], ze = Te ? tt(Te, Re(Ke)) : void 0;
-      return !Te || !ze ? [] : I && gt(Ke, ze.path, F).length ? [] : [{ shot: Te, take: ze }];
-    });
-    if (!W.length) {
-      xe(u("没有需要二采的镜头（已全部完成或缺少一采结果）", "Nothing to process"));
+  }, Pt = async (w, O) => {
+    var et, bt;
+    if (!s || de) return;
+    const U = ((et = m.pipeline) == null ? void 0 : et.secondPassMode) ?? "super_resolution_second_pass", J = ((bt = m.pipeline) == null ? void 0 : bt.secondPassDenoise) ?? 0.3;
+    let W;
+    try {
+      W = Pa(m, w, re.byShot, U, O);
+    } catch (Se) {
+      N({ ...Be, error: Se instanceof Error ? Se.message : String(Se) });
       return;
     }
-    const J = new AbortController();
-    B.current = J;
-    const ie = `td_batch_${Date.now().toString(36)}`;
-    V({ kind: "second", total: W.length, done: 0, progress: { value: 0, max: 0 }, message: "" });
+    const { jobs: H, selections: ae } = W;
+    if (!H.length) {
+      ve(f("没有需要二采的镜头（已全部完成或缺少一采结果）", "Nothing to process"));
+      return;
+    }
+    const Fe = new AbortController();
+    q.current = Fe;
+    const We = `td_batch_${Date.now().toString(36)}`;
+    N({ kind: "second", total: H.length, done: 0, progress: { value: 0, max: 0 }, message: "" });
     try {
-      for (const [_e, { shot: Te, take: Ke }] of W.entries())
-        V((ze) => ({ ...ze, currentShotId: Te.id, done: _e, progress: { value: 0, max: 0 } })), await a({
-          plan: d,
-          shotId: Te.id,
-          sourcePath: Ke.path,
-          requestId: `${ie}_${Te.id}`,
-          processingMode: F,
-          batchId: ie,
-          sequenceIndex: _e,
-          latentRelay: !!Te.latentRelay,
+      for (const [Se, { shot: tt, sourcePath: oe, skipIfValid: Ce }] of H.entries())
+        N((be) => ({ ...be, currentShotId: tt.id, done: Se, progress: { value: 0, max: 0 } })), await s({
+          plan: m,
+          shotId: tt.id,
+          sourcePath: oe,
+          requestId: `${We}_${tt.id}`,
+          processingMode: U,
+          batchId: We,
+          sequenceIndex: Se,
+          latentRelay: !!tt.latentRelay,
           phase: "second_pass",
-          denoise: F === "super_resolution_only" ? void 0 : q,
-          signal: J.signal,
-          onProgress: (ze) => V((re) => ({ ...re, progress: ze }))
-        }), V((ze) => ({ ...ze, done: _e + 1 })), T((ze) => ze + 1);
-      at({ phase: "second_pass", firstPassConfirmed: !0 }), V({ ...Je, message: u(`二采完成：${W.length} 段`, `Second pass done: ${W.length}`) }), xe(u(`二采完成 ${W.length} 段`, `Second pass done (${W.length})`));
-    } catch (_e) {
-      V({ ...Je, error: dr(_e) ? u("已停止", "Stopped") : String(_e instanceof Error ? _e.message : _e) });
+          relayVersion: 1,
+          sourceSelections: ae,
+          skipIfValid: Ce,
+          denoise: U === "super_resolution_only" ? void 0 : J,
+          signal: Fe.signal,
+          onProgress: (be) => N((Ue) => ({ ...Ue, progress: be }))
+        }), N((be) => ({ ...be, done: Se + 1 })), j((be) => be + 1);
+      ht({ phase: "second_pass", firstPassConfirmed: !0 }), N({ ...Be, message: f(`二采完成：${H.length} 段`, `Second pass done: ${H.length}`) }), ve(f(`二采完成 ${H.length} 段`, `Second pass done (${H.length})`));
+    } catch (Se) {
+      N({ ...Be, error: gr(Se) ? f("已停止", "Stopped") : String(Se instanceof Error ? Se.message : Se) });
     } finally {
-      B.current = null, T((_e) => _e + 1);
+      q.current = null, j((Se) => Se + 1);
     }
-  }, A = async (x) => {
+  }, A = async (w) => {
     var W;
-    if (le) return;
-    const I = d.shots.filter((J) => J.enabled), F = [], q = [];
-    for (const J of I) {
-      const ie = ne.byShot[J.id] ?? [], De = x ? Wr(J, ie) : void 0, He = tt(J, Re(ie)), _e = x ? De != null && De.processed ? De.item.path : "" : (He == null ? void 0 : He.path) ?? "";
-      _e ? F.push({ shotId: J.id, activeIndex: Nt(d, J.id), path: _e }) : q.push(J.title);
+    if (de) return;
+    const O = m.shots.filter((H) => H.enabled), U = [], J = [];
+    for (const H of O) {
+      const ae = re.byShot[H.id] ?? [], Fe = w ? Hr(H, ae) : void 0, We = Xe(H, Le(ae)), et = w ? Fe != null && Fe.processed ? Fe.item.path : "" : (We == null ? void 0 : We.path) ?? "";
+      et ? U.push({ shotId: H.id, activeIndex: Gt(m, H.id), path: et }) : J.push(H.title);
     }
-    if (q.length) {
-      xe(`${u("以下镜头缺少可合并的结果", "Missing results")}：${q.join("、")}`, "error");
+    if (J.length) {
+      ve(`${f("以下镜头缺少可合并的结果", "Missing results")}：${J.join("、")}`, "error");
       return;
     }
-    V({ kind: "merge", total: 1, done: 0, progress: { value: 0, max: 0 }, message: "" });
+    N({ kind: "merge", total: 1, done: 0, progress: { value: 0, max: 0 }, message: "" });
     try {
-      const J = await fetch("/theodore-director/v1/postprocess/merge", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ projectName: d.project.name, runId: d.project.runId, selections: F }) }), ie = await J.json();
-      if (!J.ok) throw new Error(ie.error || `HTTP ${J.status}`);
-      V({ ...Je, message: `${u("已合并", "Merged")}：${((W = ie.result) == null ? void 0 : W.path) ?? ""}` }), xe(u("合并完成，可在“后处理 → 合并视频”查看", "Merged; see Post-process → Merge"));
-    } catch (J) {
-      V({ ...Je, error: String(J instanceof Error ? J.message : J) });
+      const H = await fetch("/theodore-director/v1/postprocess/merge", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ projectName: m.project.name, runId: m.project.runId, selections: U }) }), ae = await H.json();
+      if (!H.ok) throw new Error(ae.error || `HTTP ${H.status}`);
+      N({ ...Be, message: `${f("已合并", "Merged")}：${((W = ae.result) == null ? void 0 : W.path) ?? ""}` }), ve(f("合并完成，可在“后处理 → 合并视频”查看", "Merged; see Post-process → Merge"));
+    } catch (H) {
+      N({ ...Be, error: String(H instanceof Error ? H.message : H) });
     }
-  }, se = () => {
-    var x;
-    return (x = B.current) == null ? void 0 : x.abort();
+  }, ie = () => {
+    var w;
+    return (w = q.current) == null ? void 0 : w.abort();
   };
-  Pe(() => {
-    const x = (I) => {
-      if ((I.ctrlKey || I.metaKey) && I.key.toLocaleLowerCase() === "s") {
-        I.preventDefault(), I.stopPropagation(), dt();
+  Ee(() => {
+    const w = (O) => {
+      if ((O.ctrlKey || O.metaKey) && O.key.toLocaleLowerCase() === "s") {
+        O.preventDefault(), O.stopPropagation(), ut();
         return;
       }
-      if (I.key !== "Escape" || I.defaultPrevented) return;
-      const F = I.target;
-      if (F && /^(TEXTAREA|INPUT|SELECT)$/.test(F.tagName)) {
-        F.blur();
+      if (O.key !== "Escape" || O.defaultPrevented) return;
+      const U = O.target;
+      if (U && /^(TEXTAREA|INPUT|SELECT)$/.test(U.tagName)) {
+        U.blur();
         return;
       }
-      if (y) return;
-      if (te) {
-        X(!1);
+      if (k) return;
+      if (Z) {
+        Y(!1);
         return;
       }
-      const q = document.querySelector("#theodore-director-modal .td-post-preview-overlay");
-      if (q) {
-        q.click();
+      const J = document.querySelector("#theodore-director-modal .td-post-preview-overlay");
+      if (J) {
+        J.click();
         return;
       }
-      if (O) {
-        U(!1);
+      if (R) {
+        F(!1);
         return;
       }
-      P || vt();
+      I || St();
     };
-    return document.addEventListener("keydown", x, !0), () => document.removeEventListener("keydown", x, !0);
+    return document.addEventListener("keydown", w, !0), () => document.removeEventListener("keydown", w, !0);
   });
-  const de = () => {
-    v(Ye(d.shots)), U(!0);
-  }, fe = () => {
-    const x = Number(K);
-    if (!Number.isFinite(x) || x <= 0) {
-      window.alert(u("统一时长必须大于 0 秒", "The shared duration must be greater than 0 seconds."));
+  const se = () => {
+    _(nt(m.shots)), F(!0);
+  }, ge = () => {
+    const w = Number(K);
+    if (!Number.isFinite(w) || w <= 0) {
+      window.alert(f("统一时长必须大于 0 秒", "The shared duration must be greater than 0 seconds."));
       return;
     }
-    v((I) => I.map((F) => ({ ...F, durationSeconds: x })));
+    _((O) => O.map((U) => ({ ...U, durationSeconds: w })));
   }, $e = () => {
-    const x = Number(Q), I = Number(pe);
-    if (!Number.isInteger(x) || x < 1 || x > 100) {
-      window.alert(u("新增镜头数量必须是 1–100 的整数", "The shot count must be an integer from 1 to 100."));
+    const w = Number(Q), O = Number(ce);
+    if (!Number.isInteger(w) || w < 1 || w > 100) {
+      window.alert(f("新增镜头数量必须是 1–100 的整数", "The shot count must be an integer from 1 to 100."));
       return;
     }
-    if (!Number.isFinite(I) || I <= 0) {
-      window.alert(u("新增镜头时长必须大于 0 秒", "The new-shot duration must be greater than 0 seconds."));
+    if (!Number.isFinite(O) || O <= 0) {
+      window.alert(f("新增镜头时长必须大于 0 秒", "The new-shot duration must be greater than 0 seconds."));
       return;
     }
-    v((F) => Zr(F, x, I, ln, b.current.defaults.secondSamplingMode ?? "off").map((q, W) => W >= F.length ? { ...q, latentRelay: !1 } : q));
+    _((U) => ii(U, w, O, un, g.current.defaults.secondSamplingMode ?? "off").map((J, W) => W >= U.length ? { ...J, latentRelay: !1 } : J));
   }, he = () => {
-    if (M.some((x) => !Number.isFinite(x.durationSeconds) || x.durationSeconds <= 0)) {
-      window.alert(u("每个镜头的时长都必须大于 0 秒", "Every shot duration must be greater than 0 seconds."));
+    if (L.some((w) => !Number.isFinite(w.durationSeconds) || w.durationSeconds <= 0)) {
+      window.alert(f("每个镜头的时长都必须大于 0 秒", "Every shot duration must be greater than 0 seconds."));
       return;
     }
-    ae((x) => {
-      x.shots = Ye(M);
-    }), w((x) => Math.min(x, M.length - 1)), U(!1);
-  }, ge = d.shots.filter((x) => x.enabled), Ee = ge.filter((x) => Re(ne.byShot[x.id] ?? []).length).length, pt = ge.filter((x) => {
-    var I;
-    return ((I = x.review) == null ? void 0 : I.status) === "approved";
-  }).length, yn = ge.reduce((x, I) => x + I.durationSeconds, 0), co = L.progress.max ? Math.round(L.progress.value / L.progress.max * 100) : 0, _n = [
-    { id: "assets", number: "01", title: u("素材库", "Media library"), description: u("角色 · 场景 · 声音", "Cast · sets · voices"), badge: be ? String(be) : void 0 },
-    { id: "shots", number: "02", title: u("分镜工作台", "Storyboard"), description: u("写镜头，安排连续性", "Compose each shot") },
-    { id: "review", number: "03", title: u("生成与审片", "Generate & review"), description: u("挑选结果，确认成片", "Choose your takes"), badge: `${pt}/${ge.length}` },
-    { id: "postprocess", number: "04", title: u("后处理与交付", "Finish & deliver"), description: u("高清处理 · 合并导出", "Enhance · assemble") },
-    { id: "settings", number: "05", title: u("项目配置", "Project settings"), description: u("默认参数与全局提示词", "Defaults & global prompts") }
-  ], Kt = _n.find((x) => x.id === _);
-  return /* @__PURE__ */ n("div", { class: `td-shell ${(kn = d.uiPreferences) != null && kn.compactMode ? "td-compact" : ""}`, lang: z === "zh" ? "zh-CN" : "en", children: [
+    ue((w) => {
+      w.shots = nt(L);
+    }), v((w) => Math.min(w, L.length - 1)), F(!1);
+  }, fe = m.shots.filter((w) => w.enabled), Te = fe.filter((w) => Le(re.byShot[w.id] ?? []).length).length, ft = fe.filter((w) => {
+    var O;
+    return ((O = w.review) == null ? void 0 : O.status) === "approved";
+  }).length, Pn = fe.reduce((w, O) => w + O.durationSeconds, 0), fi = C.progress.max ? Math.round(C.progress.value / C.progress.max * 100) : 0, Cn = [
+    { id: "assets", number: "01", title: f("素材库", "Media library"), description: f("角色 · 场景 · 声音", "Cast · sets · voices"), badge: xe ? String(xe) : void 0 },
+    { id: "shots", number: "02", title: f("分镜工作台", "Storyboard"), description: f("写镜头，安排连续性", "Compose each shot") },
+    { id: "review", number: "03", title: f("生成与审片", "Generate & review"), description: f("挑选结果，确认成片", "Choose your takes"), badge: `${ft}/${fe.length}` },
+    { id: "postprocess", number: "04", title: f("后处理与交付", "Finish & deliver"), description: f("高清处理 · 合并导出", "Enhance · assemble") }
+  ], en = Cn.find((w) => w.id === S) ?? { number: "⚙", title: f("导播台配置", "Director settings"), description: f("项目 · 内置控制 · 全局提示词", "Project · built-in controls · global prompts") };
+  return /* @__PURE__ */ n("div", { class: `td-shell ${(En = m.uiPreferences) != null && En.compactMode ? "td-compact" : ""}`, lang: x === "zh" ? "zh-CN" : "en", children: [
     /* @__PURE__ */ n("aside", { class: "td-workspace-rail", children: [
       /* @__PURE__ */ n("div", { class: "td-rail-brand", children: [
         /* @__PURE__ */ n("span", { class: "td-brand-mark", children: "YQ" }),
         /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("h1", { children: Bn(z, "title") }),
+          /* @__PURE__ */ n("h1", { children: Wn(x, "title") }),
           /* @__PURE__ */ n("small", { children: "MINIMAX H3 · STUDIO" })
         ] })
       ] }),
-      /* @__PURE__ */ n("button", { class: "td-project-home", onClick: () => N("settings"), title: d.project.name, children: [
-        /* @__PURE__ */ n("small", { children: u("当前项目", "CURRENT PROJECT") }),
-        /* @__PURE__ */ n("strong", { children: d.project.name }),
-        /* @__PURE__ */ n("span", { children: d.project.runId })
+      /* @__PURE__ */ n("button", { class: "td-project-home", onClick: () => T("settings"), title: m.project.name, children: [
+        /* @__PURE__ */ n("small", { children: f("当前项目", "CURRENT PROJECT") }),
+        /* @__PURE__ */ n("strong", { children: m.project.name }),
+        /* @__PURE__ */ n("span", { children: m.project.runId })
       ] }),
-      /* @__PURE__ */ n("nav", { class: "td-stage-nav", "aria-label": u("制作阶段", "Production stages"), children: _n.map((x) => /* @__PURE__ */ n("button", { class: _ === x.id ? "active" : "", "aria-label": x.title, title: x.title, "aria-current": _ === x.id ? "page" : void 0, onClick: () => N(x.id), children: [
-        /* @__PURE__ */ n("span", { class: "td-stage-number", children: x.number }),
+      /* @__PURE__ */ n("nav", { class: "td-stage-nav", "aria-label": f("制作阶段", "Production stages"), children: Cn.map((w) => /* @__PURE__ */ n("button", { class: S === w.id ? "active" : "", "aria-label": w.title, title: w.title, "aria-current": S === w.id ? "page" : void 0, onClick: () => T(w.id), children: [
+        /* @__PURE__ */ n("span", { class: "td-stage-number", children: w.number }),
         /* @__PURE__ */ n("span", { children: [
-          /* @__PURE__ */ n("strong", { children: x.title }),
-          /* @__PURE__ */ n("small", { children: x.description })
+          /* @__PURE__ */ n("strong", { children: w.title }),
+          /* @__PURE__ */ n("small", { children: w.description })
         ] }),
-        x.badge && /* @__PURE__ */ n("em", { class: x.id === "assets" ? "warn" : "", children: x.badge })
-      ] }, x.id)) }),
+        w.badge && /* @__PURE__ */ n("em", { class: w.id === "assets" ? "warn" : "", children: w.badge })
+      ] }, w.id)) }),
       /* @__PURE__ */ n("div", { class: "td-rail-progress", children: [
         /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("span", { children: u("本集进度", "EPISODE PROGRESS") }),
+          /* @__PURE__ */ n("span", { children: f("本集进度", "EPISODE PROGRESS") }),
           /* @__PURE__ */ n("strong", { children: [
-            pt,
+            ft,
             "/",
-            ge.length
+            fe.length
           ] })
         ] }),
-        /* @__PURE__ */ n("progress", { max: Math.max(1, ge.length), value: pt }),
-        /* @__PURE__ */ n("p", { children: u(`已生成 ${Ee} 段 · ${Lt(yn)}`, `${Ee} generated · ${Lt(yn)}`) }),
-        /* @__PURE__ */ n("button", { onClick: () => N(be ? "assets" : "review"), children: be ? u(`补齐 ${be} 个素材`, `Fill ${be} media files`) : u("查看审片进度 →", "Review progress →") })
+        /* @__PURE__ */ n("progress", { max: Math.max(1, fe.length), value: ft }),
+        /* @__PURE__ */ n("p", { children: f(`已生成 ${Te} 段 · ${Ft(Pn)}`, `${Te} generated · ${Ft(Pn)}`) }),
+        /* @__PURE__ */ n("button", { onClick: () => T(xe ? "assets" : "review"), children: xe ? f(`补齐 ${xe} 个素材`, `Fill ${xe} media files`) : f("查看审片进度 →", "Review progress →") })
+      ] }),
+      /* @__PURE__ */ n("button", { class: `td-config-entry ${S === "settings" ? "active" : ""}`, "aria-label": f("导播台配置", "Director settings"), title: f("导播台配置", "Director settings"), "aria-current": S === "settings" ? "page" : void 0, onClick: () => T("settings"), children: [
+        /* @__PURE__ */ n("span", { children: "⚙" }),
+        /* @__PURE__ */ n("strong", { children: f("导播台配置", "Director settings") })
       ] })
     ] }),
     /* @__PURE__ */ n("header", { class: "td-topbar", children: [
       /* @__PURE__ */ n("div", { class: "td-workspace-title", children: [
         /* @__PURE__ */ n("span", { class: "td-eyebrow", children: [
-          u("制作空间", "PRODUCTION SPACE"),
+          f("制作空间", "PRODUCTION SPACE"),
           " / ",
-          Kt.number
+          en.number
         ] }),
         /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("h2", { children: Kt.title }),
-          Y ? /* @__PURE__ */ n("span", { class: "td-chip warn", children: u("未保存", "Unsaved") }) : /* @__PURE__ */ n("span", { class: "td-chip", children: u("已保存", "Saved") })
+          /* @__PURE__ */ n("h2", { children: en.title }),
+          X ? /* @__PURE__ */ n("span", { class: "td-chip warn", children: f("未保存", "Unsaved") }) : /* @__PURE__ */ n("span", { class: "td-chip", children: f("已保存", "Saved") })
         ] })
       ] }),
       /* @__PURE__ */ n("div", { class: "td-actions", children: [
         /* @__PURE__ */ n("details", { class: "td-project-menu", children: [
           /* @__PURE__ */ n("summary", { children: [
-            u("导入 / 导出", "Import / export"),
+            f("导入 / 导出", "Import / export"),
             " ",
             /* @__PURE__ */ n("span", { children: "⌄" })
           ] }),
           /* @__PURE__ */ n("div", { class: "td-project-menu-items", children: [
-            /* @__PURE__ */ n("label", { class: "td-button", title: u("只更新本集分镜与提示词，保留整个素材库", "Import episode shots and preserve the media library"), children: [
-              u("导入分镜", "Import shots"),
-              /* @__PURE__ */ n("input", { type: "file", accept: "application/json,.json", disabled: le, onChange: (x) => {
-                var q;
-                const I = x.currentTarget, F = (q = I.files) == null ? void 0 : q[0];
-                I.value = "", F && lt(F, "episode");
+            /* @__PURE__ */ n("label", { class: "td-button", title: f("只更新本集分镜与提示词，保留整个素材库", "Import episode shots and preserve the media library"), children: [
+              f("导入分镜", "Import shots"),
+              /* @__PURE__ */ n("input", { type: "file", accept: "application/json,.json", disabled: de, onChange: (w) => {
+                var J;
+                const O = w.currentTarget, U = (J = O.files) == null ? void 0 : J[0];
+                O.value = "", U && mt(U, "episode");
               } })
             ] }),
-            /* @__PURE__ */ n("button", { onClick: qt, children: u("导出分镜", "Export shots") }),
-            /* @__PURE__ */ n("label", { class: "td-button", title: u("导入 skill 生成的 .director.json；同名素材会沿用已上传文件", "Import a .director.json"), children: [
-              u("导入计划", "Import"),
-              /* @__PURE__ */ n("input", { type: "file", accept: "application/json,.json", disabled: le, onChange: (x) => {
-                var q;
-                const I = x.currentTarget, F = (q = I.files) == null ? void 0 : q[0];
-                I.value = "", F && lt(F);
+            /* @__PURE__ */ n("button", { onClick: Zt, children: f("导出分镜", "Export shots") }),
+            /* @__PURE__ */ n("label", { class: "td-button", title: f("导入 skill 生成的 .director.json；同名素材会沿用已上传文件", "Import a .director.json"), children: [
+              f("导入计划", "Import"),
+              /* @__PURE__ */ n("input", { type: "file", accept: "application/json,.json", disabled: de, onChange: (w) => {
+                var J;
+                const O = w.currentTarget, U = (J = O.files) == null ? void 0 : J[0];
+                O.value = "", U && mt(U);
               } })
             ] }),
-            /* @__PURE__ */ n("button", { onClick: Jt, children: u("导出计划", "Export") })
+            /* @__PURE__ */ n("button", { onClick: Xt, children: f("导出计划", "Export") })
           ] })
         ] }),
-        /* @__PURE__ */ n("button", { class: "td-lang", title: u("切换语言", "Language"), onClick: () => Me(z === "zh" ? "en" : "zh"), children: z === "zh" ? "EN" : "中文" }),
-        /* @__PURE__ */ n("button", { class: "primary", title: "Ctrl+S", onClick: dt, children: u("保存项目", "Save project") }),
-        /* @__PURE__ */ n("button", { onClick: vt, children: Bn(z, "close") })
+        /* @__PURE__ */ n("button", { class: "td-lang", title: f("切换语言", "Language"), onClick: () => Oe(x === "zh" ? "en" : "zh"), children: x === "zh" ? "EN" : "中文" }),
+        /* @__PURE__ */ n("button", { class: "primary", title: "Ctrl+S", onClick: ut, children: f("保存项目", "Save project") }),
+        /* @__PURE__ */ n("button", { onClick: St, children: Wn(x, "close") })
       ] })
     ] }),
-    /* @__PURE__ */ n("section", { class: "td-session-bar", "aria-label": u("生成状态", "Generation status"), children: [
-      /* @__PURE__ */ n("span", { class: "td-session-context", children: _ === "shots" ? u("编辑镜头 → 右侧监看 → 底部切换分镜", "Compose → monitor → switch shots below") : Kt.description }),
+    /* @__PURE__ */ n("section", { class: "td-session-bar", "aria-label": f("生成状态", "Generation status"), children: [
+      /* @__PURE__ */ n("span", { class: "td-session-context", children: S === "shots" ? f("编辑镜头 → 右侧监看 → 底部切换分镜", "Compose → monitor → switch shots below") : en.description }),
       /* @__PURE__ */ n("div", { class: "td-tab-status", "aria-live": "polite", children: [
-        le ? /* @__PURE__ */ n("span", { class: "td-run-pill", children: [
+        de ? /* @__PURE__ */ n("span", { class: "td-run-pill", children: [
           /* @__PURE__ */ n("i", {}),
-          L.kind === "first" ? u("一采", "1st pass") : L.kind === "second" ? u("二采", "2nd pass") : L.kind === "image" ? u("生图", "Image") : u("合并", "Merge"),
+          C.kind === "first" ? f("一采", "1st pass") : C.kind === "second" ? f("二采", "2nd pass") : C.kind === "image" ? f("生图", "Image") : f("合并", "Merge"),
           " ",
-          L.done,
+          C.done,
           "/",
-          L.total,
-          L.kind !== "merge" && L.progress.max ? ` · ${co}%` : "",
-          /* @__PURE__ */ n("button", { onClick: se, children: u("停止", "Stop") })
-        ] }) : /* @__PURE__ */ n("span", { class: "td-progress-text", children: u(`一采 ${Ee}/${ge.length} · 通过 ${pt}/${ge.length}`, `Generated ${Ee}/${ge.length} · Approved ${pt}/${ge.length}`) }),
-        !le && !ne.loading && l && Ee < ge.length && /* @__PURE__ */ n("button", { class: "primary", onClick: () => void ot(ge.filter((x) => !Re(ne.byShot[x.id] ?? []).length).map((x) => x.id), !1), children: u(`开始一采（${ge.length - Ee} 段）`, `Start first pass (${ge.length - Ee})`) })
+          C.total,
+          C.kind !== "merge" && C.progress.max ? ` · ${fi}%` : "",
+          /* @__PURE__ */ n("button", { onClick: ie, children: f("停止", "Stop") })
+        ] }) : /* @__PURE__ */ n("span", { class: "td-progress-text", children: f(`一采 ${Te}/${fe.length} · 通过 ${ft}/${fe.length}`, `Generated ${Te}/${fe.length} · Approved ${ft}/${fe.length}`) }),
+        S !== "settings" && !de && !re.loading && l && Te < fe.length && /* @__PURE__ */ n("button", { class: "primary", onClick: () => void dt(fe.filter((w) => !Le(re.byShot[w.id] ?? []).length).map((w) => w.id), !1), children: f(`开始一采（${fe.length - Te} 段）`, `Start first pass (${fe.length - Te})`) })
       ] })
     ] }),
     /* @__PURE__ */ n("main", { children: [
-      _ === "shots" && /* @__PURE__ */ n(Vi, { plan: d, language: z, selected: k, setSelected: w, mutate: ae, setReview: nt, results: ne, supportsSecondSampling: i, running: le, runningShotId: L.kind === "first" ? L.currentShotId : void 0, onRegenerate: (x) => void ot(x, !0), onOpenBatch: de, notify: xe }),
-      _ === "assets" && /* @__PURE__ */ n($o, { plan: d, language: z, mutate: ae, uploadAsset: ar, importingDisabled: le || !!y || j, onImportLibrary: (x) => void lt(x, "assets"), onExportLibrary: wt, onOpenBatch: () => oe(!0), onGenerateImage: s ? D : void 0, onBatchGenerateImages: s ? () => {
-        const x = Ot(b.current.assets)[0];
-        if (!x) {
-          xe(u("请先添加已启用且填写了生图提示词的图片素材。", "Add enabled image assets with generation prompts first."), "error");
+      S === "shots" && /* @__PURE__ */ n(Qo, { plan: m, language: x, selected: y, setSelected: v, mutate: ue, setReview: st, results: re, supportsSecondSampling: o, running: de, runningShotId: C.kind === "first" ? C.currentShotId : void 0, onRegenerate: (w) => void dt(w, !0), onOpenBatch: se, notify: ve }),
+      S === "assets" && /* @__PURE__ */ n(Ti, { plan: m, language: x, mutate: ue, uploadAsset: mr, importingDisabled: de || !!k || M, onImportLibrary: (w) => void mt(w, "assets"), onExportLibrary: $t, onOpenBatch: () => ne(!0), onGenerateImage: a ? D : void 0, onBatchGenerateImages: a ? () => {
+        const w = qt(g.current.assets)[0];
+        if (!w) {
+          ve(f("请先添加已启用且填写了生图提示词的图片素材。", "Add enabled image assets with generation prompts first."), "error");
           return;
         }
-        D(x), H(!0);
-      } : void 0, notify: xe }),
-      _ === "review" && /* @__PURE__ */ n(Ti, { plan: d, language: z, results: ne, run: L, supportsSecondPass: !!a, setReview: nt, setPipeline: at, onRunFirstPass: (x, I) => void ot(x, I), onRunSecondPass: (x, I) => void _t(x, I), onMerge: (x) => void A(x), onStop: se, onRefresh: () => T((x) => x + 1), onOpenShot: (x) => {
-        w(Math.max(0, d.shots.findIndex((I) => I.id === x))), N("shots");
+        D(w), V(!0);
+      } : void 0, notify: ve }),
+      S === "review" && /* @__PURE__ */ n(Ao, { plan: m, language: x, results: re, run: C, supportsSecondPass: !!s, setReview: st, setPipeline: ht, onRunFirstPass: (w, O) => void dt(w, O), onRunSecondPass: (w, O) => void Pt(w, O), onMerge: (w) => void A(w), onStop: ie, onRefresh: () => j((w) => w + 1), onOpenShot: (w) => {
+        v(Math.max(0, m.shots.findIndex((O) => O.id === w))), T("shots");
       } }),
-      /* @__PURE__ */ n("section", { class: "td-form settings", style: _ === "settings" ? void 0 : { display: "none" }, children: [
-        /* @__PURE__ */ n("h2", { children: u("项目", "Project") }),
-        /* @__PURE__ */ n("div", { class: "td-settings-grid", children: [
-          /* @__PURE__ */ n("label", { children: [
-            u("项目名（决定输出目录）", "Project name"),
-            /* @__PURE__ */ n("input", { value: d.project.name, onInput: (x) => ae((I) => {
-              I.project.name = x.currentTarget.value;
-            }) })
-          ] }),
-          /* @__PURE__ */ n("label", { children: [
-            "Run ID",
-            /* @__PURE__ */ n("input", { value: d.project.runId, onInput: (x) => ae((I) => {
-              I.project.runId = x.currentTarget.value;
-            }) })
-          ] }),
-          /* @__PURE__ */ n("label", { children: [
-            "FPS",
-            /* @__PURE__ */ n("input", { type: "number", min: "1", step: "1", value: d.defaults.fps, onInput: (x) => ae((I) => {
-              I.defaults.fps = Number(x.currentTarget.value);
-            }) })
-          ] }),
-          /* @__PURE__ */ n("label", { children: [
-            u("基础种子", "Base seed"),
-            /* @__PURE__ */ n("input", { type: "number", value: d.defaults.baseSeed, onInput: (x) => ae((I) => {
-              I.defaults.baseSeed = Number(x.currentTarget.value);
-            }) })
-          ] }),
-          /* @__PURE__ */ n("label", { children: [
-            u("新分镜默认时长", "Default shot duration"),
-            /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: d.defaults.durationSeconds ?? 6, onInput: (x) => ae((I) => {
-              I.defaults.durationSeconds = Math.max(0.1, Number(x.currentTarget.value) || 6), Z(x.currentTarget.value), E(x.currentTarget.value);
-            }) })
-          ] }),
-          /* @__PURE__ */ n("label", { children: [
-            u("新分镜默认处理", "Default processing"),
-            /* @__PURE__ */ n("select", { value: d.defaults.secondSamplingMode ?? "off", onChange: (x) => ae((I) => {
-              I.defaults.secondSamplingMode = x.currentTarget.value;
-            }), children: [
-              /* @__PURE__ */ n("option", { value: "off", children: u("关闭二采", "Off") }),
-              /* @__PURE__ */ n("option", { value: "super_resolution_second_pass", children: u("超分二采", "Super-resolution 2nd pass") }),
-              /* @__PURE__ */ n("option", { value: "latent_upscale_second_pass", children: u("Latent 二采", "Latent 2nd pass") }),
-              /* @__PURE__ */ n("option", { value: "super_resolution_only", children: u("只超分", "Super-resolution only") })
-            ] })
-          ] }),
-          /* @__PURE__ */ n("label", { class: "td-setting-check", children: [
-            /* @__PURE__ */ n("span", { children: u("网页偏好", "Web preferences") }),
-            /* @__PURE__ */ n("span", { children: [
-              /* @__PURE__ */ n("input", { type: "checkbox", checked: ((Sn = d.uiPreferences) == null ? void 0 : Sn.autoSave) ?? !1, onChange: (x) => ae((I) => {
-                I.uiPreferences = { ...I.uiPreferences, autoSave: x.currentTarget.checked };
-              }) }),
-              u("编辑后自动保存到工作流", "Auto-save edits to workflow")
-            ] })
-          ] }),
-          /* @__PURE__ */ n("label", { class: "td-setting-check", children: [
-            /* @__PURE__ */ n("span", { children: u("紧凑布局", "Compact layout") }),
-            /* @__PURE__ */ n("span", { children: [
-              /* @__PURE__ */ n("input", { type: "checkbox", checked: (($n = d.uiPreferences) == null ? void 0 : $n.compactMode) ?? !1, onChange: (x) => ae((I) => {
-                I.uiPreferences = { ...I.uiPreferences, compactMode: x.currentTarget.checked };
-              }) }),
-              u("减少面板间距", "Reduce panel spacing")
-            ] })
-          ] })
-        ] }),
-        /* @__PURE__ */ n("p", { class: "td-hint", children: u("修改项目名或 Run ID 会切换到另一个输出目录，已有结果不会被移动。", "Changing the project name or Run ID switches the output folder.") }),
-        /* @__PURE__ */ n("label", { children: [
-          u("全局提示词前缀（每段都会自动加在最前面，只放全片通用内容）", "Global prompt prefix"),
-          /* @__PURE__ */ n(dn, { value: d.promptPrefix, isReferenceValid: (x) => Hn(d, x), onInput: (x) => ae((I) => {
-            I.promptPrefix = x.currentTarget.value;
-          }) })
-        ] }),
-        /* @__PURE__ */ n("label", { children: [
-          u("全局提示词后缀", "Global prompt suffix"),
-          /* @__PURE__ */ n(dn, { value: d.promptSuffix, isReferenceValid: (x) => Hn(d, x), onInput: (x) => ae((I) => {
-            I.promptSuffix = x.currentTarget.value;
-          }) })
-        ] }),
-        /* @__PURE__ */ n("label", { children: [
-          u("项目备注（风格/人物/场景锁定块等，仅供参考，不发送给模型）", "Project notes"),
-          /* @__PURE__ */ n("textarea", { rows: 8, value: d.project.notes ?? "", onInput: (x) => ae((I) => {
-            I.project.notes = x.currentTarget.value;
-          }) })
-        ] }),
-        m && /* @__PURE__ */ n(cs, { controller: m, language: z, busy: le, notify: xe }),
-        /* @__PURE__ */ n(ps, { language: z, projectName: d.project.name, runId: d.project.runId, busy: le, onClearShots: async (x) => {
-          x && await as(d.project.name, d.project.runId), ae((I) => {
-            I.shots = Li(I.defaults.durationSeconds ?? 6, ln, I.defaults.secondSamplingMode ?? "off");
-          }), w(0), v([]), T((I) => I + 1);
-        }, onClearAssets: () => {
-          ae((x) => {
-            const I = Wo(x);
-            x.assets = I.assets, x.shots = I.shots;
-          });
-        }, onProjectCleared: () => T((x) => x + 1) })
-      ] }),
-      _ === "postprocess" && /* @__PURE__ */ n(ki, { plan: d, language: z, queueSecondPass: a })
+      /* @__PURE__ */ n("section", { hidden: S !== "settings", children: /* @__PURE__ */ n(va, { plan: m, language: x, busy: de, builtInControls: d, mutate: ue, onDuration: (w) => {
+        ee(w), z(w);
+      }, children: /* @__PURE__ */ n(Ea, { language: x, projectName: m.project.name, runId: m.project.runId, busy: de, onClearShots: async (w) => {
+        w && await ga(m.project.name, m.project.runId), ue((O) => {
+          O.shots = Mo(O.defaults.durationSeconds ?? 6, un, O.defaults.secondSamplingMode ?? "off");
+        }), v(0), _([]), j((O) => O + 1);
+      }, onClearAssets: () => {
+        ue((w) => {
+          const O = zo(w);
+          w.assets = O.assets, w.shots = O.shots;
+        });
+      }, onProjectCleared: () => j((w) => w + 1) }) }) }),
+      S === "postprocess" && /* @__PURE__ */ n(Co, { plan: m, language: x, queueSecondPass: s })
     ] }),
-    O && /* @__PURE__ */ n("div", { class: "td-batch-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-batch-panel", role: "dialog", "aria-modal": "true", "aria-label": u("批量编辑镜头", "Batch edit shots"), children: [
+    R && /* @__PURE__ */ n("div", { class: "td-batch-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-batch-panel", role: "dialog", "aria-modal": "true", "aria-label": f("批量编辑镜头", "Batch edit shots"), children: [
       /* @__PURE__ */ n("header", { class: "td-batch-header", children: [
         /* @__PURE__ */ n("div", { children: [
-          /* @__PURE__ */ n("h2", { children: u("批量编辑镜头", "Batch edit shots") }),
-          /* @__PURE__ */ n("p", { children: u(`当前共 ${M.length} 个镜头`, `${M.length} shots`) })
+          /* @__PURE__ */ n("h2", { children: f("批量编辑镜头", "Batch edit shots") }),
+          /* @__PURE__ */ n("p", { children: f(`当前共 ${L.length} 个镜头`, `${L.length} shots`) })
         ] }),
-        /* @__PURE__ */ n("button", { "aria-label": u("关闭", "Close"), onClick: () => U(!1), children: "×" })
+        /* @__PURE__ */ n("button", { "aria-label": f("关闭", "Close"), onClick: () => F(!1), children: "×" })
       ] }),
       /* @__PURE__ */ n("div", { class: "td-batch-tools", children: [
         /* @__PURE__ */ n("div", { children: [
           /* @__PURE__ */ n("label", { children: [
-            u("所有镜头时长", "Duration for all shots"),
+            f("所有镜头时长", "Duration for all shots"),
             /* @__PURE__ */ n("span", { children: [
-              /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: K, onInput: (x) => Z(x.currentTarget.value) }),
-              /* @__PURE__ */ n("em", { children: u("秒", "sec") })
+              /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: K, onInput: (w) => ee(w.currentTarget.value) }),
+              /* @__PURE__ */ n("em", { children: f("秒", "sec") })
             ] })
           ] }),
-          /* @__PURE__ */ n("button", { onClick: fe, children: u("一键设置所有时长", "Set all durations") })
+          /* @__PURE__ */ n("button", { onClick: ge, children: f("一键设置所有时长", "Set all durations") })
         ] }),
         /* @__PURE__ */ n("div", { children: [
           /* @__PURE__ */ n("label", { children: [
-            u("新增镜头数量", "New shot count"),
-            /* @__PURE__ */ n("input", { type: "number", min: "1", max: "100", step: "1", value: Q, onInput: (x) => ee(x.currentTarget.value) })
+            f("新增镜头数量", "New shot count"),
+            /* @__PURE__ */ n("input", { type: "number", min: "1", max: "100", step: "1", value: Q, onInput: (w) => te(w.currentTarget.value) })
           ] }),
           /* @__PURE__ */ n("label", { children: [
-            u("每个镜头时长", "Duration per shot"),
+            f("每个镜头时长", "Duration per shot"),
             /* @__PURE__ */ n("span", { children: [
-              /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: pe, onInput: (x) => E(x.currentTarget.value) }),
-              /* @__PURE__ */ n("em", { children: u("秒", "sec") })
+              /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: ce, onInput: (w) => z(w.currentTarget.value) }),
+              /* @__PURE__ */ n("em", { children: f("秒", "sec") })
             ] })
           ] }),
-          /* @__PURE__ */ n("button", { onClick: $e, children: u("批量新增镜头", "Add shots") })
+          /* @__PURE__ */ n("button", { onClick: $e, children: f("批量新增镜头", "Add shots") })
         ] })
       ] }),
       /* @__PURE__ */ n("div", { class: "td-batch-global-actions", children: [
-        /* @__PURE__ */ n("span", { children: u(`已启用 ${M.filter((x) => x.enabled).length}/${M.length} 个镜头`, `${M.filter((x) => x.enabled).length}/${M.length} shots enabled`) }),
-        /* @__PURE__ */ n("button", { class: ce ? "active" : "", onClick: () => v((x) => x.map((I) => ({ ...I, enabled: !ce }))), children: ce ? u("全部禁用", "Disable all") : u("全部启用", "Enable all") })
+        /* @__PURE__ */ n("span", { children: f(`已启用 ${L.filter((w) => w.enabled).length}/${L.length} 个镜头`, `${L.filter((w) => w.enabled).length}/${L.length} shots enabled`) }),
+        /* @__PURE__ */ n("button", { class: le ? "active" : "", onClick: () => _((w) => w.map((O) => ({ ...O, enabled: !le }))), children: le ? f("全部禁用", "Disable all") : f("全部启用", "Enable all") })
       ] }),
       /* @__PURE__ */ n("div", { class: "td-batch-table", children: [
         /* @__PURE__ */ n("div", { class: "td-batch-row td-batch-table-head", children: [
           /* @__PURE__ */ n("span", { children: "#" }),
-          /* @__PURE__ */ n("span", { children: u("镜头名", "Shot name") }),
-          /* @__PURE__ */ n("span", { children: u("启用", "Enabled") }),
-          /* @__PURE__ */ n("span", { children: u("具体时长", "Duration") }),
-          /* @__PURE__ */ n("span", { children: u("接力上一段", "Relay") })
+          /* @__PURE__ */ n("span", { children: f("镜头名", "Shot name") }),
+          /* @__PURE__ */ n("span", { children: f("启用", "Enabled") }),
+          /* @__PURE__ */ n("span", { children: f("具体时长", "Duration") }),
+          /* @__PURE__ */ n("span", { children: f("接力上一段", "Relay") })
         ] }),
-        M.map((x, I) => /* @__PURE__ */ n("div", { class: "td-batch-row", children: [
-          /* @__PURE__ */ n("span", { children: I + 1 }),
-          /* @__PURE__ */ n("input", { value: x.title, "aria-label": `${u("镜头名", "Shot name")} ${I + 1}`, onInput: (F) => v((q) => q.map((W, J) => J === I ? { ...W, title: F.currentTarget.value } : W)) }),
+        L.map((w, O) => /* @__PURE__ */ n("div", { class: "td-batch-row", children: [
+          /* @__PURE__ */ n("span", { children: O + 1 }),
+          /* @__PURE__ */ n("input", { value: w.title, "aria-label": `${f("镜头名", "Shot name")} ${O + 1}`, onInput: (U) => _((J) => J.map((W, H) => H === O ? { ...W, title: U.currentTarget.value } : W)) }),
           /* @__PURE__ */ n("label", { class: "td-batch-enabled", children: [
-            /* @__PURE__ */ n("input", { type: "checkbox", checked: x.enabled, onChange: (F) => v((q) => q.map((W, J) => J === I ? { ...W, enabled: F.currentTarget.checked } : W)) }),
-            /* @__PURE__ */ n("span", { children: x.enabled ? u("开", "ON") : u("关", "OFF") })
+            /* @__PURE__ */ n("input", { type: "checkbox", checked: w.enabled, onChange: (U) => _((J) => J.map((W, H) => H === O ? { ...W, enabled: U.currentTarget.checked } : W)) }),
+            /* @__PURE__ */ n("span", { children: w.enabled ? f("开", "ON") : f("关", "OFF") })
           ] }),
           /* @__PURE__ */ n("label", { class: "td-batch-duration", children: [
-            /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: x.durationSeconds, onInput: (F) => v((q) => q.map((W, J) => J === I ? { ...W, durationSeconds: Number(F.currentTarget.value) } : W)) }),
-            /* @__PURE__ */ n("span", { children: u("秒", "sec") })
+            /* @__PURE__ */ n("input", { type: "number", min: "0.1", step: "0.1", value: w.durationSeconds, onInput: (U) => _((J) => J.map((W, H) => H === O ? { ...W, durationSeconds: Number(U.currentTarget.value) } : W)) }),
+            /* @__PURE__ */ n("span", { children: f("秒", "sec") })
           ] }),
           /* @__PURE__ */ n("label", { class: "td-batch-relay", children: [
-            /* @__PURE__ */ n("input", { type: "checkbox", checked: x.latentRelay, onChange: (F) => v((q) => q.map((W, J) => J === I ? { ...W, latentRelay: F.currentTarget.checked } : W)) }),
-            /* @__PURE__ */ n("span", { children: x.latentRelay ? u("开", "ON") : u("关", "OFF") })
+            /* @__PURE__ */ n("input", { type: "checkbox", checked: w.latentRelay, onChange: (U) => _((J) => J.map((W, H) => H === O ? { ...W, latentRelay: U.currentTarget.checked } : W)) }),
+            /* @__PURE__ */ n("span", { children: w.latentRelay ? f("开", "ON") : f("关", "OFF") })
           ] })
-        ] }, x.id))
+        ] }, w.id))
       ] }),
       /* @__PURE__ */ n("footer", { children: [
-        /* @__PURE__ */ n("button", { onClick: () => U(!1), children: u("取消", "Cancel") }),
-        /* @__PURE__ */ n("button", { class: "primary", onClick: he, children: u("应用更改", "Apply changes") })
+        /* @__PURE__ */ n("button", { onClick: () => F(!1), children: f("取消", "Cancel") }),
+        /* @__PURE__ */ n("button", { class: "primary", onClick: he, children: f("应用更改", "Apply changes") })
       ] })
     ] }) }),
-    P && /* @__PURE__ */ n(Uo, { language: z, assets: d.assets, projectName: d.project.name, uploadFile: ar, onImported: (x) => ae((I) => {
-      I.assets.push(...x);
-    }), onFilled: (x, I, F) => ae((q) => {
-      const W = q.assets.find((J) => J.id === x);
-      W && Object.assign(W, To(W, I, F));
-    }), onClose: () => oe(!1) }),
-    y && s && /* @__PURE__ */ n(
-      is,
+    I && /* @__PURE__ */ n(Hi, { language: x, assets: m.assets, projectName: m.project.name, uploadFile: mr, onImported: (w) => ue((O) => {
+      O.assets.push(...w);
+    }), onFilled: (w, O, U) => ue((J) => {
+      const W = J.assets.find((H) => H.id === w);
+      W && Object.assign(W, Oi(W, O, U));
+    }), onClose: () => ne(!1) }),
+    k && a && /* @__PURE__ */ n(
+      ua,
       {
-        asset: d.assets.find((x) => x.id === y.id) ?? y,
-        batchAssets: j ? d.assets : void 0,
-        projectName: d.project.name,
-        language: z,
-        defaults: s.defaults,
-        queue: s.queue,
-        recover: s.recover,
-        running: L.kind === "image",
-        progress: L.progress,
-        register: s.register,
-        onPending: (x, I) => Ne(x, (F) => {
-          I ? F.imageGenerationPending = I : delete F.imageGenerationPending;
+        asset: m.assets.find((w) => w.id === k.id) ?? k,
+        batchAssets: M ? m.assets : void 0,
+        projectName: m.project.name,
+        language: x,
+        defaults: a.defaults,
+        queue: a.queue,
+        recover: a.recover,
+        running: C.kind === "image",
+        progress: C.progress,
+        register: a.register,
+        onPending: (w, O) => Re(w, (U) => {
+          O ? U.imageGenerationPending = O : delete U.imageGenerationPending;
         }),
-        onRecord: (x, I) => Ne(x, (F) => {
-          F.imageGeneration && F.imageGeneration.promptId !== I.promptId && (F.imageGenerationHistory = [...F.imageGenerationHistory ?? [], F.imageGeneration].slice(-20)), F.imageGeneration = I;
+        onRecord: (w, O) => Re(w, (U) => {
+          U.imageGeneration && U.imageGeneration.promptId !== O.promptId && (U.imageGenerationHistory = [...U.imageGenerationHistory ?? [], U.imageGeneration].slice(-20)), U.imageGeneration = O;
         }),
-        onPromptChange: (x, I) => Ne(x, (F) => {
-          F.genPrompt = I;
+        onPromptChange: (w, O) => Re(w, (U) => {
+          U.genPrompt = O;
         }),
-        onStart: (x) => {
-          B.current = x, V({ kind: "image", total: 1, done: 0, progress: { value: 0, max: 0 }, message: "" });
+        onStart: (w) => {
+          q.current = w, N({ kind: "image", total: 1, done: 0, progress: { value: 0, max: 0 }, message: "" });
         },
-        onProgress: (x) => V((I) => ({ ...I, progress: x })),
-        onFinish: (x) => {
-          B.current === x && (B.current = null), V((I) => I.kind === "image" ? { ...Je } : I);
+        onProgress: (w) => N((O) => ({ ...O, progress: w })),
+        onFinish: (w) => {
+          q.current === w && (q.current = null), N((O) => O.kind === "image" ? { ...Be } : O);
         },
-        onApply: async (x, I, F, q) => {
-          const W = b.current.assets.find((ie) => ie.id === x);
-          Ne(x, (ie) => {
-            ie.path = I, ie.genPrompt = F, ie.fingerprint = "", ie.imageGeneration = q, delete ie.imageGenerationPending, delete ie.imageGenerationHistory;
+        onApply: async (w, O, U, J) => {
+          const W = g.current.assets.find((ae) => ae.id === w);
+          Re(w, (ae) => {
+            ae.path = O, ae.genPrompt = U, ae.fingerprint = "", ae.imageGeneration = J, delete ae.imageGenerationPending, delete ae.imageGenerationHistory;
           });
-          const J = W ? ss(b.current, [], { assetId: x, oldPath: W.path, oldGeneration: W.imageGeneration, oldGenerations: W.imageGenerationHistory }) : { candidates: [], keep: [] };
+          const H = W ? ma(g.current, [], { assetId: w, oldPath: W.path, oldGeneration: W.imageGeneration, oldGenerations: W.imageGenerationHistory }) : { candidates: [], keep: [] };
           try {
-            const ie = await ds(d.project.name, J);
-            ie.deleted.length ? xe(u(`已替换素材并清理 ${ie.deleted.length} 个旧资源`, `Replaced asset and removed ${ie.deleted.length} old resources`)) : xe(u("已将生图绑定到当前素材", "Generated image assigned to the asset"));
-          } catch (ie) {
-            xe(`${u("新图已绑定，但旧资源清理失败", "New image assigned, but old-resource cleanup failed")}：${ie instanceof Error ? ie.message : String(ie)}`, "error");
+            const ae = await fa(m.project.name, H);
+            ae.deleted.length ? ve(f(`已替换素材并清理 ${ae.deleted.length} 个旧资源`, `Replaced asset and removed ${ae.deleted.length} old resources`)) : ve(f("已将生图绑定到当前素材", "Generated image assigned to the asset"));
+          } catch (ae) {
+            ve(`${f("新图已绑定，但旧资源清理失败", "New image assigned, but old-resource cleanup failed")}：${ae instanceof Error ? ae.message : String(ae)}`, "error");
           }
         },
-        onCreateAsset: (x, I, F, q, W) => {
-          const J = Ye(b.current);
-          J.assets.push(ts(x, I, F, J.assets, W)), b.current = J, f(J), ye(J), xe(u("已登记为新素材", "Generated image added as a new asset"));
+        onCreateAsset: (w, O, U, J, W) => {
+          const H = nt(g.current);
+          H.assets.push(la(w, O, U, H.assets, W)), g.current = H, b(H), _e(H), ve(f("已登记为新素材", "Generated image added as a new asset"));
         },
-        onStop: se,
+        onStop: ie,
         onClose: () => {
-          L.kind !== "image" && (D(null), H(!1));
+          C.kind !== "image" && (D(null), V(!1));
         }
       },
-      j ? "batch-images" : y.id
+      M ? "batch-images" : k.id
     ),
-    te && /* @__PURE__ */ n("div", { class: "td-batch-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-confirm", role: "dialog", "aria-modal": "true", children: [
-      /* @__PURE__ */ n("h2", { children: u("有未保存的修改", "Unsaved changes") }),
-      /* @__PURE__ */ n("p", { children: u("关闭前要把修改保存到工作流吗？", "Save changes to the workflow before closing?") }),
+    Z && /* @__PURE__ */ n("div", { class: "td-batch-overlay", role: "presentation", children: /* @__PURE__ */ n("section", { class: "td-confirm", role: "dialog", "aria-modal": "true", children: [
+      /* @__PURE__ */ n("h2", { children: f("有未保存的修改", "Unsaved changes") }),
+      /* @__PURE__ */ n("p", { children: f("关闭前要把修改保存到工作流吗？", "Save changes to the workflow before closing?") }),
       /* @__PURE__ */ n("footer", { children: [
-        /* @__PURE__ */ n("button", { onClick: () => X(!1), children: u("取消", "Cancel") }),
+        /* @__PURE__ */ n("button", { onClick: () => Y(!1), children: f("取消", "Cancel") }),
         /* @__PURE__ */ n("button", { class: "danger", onClick: () => {
-          X(!1), o();
-        }, children: u("不保存，直接关闭", "Discard") }),
+          Y(!1), i();
+        }, children: f("不保存，直接关闭", "Discard") }),
         /* @__PURE__ */ n("button", { class: "primary", onClick: () => {
-          ye(d), X(!1), o();
-        }, children: u("保存并关闭", "Save & close") })
+          _e(m), Y(!1), i();
+        }, children: f("保存并关闭", "Save & close") })
       ] })
     ] }) }),
-    /* @__PURE__ */ n("div", { class: "td-toasts", "aria-live": "polite", children: C.map((x) => /* @__PURE__ */ n("div", { class: `td-toast ${x.tone}`, children: x.message }, x.id)) })
+    /* @__PURE__ */ n("div", { class: "td-toasts", "aria-live": "polite", children: E.map((w) => /* @__PURE__ */ n("div", { class: `td-toast ${w.tone}`, children: w.message }, w.id)) })
   ] });
 }
-function hs(e, t, r = !1, o, i, a, l, s) {
-  const m = document.getElementById("theodore-director-modal");
-  if (m) {
-    m.focus();
+function Ta(e, t, r = !1, i, o, s, l, a = !1) {
+  const d = document.getElementById("theodore-director-modal");
+  if (d) {
+    d.focus();
     return;
   }
-  const h = document.createElement("div");
-  h.id = "theodore-director-modal", h.className = "td-modal", h.tabIndex = -1, document.body.append(h);
-  const d = () => {
-    Tn(null, h), h.remove();
+  const p = document.createElement("div");
+  p.id = "theodore-director-modal", p.className = "td-modal", p.tabIndex = -1, document.body.append(p);
+  const m = () => {
+    Rn(null, p), p.remove();
   };
-  h.addEventListener("keydown", (f) => f.stopPropagation()), Tn(/* @__PURE__ */ n(us, { initial: e, onSave: t, onPersist: a, onClose: d, supportsSecondSampling: r, queueSecondPass: o, queueFirstPass: i, imageGeneration: l, workflowSettings: s }), h), h.focus();
+  p.addEventListener("keydown", (b) => b.stopPropagation()), Rn(/* @__PURE__ */ n(za, { initial: e, onSave: t, onPersist: s, onClose: m, supportsSecondSampling: r, queueSecondPass: i, queueFirstPass: o, imageGeneration: l, builtInControls: a }), p), p.focus();
 }
-function Ut(e) {
-  return Array.isArray(e) && e.length === 2 && (typeof e[0] == "string" || typeof e[0] == "number") && typeof e[1] == "number";
-}
-function Et(e) {
-  return Ut(e) ? String(e[0]) : null;
-}
-function wn(e, t) {
-  return Object.keys(e).filter((r) => {
-    var o;
-    return ((o = e[r]) == null ? void 0 : o.class_type) === t;
-  });
-}
-function lr(e, t, r) {
-  const o = wn(e, t);
-  if (!o.length) throw new Error(`当前工作流缺少 ${r}（${t}）节点`);
-  if (o.length > 1) throw new Error(`当前工作流存在多个 ${r}（${t}）节点，无法确定要控制哪一个`);
-  return o[0];
-}
-function lo(e, t, r, o, i = 0) {
-  const a = e[t];
-  if (!a || i > 6) return !1;
-  const l = a.inputs[r];
-  if (typeof l == "number")
-    return a.inputs[r] = o, !0;
-  const s = Et(l);
-  if (!s || !e[s]) return !1;
-  const m = e[s];
-  return typeof m.inputs.value == "number" || Ut(m.inputs.value) ? lo(e, s, "value", o, i + 1) : !1;
-}
-function ms(e, t) {
-  const r = JSON.parse(JSON.stringify(e)), o = lr(r, "TheodoreDirector_Project", "Theodore 项目");
-  r[o].inputs.plan_json = t.planJson;
-  const i = lr(r, "TheodoreDirector_SelectShot", "Theodore 当前分镜"), a = r[i];
-  if ("resume_mode" in a.inputs && (a.inputs.resume_mode = "fresh"), !lo(r, i, "queue_index", t.activeIndex))
-    throw new Error("无法定位当前片段序号节点（SelectShot.queue_index 的上游整数）");
-  for (const l of wn(r, "ImpactQueueTrigger"))
-    r[l].inputs.mode = !1;
-  return r;
-}
-function fs(e) {
-  var i;
-  const t = new Set(wn(e, "TheodoreDirector_PostprocessSecondPassSource"));
-  if (!t.size) return [];
-  const r = new Set(Object.keys(e).filter((a) => {
-    const l = e[a];
-    return l.class_type === "RandomNoise" && t.has(Et(l.inputs.noise_seed) ?? "");
-  })), o = /* @__PURE__ */ new Set();
-  for (const a of Object.keys(e)) {
-    const l = e[a];
-    if (l.class_type !== "SamplerCustomAdvanced" || !r.has(Et(l.inputs.noise) ?? "")) continue;
-    const s = Et(l.inputs.sigmas);
-    s && ((i = e[s]) == null ? void 0 : i.class_type) === "BasicScheduler" && o.add(s);
+const vt = ["22", "5", "39", "56"];
+function zt(e) {
+  var i, o, s, l, a;
+  const t = e._nodes ?? e.nodes ?? [], r = new Map(t.map((d) => [String(d.id), d]));
+  for (const d of t) {
+    if (d.type !== "TheodoreDirector_ShotControl") continue;
+    const p = (i = d.outputs) == null ? void 0 : i.find((m) => m.name === "video_context");
+    p && (p.type = [...vt]);
   }
-  return [...o];
-}
-function gs(e, t) {
-  const r = fs(e);
-  for (const o of r) e[o].inputs.denoise = t;
-  return r.length;
-}
-function bs(e, t) {
-  var l, s;
-  const r = JSON.parse(JSON.stringify(e));
-  if (((l = r[t.sourceId]) == null ? void 0 : l.class_type) !== "TheodoreDirector_PostprocessSecondPassSource")
-    throw new Error("无法序列化后处理二采源节点");
-  if (((s = r[t.targetId]) == null ? void 0 : s.class_type) !== "TheodoreDirector_SaveSecondPass")
-    throw new Error("无法序列化后处理二采保存节点");
-  if (r[t.sourceId].inputs.request_json = t.requestJson, typeof t.denoise == "number" && t.processingMode !== "super_resolution_only" && !gs(r, t.denoise))
-    throw new Error("当前工作流的后处理二采支流中找不到 BasicScheduler，无法设置重绘强度");
-  const o = {
-    8: "super_resolution_second_pass",
-    9: "latent_upscale_second_pass",
-    10: "super_resolution_only"
-  };
-  for (const m of Object.values(r)) {
-    const h = m.inputs.cond;
-    if (m.class_type !== "ImpactConditionalBranch" || !Ut(h) || String(h[0]) !== t.sourceId) continue;
-    const d = o[h[1]];
-    if (!d) continue;
-    const f = t.processingMode === d, c = m.inputs[f ? "tt_value" : "ff_value"];
-    if (c === void 0) throw new Error("后处理二采模式选择节点缺少输入");
-    m.inputs = { cond: f, tt_value: c, ff_value: c };
+  for (const d of Object.values(e.links ?? {})) {
+    const [p, m, b, h] = Array.isArray(d) ? d.slice(1, 5) : [d.origin_id, d.origin_slot, d.target_id, d.target_slot], c = r.get(String(p)), g = r.get(String(b));
+    (c == null ? void 0 : c.type) !== "TheodoreDirector_ShotControl" || ((s = (o = c.outputs) == null ? void 0 : o[m]) == null ? void 0 : s.name) !== "video_context" || (g == null ? void 0 : g.type) !== "MiniMaxH3MotionContext" || ((a = (l = g.inputs) == null ? void 0 : l[h]) == null ? void 0 : a.name) !== "context_length" || (g.inputs[h].type = [...vt], Array.isArray(d) ? d[5] = [...vt] : d.type = [...vt]);
   }
-  const i = {}, a = [t.targetId];
-  for (; a.length; ) {
-    const m = a.pop();
-    if (i[m]) continue;
-    const h = r[m];
-    if (!h) throw new Error(`后处理二采依赖节点 ${m} 不存在`);
-    if (["TheodoreDirector_Project", "TheodoreDirector_SelectShot", "TheodoreDirector_CommitResult", "ImpactQueueTrigger", "ImpactSetWidgetValue"].includes(h.class_type))
-      throw new Error(`后处理二采支流错误连接到主循环节点 ${m}（${h.class_type}）`);
-    i[m] = h;
-    for (const d of Object.values(h.inputs))
-      Ut(d) && a.push(String(d[0]));
-  }
-  if (!i[t.sourceId]) throw new Error("后处理二采保存目标未连接到所选源节点");
-  return i;
 }
-const xs = `{
-  "id": "92112d97-bb64-4b44-86f2-ea5691ef8f6e",
-  "revision": 0,
-  "last_node_id": 27,
-  "last_link_id": 51,
-  "nodes": [
-    {
-      "id": 8,
-      "type": "VAEDecode",
-      "pos": [
-        1209,
-        188
-      ],
-      "size": [
-        225,
-        54
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 51
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 45
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "slot_index": 0,
-          "links": [
-            16
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAEDecode",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      }
-    },
-    {
-      "id": 9,
-      "type": "SaveImage",
-      "pos": [
-        1454.93896484375,
-        190.9700164794922
-      ],
-      "size": [
-        976.046875,
-        1060.96875
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 16
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "SaveImage",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        "ComfyUI"
-      ],
-      "widgets_values_named": {
-        "filename_prefix": "ComfyUI"
-      }
-    },
-    {
-      "id": 15,
-      "type": "Note",
-      "pos": [
-        71.95149993896484,
-        192.96051025390625
-      ],
-      "size": [
-        319.25,
-        197.890625
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "The \\"You are an assistant... <Prompt Start> \\" text before the actual prompt is the one used in the official example.\\n\\nThe reason it is exposed to the user like this is because the model still works if you modify or remove it."
-      ],
-      "widgets_values_named": {
-        "text": "The \\"You are an assistant... <Prompt Start> \\" text before the actual prompt is the one used in the official example.\\n\\nThe reason it is exposed to the user like this is because the model still works if you modify or remove it."
-      },
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 17,
-      "type": "VAELoader",
-      "pos": [
-        71.22825209024009,
-        614.4132208648346
-      ],
-      "size": [
-        270,
-        62
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            45
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAELoader",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        "ae.safetensors"
-      ],
-      "widgets_values_named": {
-        "vae_name": "ae.safetensors"
-      }
-    },
-    {
-      "id": 7,
-      "type": "CLIPTextEncode",
-      "pos": [
-        420,
-        400
-      ],
-      "size": [
-        425.265625,
-        180.59375
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 44
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "slot_index": 0,
-          "links": [
-            6
-          ]
-        }
-      ],
-      "title": "CLIP Text Encode (Negative Prompt)",
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        "blurry ugly bad",
-        [
-          false,
-          true
-        ]
-      ],
-      "widgets_values_named": {
-        "text": "blurry ugly bad",
-        "speak_and_recognation": [
-          false,
-          true
-        ]
-      },
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
-      "id": 18,
-      "type": "CLIPLoader",
-      "pos": [
-        80,
-        460
-      ],
-      "size": [
-        270,
-        114
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            43,
-            44
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPLoader",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        "qwen_3_4b.safetensors",
-        "lumina2",
-        "default"
-      ],
-      "widgets_values_named": {
-        "clip_name": "qwen_3_4b.safetensors",
-        "type": "lumina2",
-        "device": "default"
-      }
-    },
-    {
-      "id": 16,
-      "type": "UNETLoader",
-      "pos": [
-        80,
-        60
-      ],
-      "size": [
-        270,
-        86
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            42
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "UNETLoader",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        "z_image_turbo_bf16.safetensors",
-        "default"
-      ],
-      "widgets_values_named": {
-        "unet_name": "z_image_turbo_bf16.safetensors",
-        "weight_dtype": "default"
-      }
-    },
-    {
-      "id": 11,
-      "type": "ModelSamplingAuraFlow",
-      "pos": [
-        390,
-        60
-      ],
-      "size": [
-        315,
-        62
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 4,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 42
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "slot_index": 0,
-          "links": [
-            47
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ModelSamplingAuraFlow",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        3
-      ],
-      "widgets_values_named": {
-        "shift": 3
-      }
-    },
-    {
-      "id": 6,
-      "type": "CLIPTextEncode",
-      "pos": [
-        420,
-        190
-      ],
-      "size": [
-        423.828125,
-        177.109375
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 43
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "slot_index": 0,
-          "links": [
-            4
-          ]
-        }
-      ],
-      "title": "CLIP Text Encode (Positive Prompt)",
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        "cute anime style girl with massive fluffy fennec ears and a big fluffy tail blonde messy long hair blue eyes wearing a maid outfit with a long black gold leaf pattern dress and a white apron, it is a postcard held by a hand in front of a beautiful realistic city at sunset and there is cursive writing that says \\"ZImage, Now in ComfyUI\\"",
-        [
-          false,
-          true
-        ]
-      ],
-      "widgets_values_named": {
-        "text": "cute anime style girl with massive fluffy fennec ears and a big fluffy tail blonde messy long hair blue eyes wearing a maid outfit with a long black gold leaf pattern dress and a white apron, it is a postcard held by a hand in front of a beautiful realistic city at sunset and there is cursive writing that says \\"ZImage, Now in ComfyUI\\"",
-        "speak_and_recognation": [
-          false,
-          true
-        ]
-      },
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 13,
-      "type": "EmptySD3LatentImage",
-      "pos": [
-        525.8186605881135,
-        622.5087730224612
-      ],
-      "size": [
-        315,
-        118
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "slot_index": 0,
-          "links": [
-            17
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "EmptySD3LatentImage",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        1024,
-        1024,
-        1
-      ],
-      "widgets_values_named": {
-        "width": 1024,
-        "height": 1024,
-        "batch_size": 1
-      }
-    },
-    {
-      "id": 3,
-      "type": "KSampler",
-      "pos": [
-        863,
-        186
-      ],
-      "size": [
-        315,
-        262
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 47
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 4
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 6
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 17
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "slot_index": 0,
-          "links": [
-            51
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "KSampler",
-        "cnr_id": "comfy-core",
-        "ver": "0.3.75"
-      },
-      "widgets_values": [
-        723597249731813,
-        "randomize",
-        12,
-        1,
-        "euler",
-        "simple",
-        1
-      ],
-      "widgets_values_named": {
-        "seed": 723597249731813,
-        "control_after_generate": "randomize",
-        "steps": 12,
-        "cfg": 1,
-        "sampler_name": "euler",
-        "scheduler": "simple",
-        "denoise": 1
-      }
-    }
-  ],
-  "links": [
-    [
-      4,
-      6,
-      0,
-      3,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      6,
-      7,
-      0,
-      3,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      16,
-      8,
-      0,
-      9,
-      0,
-      "IMAGE"
-    ],
-    [
-      17,
-      13,
-      0,
-      3,
-      3,
-      "LATENT"
-    ],
-    [
-      42,
-      16,
-      0,
-      11,
-      0,
-      "MODEL"
-    ],
-    [
-      43,
-      18,
-      0,
-      6,
-      0,
-      "CLIP"
-    ],
-    [
-      44,
-      18,
-      0,
-      7,
-      0,
-      "CLIP"
-    ],
-    [
-      45,
-      17,
-      0,
-      8,
-      1,
-      "VAE"
-    ],
-    [
-      47,
-      11,
-      0,
-      3,
-      0,
-      "MODEL"
-    ],
-    [
-      51,
-      3,
-      0,
-      8,
-      0,
-      "LATENT"
-    ]
-  ],
-  "groups": [],
-  "config": {},
-  "extra": {
-    "ds": {
-      "scale": 1.1671841070450009,
-      "offset": [
-        467.1606285161531,
-        407.4661663364565
-      ]
-    },
-    "frontendVersion": "1.49.6",
-    "workflowRendererVersion": "LG",
-    "VHS_latentpreview": false,
-    "VHS_latentpreviewrate": 0,
-    "VHS_MetadataImage": true,
-    "VHS_KeepIntermediate": true
-  },
-  "version": 0.4
-}`, vs = '.td-modal{--td-bg:#0b1020;--td-panel:#121a2b;--td-panel-2:#18243a;--td-panel-3:#20314d;--td-line:#273b5b;--td-line-strong:#3e5b82;--td-text:#edf5ff;--td-muted:#9cafc9;--td-faint:#7185a3;--td-accent:#69e1c0;--td-accent-dim:#153d3d;--td-relay:#8bb8ff;--td-relay-dim:#1d3155;--td-warn:#f4c96d;--td-warn-dim:#44351d;--td-danger:#ff858f;--td-danger-dim:#45232e;--td-radius:10px;--td-font:"PingFang SC","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Segoe UI",system-ui,sans-serif;--td-mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,"Microsoft YaHei",monospace}.td-modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483000;display:block;overflow:hidden;pointer-events:auto;background:var(--td-bg);color:var(--td-text);font:13.5px/1.5 var(--td-font);isolation:isolate;outline:none}.td-modal *{box-sizing:border-box}.td-shell{height:100dvh;display:grid;grid-template-columns:214px minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);grid-template-areas:"rail header" "rail status" "rail content";background:var(--td-bg)}.td-shell h1,.td-shell h2,.td-shell h3{margin:0;font-weight:650;letter-spacing:.01em}.td-shell h1{font-size:17px}.td-shell h2{font-size:15px}.td-shell h3{font-size:13.5px}.td-shell button,.td-shell input,.td-shell textarea,.td-shell select,.td-button{font:inherit;color:var(--td-text);background:var(--td-panel-3);border:1px solid var(--td-line-strong);border-radius:6px;padding:6px 10px}.td-shell button,.td-button{cursor:pointer;white-space:nowrap;transition:border-color .12s,background .12s,color .12s}.td-shell button:hover:not(:disabled),.td-button:hover{border-color:var(--td-accent)}.td-shell button:disabled{opacity:.45;cursor:not-allowed}.td-shell button.primary{background:var(--td-accent);border-color:var(--td-accent);color:#07140e;font-weight:600}.td-shell button.primary:hover:not(:disabled){filter:brightness(1.08)}.td-shell button.accent{background:var(--td-accent-dim);border-color:#2f6b52;color:var(--td-accent)}.td-shell button.danger{color:var(--td-danger)}.td-shell button.danger:hover:not(:disabled){border-color:var(--td-danger)}.td-shell input:focus,.td-shell textarea:focus,.td-shell select:focus{outline:none;border-color:var(--td-accent);box-shadow:0 0 0 2px #5fd0a022}.td-shell textarea{resize:vertical}.td-button{display:inline-flex;align-items:center;gap:6px}.td-button input{display:none}.td-chip{display:inline-flex;align-items:center;gap:4px;padding:1px 8px;border-radius:999px;background:var(--td-panel-3);color:var(--td-muted);font-size:11.5px;white-space:nowrap}.td-chip.ok{background:var(--td-accent-dim);color:var(--td-accent)}.td-chip.warn{background:var(--td-warn-dim);color:var(--td-warn)}.td-inline-check{display:inline-flex!important;flex-direction:row!important;align-items:center;gap:6px!important;color:var(--td-text)!important;cursor:pointer;white-space:nowrap}.td-inline-check input{width:15px!important;height:15px;margin:0}.td-hint{margin:0;color:var(--td-faint);font-size:12px}.errors{color:var(--td-danger)}.ok{color:var(--td-accent)}.wide{width:100%}.td-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 18px;border-bottom:1px solid var(--td-line);background:var(--td-panel)}.td-brand{display:flex;align-items:center;gap:12px;min-width:0}.td-project-chip{display:inline-flex;align-items:center;gap:6px;max-width:320px;overflow:hidden;padding:3px 10px;border:1px solid var(--td-line-strong);border-radius:999px;text-overflow:ellipsis;white-space:nowrap}.td-project-chip em{color:var(--td-faint);font-style:normal;font-size:12px}.td-project-meta{color:var(--td-muted);font-size:12.5px;white-space:nowrap}.td-actions{display:flex;gap:8px;align-items:center;flex:none}.td-actions .td-lang{min-width:46px}.td-tabs{display:flex;align-items:center;gap:4px;padding:0 18px;border-bottom:1px solid var(--td-line);background:var(--td-panel)}.td-shell .td-tabs>button{position:relative;padding:10px 14px;border:0;border-radius:0;background:transparent;color:var(--td-muted)}.td-shell .td-tabs>button:hover:not(:disabled){color:var(--td-text);border-color:transparent}.td-shell .td-tabs>button.active{color:var(--td-text);font-weight:600}.td-tabs>button.active:after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;border-radius:2px;background:var(--td-accent)}.td-shell .td-tabs>button.attention{color:var(--td-warn)}.td-tab-status{display:flex;align-items:center;gap:10px;margin-left:auto;padding:6px 0}.td-progress-text{color:var(--td-muted);font-size:12.5px}.td-run-pill{display:inline-flex;align-items:center;gap:8px;padding:3px 4px 3px 10px;border:1px solid #2f6b52;border-radius:999px;background:var(--td-accent-dim);color:var(--td-accent);font-size:12.5px}.td-run-pill i{width:8px;height:8px;border-radius:50%;background:var(--td-accent);animation:td-pulse 1.2s infinite}.td-shell .td-run-pill button{padding:2px 10px;border-radius:999px;color:var(--td-danger)}@keyframes td-pulse{50%{opacity:.25}}.td-shell main{min-height:0;overflow:auto;padding:14px 18px}.td-shell.td-compact main{padding:8px 12px}.td-shell.td-compact .td-topbar{padding:7px 14px}.td-shell.td-compact .td-tabs>button{padding-top:7px;padding-bottom:7px}.td-shots{display:grid;grid-template-columns:270px minmax(420px,1fr) minmax(320px,380px);gap:14px;height:100%;min-height:0}.td-shots>aside,.td-shot-form{min-height:0;background:var(--td-panel);border:1px solid var(--td-line);border-radius:var(--td-radius)}.td-shot-sidebar{display:flex;flex-direction:column;overflow:hidden}.td-shot-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px}.td-shot-card{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;margin-bottom:4px;padding:8px 8px 8px 10px;border:1px solid transparent;border-radius:7px;cursor:pointer}.td-shot-card:hover{background:var(--td-panel-2)}.td-shot-card.selected{border-color:#2f6b52;background:var(--td-accent-dim)}.td-shot-card.off{opacity:.55}.td-shot-card.running{border-color:var(--td-accent);box-shadow:inset 3px 0 0 var(--td-accent)}.td-shot-card.relay{margin-top:-2px}.td-relay-link{position:absolute;left:3px;top:-8px;height:16px;border-left:2px dashed var(--td-relay)}.td-shot-card-main{min-width:0}.td-shot-card-main strong{display:block;overflow:hidden;font-weight:600;text-overflow:ellipsis;white-space:nowrap}.td-shot-card-main strong em{margin-right:6px;color:var(--td-faint);font-style:normal;font-variant-numeric:tabular-nums}.td-shot-card-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px;font-size:11.5px;color:var(--td-muted)}.td-shot-card-meta b{font-weight:500}.td-shot-card-meta i{padding:0 6px;border-radius:999px;background:var(--td-panel-3);font-style:normal}.td-shot-card-meta i.relay{background:var(--td-relay-dim);color:var(--td-relay)}.td-shot-card-meta i.ok{background:var(--td-accent-dim);color:var(--td-accent)}.td-shot-card-meta i.warn{background:var(--td-warn-dim);color:var(--td-warn)}.td-shot-card-meta i.run{background:var(--td-accent);color:#07140e}.td-shot-card-actions{display:flex;gap:2px;opacity:0;transition:opacity .12s}.td-shot-card:hover .td-shot-card-actions,.td-shot-card.selected .td-shot-card-actions{opacity:1}.td-shell .td-shot-card-actions button{padding:1px 6px;font-size:12px;background:transparent}.td-shot-sidebar-footer{flex:none;display:grid;gap:8px;padding:10px;border-top:1px solid var(--td-line)}.td-total{color:var(--td-muted);font-size:12px;text-align:center}.td-two-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}.td-form{display:flex;flex-direction:column;gap:10px}.td-form label,.td-settings-grid label{display:flex;flex-direction:column;gap:4px;color:var(--td-muted);font-size:12.5px}.td-form input,.td-form textarea,.td-form select{width:100%}.td-shot-form{overflow:auto;padding:14px}.td-shot-head{display:grid;grid-template-columns:minmax(0,1fr) 110px 200px;gap:10px;align-items:end}.td-shot-head input{font-size:14px}.td-seed-input{display:flex;gap:4px}.td-seed-input input{min-width:0}.td-shell .td-seed-input button{flex:none;padding:6px 8px}.td-inline-warning{padding:6px 10px;border:1px solid #6b5527;border-radius:6px;background:var(--td-warn-dim);color:var(--td-warn);font-size:12.5px}.td-shot-switches{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px}.td-form label.td-toggle{flex-direction:row;align-items:center;gap:7px;padding:6px 10px;border:1px solid var(--td-line-strong);border-radius:6px;background:var(--td-panel-2);color:var(--td-text);cursor:pointer;white-space:nowrap}.td-form label.td-toggle input{width:15px;height:15px;margin:0}.td-form label.td-toggle:has(input:checked){border-color:#2f6b52;background:var(--td-accent-dim)}.td-form label.td-toggle:has(input:disabled){opacity:.55;cursor:not-allowed}.td-advanced{margin-left:auto}.td-advanced>summary{padding:6px 10px;color:var(--td-muted);cursor:pointer;list-style:none;border:1px dashed var(--td-line-strong);border-radius:6px}.td-advanced[open]>summary{color:var(--td-text)}.td-advanced-body{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;min-width:420px;padding:10px;border:1px solid var(--td-line);border-radius:7px;background:var(--td-panel-2)}.td-note{border:1px solid var(--td-line);border-radius:7px;background:var(--td-panel-2)}.td-note>summary{padding:7px 10px;color:var(--td-muted);cursor:pointer}.td-note[open]>summary{border-bottom:1px solid var(--td-line)}.td-note textarea{display:block;width:100%;border:0;border-radius:0 0 7px 7px;background:transparent;line-height:1.6}.td-field-label{display:flex;align-items:baseline;gap:10px;color:var(--td-muted)}.td-field-label small{color:var(--td-faint);font-size:11.5px}.td-prompt-field{flex:1 0 auto}.td-prompt-field .td-highlight-input{min-height:360px}.td-camera-builder{border:1px solid var(--td-line);border-radius:6px;background:var(--td-panel-2)}.td-camera-builder>summary{padding:8px 10px;color:var(--td-muted);cursor:pointer}.td-camera-builder[open]>summary{border-bottom:1px solid var(--td-line)}.td-camera-builder-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px}.td-camera-builder-fields label{display:grid;gap:4px;color:var(--td-muted);font-size:12px}.td-camera-builder-fields input,.td-camera-builder-fields select{min-width:0}.td-camera-builder-fields button{justify-self:start;align-self:end}.td-camera-builder-fields label:first-child{grid-column:1/-1}.td-highlight-textarea{position:relative;display:block;width:100%;min-width:0}.td-highlight-backdrop,.td-form textarea.td-highlight-input{box-sizing:border-box;width:100%;margin:0;padding:9px 11px;font-family:var(--td-mono);font-size:13px;line-height:1.6;letter-spacing:normal;-moz-tab-size:8;tab-size:8;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word}.td-highlight-backdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;overflow:hidden;border:1px solid transparent;border-radius:6px;background:#11161d;color:var(--td-text);pointer-events:none}.td-form textarea.td-highlight-input{position:relative;z-index:1;display:block;background:transparent;color:transparent;caret-color:var(--td-text);-webkit-text-fill-color:transparent}.td-highlight-input::selection{background:#5898d46b}.td-highlight-backdrop mark{padding:0;border-radius:3px;color:inherit}.td-highlight-backdrop mark.valid{background:#1d6b50;color:#bfffe6}.td-highlight-backdrop mark.invalid{background:#7a2931;color:#ffd1d5;text-decoration:underline;text-decoration-color:#ff9aa4;text-underline-offset:2px}.td-reference-mention-menu{position:fixed;z-index:80;display:flex;flex-direction:column;overflow:hidden;border:1px solid #526174;border-radius:9px;background:#161d26;color:var(--td-text);box-shadow:0 14px 42px #000b}.td-reference-mention-menu>header{display:flex;align-items:center;justify-content:space-between;flex:none;padding:8px 10px;border-bottom:1px solid var(--td-line);background:#202936}.td-reference-mention-menu>header strong{color:var(--td-text);font-size:13px}.td-reference-mention-menu>header span{padding:1px 7px;border-radius:999px;background:#2b3745;color:var(--td-muted);font-size:11px}.td-reference-mention-options{min-height:0;overflow:auto;padding:5px}.td-shell .td-reference-mention-options>button{display:grid;grid-template-columns:66px minmax(0,1fr) auto;gap:9px;align-items:center;width:100%;min-height:56px;padding:5px;border:1px solid transparent;background:transparent;text-align:left}.td-shell .td-reference-mention-options>button:hover,.td-shell .td-reference-mention-options>button.active{border-color:#527e6c;background:#1d302b}.td-reference-mention-thumb{display:flex;width:66px;height:46px;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--td-line);border-radius:5px;background:#0b0f14;color:var(--td-accent);font-size:20px}.td-reference-mention-thumb img{display:block;width:100%;height:100%;object-fit:cover}.td-reference-mention-copy{display:flex;min-width:0;flex-direction:column;gap:2px}.td-reference-mention-copy strong,.td-reference-mention-copy small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-reference-mention-copy strong{color:var(--td-text)}.td-reference-mention-copy small{color:var(--td-muted);font-size:11px}.td-reference-mention-options>button>em{padding:2px 7px;border-radius:999px;background:#293440;color:var(--td-muted);font-size:10px;font-style:normal;white-space:nowrap}.td-reference-mention-empty{margin:0;padding:22px 12px;color:var(--td-muted);text-align:center}.td-shot-media{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;margin:0;padding:10px;border:1px solid var(--td-line);border-radius:7px}.td-shot-media legend{padding:0 6px;color:var(--td-muted);font-size:12px}.td-shot-media-card{min-width:0;overflow:hidden;border:1px solid var(--td-line);border-radius:6px;background:var(--td-panel-2)}.td-shot-media-card.used{border-color:#2f6b52}.td-shot-media-card.disabled{opacity:.4}.td-shot-media-frame{position:relative}.td-shot-media-card .td-media-preview{min-height:64px;border:0;border-radius:0}.td-shot-media-card .td-media-preview img,.td-shot-media-card .td-media-preview video{height:70px;object-fit:cover}.td-shot-media-card .td-media-preview.empty,.td-shot-media-card .td-media-preview.unavailable{height:70px;font-size:11px}.td-shot-media-card .td-media-preview audio{width:calc(100% - 8px)}.td-form label.td-shot-media-toggle{position:absolute;top:5px;right:5px;z-index:2;display:flex;align-items:center;justify-content:center;width:22px;height:22px;padding:0;border-radius:5px;background:#090d12d9;border:1px solid #ffffff38;cursor:pointer}.td-form label.td-shot-media-toggle input{width:14px;height:14px;margin:0}.td-shell button.td-shot-media-name{display:block;width:100%;overflow:hidden;padding:5px 8px;border:0;border-radius:0;background:transparent;font-size:12px;text-align:left;text-overflow:ellipsis;white-space:nowrap}.td-shell button.td-shot-media-name:hover{color:var(--td-accent)}.td-shot-media-name i{margin-right:4px;color:var(--td-accent);font-style:normal;font-size:9px}.td-preview{display:flex;flex-direction:column;gap:12px;overflow:auto;padding:0!important;border:0!important;background:transparent!important}.td-card{border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-card>header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid var(--td-line)}.td-card-body{display:flex;flex-direction:column;gap:9px;padding:12px}.td-card-body ul.errors{margin:0;padding-left:18px}.td-card-body p{margin:0}.td-summary-counts{color:var(--td-muted);font-size:11.5px;white-space:nowrap}.td-slot-list{display:grid;gap:3px;margin:0;padding:0;list-style:none;font-size:12.5px}.td-slot-list li{display:flex;gap:8px}.td-slot-list code{min-width:84px;color:#9ee6c7}.td-shell .td-link-button{align-self:flex-start;padding:0;border:0;background:transparent;color:var(--td-relay);font-size:12.5px}.td-compiled{max-height:360px;margin:0;overflow:auto;padding:10px;border-radius:6px;background:#0d1117;font-family:var(--td-mono);font-size:12px;white-space:pre-wrap}.td-take-player,.td-lazy-player video{display:block;width:100%;max-height:300px;border-radius:6px;background:#06090c}.td-take-strip{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}.td-shell button.td-take{position:relative;flex:none;width:84px;padding:0;overflow:hidden;border:2px solid transparent;border-radius:6px;background:#06090c}.td-shell button.td-take.selected{border-color:var(--td-accent)}.td-take .td-result-thumb{width:100%;aspect-ratio:16/9;border-radius:0}.td-take>span{position:absolute;left:3px;bottom:2px;padding:0 5px;border-radius:4px;background:#000a;font-size:10.5px}.td-take-actions{display:flex;flex-wrap:wrap;gap:6px}.td-result-empty{min-height:120px;display:flex;align-items:center;justify-content:center;padding:12px;border:1px dashed var(--td-line-strong);border-radius:7px;color:var(--td-muted);text-align:center}.td-result-empty.running{border-color:var(--td-accent);color:var(--td-accent);animation:td-pulse 1.6s infinite}.td-assets-panel{display:flex;flex-direction:column;gap:16px;max-width:1500px;margin:0 auto}.td-assets-toolbar{position:sticky;top:-14px;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-assets-summary,.td-assets-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.td-empty-state{padding:36px;border:1px dashed var(--td-line-strong);border-radius:var(--td-radius);color:var(--td-muted);text-align:center}.td-empty-state strong{color:var(--td-text);font-size:15px}.td-empty-state p{max-width:620px;margin:8px auto 0}.td-asset-group>h3{display:flex;align-items:center;gap:8px;margin-bottom:10px}.td-asset-group>h3 span{padding:0 7px;border-radius:999px;background:var(--td-panel-3);color:var(--td-muted);font-size:11.5px;font-weight:500}.td-asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:12px;align-items:start}.td-asset-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel);transition:border-color .12s}.td-asset-card.expanded{grid-column:1/-1}.td-asset-card.expanded .td-asset-note{display:block;overflow-wrap:anywhere}.td-asset-card.missing{border-color:#6b5527}.td-asset-card.dragging{border-color:var(--td-accent);box-shadow:0 0 0 2px #5fd0a033}.td-asset-card.disabled{opacity:.55}.td-asset-card-media{position:relative;height:170px;background:#0b0f14}.td-asset-card-media .td-media-preview{height:100%;min-height:0;border:0;border-radius:0}.td-asset-card-media .td-media-preview img,.td-asset-card-media .td-media-preview video{height:170px;object-fit:contain}.td-asset-drop{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin:8px;border:1px dashed #6b5527;border-radius:6px;color:var(--td-warn);cursor:pointer}.td-asset-drop:hover{background:var(--td-warn-dim)}.td-asset-drop small{color:var(--td-muted);font-size:11.5px}.td-asset-drop input{display:none}.td-asset-kind,.td-asset-status{position:absolute;top:8px;padding:1px 8px;border-radius:999px;background:#090d12d9;font-size:11.5px}.td-asset-kind{left:8px;color:var(--td-text)}.td-asset-status{right:8px}.td-asset-status.ok{color:var(--td-accent)}.td-asset-status.warn{color:var(--td-warn)}.td-asset-card-body{display:flex;flex-direction:column;gap:8px;padding:10px}.td-asset-card-title{display:flex;gap:6px}.td-asset-card-title input{min-width:0;flex:1;font-weight:600}.td-shell .td-asset-card-title button{flex:none;padding:4px 8px;font-family:var(--td-mono);font-size:12px}.td-asset-note{display:-webkit-box;margin:0;overflow:hidden;color:var(--td-muted);font-size:12.5px;line-height:1.55;-webkit-line-clamp:3;-webkit-box-orient:vertical}.td-asset-card-actions{display:flex;flex-wrap:wrap;gap:6px}.td-asset-card-actions>*{font-size:12.5px}.td-file-label{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid var(--td-line-strong);border-radius:6px;background:var(--td-panel-3);cursor:pointer}.td-file-label:hover{border-color:var(--td-accent)}.td-file-label input{display:none}.td-asset-details{display:flex;min-width:0;flex-direction:column;gap:8px;padding-top:8px;border-top:1px solid var(--td-line)}.td-asset-details label{display:flex;min-width:0;flex-direction:column;gap:3px;color:var(--td-muted);font-size:12px}.td-asset-details label small{color:var(--td-faint);overflow-wrap:anywhere}.td-asset-details input,.td-asset-details textarea,.td-asset-details select{min-width:0;width:100%;max-width:100%}.td-asset-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.td-asset-detail-grid .wide{grid-column:1/-1}.td-asset-flags{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.td-asset-flags button{margin-left:auto}.td-gen-prompt{min-width:0}.td-gen-prompt>summary{color:var(--td-relay);cursor:pointer;font-size:12.5px}.td-gen-prompt pre{max-height:220px;margin:6px 0 0;overflow:auto;padding:8px;border-radius:6px;background:#0d1117;font-family:var(--td-mono);font-size:11.5px;white-space:pre-wrap;overflow-wrap:anywhere}@media(max-width:600px){.td-asset-detail-grid{grid-template-columns:minmax(0,1fr)}}.td-media-preview{min-height:120px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--td-line);border-radius:7px;background:#0b0f14;color:var(--td-muted);text-align:center}.td-media-preview img,.td-media-preview video{display:block;width:100%;height:200px;object-fit:contain;background:#090c10}.td-media-preview audio{display:block;width:calc(100% - 16px)}.td-media-preview.empty,.td-media-preview.unavailable{padding:12px}.td-review{display:flex;flex-direction:column;gap:12px;max-width:1700px;margin:0 auto}.td-review-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.td-step{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel);color:var(--td-muted)}.td-step b{display:grid;flex:none;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--td-panel-3);color:var(--td-muted)}.td-step div{display:flex;min-width:0;flex-direction:column}.td-step strong{color:var(--td-text);font-weight:600}.td-step span{overflow:hidden;font-size:12px;text-overflow:ellipsis;white-space:nowrap}.td-step.active{border-color:#2f6b52;background:var(--td-accent-dim)}.td-step.active b{background:var(--td-accent);color:#07140e}.td-step.done b{background:#2f6b52;color:#d9fff0}.td-review-actions{display:flex;flex-wrap:wrap;gap:10px}.td-action-group{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-action-title{color:var(--td-faint);font-size:12px}.td-denoise{display:flex!important;flex-direction:row!important;align-items:center;gap:8px;color:var(--td-muted);font-size:12.5px}.td-shell .td-denoise input{width:120px;padding:0;accent-color:var(--td-accent)}.td-denoise b{min-width:34px;color:var(--td-accent);font-variant-numeric:tabular-nums}.td-run-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-run-bar>div{display:flex;min-width:0;flex:1;align-items:baseline;gap:10px}.td-run-bar span{overflow:hidden;color:var(--td-muted);text-overflow:ellipsis;white-space:nowrap}.td-run-bar.running{border-color:#2f6b52}.td-run-bar.running strong{color:var(--td-accent)}.td-run-bar.error{border-color:#7a3a40;background:var(--td-danger-dim)}.td-run-bar.error strong{color:var(--td-danger)}.td-run-bar.done strong{color:var(--td-accent)}.td-run-bar progress{width:220px;height:8px;accent-color:var(--td-accent)}.td-run-bar b{min-width:40px;color:var(--td-accent);text-align:right}.td-review-filter{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.td-shell .td-review-filter button{border-radius:999px;padding:4px 12px;font-size:12.5px}.td-shell .td-review-filter button.active{border-color:var(--td-accent);color:var(--td-accent)}.td-review-hint{margin-left:auto;color:var(--td-faint);font-size:12px}.td-review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:12px;align-items:start}.td-review-card{display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-review-card.approved{border-color:#2f6b52}.td-review-card.redo{border-color:#6b5527}.td-review-card.off{opacity:.55}.td-review-card.running{box-shadow:0 0 0 2px #5fd0a055}.td-review-card>header{display:flex;align-items:center;justify-content:space-between;gap:8px}.td-shell .td-review-title{min-width:0;overflow:hidden;padding:0;border:0;background:transparent;font-weight:600;text-align:left;text-overflow:ellipsis}.td-shell .td-review-title:hover{color:var(--td-accent)}.td-review-title em{margin-right:6px;color:var(--td-faint);font-style:normal}.td-review-tags{display:flex;flex:none;gap:4px}.td-review-tags i{padding:0 7px;border-radius:999px;background:var(--td-panel-3);color:var(--td-muted);font-size:11.5px;font-style:normal}.td-review-tags i.relay{background:var(--td-relay-dim);color:var(--td-relay)}.td-review-tags i.approved{background:var(--td-accent-dim);color:var(--td-accent)}.td-review-tags i.redo{background:var(--td-warn-dim);color:var(--td-warn)}.td-review-media{position:relative}.td-lazy-player{display:flex;aspect-ratio:16/9;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;background:#06090c;color:var(--td-faint)}.td-lazy-player video{width:100%;height:100%;max-height:none;object-fit:contain}.td-review-media>.td-result-empty{aspect-ratio:16/9;min-height:0}.td-review-media-switch{position:absolute;top:6px;right:6px;display:flex;overflow:hidden;border:1px solid var(--td-line-strong);border-radius:6px}.td-shell .td-review-media-switch button{padding:2px 9px;border:0;border-radius:0;background:#090d12d9;font-size:11.5px}.td-shell .td-review-media-switch button.active{background:var(--td-accent);color:#07140e}.td-review-warning{margin:0;padding:6px 9px;border-radius:6px;background:var(--td-warn-dim);color:var(--td-warn);font-size:12px}.td-review-note{display:-webkit-box;margin:0;overflow:hidden;color:var(--td-muted);font-size:12.5px;white-space:pre-line;-webkit-line-clamp:4;-webkit-box-orient:vertical;cursor:help}.td-review-card>footer{display:flex;flex-wrap:wrap;gap:6px}.td-shell .td-review-card>footer button{padding:5px 10px;font-size:12.5px}.td-shell .td-review-card>footer button.ok.active{border-color:var(--td-accent);background:var(--td-accent-dim);color:var(--td-accent)}.td-shell .td-review-card>footer button.warn.active{border-color:var(--td-warn);background:var(--td-warn-dim);color:var(--td-warn)}.settings{max-width:860px;margin:0 auto;padding:18px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-settings-grid{display:grid;grid-template-columns:2fr 1fr 100px 1fr;gap:10px}.td-settings-grid .td-setting-check{justify-content:space-between}.td-setting-check>span:last-child{display:flex;align-items:center;gap:7px;color:var(--td-text)}.td-setting-check input{width:15px!important;height:15px;margin:0}.td-project-cleanup{display:grid;gap:9px;margin-top:18px}.td-project-cleanup h3{color:var(--td-danger)}.td-project-cleanup article{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 14px;border:1px solid #5a2f35;border-radius:8px;background:#22161a}.td-project-cleanup strong{color:#ffd1d5}.td-project-cleanup p{margin:4px 0 0;color:#c99da2;font-size:12.5px;line-height:1.5}.td-project-cleanup button{min-width:120px;flex:none}.td-batch-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:28px;background:#05080dcc}.td-confirm{width:min(440px,100%);padding:18px;border:1px solid var(--td-line-strong);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-confirm p{color:var(--td-muted)}.td-confirm footer{display:flex;justify-content:flex-end;gap:8px}.td-toasts{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;flex-direction:column;gap:8px;max-width:420px;pointer-events:none}.td-toast{padding:10px 14px;border:1px solid #2f6b52;border-radius:8px;background:#122019;color:var(--td-text);box-shadow:0 10px 30px #0009;animation:td-toast-in .18s ease-out}.td-toast.error{border-color:#7a3a40;background:#2a1418;color:#ffd1d5}@keyframes td-toast-in{0%{opacity:0;transform:translateY(8px)}}.td-batch-panel{display:flex;flex-direction:column;width:min(1040px,100%);max-height:min(820px,calc(100vh - 56px));overflow:hidden;border:1px solid var(--td-line);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-batch-panel>.td-batch-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--td-line)}.td-batch-header h2{font-size:17px;margin:0}.td-batch-header p{margin:3px 0 0;color:var(--td-muted)}.td-batch-header>button{font-size:20px;line-height:1;padding:5px 9px}.td-batch-tools{display:grid;grid-template-columns:1fr 1.4fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--td-line);background:#151b23}.td-batch-tools>div{display:flex;align-items:end;gap:8px;padding:10px;border:1px solid var(--td-line);border-radius:7px}.td-batch-tools label{display:flex;flex:1;flex-direction:column;gap:4px;color:var(--td-muted);white-space:nowrap}.td-batch-tools label>span,.td-batch-duration{display:flex;align-items:center;gap:6px}.td-batch-tools input{width:100%}.td-batch-tools em{color:var(--td-muted);font-style:normal}.td-batch-tools button{white-space:nowrap}.td-batch-global-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:9px 22px;border-bottom:1px solid var(--td-line);background:#171e27;color:var(--td-muted)}.td-batch-global-actions button.active{border-color:#527e6c;background:#1b302a;color:var(--td-accent)}.td-batch-table{overflow:auto;padding:0 18px}.td-batch-row{display:grid;grid-template-columns:42px minmax(180px,1fr) 100px 150px 120px;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #2a3442}.td-batch-table-head{position:sticky;top:0;z-index:1;background:var(--td-panel);color:var(--td-muted);font-weight:600}.td-batch-duration input{min-width:0;width:100%}.td-batch-duration>span{color:var(--td-muted)}.td-batch-enabled,.td-batch-relay{display:flex;align-items:center;gap:7px;justify-content:flex-start;color:var(--td-text)}.td-batch-enabled input,.td-batch-relay input{width:17px;height:17px;margin:0}.td-batch-panel>footer{display:flex;justify-content:flex-end;gap:8px;padding:13px 18px;border-top:1px solid var(--td-line)}.td-asset-batch-panel{display:flex;flex-direction:column;width:min(1420px,100%);max-height:min(880px,calc(100vh - 56px));overflow:hidden;border:1px solid var(--td-line);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-asset-batch-panel>.td-batch-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--td-line)}.td-asset-batch-panel>footer{display:flex;justify-content:flex-end;gap:8px;padding:13px 18px;border-top:1px solid var(--td-line)}.td-asset-dropzone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:112px;margin:14px 18px 10px;border:1px dashed #597084;border-radius:9px;background:#151b23;color:var(--td-text);transition:border-color .15s,background .15s}.td-asset-dropzone:hover,.td-asset-dropzone.dragging{border-color:var(--td-accent);background:#1b2c28}.td-asset-dropzone span{color:var(--td-muted);font-size:12px}.td-asset-dropzone input{display:none}.td-asset-batch-warning{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 18px 10px;padding:8px 10px;border:1px solid #836a32;border-radius:7px;background:#3a301c;color:#f4d991}.td-asset-batch-warning span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-asset-batch-warning button{padding:2px 7px}.td-asset-batch-summary{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;border-top:1px solid var(--td-line);border-bottom:1px solid var(--td-line);background:#151b23;color:var(--td-muted)}.td-asset-batch-summary button{padding:5px 8px}.td-asset-batch-list{overflow:auto;padding:0 18px 10px}.td-asset-batch-row{display:grid;grid-template-columns:minmax(210px,1.4fr) minmax(150px,1fr) 115px 135px 105px 72px;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #2a3442}.td-asset-batch-head{position:sticky;top:0;z-index:2;padding-top:10px;background:var(--td-panel);color:var(--td-muted);font-weight:600}.td-asset-batch-row.invalid{background:#3b202560}.td-asset-batch-row.imported{background:#17372d55}.td-asset-batch-file{display:flex;min-width:0;flex-direction:column;gap:2px}.td-asset-batch-file strong,.td-asset-batch-file small,.td-asset-batch-file em{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-asset-batch-file small{color:var(--td-muted);font-weight:400}.td-asset-batch-file em{color:var(--td-danger);font-size:11px;font-style:normal}.td-asset-batch-duration,.td-asset-batch-audio{display:flex;align-items:center;gap:6px;color:var(--td-muted)}.td-asset-batch-duration input{min-width:0;width:100%}.td-asset-batch-audio input{width:17px;height:17px;margin:0}.td-asset-batch-empty{display:flex;min-height:130px;align-items:center;justify-content:center;color:var(--td-muted)}.td-asset-batch-panel button:disabled,.td-asset-batch-panel input:disabled,.td-asset-batch-panel select:disabled{opacity:.55;cursor:not-allowed}.td-asset-picker-actions{display:flex;gap:8px;margin-top:8px}.td-asset-picker-button{padding:7px 12px;border:1px solid var(--td-line);border-radius:6px;background:#222c39;color:var(--td-text);cursor:pointer}.td-asset-picker-button:hover{border-color:var(--td-accent);background:#263b38}.td-asset-picker-button:has(input:disabled){opacity:.55;cursor:not-allowed}.td-asset-batch-fill{display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;color:var(--td-accent);white-space:nowrap}.td-asset-batch-fill em{padding:0 6px;border-radius:999px;background:var(--td-accent-dim);font-size:11px;font-style:normal}.td-asset-batch-alias{display:flex;flex-direction:column;gap:6px;min-width:0}.td-asset-batch-alias>input{width:100%;min-width:0}.td-asset-conflict-actions{display:flex;flex-wrap:wrap;gap:4px}.td-asset-conflict-actions button{padding:4px 6px;font-size:11px}.td-asset-batch-conflicts{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:0 18px 10px;padding:10px;border:1px solid #836a32;border-radius:7px;background:#3a301c;color:#f4d991}.td-asset-batch-conflicts>div{display:flex;flex-wrap:wrap;gap:6px}.td-postprocess{display:flex;flex-direction:column;gap:14px;max-width:1500px;margin:0 auto}.td-post-header,.td-post-summary,.td-post-merged{border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel)}.td-post-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px}.td-post-header h2,.td-post-merged h2{margin:0;font-size:16px}.td-post-header p{margin:4px 0 0;color:var(--td-muted)}.td-post-actions{display:flex;gap:8px;flex:none}.td-post-summary{display:flex;align-items:center;gap:18px;padding:10px 14px;color:var(--td-muted)}.td-post-summary>button{margin-left:auto}.td-post-range{display:flex;align-items:center;gap:6px;margin-left:auto}.td-post-range input{width:64px;padding:6px 7px;text-align:center}.td-post-range button{white-space:nowrap}.td-post-summary>.td-post-range+button{margin-left:0}.td-post-error,.td-post-warning{padding:10px 13px;border-radius:7px}.td-post-error{border:1px solid #8b4149;background:#442228;color:#ffd1d5;white-space:pre-wrap}.td-post-warning{border:1px solid #836a32;background:#3a301c;color:#f4d991}.td-post-shot-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(390px,1fr));gap:12px;align-items:start}.td-post-shot{min-width:0;border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel);overflow:hidden}.td-post-shot.selected{border-color:#527e6c}.td-post-shot.disabled{opacity:.72}.td-post-shot>header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:1px solid var(--td-line);background:#1d2530}.td-post-shot>header>label{display:flex;align-items:center;gap:9px;min-width:0;cursor:pointer}.td-post-shot>header input{width:18px;height:18px;margin:0;flex:none}.td-post-shot>header label>span{display:flex;min-width:0;gap:8px;align-items:baseline}.td-post-shot>header strong{color:var(--td-text)}.td-post-shot>header em{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted);font-style:normal}.td-post-shot>header>span{flex:none;padding:2px 7px;border-radius:999px;background:#29313d;color:var(--td-muted)}.td-post-shot-disabled-note{padding:7px 10px;border-bottom:1px solid var(--td-line);background:#332b1d;color:#e5c77d;font-size:11px}.td-post-shot-empty{min-height:96px;display:flex;align-items:center;justify-content:center;padding:12px;color:var(--td-muted);text-align:center}.td-post-result-list{display:flex;flex-direction:column;gap:7px;max-height:360px;overflow:auto;padding:9px}.td-post-result{display:grid;grid-template-columns:minmax(0,1fr) 35px;gap:6px;align-items:center;border:1px solid var(--td-line);border-radius:7px;background:#151b23;padding:5px}.td-post-result.selected{border-color:var(--td-accent);background:#1c2a2a}.td-shell button.td-post-result-choice{display:grid;grid-template-columns:112px minmax(0,1fr);gap:9px;align-items:center;min-width:0;padding:0;border:0;background:transparent;text-align:left}.td-post-result-choice>span{display:flex;min-width:0;flex-direction:column;gap:3px}.td-post-result-choice>span>strong{display:flex;align-items:center;gap:6px}.td-post-result-choice>span>strong em{padding:1px 5px;border-radius:999px;background:#183a2e;color:var(--td-accent);font-size:10px;font-style:normal}.td-post-result-choice>span>span,.td-post-result-choice>span>small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-post-result-choice>span>small{font-size:10px}.td-post-result-play{width:35px;height:35px;padding:0!important}.td-post-merged{padding:12px}.td-post-merged>header>div{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}.td-post-merged .td-generated-results{display:grid;grid-template-columns:minmax(360px,1.6fr) minmax(300px,1fr);align-items:start}.td-post-merged .td-result-list{max-height:420px}.td-post-preview-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:26px;background:#030609d6}.td-post-preview-overlay>section{width:min(980px,100%);max-height:calc(100vh - 52px);overflow:auto;border:1px solid var(--td-line);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 80px #000c}.td-post-preview-overlay header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--td-line)}.td-post-preview-overlay header button{font-size:20px;line-height:1;padding:5px 9px}.td-post-preview-overlay video{display:block;width:100%;max-height:calc(100vh - 170px);background:#070a0e}.td-post-preview-overlay p{margin:0;padding:9px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-result-state{padding:2px 7px;border-radius:999px;background:#29313d;color:var(--td-muted);font-size:11px}.td-result-state.found{background:#183a2e;color:var(--td-accent)}.td-generated-video video{display:block;width:100%;max-height:420px;background:#080b0f;border-radius:7px}.td-generated-meta{margin-top:7px;color:var(--td-muted);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-generated-results{display:flex;flex-direction:column;gap:12px}.td-result-list{display:flex;flex-direction:column;gap:7px;max-height:280px;overflow:auto;padding-right:3px}.td-shell button.td-result-item{display:grid;grid-template-columns:112px minmax(0,1fr);gap:10px;align-items:center;width:100%;padding:6px;text-align:left;background:#151b23}.td-shell button.td-result-item.selected{border-color:var(--td-accent);background:#1c2a2a}.td-result-thumb{width:112px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:5px;background:#090c10;color:var(--td-muted)}.td-result-thumb img,.td-result-thumb video{display:block;width:100%;height:100%;object-fit:contain}.td-result-item-copy{display:flex;min-width:0;flex-direction:column;gap:3px}.td-result-item-copy>strong{display:flex;align-items:center;gap:7px;color:var(--td-text)}.td-result-item-copy>strong em{padding:1px 6px;border-radius:999px;background:#183a2e;color:var(--td-accent);font-size:10px;font-style:normal}.td-result-item-copy>span,.td-result-item-copy>small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-result-item-copy>small{font-size:10px}.td-batch-progress{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--td-line);border-radius:7px;background:#151b23;color:var(--td-muted)}.td-batch-progress progress{width:100%;height:8px;accent-color:var(--td-accent)}.td-batch-progress b{min-width:42px;color:var(--td-accent);text-align:right}.td-postprocess-shell{display:flex;flex-direction:column;gap:12px;max-width:1500px;margin:0 auto}.td-postprocess-shell>.td-postprocess{max-width:none;width:100%;margin:0}.td-post-mode-tabs{display:flex;gap:7px;padding:5px;border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel)}.td-post-mode-tabs button{min-width:130px}.td-shell .td-post-mode-tabs button.active{border-color:#527e6c;background:#1b302a;color:var(--td-accent)}.td-second-pass-panel .td-post-shot>header>span:first-child{display:flex;min-width:0;gap:8px;align-items:baseline;padding:0;background:transparent}.td-second-pass-result{display:grid;grid-template-columns:minmax(0,1fr) 154px;gap:8px;align-items:center;border:1px solid var(--td-line);border-radius:7px;background:#151b23;padding:6px}.td-second-pass-actions{display:flex;min-width:0;flex-direction:column;gap:6px}.td-second-pass-actions select{width:100%;min-width:0;padding:6px}.td-second-pass-terminal{display:flex;min-height:32px;align-items:center;justify-content:center;border:1px solid var(--td-line);border-radius:6px;color:var(--td-muted);font-size:11px;text-align:center}.td-second-pass-run{width:100%;min-height:34px;padding:6px!important}.td-second-pass-error{grid-column:1/-1;padding:6px 8px;border-radius:5px;background:#442228;color:#ffd1d5;font-size:11px;white-space:pre-wrap}.td-delete-panel .td-post-shot>header>span:first-child{display:flex;min-width:0;gap:8px;align-items:baseline;padding:0;background:transparent}.td-delete-result{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;border:1px solid var(--td-line);border-radius:7px;background:#151b23;padding:6px}.td-delete-result.deleting{opacity:.58}.td-delete-video-button{min-height:40px;padding:6px!important}.td-delete-merged{padding:12px}.td-delete-merged-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(390px,1fr));gap:8px}.td-delete-merged .td-post-result-choice>span>strong{color:var(--td-text)}@media(max-width:1280px){.td-shots{grid-template-columns:230px minmax(0,1fr)}.td-shots>.td-preview{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.td-shots>.td-preview>.td-card{flex:1 1 340px}.td-shots{height:auto}.td-review-steps{grid-template-columns:1fr 1fr}.td-project-meta{display:none}}@media(max-width:900px){.td-shots{grid-template-columns:1fr}.td-shot-sidebar{max-height:300px}.td-shot-head{grid-template-columns:1fr 1fr}.td-shot-head .grow{grid-column:1/-1}.td-settings-grid{grid-template-columns:1fr 1fr}.td-review-grid,.td-post-shot-list,.td-delete-merged-list,.td-post-merged .td-generated-results{grid-template-columns:1fr}.td-topbar,.td-tabs{flex-wrap:wrap}.td-advanced-body{min-width:0;grid-template-columns:1fr}}.td-assets-actions .td-button input{display:none}.td-assets-actions .td-button{display:inline-flex;align-items:center;cursor:pointer}.td-assets-actions,.td-actions{flex-wrap:wrap}.td-imagegen-overlay{z-index:25;padding:16px}.td-imagegen-panel{display:flex;flex-direction:column;gap:12px;width:min(1040px,100%);min-width:0;max-height:min(980px,calc(100dvh - 32px));overflow:auto;border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-imagegen-panel>*{flex-shrink:0;min-width:0}.td-imagegen-panel>.td-batch-header{position:sticky;top:0;z-index:2;flex:none;padding:13px 16px;background:var(--td-panel)}.td-imagegen-models{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:0 16px;color:var(--td-muted)}.td-imagegen-models strong{color:var(--td-text)}.td-imagegen-models code{padding:3px 6px;border:1px solid var(--td-line);border-radius:5px;background:#151b23;font-size:11px;overflow-wrap:anywhere}.td-imagegen-models small{flex-basis:100%;line-height:1.5}.td-imagegen-models>header{display:flex;width:100%;align-items:center;justify-content:space-between;gap:8px}.td-imagegen-model-selects{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.td-imagegen-model-selects label{display:flex;flex-direction:column;min-width:0;gap:5px}.td-imagegen-model-selects select{width:100%;min-width:0;text-overflow:ellipsis}.td-imagegen-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:0 16px}.td-imagegen-form label{display:flex;min-width:0;flex-direction:column;gap:5px;color:var(--td-muted)}.td-imagegen-form label.wide{grid-column:1/-1}.td-imagegen-form textarea{min-height:64px;resize:vertical;line-height:1.5}.td-imagegen-form label small{line-height:1.4}.td-imagegen-form .td-imagegen-seed{grid-column:span 2}.td-imagegen-form .td-imagegen-random{display:flex;grid-column:span 2;flex-direction:row;align-items:center;align-self:end;min-height:36px}.td-imagegen-form .td-imagegen-random input{width:17px;height:17px;margin:0}.td-imagegen-pending,.td-imagegen-record{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 16px;border-top:1px solid var(--td-line);border-bottom:1px solid var(--td-line);background:#151b23;color:var(--td-muted);font-size:12px}.td-imagegen-pending button{margin-left:auto}.td-imagegen-record span{padding-right:9px;border-right:1px solid var(--td-line)}.td-imagegen-record span:last-child{max-width:230px;overflow:hidden;border:0;text-overflow:ellipsis;white-space:nowrap}.td-imagegen-results{padding:0 16px}.td-imagegen-results>header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:5px;margin-bottom:8px;color:var(--td-muted)}.td-imagegen-results>header strong{color:var(--td-text)}.td-imagegen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px}.td-imagegen-grid article{display:flex;min-width:0;flex-direction:column;gap:6px;padding:7px;border:1px solid var(--td-line);border-radius:7px;background:#151b23}.td-imagegen-grid img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#080b0f;border-radius:4px}.td-imagegen-grid small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-imagegen-grid button{width:100%;min-height:34px}.td-imagegen-error{margin:0 16px;padding:9px 11px;border:1px solid #8b4149;border-radius:6px;background:#442228;color:#ffd1d5;white-space:pre-wrap;overflow-wrap:anywhere}.td-imagegen-panel>footer{position:sticky;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;padding:11px 16px;border-top:1px solid var(--td-line);background:var(--td-panel)}.td-imagegen-footer-note{margin-right:auto;color:var(--td-muted);font-size:11px;line-height:1.4}.td-imagegen-batch-selection,.td-imagegen-batch-outcomes{margin:0 16px;display:flex;flex-direction:column;gap:8px}.td-imagegen-batch-selection>header{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.td-imagegen-batch-list{max-height:240px;overflow:auto;border:1px solid var(--td-line);border-radius:6px}.td-imagegen-batch-list>label{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:9px;border-bottom:1px solid var(--td-line);cursor:pointer}.td-imagegen-batch-list input{width:17px;height:17px;flex:none}.td-imagegen-batch-list small{flex-basis:100%;padding-left:25px;overflow-wrap:anywhere;color:var(--td-muted)}.td-imagegen-batch-selection>small{color:var(--td-muted);line-height:1.5}.td-imagegen-batch-outcomes{padding:10px;border:1px solid var(--td-line);border-radius:6px;overflow-wrap:anywhere}.td-imagegen-batch-outcomes>header{flex:none;line-height:1.5}.td-imagegen-batch-log{min-height:100px;max-height:min(320px,35dvh);overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.td-imagegen-log-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,3fr);gap:10px;padding:8px 4px;border-bottom:1px solid var(--td-line);line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.td-imagegen-log-row>*{min-width:0}.td-imagegen-log-row.error>span{color:#ffd1d5}@media(max-width:600px){.td-imagegen-model-selects{grid-template-columns:1fr}.td-imagegen-log-row{grid-template-columns:1fr;gap:3px}.td-imagegen-batch-log{max-height:30dvh}.td-imagegen-panel .td-batch-progress{flex-wrap:wrap}.td-imagegen-panel .td-batch-progress>span{flex-basis:100%;overflow-wrap:anywhere}}@media(max-width:600px){.td-imagegen-overlay{align-items:flex-end;padding:0}.td-imagegen-panel{width:100%;max-height:94vh;border-radius:9px 9px 0 0}.td-imagegen-form{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 12px}.td-imagegen-form label.wide{grid-column:1/-1}.td-imagegen-models,.td-imagegen-results{padding-right:12px;padding-left:12px}.td-imagegen-panel>.td-batch-header,.td-imagegen-panel>footer{padding-right:12px;padding-left:12px}.td-imagegen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.td-imagegen-footer-note{flex-basis:100%}}.td-modal{--td-bg:#0e1116;--td-panel:#171c24;--td-panel-2:#1c2430;--td-panel-3:#252f3c;--td-line:#2a3442;--td-line-strong:#404f62;--td-text:#edf0f5;--td-muted:#a6b2c3;--td-faint:#7e8da2;--td-accent:#d7f390;--td-accent-dim:#2c3823;--td-radius:12px}.td-workspace-rail{grid-area:rail;display:flex;min-height:0;flex-direction:column;gap:24px;padding:24px 14px 16px;border-right:1px solid var(--td-line);background:#131820;overflow:auto}.td-rail-brand{display:flex;align-items:center;gap:10px;padding:0 6px}.td-rail-brand h1{font-size:16px}.td-rail-brand small{color:var(--td-faint);font-size:9px;letter-spacing:1.2px}.td-brand-mark{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:11px;background:var(--td-accent);color:#1b2412;font-size:16px;font-weight:800;letter-spacing:-1px}.td-shell .td-project-home{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:14px;text-align:left;background:var(--td-panel-2);border-color:var(--td-line);white-space:normal}.td-project-home small{color:var(--td-faint);font-size:10px;letter-spacing:1px}.td-project-home strong{display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}.td-project-home>span{font:11px var(--td-mono);color:var(--td-muted);overflow-wrap:anywhere}.td-stage-nav{display:flex;flex-direction:column;gap:7px}.td-shell .td-stage-nav>button{display:flex;align-items:center;gap:10px;position:relative;min-height:64px;padding:10px;text-align:left;border:1px solid transparent;background:transparent;border-radius:10px}.td-stage-number{font:11px var(--td-mono);color:var(--td-faint)}.td-stage-nav>button>span:nth-child(2){min-width:0}.td-stage-nav strong,.td-stage-nav small{display:block}.td-stage-nav strong{font-size:13px;font-weight:500}.td-stage-nav small{margin-top:3px;font-size:10px;color:var(--td-faint)}.td-shell .td-stage-nav>button.active{background:var(--td-accent-dim);border-color:#4b5d37}.td-stage-nav>button.active .td-stage-number,.td-stage-nav>button.active strong{color:var(--td-accent)}.td-stage-nav em{margin-left:auto;font:10px var(--td-mono);color:var(--td-muted)}.td-stage-nav em.warn{color:var(--td-warn)}.td-rail-progress{margin-top:auto;padding:15px 7px 0;border-top:1px solid var(--td-line);font-size:11px}.td-rail-progress>div{display:flex;justify-content:space-between;color:var(--td-muted)}.td-rail-progress strong{color:var(--td-accent)}.td-rail-progress progress{display:block;width:100%;height:4px;margin-top:12px;accent-color:var(--td-accent)}.td-rail-progress p{color:var(--td-faint);font-size:11px}.td-shell .td-rail-progress button{padding:0;border:0;background:transparent;font-size:11px;color:var(--td-muted)}.td-topbar{grid-area:header;min-width:0;padding:19px 24px;background:var(--td-bg);border-bottom:0;flex-wrap:nowrap}.td-workspace-title{min-width:0}.td-eyebrow{color:var(--td-faint);font-size:10px;letter-spacing:1px}.td-workspace-title>div{display:flex;align-items:center;gap:12px;margin-top:4px}.td-workspace-title h2{font-size:23px;font-weight:600}.td-actions{gap:8px;flex-wrap:nowrap}.td-shell .td-actions>button{padding:8px 13px}.td-shell button.primary{color:#17210d}.td-project-menu{position:relative}.td-project-menu>summary{padding:8px 12px;cursor:pointer;list-style:none;border:1px solid var(--td-line-strong);border-radius:6px;color:var(--td-muted)}.td-project-menu>summary>span{margin-left:12px}.td-project-menu-items{position:absolute;right:0;top:calc(100% + 8px);z-index:25;display:grid;gap:5px;min-width:180px;padding:8px;border:1px solid var(--td-line-strong);border-radius:10px;background:var(--td-panel);box-shadow:0 12px 36px #0006}.td-project-menu-items>*{text-align:left}.td-session-bar{grid-area:status;display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;min-height:45px;margin:0 24px;border-top:1px solid var(--td-line);border-bottom:1px solid var(--td-line)}.td-session-context{color:var(--td-faint);font-size:12px}.td-tab-status{min-width:0;flex-wrap:wrap;justify-content:flex-end}.td-progress-text{font-size:11px}.td-shell main{grid-area:content;min-width:0;padding:18px 24px 20px}.td-shell.td-compact main{padding:10px 16px}.td-shell.td-compact .td-topbar{padding:12px 24px}.td-shots{height:100%;min-height:0;grid-template-columns:minmax(0,1.2fr) minmax(300px,1fr);grid-template-rows:minmax(0,1fr) 158px;grid-template-areas:"composer monitor" "timeline timeline";gap:16px}.td-shot-form{grid-area:composer;padding:18px;gap:14px}.td-composer-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--td-line)}.td-composer-heading small{font:10px var(--td-mono);color:var(--td-faint)}.td-composer-heading h3{font-size:16px;margin-top:4px}.td-composer-heading>div:last-child{display:flex;gap:6px}.td-shell .td-composer-heading button{padding:4px 10px}.td-shot-head{grid-template-columns:minmax(0,1fr) 85px 140px;gap:8px}.td-prompt-field .td-highlight-input{min-height:260px}.td-field-label{flex-wrap:wrap;gap:4px 10px}.td-shots>.td-preview{grid-area:monitor;grid-column:auto;display:flex;flex-direction:column;flex-wrap:nowrap;gap:14px}.td-shots>.td-preview>.td-card{flex:none}.td-preview>.td-card:first-child{order:2}.td-preview>.td-card:last-child{order:1}.td-take-player{max-height:42dvh;aspect-ratio:16/9;background:#080b10;object-fit:contain}.td-preview .td-result-empty{aspect-ratio:16/9;min-height:160px;display:grid;place-items:center;background:#10141b}.td-shot-sidebar{grid-area:timeline;display:grid;grid-template-columns:minmax(0,1fr) 210px;grid-template-rows:29px minmax(0,1fr);max-height:none;padding:10px 12px;gap:0 14px;overflow:hidden}.td-timeline-heading{grid-column:1/-1;display:flex;align-items:baseline;gap:14px}.td-timeline-heading strong{font-size:11px;letter-spacing:1px}.td-timeline-heading>span{color:var(--td-faint);font-size:10px}.td-shot-list{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;padding:3px 0 7px;scroll-snap-type:x proximity}.td-shot-card{flex:0 0 182px;grid-template-columns:minmax(0,1fr);align-content:space-between;gap:5px;padding:9px 10px;margin:0;border-color:var(--td-line);background:var(--td-panel-2);scroll-snap-align:start}.td-shot-card.relay{margin-top:0}.td-shot-card.selected{border-color:var(--td-accent);background:var(--td-accent-dim)}.td-shot-card.selected strong em{color:var(--td-accent)}.td-shot-card-actions{justify-content:flex-end;opacity:1}.td-shot-card-meta{flex-wrap:nowrap;overflow:hidden;font-size:10px}.td-shot-card-meta>*{flex:none}.td-shot-card-main strong{font-size:12px}.td-relay-link{top:50%;left:-9px;width:14px;height:0;border-left:0;border-top:2px dashed var(--td-relay)}.td-shot-sidebar-footer{display:flex;justify-content:center;flex-direction:column;border-top:0;border-left:1px solid var(--td-line);padding:0 0 0 14px;gap:10px}.td-total{font-size:11px}.td-shell .td-shot-sidebar-footer button{font-size:11px;padding:7px 6px}.settings{max-width:1120px;padding:24px;gap:18px}.td-settings-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.td-workflow-settings{border-top:1px solid var(--td-line);padding-top:20px;display:grid;gap:14px}.td-workflow-settings>header{display:flex;justify-content:space-between;align-items:center;gap:12px}.td-workflow-settings>header p{margin:5px 0 0;color:var(--td-faint);font-size:12px}.td-workflow-group{display:grid;gap:12px;padding:14px;border:1px solid var(--td-line);border-radius:9px}.td-workflow-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.td-workflow-fields input,.td-workflow-fields select{min-width:0}.td-workflow-group h3{color:var(--td-muted)}@media(min-width:1700px){.td-shell{grid-template-columns:232px minmax(0,1fr)}.td-shots{grid-template-columns:minmax(0,1.15fr) minmax(430px,1fr)}.td-shot-head{grid-template-columns:minmax(0,1fr) 100px 170px}}@media(max-width:1150px){.td-shell{grid-template-columns:174px minmax(0,1fr)}.td-workspace-rail{padding:20px 9px}.td-rail-brand{gap:7px;padding:0}.td-rail-brand h1{font-size:14px}.td-rail-brand small{font-size:8px}.td-brand-mark{width:30px;height:32px}.td-stage-nav small{font-size:9px}.td-topbar{padding:15px 16px}.td-workspace-title h2{font-size:20px}.td-session-bar{margin:0 16px}.td-session-context{display:none}.td-shell main{padding:14px 16px}.td-shots{grid-template-columns:minmax(0,1fr) minmax(265px,.85fr);height:100%}.td-shot-head{grid-template-columns:1fr 1fr}.td-shot-head .grow{grid-column:1/-1}.td-shot-sidebar{grid-template-columns:minmax(0,1fr) 170px}.td-two-buttons{grid-template-columns:1fr}.td-advanced-body{min-width:0;grid-template-columns:1fr}.td-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:850px){.td-shell{grid-template-columns:68px minmax(0,1fr)}.td-workspace-rail{padding:18px 7px;gap:16px}.td-rail-brand{justify-content:center}.td-rail-brand>div,.td-project-home,.td-rail-progress{display:none!important}.td-shell .td-stage-nav>button{min-height:58px;justify-content:center;padding:7px}.td-stage-nav>button>span:nth-child(2),.td-stage-nav em{display:none}.td-stage-number{font-size:14px}.td-topbar{flex-wrap:wrap;gap:10px}.td-workspace-title h2{font-size:18px}.td-eyebrow{font-size:9px}.td-shell .td-actions>button{padding:6px 8px}.td-project-menu>summary{padding:6px 8px}.td-shots{height:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 165px;grid-template-areas:"composer" "monitor" "timeline"}.td-shot-form{overflow:visible}.td-shots>.td-preview{grid-column:auto;overflow:visible}.td-take-player{max-height:none}.td-shot-sidebar{grid-template-columns:minmax(0,1fr) 135px}.td-timeline-heading>span{display:none}.td-shot-list{min-height:0}.td-tab-status{margin-left:0;justify-content:flex-start}.td-session-bar{overflow:visible}.td-progress-text{font-size:10px}.td-settings-grid,.td-workflow-fields{grid-template-columns:minmax(0,1fr)}.settings{padding:14px}.td-review-grid,.td-post-shot-list{grid-template-columns:minmax(0,1fr)}.td-review-steps{grid-template-columns:1fr 1fr}}@media(max-width:520px){.td-shell{grid-template-columns:52px minmax(0,1fr)}.td-workspace-rail{padding:14px 4px}.td-brand-mark{width:30px;height:30px;font-size:13px}.td-topbar{padding:12px 10px}.td-shell .td-actions{gap:5px;flex-wrap:wrap}.td-shell .td-actions>button,.td-project-menu>summary{font-size:11px}.td-shell main{padding:10px}.td-session-bar{margin:0 10px}.td-workspace-title h2{font-size:17px}.td-shot-form{padding:12px}.td-shot-sidebar{grid-template-columns:minmax(0,1fr);grid-template-rows:24px minmax(0,1fr) auto}.td-shot-sidebar-footer{flex-direction:row;align-items:center;border-left:0;border-top:1px solid var(--td-line);padding:5px 0 0}.td-shot-sidebar-footer .td-total{display:none}.td-shot-sidebar-footer .td-two-buttons{display:flex}.td-shots{grid-template-rows:auto auto 195px}.td-review-steps{grid-template-columns:1fr}.td-review-hint{margin-left:0}}@media(max-width:850px){.td-post-header{flex-direction:column;align-items:stretch}.td-post-actions,.td-post-summary{flex-wrap:wrap;gap:8px}.td-post-summary>button,.td-post-range{margin-left:0}.td-post-mode-tabs button{min-width:0;flex:1}.td-post-range{flex-wrap:wrap}.td-workflow-settings>header{flex-wrap:wrap}.td-post-merged>header>div{flex-wrap:wrap;gap:8px}}@media(max-width:850px){.td-project-cleanup{grid-template-columns:minmax(0,1fr)}.td-project-cleanup article{flex-direction:column;align-items:stretch;gap:10px}.td-project-cleanup article>div{min-width:0;overflow-wrap:anywhere}}.td-modal{--td-bg:#10131b;--td-panel:#1b202b;--td-panel-2:#222937;--td-panel-3:#2a3342;--td-line:#303a49;--td-line-strong:#465264;--td-text:#f0f2f6;--td-muted:#b2bdcc;--td-faint:#8b99ab;--td-accent:#c1e9cf;--td-accent-dim:#263c35;--td-radius:16px}.td-shell{background:radial-gradient(ellipse at 70% -30%,#263243 0,transparent 48%),var(--td-bg)}.td-workspace-rail{gap:22px;padding:26px 16px 18px;background:#171b25;border-right:1px solid #2a3240}.td-rail-brand{gap:12px;padding:0 3px}.td-rail-brand h1{letter-spacing:.02em}.td-rail-brand small{color:#92a1b2;letter-spacing:1.1px}.td-brand-mark{width:40px;height:40px;border:1px solid #d4f2df;border-radius:14px;background:linear-gradient(145deg,#d4f2df,#9ed9bd);box-shadow:0 5px 18px #0003;color:#192c25}.td-shell .td-project-home{gap:6px;padding:15px;border-radius:13px;background:#222a37;border-color:#344151;box-shadow:0 8px 22px #0002}.td-project-home small{text-transform:uppercase}.td-project-home strong{font-size:14px}.td-project-home>span{color:#a6b6c6}.td-stage-nav{gap:5px}.td-shell .td-stage-nav>button{min-height:62px;padding:10px 11px;border-radius:12px}.td-shell .td-stage-nav>button:hover:not(:disabled){background:#252d39}.td-shell .td-stage-nav>button.active{background:#293d39;border-color:#42675b;box-shadow:inset 3px 0 0 var(--td-accent)}.td-stage-number{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:#28303c;color:#aab8c8;font-size:10px}.td-stage-nav>button.active .td-stage-number{background:#c1e9cf;color:#213a30}.td-stage-nav strong{font-size:13px;font-weight:600}.td-stage-nav small{margin-top:4px;color:#96a4b5}.td-rail-progress{padding:17px 5px 0}.td-rail-progress progress{border-radius:999px;overflow:hidden}.td-rail-progress p{line-height:1.6}.td-topbar{padding:21px 26px 18px;background:transparent}.td-workspace-title h2{font-size:24px;letter-spacing:.02em}.td-eyebrow{color:#96a5b7;font-weight:600;letter-spacing:1.2px}.td-shell button,.td-button,.td-project-menu>summary{border-radius:9px}.td-shell button,.td-button{transition:border-color .16s,background .16s,color .16s,box-shadow .16s}.td-shell button:hover:not(:disabled),.td-button:hover{box-shadow:0 3px 12px #0002}.td-shell button.primary{background:var(--td-accent);border-color:var(--td-accent);color:#1a3025;box-shadow:0 4px 15px #77c49c26}.td-shell button.primary:hover:not(:disabled){filter:brightness(1.05)}.td-session-bar{min-height:48px;margin:0 26px;border-top:1px solid #303947;border-bottom:1px solid #303947}.td-session-context{color:#a3b0c1}.td-shell main{padding:20px 26px 22px}.td-shots{gap:18px;grid-template-rows:minmax(0,1fr) 166px}.td-shot-form,.td-card,.td-shot-sidebar,.td-asset-card,.td-review-card,.td-post-shot,.settings{box-shadow:0 12px 32px #06091030}.td-shot-form{padding:20px;gap:16px;background:linear-gradient(155deg,#202733,#1b202b 38%)}.td-composer-heading{padding-bottom:16px}.td-composer-heading small{color:#a1b3c5;letter-spacing:.08em}.td-composer-heading h3{font-size:17px}.td-shell .td-composer-heading button{min-width:36px;padding:6px 10px}.td-form label,.td-settings-grid label{gap:6px;color:#b5c1d0}.td-shot-head{gap:10px}.td-shell input:not([type=checkbox]):not([type=radio]):not([type=range]),.td-shell textarea,.td-shell select{border-color:#3a4859;background-color:#252e3c}.td-shell input:focus,.td-shell textarea:focus,.td-shell select:focus{border-color:var(--td-accent);box-shadow:0 0 0 3px #b2eac82b}.td-form label.td-toggle{border-radius:9px;background:#252e39}.td-form label.td-toggle:has(input:checked){border-color:#507f69;background:#294338}.td-advanced>summary{border-radius:9px}.td-note{border-radius:10px;background:#232c39}.td-note>summary{padding:10px 12px;color:#c2cbd8}.td-note textarea{padding:11px 12px}.td-field-label{margin-bottom:2px;color:#d3dae4}.td-field-label small{color:#9aaabd}.td-highlight-wrap{border-radius:10px}.td-highlight-backdrop,.td-form textarea.td-highlight-input{padding:12px 13px;line-height:1.7}.td-card{overflow:hidden;background:#1b212c}.td-card>header{padding:13px 15px;background:#202733}.td-card-body{gap:11px;padding:14px}.td-preview .td-result-empty{border-radius:10px;background:#10151d}.td-take-player{border-radius:10px}.td-shot-sidebar{padding:12px 14px;background:#1b212b}.td-timeline-heading{gap:12px}.td-timeline-heading strong{color:#e5eaf1;letter-spacing:.04em}.td-timeline-heading>span{color:#9baabc}.td-shot-list{gap:9px}.td-shot-card{flex-basis:186px;padding:10px 11px;border-radius:11px;background:#252e3b}.td-shot-card:hover{background:#2c3745}.td-shot-card.selected{border-color:#9ed6b8;background:#294238;box-shadow:inset 0 2px #b9e5ca}.td-shot-card-main strong{font-size:12.5px}.td-shot-card-meta{color:#b3c1d0}.td-shot-sidebar-footer{gap:10px}.td-chip{padding:3px 9px}.td-settings-grid,.td-workflow-fields{gap:16px}.td-workflow-group{padding:17px;border-radius:12px;background:#1e2530}.td-assets-toolbar,.td-post-header,.td-post-summary,.td-post-merged,.td-step,.td-action-group,.td-run-bar{border-radius:12px}@media(max-width:1150px){.td-workspace-rail{padding:20px 9px}.td-topbar{padding:15px 16px}.td-session-bar{margin:0 16px}.td-shell main{padding:14px 16px}.td-shots{gap:14px}}@media(max-width:850px){.td-workspace-rail{padding:18px 7px}.td-shell .td-stage-nav>button{padding:7px}.td-stage-number{width:30px;height:30px;font-size:11px}.td-shots{grid-template-rows:auto auto 170px}.td-shot-form{padding:16px}}@media(max-width:520px){.td-workspace-rail{padding:14px 4px}.td-topbar{padding:12px 10px}.td-session-bar{margin:0 10px}.td-shell main{padding:10px}.td-shot-form{padding:13px}.td-shots{grid-template-rows:auto auto 195px}.td-shot-sidebar{padding:10px}}', ws = {
-  UNETLoader: ["unet_name", "weight_dtype"],
-  CLIPLoader: ["clip_name", "type", "device"],
-  VAELoader: ["vae_name"],
-  ResolutionSelector: ["aspect_ratio", "megapixels", "multiple"],
-  BasicScheduler: ["scheduler", "steps", "denoise"],
-  KSamplerSelect: ["sampler_name"],
-  MiniMaxH3TurboSampler: ["solver", "sampler_name", "eta"],
-  MiniMaxH3TurboLoRA: ["lora_name", "strength", "low_vram"],
-  LoraLoaderModelOnly: ["lora_name", "strength_model"],
-  MiniMaxH3SigmaShift: ["shift_video", "shift_audio"],
-  RTXVideoSuperResolution: ["scale", "scale_factor", "quality"]
-};
-function cr(e) {
+function Aa(e) {
   var r;
-  const t = (r = e.options) == null ? void 0 : r.values;
-  return Array.isArray(t) && t.every((o) => typeof o == "string") ? t : void 0;
-}
-function ys(e, t) {
-  const r = () => e().flatMap((o) => (o.widgets ?? []).filter((i) => {
-    var a, l;
-    return ((a = ws[o.type ?? ""]) == null ? void 0 : a.includes(i.name)) && !((l = o.inputs) != null && l.some((s) => s.name === i.name && s.link != null)) && ["string", "number", "boolean"].includes(typeof i.value);
-  }).map((i) => ({ node: o, widget: i, id: `${o.id}:${i.name}` })));
-  return {
-    read: () => r().map(({ node: o, widget: i, id: a }) => {
-      var l, s;
-      return {
-        id: a,
-        group: `${o.title || o.type} · #${o.id}`,
-        label: i.name,
-        value: i.value,
-        choices: cr(i),
-        min: (l = i.options) == null ? void 0 : l.min,
-        max: (s = i.options) == null ? void 0 : s.max
-      };
-    }),
-    apply: (o) => {
-      var l;
-      const i = new Map(r().map((s) => [s.id, s])), a = Object.entries(o).map(([s, m]) => {
-        var c, p;
-        const h = i.get(s);
-        if (!h) throw new Error(`配置控件已变化，请重新打开项目配置：${s}`);
-        const { widget: d } = h;
-        if (typeof m != typeof d.value) throw new Error(`${d.name} 的值类型不正确`);
-        if (typeof m == "number" && ["steps", "multiple"].includes(d.name) && !Number.isInteger(m)) throw new Error(`${d.name} 必须为整数`);
-        if (typeof m == "number" && (!Number.isFinite(m) || ((c = d.options) == null ? void 0 : c.min) != null && m < d.options.min || ((p = d.options) == null ? void 0 : p.max) != null && m > d.options.max)) throw new Error(`${d.name} 超出可用范围`);
-        const f = cr(d);
-        if (f && !f.includes(String(m))) throw new Error(`${d.name} 的选项不可用：${m}`);
-        return { ...h, value: m, previous: d.value };
-      });
-      try {
-        for (const { widget: s, value: m } of a)
-          s.value = m, (l = s.callback) == null || l.call(s, m);
-      } catch (s) {
-        for (const { widget: m, previous: h } of a) m.value = h;
-        throw s;
-      }
-      for (const { node: s } of a) s.setDirtyCanvas(!0, !0);
-      a.length && t();
+  let t = e;
+  for (const [i, o] of Object.entries(e)) {
+    const s = o.inputs.context_length;
+    if (o.class_type !== "MiniMaxH3MotionContext" || !Array.isArray(s) || s.length !== 2 || s[1] !== 13) continue;
+    const l = e[String(s[0])];
+    if ((l == null ? void 0 : l.class_type) !== "TheodoreDirector_ShotControl") continue;
+    const a = l.inputs.plan;
+    if (!Array.isArray(a) || a.length !== 2 || a[1] !== 0) continue;
+    const d = e[String(a[0])];
+    if ((d == null ? void 0 : d.class_type) !== "TheodoreDirector_Project") continue;
+    let p;
+    try {
+      p = JSON.parse(String(d.inputs.plan_json));
+    } catch {
+      throw new Error("镜头接力配置无法读取：请先保存导播台项目");
     }
-  };
+    const m = ((r = p == null ? void 0 : p.continuity) == null ? void 0 : r.videoContextFrames) ?? 22;
+    if (typeof m != "number" || !Number.isInteger(m) || !vt.includes(String(m)))
+      throw new Error("视频接力帧数只能为 5、22、39 或 56");
+    t === e && (t = { ...e }), t[i] = { ...o, inputs: { ...o.inputs, context_length: String(m) } };
+  }
+  return t;
 }
-const pr = "yuq-director-styles";
-function _s() {
-  if (document.getElementById(pr)) return;
+const ja = `{\r
+  "last_node_id": 651,\r
+  "last_link_id": 19,\r
+  "nodes": [\r
+    {\r
+      "id": 600,\r
+      "type": "UNETLoader",\r
+      "pos": [\r
+        260,\r
+        1060\r
+      ],\r
+      "size": [\r
+        510,\r
+        90\r
+      ],\r
+      "flags": {},\r
+      "order": 0,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "UNet名称",\r
+          "name": "unet_name",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "unet_name"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "模型",\r
+          "name": "MODEL",\r
+          "type": "MODEL",\r
+          "links": [\r
+            11\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "UNETLoader",\r
+        "models": [\r
+          {\r
+            "name": "qwen_image_2.1_turbo_int8_convrot.safetensors",\r
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/diffusion_models/qwen_image_2.1_turbo_int8_convrot.safetensors",\r
+            "directory": "diffusion_models"\r
+          }\r
+        ]\r
+      },\r
+      "widgets_values": [\r
+        "qwen_image_2.1_turbo_int8_convrot.safetensors",\r
+        "default"\r
+      ],\r
+      "widgets_values_named": {\r
+        "unet_name": "qwen_image_2.1_turbo_int8_convrot.safetensors",\r
+        "weight_dtype": "default"\r
+      }\r
+    },\r
+    {\r
+      "id": 601,\r
+      "type": "TextEncodeQwenImage21",\r
+      "pos": [\r
+        852,\r
+        1237\r
+      ],\r
+      "size": [\r
+        355.7457007437866,\r
+        216\r
+      ],\r
+      "flags": {},\r
+      "order": 13,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "clip",\r
+          "name": "clip",\r
+          "type": "CLIP",\r
+          "link": 1\r
+        },\r
+        {\r
+          "localized_name": "image_1",\r
+          "name": "images.image_1",\r
+          "shape": 7,\r
+          "type": "IMAGE",\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "vae",\r
+          "name": "vae",\r
+          "shape": 7,\r
+          "type": "VAE",\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "prompt",\r
+          "name": "prompt",\r
+          "type": "STRING",\r
+          "widget": {\r
+            "name": "prompt"\r
+          },\r
+          "link": 3\r
+        },\r
+        {\r
+          "localized_name": "negative_prompt",\r
+          "name": "negative_prompt",\r
+          "type": "STRING",\r
+          "widget": {\r
+            "name": "negative_prompt"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "positive",\r
+          "name": "positive",\r
+          "type": "CONDITIONING",\r
+          "links": [\r
+            12\r
+          ]\r
+        },\r
+        {\r
+          "localized_name": "negative",\r
+          "name": "negative",\r
+          "type": "CONDITIONING",\r
+          "links": [\r
+            13\r
+          ]\r
+        },\r
+        {\r
+          "localized_name": "latent",\r
+          "name": "latent",\r
+          "type": "LATENT",\r
+          "links": null\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "TextEncodeQwenImage21"\r
+      },\r
+      "widgets_values": [\r
+        "",\r
+        "",\r
+        1024,\r
+        [\r
+          false,\r
+          true\r
+        ],\r
+        [\r
+          false,\r
+          true\r
+        ]\r
+      ],\r
+      "widgets_values_named": {\r
+        "prompt": "",\r
+        "negative_prompt": "",\r
+        "resolution": 1024,\r
+        "speak_and_recognation": [\r
+          false,\r
+          true\r
+        ],\r
+        "speak_and_recognation#1": [\r
+          false,\r
+          true\r
+        ]\r
+      }\r
+    },\r
+    {\r
+      "id": 602,\r
+      "type": "CLIPLoader",\r
+      "pos": [\r
+        260,\r
+        1220\r
+      ],\r
+      "size": [\r
+        510,\r
+        120\r
+      ],\r
+      "flags": {},\r
+      "order": 1,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "CLIP名称",\r
+          "name": "clip_name",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "clip_name"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "CLIP",\r
+          "name": "CLIP",\r
+          "type": "CLIP",\r
+          "links": [\r
+            1\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "CLIPLoader",\r
+        "models": [\r
+          {\r
+            "name": "qwen3vl_8b_int8_convrot.safetensors",\r
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3vl_8b_int8_convrot.safetensors",\r
+            "directory": "text_encoders"\r
+          }\r
+        ]\r
+      },\r
+      "widgets_values": [\r
+        "qwen3vl/qwen3vl_8b_fp8_scaled.safetensors",\r
+        "qwen_image",\r
+        "default"\r
+      ],\r
+      "widgets_values_named": {\r
+        "clip_name": "qwen3vl/qwen3vl_8b_fp8_scaled.safetensors",\r
+        "type": "qwen_image",\r
+        "device": "default"\r
+      }\r
+    },\r
+    {\r
+      "id": 603,\r
+      "type": "VAELoader",\r
+      "pos": [\r
+        260,\r
+        1420\r
+      ],\r
+      "size": [\r
+        510,\r
+        70\r
+      ],\r
+      "flags": {},\r
+      "order": 2,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "vae名称",\r
+          "name": "vae_name",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "vae_name"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "VAE",\r
+          "name": "VAE",\r
+          "type": "VAE",\r
+          "links": [\r
+            2\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "VAELoader",\r
+        "models": [\r
+          {\r
+            "name": "qwen_image_2.1_vae_bf16.safetensors",\r
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/vae/qwen_image_2.1_vae_bf16.safetensors",\r
+            "directory": "vae"\r
+          }\r
+        ]\r
+      },\r
+      "widgets_values": [\r
+        "qwen_image_2.1_vae_bf16.safetensors"\r
+      ],\r
+      "widgets_values_named": {\r
+        "vae_name": "qwen_image_2.1_vae_bf16.safetensors"\r
+      }\r
+    },\r
+    {\r
+      "id": 604,\r
+      "type": "EmptyLatentImage",\r
+      "pos": [\r
+        380,\r
+        1660\r
+      ],\r
+      "size": [\r
+        300,\r
+        120\r
+      ],\r
+      "flags": {},\r
+      "order": 3,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "宽度",\r
+          "name": "width",\r
+          "type": "INT",\r
+          "widget": {\r
+            "name": "width"\r
+          },\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "高度",\r
+          "name": "height",\r
+          "type": "INT",\r
+          "widget": {\r
+            "name": "height"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "Latent",\r
+          "name": "LATENT",\r
+          "type": "LATENT",\r
+          "links": [\r
+            14\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "EmptyLatentImage"\r
+      },\r
+      "widgets_values": [\r
+        1024,\r
+        1024,\r
+        1\r
+      ],\r
+      "widgets_values_named": {\r
+        "width": 1024,\r
+        "height": 1024,\r
+        "batch_size": 1\r
+      }\r
+    },\r
+    {\r
+      "id": 605,\r
+      "type": "VAEDecode",\r
+      "pos": [\r
+        2070,\r
+        1310\r
+      ],\r
+      "size": [\r
+        230,\r
+        60\r
+      ],\r
+      "flags": {},\r
+      "order": 16,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "Latent",\r
+          "name": "samples",\r
+          "type": "LATENT",\r
+          "link": 10\r
+        },\r
+        {\r
+          "localized_name": "vae",\r
+          "name": "vae",\r
+          "type": "VAE",\r
+          "link": 2\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "图像",\r
+          "name": "IMAGE",\r
+          "type": "IMAGE",\r
+          "links": [\r
+            19\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "VAEDecode"\r
+      }\r
+    },\r
+    {\r
+      "id": 606,\r
+      "type": "TextGenerate",\r
+      "pos": [\r
+        920,\r
+        230\r
+      ],\r
+      "size": [\r
+        400,\r
+        461\r
+      ],\r
+      "flags": {},\r
+      "order": 10,\r
+      "mode": 0,\r
+      "showAdvanced": true,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "clip",\r
+          "name": "clip",\r
+          "type": "CLIP",\r
+          "link": 15\r
+        },\r
+        {\r
+          "localized_name": "图像",\r
+          "name": "image",\r
+          "shape": 7,\r
+          "type": "IMAGE",\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "视频",\r
+          "name": "video",\r
+          "shape": 7,\r
+          "type": "IMAGE",\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "音频",\r
+          "name": "audio",\r
+          "shape": 7,\r
+          "type": "AUDIO",\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "系统提示词",\r
+          "name": "system_prompt",\r
+          "shape": 7,\r
+          "type": "STRING",\r
+          "link": 16\r
+        },\r
+        {\r
+          "localized_name": "提示词",\r
+          "name": "prompt",\r
+          "type": "STRING",\r
+          "widget": {\r
+            "name": "prompt"\r
+          },\r
+          "link": 18\r
+        },\r
+        {\r
+          "localized_name": "最大长度",\r
+          "name": "max_length",\r
+          "type": "INT",\r
+          "widget": {\r
+            "name": "max_length"\r
+          },\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "种子",\r
+          "name": "sampling_mode.seed",\r
+          "type": "INT",\r
+          "widget": {\r
+            "name": "sampling_mode.seed"\r
+          },\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "思考模式",\r
+          "name": "thinking",\r
+          "shape": 7,\r
+          "type": "BOOLEAN",\r
+          "widget": {\r
+            "name": "thinking"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "生成文本",\r
+          "name": "generated_text",\r
+          "type": "STRING",\r
+          "links": [\r
+            4\r
+          ]\r
+        },\r
+        {\r
+          "localized_name": "思考",\r
+          "name": "thinking",\r
+          "type": "STRING",\r
+          "links": null\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "TextGenerate"\r
+      },\r
+      "widgets_values": [\r
+        "",\r
+        4096,\r
+        "on",\r
+        1,\r
+        20,\r
+        0.95,\r
+        0,\r
+        1,\r
+        447606998181262,\r
+        1.5,\r
+        false,\r
+        true,\r
+        "auto",\r
+        [\r
+          false,\r
+          true\r
+        ]\r
+      ],\r
+      "widgets_values_named": {\r
+        "prompt": "",\r
+        "max_length": 4096,\r
+        "sampling_mode": "on",\r
+        "sampling_mode.temperature": 1,\r
+        "sampling_mode.top_k": 20,\r
+        "sampling_mode.top_p": 0.95,\r
+        "sampling_mode.min_p": 0,\r
+        "sampling_mode.repetition_penalty": 1,\r
+        "sampling_mode.seed": 447606998181262,\r
+        "sampling_mode.presence_penalty": 1.5,\r
+        "thinking": false,\r
+        "use_default_template": true,\r
+        "mtp": "auto",\r
+        "speak_and_recognation": [\r
+          false,\r
+          true\r
+        ]\r
+      }\r
+    },\r
+    {\r
+      "id": 607,\r
+      "type": "CLIPLoader",\r
+      "pos": [\r
+        270,\r
+        230\r
+      ],\r
+      "size": [\r
+        530,\r
+        120\r
+      ],\r
+      "flags": {},\r
+      "order": 4,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "CLIP名称",\r
+          "name": "clip_name",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "clip_name"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "CLIP",\r
+          "name": "CLIP",\r
+          "type": "CLIP",\r
+          "links": [\r
+            15\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "CLIPLoader",\r
+        "models": [\r
+          {\r
+            "name": "qwen3.5_9b_qwen_image_2.1_pe_t2i.int8_convrot.safetensors",\r
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/main/text_encoders/qwen3.5_9b_qwen_image_2.1_pe_t2i.int8_convrot.safetensors",\r
+            "directory": "text_encoders"\r
+          }\r
+        ]\r
+      },\r
+      "widgets_values": [\r
+        "qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors",\r
+        "stable_diffusion",\r
+        "default"\r
+      ],\r
+      "widgets_values_named": {\r
+        "clip_name": "qwen3.5_9b_qwen_image_2.1_pe_i2i.int8_convrot.safetensors",\r
+        "type": "stable_diffusion",\r
+        "device": "default"\r
+      }\r
+    },\r
+    {\r
+      "id": 608,\r
+      "type": "ComfySwitchNode",\r
+      "pos": [\r
+        1440,\r
+        230\r
+      ],\r
+      "size": [\r
+        270,\r
+        80\r
+      ],\r
+      "flags": {},\r
+      "order": 12,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "为假时",\r
+          "name": "on_false",\r
+          "shape": 7,\r
+          "type": "STRING",\r
+          "link": 17\r
+        },\r
+        {\r
+          "localized_name": "为真时",\r
+          "name": "on_true",\r
+          "shape": 7,\r
+          "type": "STRING",\r
+          "link": 4\r
+        },\r
+        {\r
+          "localized_name": "切换",\r
+          "name": "switch",\r
+          "type": "BOOLEAN",\r
+          "widget": {\r
+            "name": "switch"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "输出",\r
+          "name": "output",\r
+          "type": "STRING",\r
+          "links": [\r
+            3\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "ComfySwitchNode"\r
+      },\r
+      "widgets_values": [\r
+        false\r
+      ],\r
+      "widgets_values_named": {\r
+        "switch": false,\r
+        "on_false": "Underground techno event poster: black background, a two-line headline in heavy white grotesque capitals where the first line reads \\"QWEN IMAGE\\" and the second line reads \\"2.1 TURBO\\", both lines the same very large size and each spanning the full poster width edge to edge, stacked tightly one above the other in the upper half, the decimal point in \\"2.1\\" rendered as a clearly visible full-size square dot, a scattered pile of overlapping black-and-white halftone portrait photos showing a mixed cast of different people, an elderly man, a young woman, a child and a bearded man among them, arranged in two loose rows across the lower half, every face is razor sharp and crisply in focus with fine detailed halftone dots, high micro-contrast, thin white grid lines, small fluorescent orange accent shapes, two-colour risograph print texture, square 1:1 poster format, both headline lines equally prominent, spelling exactly correct letter by letter, no other readable words, no watermark"\r
+      },\r
+      "title": "可选提示词增强（默认关闭）"\r
+    },\r
+    {\r
+      "id": 609,\r
+      "type": "PrimitiveStringMultiline",\r
+      "pos": [\r
+        270,\r
+        410\r
+      ],\r
+      "size": [\r
+        530,\r
+        270\r
+      ],\r
+      "flags": {},\r
+      "order": 5,\r
+      "mode": 0,\r
+      "inputs": [],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "字符串",\r
+          "name": "STRING",\r
+          "type": "STRING",\r
+          "links": [\r
+            16\r
+          ]\r
+        }\r
+      ],\r
+      "title": "Text (System Prompt)",\r
+      "properties": {\r
+        "Node name for S&R": "PrimitiveStringMultiline"\r
+      },\r
+      "widgets_values": [\r
+        "# Image Prompt Rewriting Expert\\n\\nYou turn a user's image request into one long English paragraph that describes the\\nfinished image as if you were looking at it, plus the aspect ratio it should be\\nrendered at. You are not talking to the user and not talking to a renderer: you are\\nan observer reporting what is in the frame.\\n\\nWork through the eight steps below in order. Each step commits one decision; later\\nsteps never revise an earlier one.\\n\\n## Step 1 — Read the brief and split it in two\\n\\nList what the user has fixed and what they have left open.\\n\\nFixed, and it must survive into your description unchanged: every string of text\\nthey want shown, every named object, every count, every stated colour, every stated\\nposition, and the aspect ratio if they gave one. Copy their text strings character\\nfor character, in their own script, including punctuation and spacing.\\n\\nA third thing they may give you is an instruction about the job rather than about the\\npicture — \\"use double quotes\\", \\"no hard-edged blocks\\", \\"4K, no noise\\", \\"make sure the\\ntext is sharp\\". That is not content. Obey it silently where it applies and never echo\\nit: the description states what is in the frame, never what must be done.\\n\\nOpen, and you must decide it: everything they did not mention. A three-word request\\nand a three-hundred-word request both become a description of the same size, so a\\nshort brief means you are inventing most of the frame, not writing less.\\n\\n## Step 2 — Fix the frame\\n\\nDecide the orientation from the subject, then pick the ratio.\\n\\nIf the user states a ratio, use it. Otherwise: \`3:2\` for anything horizontal and\\n\`2:3\` for anything vertical — these are the two defaults and cover most images.\\nUse \`1:1\` for a square badge, icon, album cover or single centred emblem, \`16:9\`\\nfor a wide cinematic or presentation frame, \`1:2\` or \`9:16\` for a phone screen or a\\ntall standing banner. \`3:4\`, \`2:1\`, \`21:9\`, \`4:3\`, \`9:21\`, \`4:5\`, \`3:1\`, \`5:4\`,\\n\`1:3\` exist but only when the subject or the user really calls for them.\\n\\nThe ratio lives only in the \`wh_ratio\` field. Never write a ratio, a resolution, or\\na pixel count into the description itself.\\n\\n## Step 3 — Write the opening sentence\\n\\nOne sentence, around twenty words. Name the medium, the style, the subject, and the\\nbackground or palette; usually name the orientation too:\\n\\n\`The image is a ⟨vertical / wide / square / tall⟩ ⟨style⟩ ⟨photograph · poster · illustration · scene · portrait · infographic · close-up · graphic · page · card · sheet · logo⟩ of ⟨subject⟩, ⟨the background and its palette⟩.\`\\n\\n\`This is a …\` or a bare \`A vertical realistic photograph of …\` work equally well. The\\nmedium noun is the one part that is never omitted.\\n\\nThe style word goes here — realistic, photorealistic, minimalist, flat-vector,\\ncinematic, watercolour, isometric, editorial, hand-drawn, 3D-rendered, retro. Name\\nit once here; you may echo it in the closing sentence.\\n\\n## Step 4 — Inventory before you write\\n\\nBefore any more prose, settle two lists.\\n\\nEvery element that will appear, each with a place in the frame: upper-left,\\nacross the top, on the far right, in the lower-third, in the centre, in front of,\\nbehind, tucked into the corner. You will need eight to fourteen such positional\\nphrases, about ten typically, and they must reach the corners, the edges and the\\ncentre — not cluster in the middle.\\n\\nEvery piece of text that will be legible in the image, in reading order.\\n\\n## Step 5 — Walk the frame\\n\\nNow describe it in order. Which order depends on how the frame is filled.\\n\\n**If the frame is divided into regions** — a poster, a page, an interface, a layout, a\\nwide scene with several things in it — walk the regions:\\n\\n1. The background and the surface it sits on — this comes immediately after the\\n   opening sentence, not at the end.\\n2. The top band: headline, header bar, sky, ceiling, whatever occupies the top edge.\\n3. Down and across the body of the frame: left side, then centre, then right side.\\n   Give each region one or two sentences.\\n4. The bottom band: footer, foreground, ground plane, base row.\\n\\n**If one subject fills the frame** — a portrait, a close-up, a single object — walk\\nthe subject instead: the background and how far it falls off, then the subject's pose\\nand where it is placed in the frame, then head and face, then body and each garment or\\nsurface, then what is held or touching it, then whatever little is left at the edges.\\nKeep using positional phrases inside the subject — in the upper-left of the frame,\\nbehind the left shoulder, along the lower edge — so the frame stays locatable.\\n\\nRoughly a third of your sentences should open on the positional phrase itself —\\n\\"On the right side of the frame, …\\", \\"In the upper-left corner, …\\", \\"Across the\\nlower third, …\\" — so the reader always knows where they are looking.\\n\\nKeep it to one paragraph. Break to a new paragraph only when the image is genuinely\\nbuilt from stacked regions — panels, cards, sections, slides — and then one\\nparagraph per region, each opening on where that region sits.\\n\\n## Step 6 — Set every piece of text\\n\\nSkip this step if nothing in the image is meant to be read — a third of images have\\nno legible text at all, and inventing signage for them is a mistake.\\n\\nOtherwise, for each string from your Step 4 list, in reading order, name where it sits,\\nwhat it looks like, and what it says: \`a bold black headline across the top reads \\"…\\"\`.\\n\\nPut the string in straight double quotes, in its own script — Chinese, Russian,\\nKorean, Japanese and Arabic text stays in Chinese, Russian, Korean, Japanese and\\nArabic. Give its weight, colour, case and relative size. Describe a line break as a\\nsecond line rather than putting a real newline inside the string. If a mark is not meant\\nto be read — distant signage, a label behind glass, dense body copy — call it\\nblurred, indistinct, or too small to read rather than inventing letters. If the image contains a chart\\nor a table, its axes, tick labels, legend entries, series and cell values are text\\ntoo: write them out.\\n\\n## Step 7 — Give the lighting its own sentence\\n\\nEvery image has light in it, and the description always accounts for it: the source,\\nits direction, its quality, and the shadows and highlights it leaves. Soft diffused\\ndaylight from a window on the left, hard overhead studio light, warm low sun, flat\\neven ambient light for a diagram.\\n\\nOnce the contents are placed, give it a sentence of its own — \`The lighting is …\` —\\nor, if the light is what makes a particular surface look the way it does, fold it into\\nthat surface's sentence. Either way it is stated explicitly, not left implied.\\n\\n## Step 8 — Close with the whole frame\\n\\nEnd on a single sentence that steps back:\\n\\n\`The overall composition ⟨is / uses / feels⟩ …\`\\n\\n\`The composition is …\`, \`The overall design …\`, \`The overall mood …\`, \`The overall\\npalette …\` and \`The image has …\` are the same move. Cover balance and symmetry, the\\npalette, the style, and the mood in that one sentence. Write exactly one such\\nsentence — do not follow it with a second summary.\\n\\n## Throughout\\n\\n**Size.** The description runs about twenty sentences and four to five hundred words,\\nroughly twenty-five words a sentence. That is the same size whether the brief was three\\nwords or three hundred: a dense frame with many regions and a lot of text runs longer, a\\nsingle quiet subject runs shorter, but a thin brief never buys a thin description.\\n\\n**Observe, don't instruct.** Present tense, third person, declarative. No \\"you\\", no\\n\\"create\\", no \\"make sure\\", no \\"the AI should\\". No quality boosters — no \\"masterpiece\\",\\n\\"8K\\", \\"highly detailed\\", \\"award-winning\\".\\n\\n**Hedge what you cannot be certain of.** An observer describing a picture says\\n\\"appears to be\\", \\"likely\\", \\"suggesting\\", and offers a pair — \\"a notebook\\nor a tablet\\", \\"wood or dark laminate\\" — when the thing is genuinely ambiguous. Do\\nthis often; it is the natural register here. Be flatly definite only about what the\\nuser fixed.\\n\\n**Name colours with a modifier, almost never bare.** Deep navy, muted olive, pale\\ncream, warm terracotta, soft dusty rose, blue-grey, off-white, charcoal, brownish-\\ngreen. Hex codes only if the user gave them.\\n\\n**Give the material, not just the noun.** Brushed metal, matte plastic, glossy\\nceramic, coarse linen, weathered wood, frosted glass, grain, scuffs, condensation,\\nvisible brush strokes, paper fibre.\\n\\n**Enumerate; never summarise.** \\"Several items\\" and \\"various decorations\\" are not\\ndescriptions. Say what each thing is. Write small counts as words — three, five,\\ntwelve — and if something is partly hidden, say so and describe the visible part.\\n\\n**People get their observable surface.** Build, posture, where they are looking,\\nexpression, hair, skin tone, and each garment with its colour and material. Age is a\\nlife stage or a decade — a child, a teenager, a young adult, middle-aged, elderly,\\nin her thirties — never a number of years. If a face is turned away or cropped, say\\nthat instead of describing it.\\n\\n**Objects by class, not by brand.** A silver laptop, a mirrorless camera, a compact\\nhatchback — unless the user named the brand. Photographic and design vocabulary is\\nwelcome: shallow depth of field, bokeh, backlit, close-up, negative space,\\ngrid, drop shadow.\\n\\n**Everything holds together physically.** Shadows fall away from the light, reflections\\nmatch what is in front of the surface, scale is consistent between neighbouring\\nobjects, and a surface reacts to what sits on it. If the user asked for something\\nimpossible, describe it as the image shows it and let the rest of the scene stay\\ncoherent around it.\\n\\n## Language\\n\\nThe description is always in English, whatever language the request arrives in. The\\nonly exception is text shown inside the image, which stays in its own script.\\n\\n## Output format\\n\\n- Return the description and nothing else: one continuous paragraph of English, in a single line\\nstarting on the very first character of your reply.\\n- No JSON, no braces, no key names, no labels, no headings, no markdown, no code fences, and no quotation marks around the paragraph.\\n- No preamble, no acknowledgement, no explanation, no summary, no notes, no closing remarks, no questions.\\n- No ratio, no resolution, no pixel count, no timestamps.\\n\\nYour whole reply is used as the image prompt, so every extra word you add becomes part of the image.\\n",\r
+        [\r
+          false,\r
+          true\r
+        ]\r
+      ],\r
+      "widgets_values_named": {\r
+        "value": "# Image Prompt Rewriting Expert\\n\\nYou turn a user's image request into one long English paragraph that describes the\\nfinished image as if you were looking at it, plus the aspect ratio it should be\\nrendered at. You are not talking to the user and not talking to a renderer: you are\\nan observer reporting what is in the frame.\\n\\nWork through the eight steps below in order. Each step commits one decision; later\\nsteps never revise an earlier one.\\n\\n## Step 1 — Read the brief and split it in two\\n\\nList what the user has fixed and what they have left open.\\n\\nFixed, and it must survive into your description unchanged: every string of text\\nthey want shown, every named object, every count, every stated colour, every stated\\nposition, and the aspect ratio if they gave one. Copy their text strings character\\nfor character, in their own script, including punctuation and spacing.\\n\\nA third thing they may give you is an instruction about the job rather than about the\\npicture — \\"use double quotes\\", \\"no hard-edged blocks\\", \\"4K, no noise\\", \\"make sure the\\ntext is sharp\\". That is not content. Obey it silently where it applies and never echo\\nit: the description states what is in the frame, never what must be done.\\n\\nOpen, and you must decide it: everything they did not mention. A three-word request\\nand a three-hundred-word request both become a description of the same size, so a\\nshort brief means you are inventing most of the frame, not writing less.\\n\\n## Step 2 — Fix the frame\\n\\nDecide the orientation from the subject, then pick the ratio.\\n\\nIf the user states a ratio, use it. Otherwise: \`3:2\` for anything horizontal and\\n\`2:3\` for anything vertical — these are the two defaults and cover most images.\\nUse \`1:1\` for a square badge, icon, album cover or single centred emblem, \`16:9\`\\nfor a wide cinematic or presentation frame, \`1:2\` or \`9:16\` for a phone screen or a\\ntall standing banner. \`3:4\`, \`2:1\`, \`21:9\`, \`4:3\`, \`9:21\`, \`4:5\`, \`3:1\`, \`5:4\`,\\n\`1:3\` exist but only when the subject or the user really calls for them.\\n\\nThe ratio lives only in the \`wh_ratio\` field. Never write a ratio, a resolution, or\\na pixel count into the description itself.\\n\\n## Step 3 — Write the opening sentence\\n\\nOne sentence, around twenty words. Name the medium, the style, the subject, and the\\nbackground or palette; usually name the orientation too:\\n\\n\`The image is a ⟨vertical / wide / square / tall⟩ ⟨style⟩ ⟨photograph · poster · illustration · scene · portrait · infographic · close-up · graphic · page · card · sheet · logo⟩ of ⟨subject⟩, ⟨the background and its palette⟩.\`\\n\\n\`This is a …\` or a bare \`A vertical realistic photograph of …\` work equally well. The\\nmedium noun is the one part that is never omitted.\\n\\nThe style word goes here — realistic, photorealistic, minimalist, flat-vector,\\ncinematic, watercolour, isometric, editorial, hand-drawn, 3D-rendered, retro. Name\\nit once here; you may echo it in the closing sentence.\\n\\n## Step 4 — Inventory before you write\\n\\nBefore any more prose, settle two lists.\\n\\nEvery element that will appear, each with a place in the frame: upper-left,\\nacross the top, on the far right, in the lower-third, in the centre, in front of,\\nbehind, tucked into the corner. You will need eight to fourteen such positional\\nphrases, about ten typically, and they must reach the corners, the edges and the\\ncentre — not cluster in the middle.\\n\\nEvery piece of text that will be legible in the image, in reading order.\\n\\n## Step 5 — Walk the frame\\n\\nNow describe it in order. Which order depends on how the frame is filled.\\n\\n**If the frame is divided into regions** — a poster, a page, an interface, a layout, a\\nwide scene with several things in it — walk the regions:\\n\\n1. The background and the surface it sits on — this comes immediately after the\\n   opening sentence, not at the end.\\n2. The top band: headline, header bar, sky, ceiling, whatever occupies the top edge.\\n3. Down and across the body of the frame: left side, then centre, then right side.\\n   Give each region one or two sentences.\\n4. The bottom band: footer, foreground, ground plane, base row.\\n\\n**If one subject fills the frame** — a portrait, a close-up, a single object — walk\\nthe subject instead: the background and how far it falls off, then the subject's pose\\nand where it is placed in the frame, then head and face, then body and each garment or\\nsurface, then what is held or touching it, then whatever little is left at the edges.\\nKeep using positional phrases inside the subject — in the upper-left of the frame,\\nbehind the left shoulder, along the lower edge — so the frame stays locatable.\\n\\nRoughly a third of your sentences should open on the positional phrase itself —\\n\\"On the right side of the frame, …\\", \\"In the upper-left corner, …\\", \\"Across the\\nlower third, …\\" — so the reader always knows where they are looking.\\n\\nKeep it to one paragraph. Break to a new paragraph only when the image is genuinely\\nbuilt from stacked regions — panels, cards, sections, slides — and then one\\nparagraph per region, each opening on where that region sits.\\n\\n## Step 6 — Set every piece of text\\n\\nSkip this step if nothing in the image is meant to be read — a third of images have\\nno legible text at all, and inventing signage for them is a mistake.\\n\\nOtherwise, for each string from your Step 4 list, in reading order, name where it sits,\\nwhat it looks like, and what it says: \`a bold black headline across the top reads \\"…\\"\`.\\n\\nPut the string in straight double quotes, in its own script — Chinese, Russian,\\nKorean, Japanese and Arabic text stays in Chinese, Russian, Korean, Japanese and\\nArabic. Give its weight, colour, case and relative size. Describe a line break as a\\nsecond line rather than putting a real newline inside the string. If a mark is not meant\\nto be read — distant signage, a label behind glass, dense body copy — call it\\nblurred, indistinct, or too small to read rather than inventing letters. If the image contains a chart\\nor a table, its axes, tick labels, legend entries, series and cell values are text\\ntoo: write them out.\\n\\n## Step 7 — Give the lighting its own sentence\\n\\nEvery image has light in it, and the description always accounts for it: the source,\\nits direction, its quality, and the shadows and highlights it leaves. Soft diffused\\ndaylight from a window on the left, hard overhead studio light, warm low sun, flat\\neven ambient light for a diagram.\\n\\nOnce the contents are placed, give it a sentence of its own — \`The lighting is …\` —\\nor, if the light is what makes a particular surface look the way it does, fold it into\\nthat surface's sentence. Either way it is stated explicitly, not left implied.\\n\\n## Step 8 — Close with the whole frame\\n\\nEnd on a single sentence that steps back:\\n\\n\`The overall composition ⟨is / uses / feels⟩ …\`\\n\\n\`The composition is …\`, \`The overall design …\`, \`The overall mood …\`, \`The overall\\npalette …\` and \`The image has …\` are the same move. Cover balance and symmetry, the\\npalette, the style, and the mood in that one sentence. Write exactly one such\\nsentence — do not follow it with a second summary.\\n\\n## Throughout\\n\\n**Size.** The description runs about twenty sentences and four to five hundred words,\\nroughly twenty-five words a sentence. That is the same size whether the brief was three\\nwords or three hundred: a dense frame with many regions and a lot of text runs longer, a\\nsingle quiet subject runs shorter, but a thin brief never buys a thin description.\\n\\n**Observe, don't instruct.** Present tense, third person, declarative. No \\"you\\", no\\n\\"create\\", no \\"make sure\\", no \\"the AI should\\". No quality boosters — no \\"masterpiece\\",\\n\\"8K\\", \\"highly detailed\\", \\"award-winning\\".\\n\\n**Hedge what you cannot be certain of.** An observer describing a picture says\\n\\"appears to be\\", \\"likely\\", \\"suggesting\\", and offers a pair — \\"a notebook\\nor a tablet\\", \\"wood or dark laminate\\" — when the thing is genuinely ambiguous. Do\\nthis often; it is the natural register here. Be flatly definite only about what the\\nuser fixed.\\n\\n**Name colours with a modifier, almost never bare.** Deep navy, muted olive, pale\\ncream, warm terracotta, soft dusty rose, blue-grey, off-white, charcoal, brownish-\\ngreen. Hex codes only if the user gave them.\\n\\n**Give the material, not just the noun.** Brushed metal, matte plastic, glossy\\nceramic, coarse linen, weathered wood, frosted glass, grain, scuffs, condensation,\\nvisible brush strokes, paper fibre.\\n\\n**Enumerate; never summarise.** \\"Several items\\" and \\"various decorations\\" are not\\ndescriptions. Say what each thing is. Write small counts as words — three, five,\\ntwelve — and if something is partly hidden, say so and describe the visible part.\\n\\n**People get their observable surface.** Build, posture, where they are looking,\\nexpression, hair, skin tone, and each garment with its colour and material. Age is a\\nlife stage or a decade — a child, a teenager, a young adult, middle-aged, elderly,\\nin her thirties — never a number of years. If a face is turned away or cropped, say\\nthat instead of describing it.\\n\\n**Objects by class, not by brand.** A silver laptop, a mirrorless camera, a compact\\nhatchback — unless the user named the brand. Photographic and design vocabulary is\\nwelcome: shallow depth of field, bokeh, backlit, close-up, negative space,\\ngrid, drop shadow.\\n\\n**Everything holds together physically.** Shadows fall away from the light, reflections\\nmatch what is in front of the surface, scale is consistent between neighbouring\\nobjects, and a surface reacts to what sits on it. If the user asked for something\\nimpossible, describe it as the image shows it and let the rest of the scene stay\\ncoherent around it.\\n\\n## Language\\n\\nThe description is always in English, whatever language the request arrives in. The\\nonly exception is text shown inside the image, which stays in its own script.\\n\\n## Output format\\n\\n- Return the description and nothing else: one continuous paragraph of English, in a single line\\nstarting on the very first character of your reply.\\n- No JSON, no braces, no key names, no labels, no headings, no markdown, no code fences, and no quotation marks around the paragraph.\\n- No preamble, no acknowledgement, no explanation, no summary, no notes, no closing remarks, no questions.\\n- No ratio, no resolution, no pixel count, no timestamps.\\n\\nYour whole reply is used as the image prompt, so every extra word you add becomes part of the image.\\n",\r
+        "speak_and_recognation": [\r
+          false,\r
+          true\r
+        ]\r
+      }\r
+    },\r
+    {\r
+      "id": 610,\r
+      "type": "ManualSigmas",\r
+      "pos": [\r
+        1372,\r
+        1690\r
+      ],\r
+      "size": [\r
+        418.9732421875,\r
+        58\r
+      ],\r
+      "flags": {},\r
+      "order": 6,\r
+      "mode": 0,\r
+      "inputs": [],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "Sigmas",\r
+          "name": "SIGMAS",\r
+          "type": "SIGMAS",\r
+          "links": [\r
+            8\r
+          ]\r
+        }\r
+      ],\r
+      "title": "Manual Sigmas (Qwen-Image-2.1-Turbo 8-step schedule)",\r
+      "properties": {\r
+        "Node name for S&R": "ManualSigmas"\r
+      },\r
+      "widgets_values": [\r
+        "1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0"\r
+      ],\r
+      "widgets_values_named": {\r
+        "sigmas": "1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0"\r
+      }\r
+    },\r
+    {\r
+      "id": 611,\r
+      "type": "SamplerCustomAdvanced",\r
+      "pos": [\r
+        1699,\r
+        1286\r
+      ],\r
+      "size": [\r
+        220.2388671875,\r
+        106\r
+      ],\r
+      "flags": {},\r
+      "order": 15,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "噪波",\r
+          "name": "noise",\r
+          "type": "NOISE",\r
+          "link": 5\r
+        },\r
+        {\r
+          "localized_name": "引导器",\r
+          "name": "guider",\r
+          "type": "GUIDER",\r
+          "link": 6\r
+        },\r
+        {\r
+          "localized_name": "采样器",\r
+          "name": "sampler",\r
+          "type": "SAMPLER",\r
+          "link": 7\r
+        },\r
+        {\r
+          "localized_name": "西格玛",\r
+          "name": "sigmas",\r
+          "type": "SIGMAS",\r
+          "link": 8\r
+        },\r
+        {\r
+          "localized_name": "Latent图像",\r
+          "name": "latent_image",\r
+          "type": "LATENT",\r
+          "link": 14\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "Latent",\r
+          "name": "output",\r
+          "type": "LATENT",\r
+          "links": [\r
+            10\r
+          ]\r
+        },\r
+        {\r
+          "localized_name": "降噪Latent",\r
+          "name": "denoised_output",\r
+          "type": "LATENT",\r
+          "links": null\r
+        }\r
+      ],\r
+      "title": "Sampler Custom Advanced",\r
+      "properties": {\r
+        "Node name for S&R": "SamplerCustomAdvanced"\r
+      }\r
+    },\r
+    {\r
+      "id": 612,\r
+      "type": "KSamplerSelect",\r
+      "pos": [\r
+        1372,\r
+        1569\r
+      ],\r
+      "size": [\r
+        270,\r
+        58\r
+      ],\r
+      "flags": {},\r
+      "order": 7,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "采样器名称",\r
+          "name": "sampler_name",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "sampler_name"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "采样器",\r
+          "name": "SAMPLER",\r
+          "type": "SAMPLER",\r
+          "links": [\r
+            7\r
+          ]\r
+        }\r
+      ],\r
+      "title": "KSampler Select (euler)",\r
+      "properties": {\r
+        "Node name for S&R": "KSamplerSelect"\r
+      },\r
+      "widgets_values": [\r
+        "euler"\r
+      ],\r
+      "widgets_values_named": {\r
+        "sampler_name": "euler"\r
+      }\r
+    },\r
+    {\r
+      "id": 613,\r
+      "type": "RandomNoise",\r
+      "pos": [\r
+        1372,\r
+        1263\r
+      ],\r
+      "size": [\r
+        270,\r
+        82\r
+      ],\r
+      "flags": {},\r
+      "order": 8,\r
+      "mode": 0,\r
+      "inputs": [],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "噪波",\r
+          "name": "NOISE",\r
+          "type": "NOISE",\r
+          "links": [\r
+            5\r
+          ]\r
+        }\r
+      ],\r
+      "title": "Random Noise",\r
+      "properties": {\r
+        "Node name for S&R": "RandomNoise"\r
+      },\r
+      "widgets_values": [\r
+        92826187933228,\r
+        "fixed"\r
+      ],\r
+      "widgets_values_named": {\r
+        "noise_seed": 92826187933228,\r
+        "control_after_generate": "fixed"\r
+      }\r
+    },\r
+    {\r
+      "id": 614,\r
+      "type": "CFGGuider",\r
+      "pos": [\r
+        1372,\r
+        1408\r
+      ],\r
+      "size": [\r
+        270,\r
+        98\r
+      ],\r
+      "flags": {},\r
+      "order": 14,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "模型",\r
+          "name": "model",\r
+          "type": "MODEL",\r
+          "link": 9\r
+        },\r
+        {\r
+          "localized_name": "正面条件",\r
+          "name": "positive",\r
+          "type": "CONDITIONING",\r
+          "link": 12\r
+        },\r
+        {\r
+          "localized_name": "负面条件",\r
+          "name": "negative",\r
+          "type": "CONDITIONING",\r
+          "link": 13\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "引导器",\r
+          "name": "GUIDER",\r
+          "type": "GUIDER",\r
+          "links": [\r
+            6\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "CFGGuider"\r
+      },\r
+      "widgets_values": [\r
+        1\r
+      ],\r
+      "widgets_values_named": {\r
+        "cfg": 1\r
+      }\r
+    },\r
+    {\r
+      "id": 615,\r
+      "type": "QwenImage21Cache",\r
+      "pos": [\r
+        1376,\r
+        1046\r
+      ],\r
+      "size": [\r
+        270,\r
+        90\r
+      ],\r
+      "flags": {},\r
+      "order": 11,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "localized_name": "model",\r
+          "name": "model",\r
+          "type": "MODEL",\r
+          "link": 11\r
+        },\r
+        {\r
+          "localized_name": "device",\r
+          "name": "device",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "device"\r
+          },\r
+          "link": null\r
+        },\r
+        {\r
+          "localized_name": "dtype",\r
+          "name": "dtype",\r
+          "type": "COMBO",\r
+          "widget": {\r
+            "name": "dtype"\r
+          },\r
+          "link": null\r
+        }\r
+      ],\r
+      "outputs": [\r
+        {\r
+          "localized_name": "模型",\r
+          "name": "MODEL",\r
+          "type": "MODEL",\r
+          "links": [\r
+            9\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "QwenImage21Cache"\r
+      },\r
+      "widgets_values": [\r
+        "auto",\r
+        "default"\r
+      ],\r
+      "widgets_values_named": {\r
+        "device": "auto",\r
+        "dtype": "default"\r
+      }\r
+    },\r
+    {\r
+      "id": 651,\r
+      "type": "PrimitiveStringMultiline",\r
+      "title": "生图提示词（导播台提交时自动替换）",\r
+      "pos": [\r
+        350,\r
+        400\r
+      ],\r
+      "size": [\r
+        350,\r
+        220\r
+      ],\r
+      "flags": {},\r
+      "order": 9,\r
+      "mode": 0,\r
+      "inputs": [],\r
+      "outputs": [\r
+        {\r
+          "name": "STRING",\r
+          "type": "STRING",\r
+          "links": [\r
+            17,\r
+            18\r
+          ]\r
+        }\r
+      ],\r
+      "properties": {\r
+        "Node name for S&R": "PrimitiveStringMultiline"\r
+      },\r
+      "widgets_values": [\r
+        ""\r
+      ],\r
+      "widgets_values_named": {\r
+        "value": ""\r
+      }\r
+    },\r
+    {\r
+      "id": 650,\r
+      "type": "SaveImage",\r
+      "title": "YuQ · Qwen Image 2.1 Turbo 生图输出",\r
+      "pos": [\r
+        2280,\r
+        1430\r
+      ],\r
+      "size": [\r
+        330,\r
+        320\r
+      ],\r
+      "flags": {},\r
+      "order": 17,\r
+      "mode": 0,\r
+      "inputs": [\r
+        {\r
+          "name": "images",\r
+          "type": "IMAGE",\r
+          "link": 19\r
+        }\r
+      ],\r
+      "outputs": [],\r
+      "properties": {\r
+        "Node name for S&R": "SaveImage"\r
+      },\r
+      "widgets_values": [\r
+        "TheodoreDirector/ImageGen/manual/image"\r
+      ],\r
+      "widgets_values_named": {\r
+        "filename_prefix": "TheodoreDirector/ImageGen/manual/image"\r
+      }\r
+    }\r
+  ],\r
+  "links": [\r
+    [\r
+      1,\r
+      602,\r
+      0,\r
+      601,\r
+      0,\r
+      "CLIP"\r
+    ],\r
+    [\r
+      2,\r
+      603,\r
+      0,\r
+      605,\r
+      1,\r
+      "VAE"\r
+    ],\r
+    [\r
+      3,\r
+      608,\r
+      0,\r
+      601,\r
+      3,\r
+      "STRING"\r
+    ],\r
+    [\r
+      4,\r
+      606,\r
+      0,\r
+      608,\r
+      1,\r
+      "STRING"\r
+    ],\r
+    [\r
+      5,\r
+      613,\r
+      0,\r
+      611,\r
+      0,\r
+      "NOISE"\r
+    ],\r
+    [\r
+      6,\r
+      614,\r
+      0,\r
+      611,\r
+      1,\r
+      "GUIDER"\r
+    ],\r
+    [\r
+      7,\r
+      612,\r
+      0,\r
+      611,\r
+      2,\r
+      "SAMPLER"\r
+    ],\r
+    [\r
+      8,\r
+      610,\r
+      0,\r
+      611,\r
+      3,\r
+      "SIGMAS"\r
+    ],\r
+    [\r
+      9,\r
+      615,\r
+      0,\r
+      614,\r
+      0,\r
+      "MODEL"\r
+    ],\r
+    [\r
+      10,\r
+      611,\r
+      0,\r
+      605,\r
+      0,\r
+      "LATENT"\r
+    ],\r
+    [\r
+      11,\r
+      600,\r
+      0,\r
+      615,\r
+      0,\r
+      "MODEL"\r
+    ],\r
+    [\r
+      12,\r
+      601,\r
+      0,\r
+      614,\r
+      1,\r
+      "CONDITIONING"\r
+    ],\r
+    [\r
+      13,\r
+      601,\r
+      1,\r
+      614,\r
+      2,\r
+      "CONDITIONING"\r
+    ],\r
+    [\r
+      14,\r
+      604,\r
+      0,\r
+      611,\r
+      4,\r
+      "LATENT"\r
+    ],\r
+    [\r
+      15,\r
+      607,\r
+      0,\r
+      606,\r
+      0,\r
+      "CLIP"\r
+    ],\r
+    [\r
+      16,\r
+      609,\r
+      0,\r
+      606,\r
+      4,\r
+      "STRING"\r
+    ],\r
+    [\r
+      17,\r
+      651,\r
+      0,\r
+      608,\r
+      0,\r
+      "STRING"\r
+    ],\r
+    [\r
+      18,\r
+      651,\r
+      0,\r
+      606,\r
+      5,\r
+      "STRING"\r
+    ],\r
+    [\r
+      19,\r
+      605,\r
+      0,\r
+      650,\r
+      0,\r
+      "IMAGE"\r
+    ]\r
+  ],\r
+  "groups": [],\r
+  "config": {},\r
+  "extra": {\r
+    "yuqImageWorkflow": "qwen_image_2_1_turbo",\r
+    "sourceFile": "54bb395d-3e60-4c94-b525-85523901575b"\r
+  },\r
+  "version": 0.4\r
+}\r
+`, Na = '.td-modal{--td-bg:#0b1020;--td-panel:#121a2b;--td-panel-2:#18243a;--td-panel-3:#20314d;--td-line:#273b5b;--td-line-strong:#3e5b82;--td-text:#edf5ff;--td-muted:#9cafc9;--td-faint:#7185a3;--td-accent:#69e1c0;--td-accent-dim:#153d3d;--td-relay:#8bb8ff;--td-relay-dim:#1d3155;--td-warn:#f4c96d;--td-warn-dim:#44351d;--td-danger:#ff858f;--td-danger-dim:#45232e;--td-radius:10px;--td-font:"PingFang SC","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Segoe UI",system-ui,sans-serif;--td-mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,"Microsoft YaHei",monospace}.td-modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483000;display:block;overflow:hidden;pointer-events:auto;background:var(--td-bg);color:var(--td-text);font:13.5px/1.5 var(--td-font);isolation:isolate;outline:none}.td-modal *{box-sizing:border-box}.td-shell{height:100dvh;display:grid;grid-template-columns:214px minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);grid-template-areas:"rail header" "rail status" "rail content";background:var(--td-bg)}.td-shell h1,.td-shell h2,.td-shell h3{margin:0;font-weight:650;letter-spacing:.01em}.td-shell h1{font-size:17px}.td-shell h2{font-size:15px}.td-shell h3{font-size:13.5px}.td-shell button,.td-shell input,.td-shell textarea,.td-shell select,.td-button{font:inherit;color:var(--td-text);background:var(--td-panel-3);border:1px solid var(--td-line-strong);border-radius:6px;padding:6px 10px}.td-shell button,.td-button{cursor:pointer;white-space:nowrap;transition:border-color .12s,background .12s,color .12s}.td-shell button:hover:not(:disabled),.td-button:hover{border-color:var(--td-accent)}.td-shell button:disabled{opacity:.45;cursor:not-allowed}.td-shell button.primary{background:var(--td-accent);border-color:var(--td-accent);color:#07140e;font-weight:600}.td-shell button.primary:hover:not(:disabled){filter:brightness(1.08)}.td-shell button.accent{background:var(--td-accent-dim);border-color:#2f6b52;color:var(--td-accent)}.td-shell button.danger{color:var(--td-danger)}.td-shell button.danger:hover:not(:disabled){border-color:var(--td-danger)}.td-shell input:focus,.td-shell textarea:focus,.td-shell select:focus{outline:none;border-color:var(--td-accent);box-shadow:0 0 0 2px #5fd0a022}.td-shell textarea{resize:vertical}.td-button{display:inline-flex;align-items:center;gap:6px}.td-button input{display:none}.td-chip{display:inline-flex;align-items:center;gap:4px;padding:1px 8px;border-radius:999px;background:var(--td-panel-3);color:var(--td-muted);font-size:11.5px;white-space:nowrap}.td-chip.ok{background:var(--td-accent-dim);color:var(--td-accent)}.td-chip.warn{background:var(--td-warn-dim);color:var(--td-warn)}.td-inline-check{display:inline-flex!important;flex-direction:row!important;align-items:center;gap:6px!important;color:var(--td-text)!important;cursor:pointer;white-space:nowrap}.td-inline-check input{width:15px!important;height:15px;margin:0}.td-hint{margin:0;color:var(--td-faint);font-size:12px}.errors{color:var(--td-danger)}.ok{color:var(--td-accent)}.wide{width:100%}.td-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 18px;border-bottom:1px solid var(--td-line);background:var(--td-panel)}.td-brand{display:flex;align-items:center;gap:12px;min-width:0}.td-project-chip{display:inline-flex;align-items:center;gap:6px;max-width:320px;overflow:hidden;padding:3px 10px;border:1px solid var(--td-line-strong);border-radius:999px;text-overflow:ellipsis;white-space:nowrap}.td-project-chip em{color:var(--td-faint);font-style:normal;font-size:12px}.td-project-meta{color:var(--td-muted);font-size:12.5px;white-space:nowrap}.td-actions{display:flex;gap:8px;align-items:center;flex:none}.td-actions .td-lang{min-width:46px}.td-tabs{display:flex;align-items:center;gap:4px;padding:0 18px;border-bottom:1px solid var(--td-line);background:var(--td-panel)}.td-shell .td-tabs>button{position:relative;padding:10px 14px;border:0;border-radius:0;background:transparent;color:var(--td-muted)}.td-shell .td-tabs>button:hover:not(:disabled){color:var(--td-text);border-color:transparent}.td-shell .td-tabs>button.active{color:var(--td-text);font-weight:600}.td-tabs>button.active:after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;border-radius:2px;background:var(--td-accent)}.td-shell .td-tabs>button.attention{color:var(--td-warn)}.td-tab-status{display:flex;align-items:center;gap:10px;margin-left:auto;padding:6px 0}.td-progress-text{color:var(--td-muted);font-size:12.5px}.td-run-pill{display:inline-flex;align-items:center;gap:8px;padding:3px 4px 3px 10px;border:1px solid #2f6b52;border-radius:999px;background:var(--td-accent-dim);color:var(--td-accent);font-size:12.5px}.td-run-pill i{width:8px;height:8px;border-radius:50%;background:var(--td-accent);animation:td-pulse 1.2s infinite}.td-shell .td-run-pill button{padding:2px 10px;border-radius:999px;color:var(--td-danger)}@keyframes td-pulse{50%{opacity:.25}}.td-shell main{min-height:0;overflow:auto;padding:14px 18px}.td-shell.td-compact main{padding:8px 12px}.td-shell.td-compact .td-topbar{padding:7px 14px}.td-shell.td-compact .td-tabs>button{padding-top:7px;padding-bottom:7px}.td-shots{display:grid;grid-template-columns:270px minmax(420px,1fr) minmax(320px,380px);gap:14px;height:100%;min-height:0}.td-shots>aside,.td-shot-form{min-height:0;background:var(--td-panel);border:1px solid var(--td-line);border-radius:var(--td-radius)}.td-shot-sidebar{display:flex;flex-direction:column;overflow:hidden}.td-shot-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px}.td-shot-card{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;margin-bottom:4px;padding:8px 8px 8px 10px;border:1px solid transparent;border-radius:7px;cursor:pointer}.td-shot-card:hover{background:var(--td-panel-2)}.td-shot-card.selected{border-color:#2f6b52;background:var(--td-accent-dim)}.td-shot-card.off{opacity:.55}.td-shot-card.running{border-color:var(--td-accent);box-shadow:inset 3px 0 0 var(--td-accent)}.td-shot-card.relay{margin-top:-2px}.td-relay-link{position:absolute;left:3px;top:-8px;height:16px;border-left:2px dashed var(--td-relay)}.td-shot-card-main{min-width:0}.td-shot-card-main strong{display:block;overflow:hidden;font-weight:600;text-overflow:ellipsis;white-space:nowrap}.td-shot-card-main strong em{margin-right:6px;color:var(--td-faint);font-style:normal;font-variant-numeric:tabular-nums}.td-shot-card-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px;font-size:11.5px;color:var(--td-muted)}.td-shot-card-meta b{font-weight:500}.td-shot-card-meta i{padding:0 6px;border-radius:999px;background:var(--td-panel-3);font-style:normal}.td-shot-card-meta i.relay{background:var(--td-relay-dim);color:var(--td-relay)}.td-shot-card-meta i.ok{background:var(--td-accent-dim);color:var(--td-accent)}.td-shot-card-meta i.warn{background:var(--td-warn-dim);color:var(--td-warn)}.td-shot-card-meta i.run{background:var(--td-accent);color:#07140e}.td-shot-card-actions{display:flex;gap:2px;opacity:0;transition:opacity .12s}.td-shot-card:hover .td-shot-card-actions,.td-shot-card.selected .td-shot-card-actions{opacity:1}.td-shell .td-shot-card-actions button{padding:1px 6px;font-size:12px;background:transparent}.td-shot-sidebar-footer{flex:none;display:grid;gap:8px;padding:10px;border-top:1px solid var(--td-line)}.td-total{color:var(--td-muted);font-size:12px;text-align:center}.td-two-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}.td-form{display:flex;flex-direction:column;gap:10px}.td-form label,.td-settings-grid label{display:flex;flex-direction:column;gap:4px;color:var(--td-muted);font-size:12.5px}.td-form input,.td-form textarea,.td-form select{width:100%}.td-shot-form{overflow:auto;padding:14px}.td-shot-head{display:grid;grid-template-columns:minmax(0,1fr) 110px 200px;gap:10px;align-items:end}.td-shot-head input{font-size:14px}.td-seed-input{display:flex;gap:4px}.td-seed-input input{min-width:0}.td-shell .td-seed-input button{flex:none;padding:6px 8px}.td-inline-warning{padding:6px 10px;border:1px solid #6b5527;border-radius:6px;background:var(--td-warn-dim);color:var(--td-warn);font-size:12.5px}.td-shot-switches{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px}.td-form label.td-toggle{flex-direction:row;align-items:center;gap:7px;padding:6px 10px;border:1px solid var(--td-line-strong);border-radius:6px;background:var(--td-panel-2);color:var(--td-text);cursor:pointer;white-space:nowrap}.td-form label.td-toggle input{width:15px;height:15px;margin:0}.td-form label.td-toggle:has(input:checked){border-color:#2f6b52;background:var(--td-accent-dim)}.td-form label.td-toggle:has(input:disabled){opacity:.55;cursor:not-allowed}.td-advanced{margin-left:auto}.td-advanced>summary{padding:6px 10px;color:var(--td-muted);cursor:pointer;list-style:none;border:1px dashed var(--td-line-strong);border-radius:6px}.td-advanced[open]>summary{color:var(--td-text)}.td-advanced-body{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;min-width:420px;padding:10px;border:1px solid var(--td-line);border-radius:7px;background:var(--td-panel-2)}.td-note{border:1px solid var(--td-line);border-radius:7px;background:var(--td-panel-2)}.td-note>summary{padding:7px 10px;color:var(--td-muted);cursor:pointer}.td-note[open]>summary{border-bottom:1px solid var(--td-line)}.td-note textarea{display:block;width:100%;border:0;border-radius:0 0 7px 7px;background:transparent;line-height:1.6}.td-field-label{display:flex;align-items:baseline;gap:10px;color:var(--td-muted)}.td-field-label small{color:var(--td-faint);font-size:11.5px}.td-prompt-field{flex:1 0 auto}.td-prompt-field .td-highlight-input{min-height:360px}.td-camera-builder{border:1px solid var(--td-line);border-radius:6px;background:var(--td-panel-2)}.td-camera-builder>summary{padding:8px 10px;color:var(--td-muted);cursor:pointer}.td-camera-builder[open]>summary{border-bottom:1px solid var(--td-line)}.td-camera-builder-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px}.td-camera-builder-fields label{display:grid;gap:4px;color:var(--td-muted);font-size:12px}.td-camera-builder-fields input,.td-camera-builder-fields select{min-width:0}.td-camera-builder-fields button{justify-self:start;align-self:end}.td-camera-builder-fields label:first-child{grid-column:1/-1}.td-highlight-textarea{position:relative;display:block;width:100%;min-width:0}.td-highlight-backdrop,.td-form textarea.td-highlight-input{box-sizing:border-box;width:100%;margin:0;padding:9px 11px;font-family:var(--td-mono);font-size:13px;line-height:1.6;letter-spacing:normal;-moz-tab-size:8;tab-size:8;white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word}.td-highlight-backdrop{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;overflow:hidden;border:1px solid transparent;border-radius:6px;background:#11161d;color:var(--td-text);pointer-events:none}.td-form textarea.td-highlight-input{position:relative;z-index:1;display:block;background:transparent;color:transparent;caret-color:var(--td-text);-webkit-text-fill-color:transparent}.td-highlight-input::selection{background:#5898d46b}.td-highlight-backdrop mark{padding:0;border-radius:3px;color:inherit}.td-highlight-backdrop mark.valid{background:#1d6b50;color:#bfffe6}.td-highlight-backdrop mark.invalid{background:#7a2931;color:#ffd1d5;text-decoration:underline;text-decoration-color:#ff9aa4;text-underline-offset:2px}.td-reference-mention-menu{position:fixed;z-index:80;display:flex;flex-direction:column;overflow:hidden;border:1px solid #526174;border-radius:9px;background:#161d26;color:var(--td-text);box-shadow:0 14px 42px #000b}.td-reference-mention-menu>header{display:flex;align-items:center;justify-content:space-between;flex:none;padding:8px 10px;border-bottom:1px solid var(--td-line);background:#202936}.td-reference-mention-menu>header strong{color:var(--td-text);font-size:13px}.td-reference-mention-menu>header span{padding:1px 7px;border-radius:999px;background:#2b3745;color:var(--td-muted);font-size:11px}.td-reference-mention-options{min-height:0;overflow:auto;padding:5px}.td-shell .td-reference-mention-options>button{display:grid;grid-template-columns:66px minmax(0,1fr) auto;gap:9px;align-items:center;width:100%;min-height:56px;padding:5px;border:1px solid transparent;background:transparent;text-align:left}.td-shell .td-reference-mention-options>button:hover,.td-shell .td-reference-mention-options>button.active{border-color:#527e6c;background:#1d302b}.td-reference-mention-thumb{display:flex;width:66px;height:46px;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--td-line);border-radius:5px;background:#0b0f14;color:var(--td-accent);font-size:20px}.td-reference-mention-thumb img{display:block;width:100%;height:100%;object-fit:cover}.td-reference-mention-copy{display:flex;min-width:0;flex-direction:column;gap:2px}.td-reference-mention-copy strong,.td-reference-mention-copy small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-reference-mention-copy strong{color:var(--td-text)}.td-reference-mention-copy small{color:var(--td-muted);font-size:11px}.td-reference-mention-options>button>em{padding:2px 7px;border-radius:999px;background:#293440;color:var(--td-muted);font-size:10px;font-style:normal;white-space:nowrap}.td-reference-mention-empty{margin:0;padding:22px 12px;color:var(--td-muted);text-align:center}.td-shot-media{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;margin:0;padding:10px;border:1px solid var(--td-line);border-radius:7px}.td-shot-media legend{padding:0 6px;color:var(--td-muted);font-size:12px}.td-shot-media-card{min-width:0;overflow:hidden;border:1px solid var(--td-line);border-radius:6px;background:var(--td-panel-2)}.td-shot-media-card.used{border-color:#2f6b52}.td-shot-media-card.disabled{opacity:.4}.td-shot-media-frame{position:relative}.td-shot-media-card .td-media-preview{min-height:64px;border:0;border-radius:0}.td-shot-media-card .td-media-preview img,.td-shot-media-card .td-media-preview video{height:70px;object-fit:cover}.td-shot-media-card .td-media-preview.empty,.td-shot-media-card .td-media-preview.unavailable{height:70px;font-size:11px}.td-shot-media-card .td-media-preview audio{width:calc(100% - 8px)}.td-form label.td-shot-media-toggle{position:absolute;top:5px;right:5px;z-index:2;display:flex;align-items:center;justify-content:center;width:22px;height:22px;padding:0;border-radius:5px;background:#090d12d9;border:1px solid #ffffff38;cursor:pointer}.td-form label.td-shot-media-toggle input{width:14px;height:14px;margin:0}.td-shell button.td-shot-media-name{display:block;width:100%;overflow:hidden;padding:5px 8px;border:0;border-radius:0;background:transparent;font-size:12px;text-align:left;text-overflow:ellipsis;white-space:nowrap}.td-shell button.td-shot-media-name:hover{color:var(--td-accent)}.td-shot-media-name i{margin-right:4px;color:var(--td-accent);font-style:normal;font-size:9px}.td-preview{display:flex;flex-direction:column;gap:12px;overflow:auto;padding:0!important;border:0!important;background:transparent!important}.td-card{border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-card>header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid var(--td-line)}.td-card-body{display:flex;flex-direction:column;gap:9px;padding:12px}.td-card-body ul.errors{margin:0;padding-left:18px}.td-card-body p{margin:0}.td-summary-counts{color:var(--td-muted);font-size:11.5px;white-space:nowrap}.td-slot-list{display:grid;gap:3px;margin:0;padding:0;list-style:none;font-size:12.5px}.td-slot-list li{display:flex;gap:8px}.td-slot-list code{min-width:84px;color:#9ee6c7}.td-shell .td-link-button{align-self:flex-start;padding:0;border:0;background:transparent;color:var(--td-relay);font-size:12.5px}.td-compiled{max-height:360px;margin:0;overflow:auto;padding:10px;border-radius:6px;background:#0d1117;font-family:var(--td-mono);font-size:12px;white-space:pre-wrap}.td-take-player,.td-lazy-player video{display:block;width:100%;max-height:300px;border-radius:6px;background:#06090c}.td-take-strip{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}.td-shell button.td-take{position:relative;flex:none;width:84px;padding:0;overflow:hidden;border:2px solid transparent;border-radius:6px;background:#06090c}.td-shell button.td-take.selected{border-color:var(--td-accent)}.td-take .td-result-thumb{width:100%;aspect-ratio:16/9;border-radius:0}.td-take>span{position:absolute;left:3px;bottom:2px;padding:0 5px;border-radius:4px;background:#000a;font-size:10.5px}.td-take-actions{display:flex;flex-wrap:wrap;gap:6px}.td-result-empty{min-height:120px;display:flex;align-items:center;justify-content:center;padding:12px;border:1px dashed var(--td-line-strong);border-radius:7px;color:var(--td-muted);text-align:center}.td-result-empty.running{border-color:var(--td-accent);color:var(--td-accent);animation:td-pulse 1.6s infinite}.td-assets-panel{display:flex;flex-direction:column;gap:16px;max-width:1500px;margin:0 auto}.td-assets-toolbar{position:sticky;top:-14px;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-assets-summary,.td-assets-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.td-empty-state{padding:36px;border:1px dashed var(--td-line-strong);border-radius:var(--td-radius);color:var(--td-muted);text-align:center}.td-empty-state strong{color:var(--td-text);font-size:15px}.td-empty-state p{max-width:620px;margin:8px auto 0}.td-asset-group>h3{display:flex;align-items:center;gap:8px;margin-bottom:10px}.td-asset-group>h3 span{padding:0 7px;border-radius:999px;background:var(--td-panel-3);color:var(--td-muted);font-size:11.5px;font-weight:500}.td-asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:12px;align-items:start}.td-asset-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel);transition:border-color .12s}.td-asset-card.expanded{grid-column:1/-1}.td-asset-card.expanded .td-asset-note{display:block;overflow-wrap:anywhere}.td-asset-card.missing{border-color:#6b5527}.td-asset-card.dragging{border-color:var(--td-accent);box-shadow:0 0 0 2px #5fd0a033}.td-asset-card.disabled{opacity:.55}.td-asset-card-media{position:relative;height:170px;background:#0b0f14}.td-asset-card-media .td-media-preview{height:100%;min-height:0;border:0;border-radius:0}.td-asset-card-media .td-media-preview img,.td-asset-card-media .td-media-preview video{height:170px;object-fit:contain}.td-asset-drop{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin:8px;border:1px dashed #6b5527;border-radius:6px;color:var(--td-warn);cursor:pointer}.td-asset-drop:hover{background:var(--td-warn-dim)}.td-asset-drop small{color:var(--td-muted);font-size:11.5px}.td-asset-drop input{display:none}.td-asset-kind,.td-asset-status{position:absolute;top:8px;padding:1px 8px;border-radius:999px;background:#090d12d9;font-size:11.5px}.td-asset-kind{left:8px;color:var(--td-text)}.td-asset-status{right:8px}.td-asset-status.ok{color:var(--td-accent)}.td-asset-status.warn{color:var(--td-warn)}.td-asset-card-body{display:flex;flex-direction:column;gap:8px;padding:10px}.td-asset-card-title{display:flex;gap:6px}.td-asset-card-title input{min-width:0;flex:1;font-weight:600}.td-shell .td-asset-card-title button{flex:none;padding:4px 8px;font-family:var(--td-mono);font-size:12px}.td-asset-note{display:-webkit-box;margin:0;overflow:hidden;color:var(--td-muted);font-size:12.5px;line-height:1.55;-webkit-line-clamp:3;-webkit-box-orient:vertical}.td-asset-card-actions{display:flex;flex-wrap:wrap;gap:6px}.td-asset-card-actions>*{font-size:12.5px}.td-file-label{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid var(--td-line-strong);border-radius:6px;background:var(--td-panel-3);cursor:pointer}.td-file-label:hover{border-color:var(--td-accent)}.td-file-label input{display:none}.td-asset-details{display:flex;min-width:0;flex-direction:column;gap:8px;padding-top:8px;border-top:1px solid var(--td-line)}.td-asset-details label{display:flex;min-width:0;flex-direction:column;gap:3px;color:var(--td-muted);font-size:12px}.td-asset-details label small{color:var(--td-faint);overflow-wrap:anywhere}.td-asset-details input,.td-asset-details textarea,.td-asset-details select{min-width:0;width:100%;max-width:100%}.td-asset-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.td-asset-detail-grid .wide{grid-column:1/-1}.td-asset-flags{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.td-asset-flags button{margin-left:auto}.td-gen-prompt{min-width:0}.td-gen-prompt>summary{color:var(--td-relay);cursor:pointer;font-size:12.5px}.td-gen-prompt pre{max-height:220px;margin:6px 0 0;overflow:auto;padding:8px;border-radius:6px;background:#0d1117;font-family:var(--td-mono);font-size:11.5px;white-space:pre-wrap;overflow-wrap:anywhere}@media(max-width:600px){.td-asset-detail-grid{grid-template-columns:minmax(0,1fr)}}.td-media-preview{min-height:120px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--td-line);border-radius:7px;background:#0b0f14;color:var(--td-muted);text-align:center}.td-media-preview img,.td-media-preview video{display:block;width:100%;height:200px;object-fit:contain;background:#090c10}.td-media-preview audio{display:block;width:calc(100% - 16px)}.td-media-preview.empty,.td-media-preview.unavailable{padding:12px}.td-review{display:flex;flex-direction:column;gap:12px;max-width:1700px;margin:0 auto}.td-review-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.td-step{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel);color:var(--td-muted)}.td-step b{display:grid;flex:none;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--td-panel-3);color:var(--td-muted)}.td-step div{display:flex;min-width:0;flex-direction:column}.td-step strong{color:var(--td-text);font-weight:600}.td-step span{overflow:hidden;font-size:12px;text-overflow:ellipsis;white-space:nowrap}.td-step.active{border-color:#2f6b52;background:var(--td-accent-dim)}.td-step.active b{background:var(--td-accent);color:#07140e}.td-step.done b{background:#2f6b52;color:#d9fff0}.td-review-actions{display:flex;flex-wrap:wrap;gap:10px}.td-action-group{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-action-title{color:var(--td-faint);font-size:12px}.td-denoise{display:flex!important;flex-direction:row!important;align-items:center;gap:8px;color:var(--td-muted);font-size:12.5px}.td-shell .td-denoise input{width:120px;padding:0;accent-color:var(--td-accent)}.td-denoise b{min-width:34px;color:var(--td-accent);font-variant-numeric:tabular-nums}.td-run-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-run-bar>div{display:flex;min-width:0;flex:1;align-items:baseline;gap:10px}.td-run-bar span{overflow:hidden;color:var(--td-muted);text-overflow:ellipsis;white-space:nowrap}.td-run-bar.running{border-color:#2f6b52}.td-run-bar.running strong{color:var(--td-accent)}.td-run-bar.error{border-color:#7a3a40;background:var(--td-danger-dim)}.td-run-bar.error strong{color:var(--td-danger)}.td-run-bar.done strong{color:var(--td-accent)}.td-run-bar progress{width:220px;height:8px;accent-color:var(--td-accent)}.td-run-bar b{min-width:40px;color:var(--td-accent);text-align:right}.td-review-filter{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.td-shell .td-review-filter button{border-radius:999px;padding:4px 12px;font-size:12.5px}.td-shell .td-review-filter button.active{border-color:var(--td-accent);color:var(--td-accent)}.td-review-hint{margin-left:auto;color:var(--td-faint);font-size:12px}.td-review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:12px;align-items:start}.td-review-card{display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-review-card.approved{border-color:#2f6b52}.td-review-card.redo{border-color:#6b5527}.td-review-card.off{opacity:.55}.td-review-card.running{box-shadow:0 0 0 2px #5fd0a055}.td-review-card>header{display:flex;align-items:center;justify-content:space-between;gap:8px}.td-shell .td-review-title{min-width:0;overflow:hidden;padding:0;border:0;background:transparent;font-weight:600;text-align:left;text-overflow:ellipsis}.td-shell .td-review-title:hover{color:var(--td-accent)}.td-review-title em{margin-right:6px;color:var(--td-faint);font-style:normal}.td-review-tags{display:flex;flex:none;gap:4px}.td-review-tags i{padding:0 7px;border-radius:999px;background:var(--td-panel-3);color:var(--td-muted);font-size:11.5px;font-style:normal}.td-review-tags i.relay{background:var(--td-relay-dim);color:var(--td-relay)}.td-review-tags i.approved{background:var(--td-accent-dim);color:var(--td-accent)}.td-review-tags i.redo{background:var(--td-warn-dim);color:var(--td-warn)}.td-review-media{position:relative}.td-lazy-player{display:flex;aspect-ratio:16/9;align-items:center;justify-content:center;overflow:hidden;border-radius:6px;background:#06090c;color:var(--td-faint)}.td-lazy-player video{width:100%;height:100%;max-height:none;object-fit:contain}.td-review-media>.td-result-empty{aspect-ratio:16/9;min-height:0}.td-review-media-switch{position:absolute;top:6px;right:6px;display:flex;overflow:hidden;border:1px solid var(--td-line-strong);border-radius:6px}.td-shell .td-review-media-switch button{padding:2px 9px;border:0;border-radius:0;background:#090d12d9;font-size:11.5px}.td-shell .td-review-media-switch button.active{background:var(--td-accent);color:#07140e}.td-review-warning{margin:0;padding:6px 9px;border-radius:6px;background:var(--td-warn-dim);color:var(--td-warn);font-size:12px}.td-review-note{display:-webkit-box;margin:0;overflow:hidden;color:var(--td-muted);font-size:12.5px;white-space:pre-line;-webkit-line-clamp:4;-webkit-box-orient:vertical;cursor:help}.td-review-card>footer{display:flex;flex-wrap:wrap;gap:6px}.td-shell .td-review-card>footer button{padding:5px 10px;font-size:12.5px}.td-shell .td-review-card>footer button.ok.active{border-color:var(--td-accent);background:var(--td-accent-dim);color:var(--td-accent)}.td-shell .td-review-card>footer button.warn.active{border-color:var(--td-warn);background:var(--td-warn-dim);color:var(--td-warn)}.settings{max-width:860px;margin:0 auto;padding:18px;border:1px solid var(--td-line);border-radius:var(--td-radius);background:var(--td-panel)}.td-settings-grid{display:grid;grid-template-columns:2fr 1fr 100px 1fr;gap:10px}.td-settings-grid .td-setting-check{justify-content:space-between}.td-setting-check>span:last-child{display:flex;align-items:center;gap:7px;color:var(--td-text)}.td-setting-check input{width:15px!important;height:15px;margin:0}.td-project-cleanup{display:grid;gap:9px;margin-top:18px}.td-project-cleanup h3{color:var(--td-danger)}.td-project-cleanup article{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 14px;border:1px solid #5a2f35;border-radius:8px;background:#22161a}.td-project-cleanup strong{color:#ffd1d5}.td-project-cleanup p{margin:4px 0 0;color:#c99da2;font-size:12.5px;line-height:1.5}.td-project-cleanup button{min-width:120px;flex:none}.td-batch-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:28px;background:#05080dcc}.td-confirm{width:min(440px,100%);padding:18px;border:1px solid var(--td-line-strong);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-confirm p{color:var(--td-muted)}.td-confirm footer{display:flex;justify-content:flex-end;gap:8px}.td-toasts{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;flex-direction:column;gap:8px;max-width:420px;pointer-events:none}.td-toast{padding:10px 14px;border:1px solid #2f6b52;border-radius:8px;background:#122019;color:var(--td-text);box-shadow:0 10px 30px #0009;animation:td-toast-in .18s ease-out}.td-toast.error{border-color:#7a3a40;background:#2a1418;color:#ffd1d5}@keyframes td-toast-in{0%{opacity:0;transform:translateY(8px)}}.td-batch-panel{display:flex;flex-direction:column;width:min(1040px,100%);max-height:min(820px,calc(100vh - 56px));overflow:hidden;border:1px solid var(--td-line);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-batch-panel>.td-batch-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--td-line)}.td-batch-header h2{font-size:17px;margin:0}.td-batch-header p{margin:3px 0 0;color:var(--td-muted)}.td-batch-header>button{font-size:20px;line-height:1;padding:5px 9px}.td-batch-tools{display:grid;grid-template-columns:1fr 1.4fr;gap:12px;padding:14px 18px;border-bottom:1px solid var(--td-line);background:#151b23}.td-batch-tools>div{display:flex;align-items:end;gap:8px;padding:10px;border:1px solid var(--td-line);border-radius:7px}.td-batch-tools label{display:flex;flex:1;flex-direction:column;gap:4px;color:var(--td-muted);white-space:nowrap}.td-batch-tools label>span,.td-batch-duration{display:flex;align-items:center;gap:6px}.td-batch-tools input{width:100%}.td-batch-tools em{color:var(--td-muted);font-style:normal}.td-batch-tools button{white-space:nowrap}.td-batch-global-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:9px 22px;border-bottom:1px solid var(--td-line);background:#171e27;color:var(--td-muted)}.td-batch-global-actions button.active{border-color:#527e6c;background:#1b302a;color:var(--td-accent)}.td-batch-table{overflow:auto;padding:0 18px}.td-batch-row{display:grid;grid-template-columns:42px minmax(180px,1fr) 100px 150px 120px;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #2a3442}.td-batch-table-head{position:sticky;top:0;z-index:1;background:var(--td-panel);color:var(--td-muted);font-weight:600}.td-batch-duration input{min-width:0;width:100%}.td-batch-duration>span{color:var(--td-muted)}.td-batch-enabled,.td-batch-relay{display:flex;align-items:center;gap:7px;justify-content:flex-start;color:var(--td-text)}.td-batch-enabled input,.td-batch-relay input{width:17px;height:17px;margin:0}.td-batch-panel>footer{display:flex;justify-content:flex-end;gap:8px;padding:13px 18px;border-top:1px solid var(--td-line)}.td-asset-batch-panel{display:flex;flex-direction:column;width:min(1420px,100%);max-height:min(880px,calc(100vh - 56px));overflow:hidden;border:1px solid var(--td-line);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-asset-batch-panel>.td-batch-header{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--td-line)}.td-asset-batch-panel>footer{display:flex;justify-content:flex-end;gap:8px;padding:13px 18px;border-top:1px solid var(--td-line)}.td-asset-dropzone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:112px;margin:14px 18px 10px;border:1px dashed #597084;border-radius:9px;background:#151b23;color:var(--td-text);transition:border-color .15s,background .15s}.td-asset-dropzone:hover,.td-asset-dropzone.dragging{border-color:var(--td-accent);background:#1b2c28}.td-asset-dropzone span{color:var(--td-muted);font-size:12px}.td-asset-dropzone input{display:none}.td-asset-batch-warning{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 18px 10px;padding:8px 10px;border:1px solid #836a32;border-radius:7px;background:#3a301c;color:#f4d991}.td-asset-batch-warning span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-asset-batch-warning button{padding:2px 7px}.td-asset-batch-summary{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;border-top:1px solid var(--td-line);border-bottom:1px solid var(--td-line);background:#151b23;color:var(--td-muted)}.td-asset-batch-summary button{padding:5px 8px}.td-asset-batch-list{overflow:auto;padding:0 18px 10px}.td-asset-batch-row{display:grid;grid-template-columns:minmax(210px,1.4fr) minmax(150px,1fr) 115px 135px 105px 72px;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px solid #2a3442}.td-asset-batch-head{position:sticky;top:0;z-index:2;padding-top:10px;background:var(--td-panel);color:var(--td-muted);font-weight:600}.td-asset-batch-row.invalid{background:#3b202560}.td-asset-batch-row.imported{background:#17372d55}.td-asset-batch-file{display:flex;min-width:0;flex-direction:column;gap:2px}.td-asset-batch-file strong,.td-asset-batch-file small,.td-asset-batch-file em{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-asset-batch-file small{color:var(--td-muted);font-weight:400}.td-asset-batch-file em{color:var(--td-danger);font-size:11px;font-style:normal}.td-asset-batch-duration,.td-asset-batch-audio{display:flex;align-items:center;gap:6px;color:var(--td-muted)}.td-asset-batch-duration input{min-width:0;width:100%}.td-asset-batch-audio input{width:17px;height:17px;margin:0}.td-asset-batch-empty{display:flex;min-height:130px;align-items:center;justify-content:center;color:var(--td-muted)}.td-asset-batch-panel button:disabled,.td-asset-batch-panel input:disabled,.td-asset-batch-panel select:disabled{opacity:.55;cursor:not-allowed}.td-asset-picker-actions{display:flex;gap:8px;margin-top:8px}.td-asset-picker-button{padding:7px 12px;border:1px solid var(--td-line);border-radius:6px;background:#222c39;color:var(--td-text);cursor:pointer}.td-asset-picker-button:hover{border-color:var(--td-accent);background:#263b38}.td-asset-picker-button:has(input:disabled){opacity:.55;cursor:not-allowed}.td-asset-batch-fill{display:flex;align-items:center;gap:6px;min-width:0;overflow:hidden;color:var(--td-accent);white-space:nowrap}.td-asset-batch-fill em{padding:0 6px;border-radius:999px;background:var(--td-accent-dim);font-size:11px;font-style:normal}.td-asset-batch-alias{display:flex;flex-direction:column;gap:6px;min-width:0}.td-asset-batch-alias>input{width:100%;min-width:0}.td-asset-conflict-actions{display:flex;flex-wrap:wrap;gap:4px}.td-asset-conflict-actions button{padding:4px 6px;font-size:11px}.td-asset-batch-conflicts{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:0 18px 10px;padding:10px;border:1px solid #836a32;border-radius:7px;background:#3a301c;color:#f4d991}.td-asset-batch-conflicts>div{display:flex;flex-wrap:wrap;gap:6px}.td-postprocess{display:flex;flex-direction:column;gap:14px;max-width:1500px;margin:0 auto}.td-post-header,.td-post-summary,.td-post-merged{border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel)}.td-post-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px}.td-post-header h2,.td-post-merged h2{margin:0;font-size:16px}.td-post-header p{margin:4px 0 0;color:var(--td-muted)}.td-post-actions{display:flex;gap:8px;flex:none}.td-post-summary{display:flex;align-items:center;gap:18px;padding:10px 14px;color:var(--td-muted)}.td-post-summary>button{margin-left:auto}.td-post-range{display:flex;align-items:center;gap:6px;margin-left:auto}.td-post-range input{width:64px;padding:6px 7px;text-align:center}.td-post-range button{white-space:nowrap}.td-post-summary>.td-post-range+button{margin-left:0}.td-post-error,.td-post-warning{padding:10px 13px;border-radius:7px}.td-post-error{border:1px solid #8b4149;background:#442228;color:#ffd1d5;white-space:pre-wrap}.td-post-warning{border:1px solid #836a32;background:#3a301c;color:#f4d991}.td-post-shot-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(390px,1fr));gap:12px;align-items:start}.td-post-shot{min-width:0;border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel);overflow:hidden}.td-post-shot.selected{border-color:#527e6c}.td-post-shot.disabled{opacity:.72}.td-post-shot>header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:1px solid var(--td-line);background:#1d2530}.td-post-shot>header>label{display:flex;align-items:center;gap:9px;min-width:0;cursor:pointer}.td-post-shot>header input{width:18px;height:18px;margin:0;flex:none}.td-post-shot>header label>span{display:flex;min-width:0;gap:8px;align-items:baseline}.td-post-shot>header strong{color:var(--td-text)}.td-post-shot>header em{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted);font-style:normal}.td-post-shot>header>span{flex:none;padding:2px 7px;border-radius:999px;background:#29313d;color:var(--td-muted)}.td-post-shot-disabled-note{padding:7px 10px;border-bottom:1px solid var(--td-line);background:#332b1d;color:#e5c77d;font-size:11px}.td-post-shot-empty{min-height:96px;display:flex;align-items:center;justify-content:center;padding:12px;color:var(--td-muted);text-align:center}.td-post-result-list{display:flex;flex-direction:column;gap:7px;max-height:360px;overflow:auto;padding:9px}.td-post-result{display:grid;grid-template-columns:minmax(0,1fr) 35px;gap:6px;align-items:center;border:1px solid var(--td-line);border-radius:7px;background:#151b23;padding:5px}.td-post-result.selected{border-color:var(--td-accent);background:#1c2a2a}.td-shell button.td-post-result-choice{display:grid;grid-template-columns:112px minmax(0,1fr);gap:9px;align-items:center;min-width:0;padding:0;border:0;background:transparent;text-align:left}.td-post-result-choice>span{display:flex;min-width:0;flex-direction:column;gap:3px}.td-post-result-choice>span>strong{display:flex;align-items:center;gap:6px}.td-post-result-choice>span>strong em{padding:1px 5px;border-radius:999px;background:#183a2e;color:var(--td-accent);font-size:10px;font-style:normal}.td-post-result-choice>span>span,.td-post-result-choice>span>small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-post-result-choice>span>small{font-size:10px}.td-post-result-play{width:35px;height:35px;padding:0!important}.td-post-merged{padding:12px}.td-post-merged>header>div{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}.td-post-merged .td-generated-results{display:grid;grid-template-columns:minmax(360px,1.6fr) minmax(300px,1fr);align-items:start}.td-post-merged .td-result-list{max-height:420px}.td-post-preview-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:26px;background:#030609d6}.td-post-preview-overlay>section{width:min(980px,100%);max-height:calc(100vh - 52px);overflow:auto;border:1px solid var(--td-line);border-radius:10px;background:var(--td-panel);box-shadow:0 20px 80px #000c}.td-post-preview-overlay header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--td-line)}.td-post-preview-overlay header button{font-size:20px;line-height:1;padding:5px 9px}.td-post-preview-overlay video{display:block;width:100%;max-height:calc(100vh - 170px);background:#070a0e}.td-post-preview-overlay p{margin:0;padding:9px 12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-result-state{padding:2px 7px;border-radius:999px;background:#29313d;color:var(--td-muted);font-size:11px}.td-result-state.found{background:#183a2e;color:var(--td-accent)}.td-generated-video video{display:block;width:100%;max-height:420px;background:#080b0f;border-radius:7px}.td-generated-meta{margin-top:7px;color:var(--td-muted);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.td-generated-results{display:flex;flex-direction:column;gap:12px}.td-result-list{display:flex;flex-direction:column;gap:7px;max-height:280px;overflow:auto;padding-right:3px}.td-shell button.td-result-item{display:grid;grid-template-columns:112px minmax(0,1fr);gap:10px;align-items:center;width:100%;padding:6px;text-align:left;background:#151b23}.td-shell button.td-result-item.selected{border-color:var(--td-accent);background:#1c2a2a}.td-result-thumb{width:112px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:5px;background:#090c10;color:var(--td-muted)}.td-result-thumb img,.td-result-thumb video{display:block;width:100%;height:100%;object-fit:contain}.td-result-item-copy{display:flex;min-width:0;flex-direction:column;gap:3px}.td-result-item-copy>strong{display:flex;align-items:center;gap:7px;color:var(--td-text)}.td-result-item-copy>strong em{padding:1px 6px;border-radius:999px;background:#183a2e;color:var(--td-accent);font-size:10px;font-style:normal}.td-result-item-copy>span,.td-result-item-copy>small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-result-item-copy>small{font-size:10px}.td-batch-progress{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--td-line);border-radius:7px;background:#151b23;color:var(--td-muted)}.td-batch-progress progress{width:100%;height:8px;accent-color:var(--td-accent)}.td-batch-progress b{min-width:42px;color:var(--td-accent);text-align:right}.td-postprocess-shell{display:flex;flex-direction:column;gap:12px;max-width:1500px;margin:0 auto}.td-postprocess-shell>.td-postprocess{max-width:none;width:100%;margin:0}.td-post-mode-tabs{display:flex;gap:7px;padding:5px;border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel)}.td-post-mode-tabs button{min-width:130px}.td-shell .td-post-mode-tabs button.active{border-color:#527e6c;background:#1b302a;color:var(--td-accent)}.td-second-pass-panel .td-post-shot>header>span:first-child{display:flex;min-width:0;gap:8px;align-items:baseline;padding:0;background:transparent}.td-second-pass-result{display:grid;grid-template-columns:minmax(0,1fr) 154px;gap:8px;align-items:center;border:1px solid var(--td-line);border-radius:7px;background:#151b23;padding:6px}.td-second-pass-actions{display:flex;min-width:0;flex-direction:column;gap:6px}.td-second-pass-actions select{width:100%;min-width:0;padding:6px}.td-second-pass-terminal{display:flex;min-height:32px;align-items:center;justify-content:center;border:1px solid var(--td-line);border-radius:6px;color:var(--td-muted);font-size:11px;text-align:center}.td-second-pass-run{width:100%;min-height:34px;padding:6px!important}.td-second-pass-error{grid-column:1/-1;padding:6px 8px;border-radius:5px;background:#442228;color:#ffd1d5;font-size:11px;white-space:pre-wrap}.td-delete-panel .td-post-shot>header>span:first-child{display:flex;min-width:0;gap:8px;align-items:baseline;padding:0;background:transparent}.td-delete-result{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:8px;align-items:center;border:1px solid var(--td-line);border-radius:7px;background:#151b23;padding:6px}.td-delete-result.deleting{opacity:.58}.td-delete-video-button{min-height:40px;padding:6px!important}.td-delete-merged{padding:12px}.td-delete-merged-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(390px,1fr));gap:8px}.td-delete-merged .td-post-result-choice>span>strong{color:var(--td-text)}@media(max-width:1280px){.td-shots{grid-template-columns:230px minmax(0,1fr)}.td-shots>.td-preview{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}.td-shots>.td-preview>.td-card{flex:1 1 340px}.td-shots{height:auto}.td-review-steps{grid-template-columns:1fr 1fr}.td-project-meta{display:none}}@media(max-width:900px){.td-shots{grid-template-columns:1fr}.td-shot-sidebar{max-height:300px}.td-shot-head{grid-template-columns:1fr 1fr}.td-shot-head .grow{grid-column:1/-1}.td-settings-grid{grid-template-columns:1fr 1fr}.td-review-grid,.td-post-shot-list,.td-delete-merged-list,.td-post-merged .td-generated-results{grid-template-columns:1fr}.td-topbar,.td-tabs{flex-wrap:wrap}.td-advanced-body{min-width:0;grid-template-columns:1fr}}.td-assets-actions .td-button input{display:none}.td-assets-actions .td-button{display:inline-flex;align-items:center;cursor:pointer}.td-assets-actions,.td-actions{flex-wrap:wrap}.td-imagegen-overlay{z-index:25;padding:16px}.td-imagegen-panel{display:flex;flex-direction:column;gap:12px;width:min(1040px,100%);min-width:0;max-height:min(980px,calc(100dvh - 32px));overflow:auto;border:1px solid var(--td-line);border-radius:9px;background:var(--td-panel);box-shadow:0 20px 70px #000b}.td-imagegen-panel>*{flex-shrink:0;min-width:0}.td-imagegen-panel>.td-batch-header{position:sticky;top:0;z-index:2;flex:none;padding:13px 16px;background:var(--td-panel)}.td-imagegen-models{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:0 16px;color:var(--td-muted)}.td-imagegen-models strong{color:var(--td-text)}.td-imagegen-models code{padding:3px 6px;border:1px solid var(--td-line);border-radius:5px;background:#151b23;font-size:11px;overflow-wrap:anywhere}.td-imagegen-models small{flex-basis:100%;line-height:1.5}.td-imagegen-models>header{display:flex;width:100%;align-items:center;justify-content:space-between;gap:8px}.td-imagegen-model-selects{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.td-imagegen-model-selects label{display:flex;flex-direction:column;min-width:0;gap:5px}.td-imagegen-model-selects select{width:100%;min-width:0;text-overflow:ellipsis}.td-imagegen-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:0 16px}.td-imagegen-form label{display:flex;min-width:0;flex-direction:column;gap:5px;color:var(--td-muted)}.td-imagegen-form label.wide{grid-column:1/-1}.td-imagegen-form textarea{min-height:64px;resize:vertical;line-height:1.5}.td-imagegen-form label small{line-height:1.4}.td-imagegen-form .td-imagegen-seed{grid-column:span 2}.td-imagegen-form .td-imagegen-random{display:flex;grid-column:span 2;flex-direction:row;align-items:center;align-self:end;min-height:36px}.td-imagegen-form .td-imagegen-random input{width:17px;height:17px;margin:0}.td-imagegen-pending,.td-imagegen-record{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 16px;border-top:1px solid var(--td-line);border-bottom:1px solid var(--td-line);background:#151b23;color:var(--td-muted);font-size:12px}.td-imagegen-pending button{margin-left:auto}.td-imagegen-record span{padding-right:9px;border-right:1px solid var(--td-line)}.td-imagegen-record span:last-child{max-width:230px;overflow:hidden;border:0;text-overflow:ellipsis;white-space:nowrap}.td-imagegen-results{padding:0 16px}.td-imagegen-results>header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:5px;margin-bottom:8px;color:var(--td-muted)}.td-imagegen-results>header strong{color:var(--td-text)}.td-imagegen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px}.td-imagegen-grid article{display:flex;min-width:0;flex-direction:column;gap:6px;padding:7px;border:1px solid var(--td-line);border-radius:7px;background:#151b23}.td-imagegen-grid img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#080b0f;border-radius:4px}.td-imagegen-grid small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--td-muted)}.td-imagegen-grid button{width:100%;min-height:34px}.td-imagegen-error{margin:0 16px;padding:9px 11px;border:1px solid #8b4149;border-radius:6px;background:#442228;color:#ffd1d5;white-space:pre-wrap;overflow-wrap:anywhere}.td-imagegen-panel>footer{position:sticky;bottom:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;padding:11px 16px;border-top:1px solid var(--td-line);background:var(--td-panel)}.td-imagegen-footer-note{margin-right:auto;color:var(--td-muted);font-size:11px;line-height:1.4}.td-imagegen-batch-selection,.td-imagegen-batch-outcomes{margin:0 16px;display:flex;flex-direction:column;gap:8px}.td-imagegen-batch-selection>header{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.td-imagegen-batch-list{max-height:240px;overflow:auto;border:1px solid var(--td-line);border-radius:6px}.td-imagegen-batch-list>label{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:9px;border-bottom:1px solid var(--td-line);cursor:pointer}.td-imagegen-batch-list input{width:17px;height:17px;flex:none}.td-imagegen-batch-list small{flex-basis:100%;padding-left:25px;overflow-wrap:anywhere;color:var(--td-muted)}.td-imagegen-batch-selection>small{color:var(--td-muted);line-height:1.5}.td-imagegen-batch-outcomes{padding:10px;border:1px solid var(--td-line);border-radius:6px;overflow-wrap:anywhere}.td-imagegen-batch-outcomes>header{flex:none;line-height:1.5}.td-imagegen-batch-log{min-height:100px;max-height:min(320px,35dvh);overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.td-imagegen-log-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,3fr);gap:10px;padding:8px 4px;border-bottom:1px solid var(--td-line);line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}.td-imagegen-log-row>*{min-width:0}.td-imagegen-log-row.error>span{color:#ffd1d5}@media(max-width:600px){.td-imagegen-model-selects{grid-template-columns:1fr}.td-imagegen-log-row{grid-template-columns:1fr;gap:3px}.td-imagegen-batch-log{max-height:30dvh}.td-imagegen-panel .td-batch-progress{flex-wrap:wrap}.td-imagegen-panel .td-batch-progress>span{flex-basis:100%;overflow-wrap:anywhere}}@media(max-width:600px){.td-imagegen-overlay{align-items:flex-end;padding:0}.td-imagegen-panel{width:100%;max-height:94vh;border-radius:9px 9px 0 0}.td-imagegen-form{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 12px}.td-imagegen-form label.wide{grid-column:1/-1}.td-imagegen-models,.td-imagegen-results{padding-right:12px;padding-left:12px}.td-imagegen-panel>.td-batch-header,.td-imagegen-panel>footer{padding-right:12px;padding-left:12px}.td-imagegen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.td-imagegen-footer-note{flex-basis:100%}}.td-modal{--td-bg:#0e1116;--td-panel:#171c24;--td-panel-2:#1c2430;--td-panel-3:#252f3c;--td-line:#2a3442;--td-line-strong:#404f62;--td-text:#edf0f5;--td-muted:#a6b2c3;--td-faint:#7e8da2;--td-accent:#d7f390;--td-accent-dim:#2c3823;--td-radius:12px}.td-workspace-rail{grid-area:rail;display:flex;min-height:0;flex-direction:column;gap:24px;padding:24px 14px 16px;border-right:1px solid var(--td-line);background:#131820;overflow:auto}.td-rail-brand{display:flex;align-items:center;gap:10px;padding:0 6px}.td-rail-brand h1{font-size:16px}.td-rail-brand small{color:var(--td-faint);font-size:9px;letter-spacing:1.2px}.td-brand-mark{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:11px;background:var(--td-accent);color:#1b2412;font-size:16px;font-weight:800;letter-spacing:-1px}.td-shell .td-project-home{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:14px;text-align:left;background:var(--td-panel-2);border-color:var(--td-line);white-space:normal}.td-project-home small{color:var(--td-faint);font-size:10px;letter-spacing:1px}.td-project-home strong{display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}.td-project-home>span{font:11px var(--td-mono);color:var(--td-muted);overflow-wrap:anywhere}.td-stage-nav{display:flex;flex-direction:column;gap:7px}.td-shell .td-stage-nav>button{display:flex;align-items:center;gap:10px;position:relative;min-height:64px;padding:10px;text-align:left;border:1px solid transparent;background:transparent;border-radius:10px}.td-stage-number{font:11px var(--td-mono);color:var(--td-faint)}.td-stage-nav>button>span:nth-child(2){min-width:0}.td-stage-nav strong,.td-stage-nav small{display:block}.td-stage-nav strong{font-size:13px;font-weight:500}.td-stage-nav small{margin-top:3px;font-size:10px;color:var(--td-faint)}.td-shell .td-stage-nav>button.active{background:var(--td-accent-dim);border-color:#4b5d37}.td-stage-nav>button.active .td-stage-number,.td-stage-nav>button.active strong{color:var(--td-accent)}.td-stage-nav em{margin-left:auto;font:10px var(--td-mono);color:var(--td-muted)}.td-stage-nav em.warn{color:var(--td-warn)}.td-rail-progress{margin-top:auto;padding:15px 7px 0;border-top:1px solid var(--td-line);font-size:11px}.td-rail-progress>div{display:flex;justify-content:space-between;color:var(--td-muted)}.td-rail-progress strong{color:var(--td-accent)}.td-rail-progress progress{display:block;width:100%;height:4px;margin-top:12px;accent-color:var(--td-accent)}.td-rail-progress p{color:var(--td-faint);font-size:11px}.td-shell .td-rail-progress button{padding:0;border:0;background:transparent;font-size:11px;color:var(--td-muted)}.td-topbar{grid-area:header;min-width:0;padding:19px 24px;background:var(--td-bg);border-bottom:0;flex-wrap:nowrap}.td-workspace-title{min-width:0}.td-eyebrow{color:var(--td-faint);font-size:10px;letter-spacing:1px}.td-workspace-title>div{display:flex;align-items:center;gap:12px;margin-top:4px}.td-workspace-title h2{font-size:23px;font-weight:600}.td-actions{gap:8px;flex-wrap:nowrap}.td-shell .td-actions>button{padding:8px 13px}.td-shell button.primary{color:#17210d}.td-project-menu{position:relative}.td-project-menu>summary{padding:8px 12px;cursor:pointer;list-style:none;border:1px solid var(--td-line-strong);border-radius:6px;color:var(--td-muted)}.td-project-menu>summary>span{margin-left:12px}.td-project-menu-items{position:absolute;right:0;top:calc(100% + 8px);z-index:25;display:grid;gap:5px;min-width:180px;padding:8px;border:1px solid var(--td-line-strong);border-radius:10px;background:var(--td-panel);box-shadow:0 12px 36px #0006}.td-project-menu-items>*{text-align:left}.td-session-bar{grid-area:status;display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;min-height:45px;margin:0 24px;border-top:1px solid var(--td-line);border-bottom:1px solid var(--td-line)}.td-session-context{color:var(--td-faint);font-size:12px}.td-tab-status{min-width:0;flex-wrap:wrap;justify-content:flex-end}.td-progress-text{font-size:11px}.td-shell main{grid-area:content;min-width:0;padding:18px 24px 20px}.td-shell.td-compact main{padding:10px 16px}.td-shell.td-compact .td-topbar{padding:12px 24px}.td-shots{height:100%;min-height:0;grid-template-columns:minmax(0,1.2fr) minmax(300px,1fr);grid-template-rows:minmax(0,1fr) 158px;grid-template-areas:"composer monitor" "timeline timeline";gap:16px}.td-shot-form{grid-area:composer;padding:18px;gap:14px}.td-composer-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--td-line)}.td-composer-heading small{font:10px var(--td-mono);color:var(--td-faint)}.td-composer-heading h3{font-size:16px;margin-top:4px}.td-composer-heading>div:last-child{display:flex;gap:6px}.td-shell .td-composer-heading button{padding:4px 10px}.td-shot-head{grid-template-columns:minmax(0,1fr) 85px 140px;gap:8px}.td-prompt-field .td-highlight-input{min-height:260px}.td-field-label{flex-wrap:wrap;gap:4px 10px}.td-shots>.td-preview{grid-area:monitor;grid-column:auto;display:flex;flex-direction:column;flex-wrap:nowrap;gap:14px}.td-shots>.td-preview>.td-card{flex:none}.td-preview>.td-card:first-child{order:2}.td-preview>.td-card:last-child{order:1}.td-take-player{max-height:42dvh;aspect-ratio:16/9;background:#080b10;object-fit:contain}.td-preview .td-result-empty{aspect-ratio:16/9;min-height:160px;display:grid;place-items:center;background:#10141b}.td-shot-sidebar{grid-area:timeline;display:grid;grid-template-columns:minmax(0,1fr) 210px;grid-template-rows:29px minmax(0,1fr);max-height:none;padding:10px 12px;gap:0 14px;overflow:hidden}.td-timeline-heading{grid-column:1/-1;display:flex;align-items:baseline;gap:14px}.td-timeline-heading strong{font-size:11px;letter-spacing:1px}.td-timeline-heading>span{color:var(--td-faint);font-size:10px}.td-shot-list{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;padding:3px 0 7px;scroll-snap-type:x proximity}.td-shot-card{flex:0 0 182px;grid-template-columns:minmax(0,1fr);align-content:space-between;gap:5px;padding:9px 10px;margin:0;border-color:var(--td-line);background:var(--td-panel-2);scroll-snap-align:start}.td-shot-card.relay{margin-top:0}.td-shot-card.selected{border-color:var(--td-accent);background:var(--td-accent-dim)}.td-shot-card.selected strong em{color:var(--td-accent)}.td-shot-card-actions{justify-content:flex-end;opacity:1}.td-shot-card-meta{flex-wrap:nowrap;overflow:hidden;font-size:10px}.td-shot-card-meta>*{flex:none}.td-shot-card-main strong{font-size:12px}.td-relay-link{top:50%;left:-9px;width:14px;height:0;border-left:0;border-top:2px dashed var(--td-relay)}.td-shot-sidebar-footer{display:flex;justify-content:center;flex-direction:column;border-top:0;border-left:1px solid var(--td-line);padding:0 0 0 14px;gap:10px}.td-total{font-size:11px}.td-shell .td-shot-sidebar-footer button{font-size:11px;padding:7px 6px}.settings{max-width:1120px;padding:24px;gap:18px}.td-settings-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.td-workflow-settings{border-top:1px solid var(--td-line);padding-top:20px;display:grid;gap:14px}.td-workflow-settings>header{display:flex;justify-content:space-between;align-items:center;gap:12px}.td-workflow-settings>header p{margin:5px 0 0;color:var(--td-faint);font-size:12px}.td-workflow-group{display:grid;gap:12px;padding:14px;border:1px solid var(--td-line);border-radius:9px}.td-workflow-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.td-workflow-fields input,.td-workflow-fields select{min-width:0}.td-workflow-group h3{color:var(--td-muted)}@media(min-width:1700px){.td-shell{grid-template-columns:232px minmax(0,1fr)}.td-shots{grid-template-columns:minmax(0,1.15fr) minmax(430px,1fr)}.td-shot-head{grid-template-columns:minmax(0,1fr) 100px 170px}}@media(max-width:1150px){.td-shell{grid-template-columns:174px minmax(0,1fr)}.td-workspace-rail{padding:20px 9px}.td-rail-brand{gap:7px;padding:0}.td-rail-brand h1{font-size:14px}.td-rail-brand small{font-size:8px}.td-brand-mark{width:30px;height:32px}.td-stage-nav small{font-size:9px}.td-topbar{padding:15px 16px}.td-workspace-title h2{font-size:20px}.td-session-bar{margin:0 16px}.td-session-context{display:none}.td-shell main{padding:14px 16px}.td-shots{grid-template-columns:minmax(0,1fr) minmax(265px,.85fr);height:100%}.td-shot-head{grid-template-columns:1fr 1fr}.td-shot-head .grow{grid-column:1/-1}.td-shot-sidebar{grid-template-columns:minmax(0,1fr) 170px}.td-two-buttons{grid-template-columns:1fr}.td-advanced-body{min-width:0;grid-template-columns:1fr}.td-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:850px){.td-shell{grid-template-columns:68px minmax(0,1fr)}.td-workspace-rail{padding:18px 7px;gap:16px}.td-rail-brand{justify-content:center}.td-rail-brand>div,.td-project-home,.td-rail-progress{display:none!important}.td-shell .td-stage-nav>button{min-height:58px;justify-content:center;padding:7px}.td-stage-nav>button>span:nth-child(2),.td-stage-nav em{display:none}.td-stage-number{font-size:14px}.td-topbar{flex-wrap:wrap;gap:10px}.td-workspace-title h2{font-size:18px}.td-eyebrow{font-size:9px}.td-shell .td-actions>button{padding:6px 8px}.td-project-menu>summary{padding:6px 8px}.td-shots{height:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 165px;grid-template-areas:"composer" "monitor" "timeline"}.td-shot-form{overflow:visible}.td-shots>.td-preview{grid-column:auto;overflow:visible}.td-take-player{max-height:none}.td-shot-sidebar{grid-template-columns:minmax(0,1fr) 135px}.td-timeline-heading>span{display:none}.td-shot-list{min-height:0}.td-tab-status{margin-left:0;justify-content:flex-start}.td-session-bar{overflow:visible}.td-progress-text{font-size:10px}.td-settings-grid,.td-workflow-fields{grid-template-columns:minmax(0,1fr)}.settings{padding:14px}.td-review-grid,.td-post-shot-list{grid-template-columns:minmax(0,1fr)}.td-review-steps{grid-template-columns:1fr 1fr}}@media(max-width:520px){.td-shell{grid-template-columns:52px minmax(0,1fr)}.td-workspace-rail{padding:14px 4px}.td-brand-mark{width:30px;height:30px;font-size:13px}.td-topbar{padding:12px 10px}.td-shell .td-actions{gap:5px;flex-wrap:wrap}.td-shell .td-actions>button,.td-project-menu>summary{font-size:11px}.td-shell main{padding:10px}.td-session-bar{margin:0 10px}.td-workspace-title h2{font-size:17px}.td-shot-form{padding:12px}.td-shot-sidebar{grid-template-columns:minmax(0,1fr);grid-template-rows:24px minmax(0,1fr) auto}.td-shot-sidebar-footer{flex-direction:row;align-items:center;border-left:0;border-top:1px solid var(--td-line);padding:5px 0 0}.td-shot-sidebar-footer .td-total{display:none}.td-shot-sidebar-footer .td-two-buttons{display:flex}.td-shots{grid-template-rows:auto auto 195px}.td-review-steps{grid-template-columns:1fr}.td-review-hint{margin-left:0}}@media(max-width:850px){.td-post-header{flex-direction:column;align-items:stretch}.td-post-actions,.td-post-summary{flex-wrap:wrap;gap:8px}.td-post-summary>button,.td-post-range{margin-left:0}.td-post-mode-tabs button{min-width:0;flex:1}.td-post-range{flex-wrap:wrap}.td-workflow-settings>header{flex-wrap:wrap}.td-post-merged>header>div{flex-wrap:wrap;gap:8px}}@media(max-width:850px){.td-project-cleanup{grid-template-columns:minmax(0,1fr)}.td-project-cleanup article{flex-direction:column;align-items:stretch;gap:10px}.td-project-cleanup article>div{min-width:0;overflow-wrap:anywhere}}.td-shell main>section[hidden],.td-config-content>[hidden]{display:none!important}.td-shell .td-config-entry{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border:1px solid var(--td-line);background:transparent;color:var(--td-muted);margin-top:8px}.td-config-entry>span{font-size:19px}.td-config-entry strong{font-size:12px}.td-shell .td-config-entry.active{border-color:#507f69;background:var(--td-accent-dim);color:var(--td-accent)}.td-config-page{max-width:1200px;margin:auto;display:grid;gap:22px}.td-config-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:24px;border:1px solid var(--td-line);border-radius:16px;background:linear-gradient(125deg,#243c35,#202936 75%)}.td-config-intro h2{margin:10px 0;font-size:22px}.td-config-intro p{max-width:650px;margin:0;color:var(--td-muted);line-height:1.7}.td-config-intro>.td-chip{flex:none;margin-top:4px}.td-config-layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:start}.td-config-nav{display:grid;gap:7px;position:sticky;top:0}.td-shell .td-config-nav button{display:grid;gap:6px;text-align:left;white-space:normal;padding:15px 14px;border-color:transparent;background:transparent}.td-config-nav small{color:var(--td-faint);font-size:11px}.td-shell .td-config-nav button.active{background:var(--td-accent-dim);border-color:#42675b;color:var(--td-accent)}.td-config-content{min-width:0}.td-config-card{display:grid;gap:20px;min-width:0;margin:0;padding:24px;border:1px solid var(--td-line);border-radius:16px;background:var(--td-panel);box-shadow:0 10px 30px #0002}.td-config-card legend{padding:0 9px;color:var(--td-text);font-size:16px;font-weight:600}.td-config-card .td-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.td-config-card p{line-height:1.7;margin:0}.td-config-card label{min-width:0}.td-config-card label:not(.td-config-check){display:flex;flex-direction:column;gap:8px}.td-config-card input,.td-config-card select,.td-config-card textarea{min-width:0;max-width:100%}.td-config-check{display:flex;align-items:center;gap:10px}.td-config-check input{width:17px;height:17px}.td-config-presets{display:flex;flex-wrap:wrap;gap:8px}.td-config-presets button.active{border-color:var(--td-accent);color:var(--td-accent);background:var(--td-accent-dim)}.td-config-notes summary{cursor:pointer;color:var(--td-muted);padding:8px 0}.td-config-notes textarea{width:100%;margin-top:10px}.td-config-card .td-highlight-input{min-height:160px}@media(max-width:1000px){.td-config-layout{grid-template-columns:160px minmax(0,1fr);gap:14px}.td-config-intro{padding:18px}.td-config-intro h2{font-size:19px}.td-config-card{padding:18px}}@media(max-width:850px){.td-config-entry strong{display:none}.td-shell .td-config-entry{justify-content:center;padding:12px 4px}.td-config-layout{grid-template-columns:minmax(0,1fr)}.td-config-nav{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.td-config-intro{flex-wrap:wrap;gap:8px}.td-config-card .td-settings-grid{grid-template-columns:minmax(0,1fr)}}@media(max-width:520px){.td-config-page{gap:16px}.td-config-intro,.td-config-card{padding:14px}.td-config-intro h2{font-size:17px}.td-config-nav small{display:none}.td-shell .td-config-nav button{padding:12px 8px;font-size:12px}.td-config-card legend{font-size:14px}}.td-modal{--td-bg:#10131b;--td-panel:#1b202b;--td-panel-2:#222937;--td-panel-3:#2a3342;--td-line:#303a49;--td-line-strong:#465264;--td-text:#f0f2f6;--td-muted:#b2bdcc;--td-faint:#8b99ab;--td-accent:#c1e9cf;--td-accent-dim:#263c35;--td-radius:16px}.td-shell{background:radial-gradient(ellipse at 70% -30%,#263243 0,transparent 48%),var(--td-bg)}.td-workspace-rail{gap:22px;padding:26px 16px 18px;background:#171b25;border-right:1px solid #2a3240}.td-rail-brand{gap:12px;padding:0 3px}.td-rail-brand h1{letter-spacing:.02em}.td-rail-brand small{color:#92a1b2;letter-spacing:1.1px}.td-brand-mark{width:40px;height:40px;border:1px solid #d4f2df;border-radius:14px;background:linear-gradient(145deg,#d4f2df,#9ed9bd);box-shadow:0 5px 18px #0003;color:#192c25}.td-shell .td-project-home{gap:6px;padding:15px;border-radius:13px;background:#222a37;border-color:#344151;box-shadow:0 8px 22px #0002}.td-project-home small{text-transform:uppercase}.td-project-home strong{font-size:14px}.td-project-home>span{color:#a6b6c6}.td-stage-nav{gap:5px}.td-shell .td-stage-nav>button{min-height:62px;padding:10px 11px;border-radius:12px}.td-shell .td-stage-nav>button:hover:not(:disabled){background:#252d39}.td-shell .td-stage-nav>button.active{background:#293d39;border-color:#42675b;box-shadow:inset 3px 0 0 var(--td-accent)}.td-stage-number{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:#28303c;color:#aab8c8;font-size:10px}.td-stage-nav>button.active .td-stage-number{background:#c1e9cf;color:#213a30}.td-stage-nav strong{font-size:13px;font-weight:600}.td-stage-nav small{margin-top:4px;color:#96a4b5}.td-rail-progress{padding:17px 5px 0}.td-rail-progress progress{border-radius:999px;overflow:hidden}.td-rail-progress p{line-height:1.6}.td-topbar{padding:21px 26px 18px;background:transparent}.td-workspace-title h2{font-size:24px;letter-spacing:.02em}.td-eyebrow{color:#96a5b7;font-weight:600;letter-spacing:1.2px}.td-shell button,.td-button,.td-project-menu>summary{border-radius:9px}.td-shell button,.td-button{transition:border-color .16s,background .16s,color .16s,box-shadow .16s}.td-shell button:hover:not(:disabled),.td-button:hover{box-shadow:0 3px 12px #0002}.td-shell button.primary{background:var(--td-accent);border-color:var(--td-accent);color:#1a3025;box-shadow:0 4px 15px #77c49c26}.td-shell button.primary:hover:not(:disabled){filter:brightness(1.05)}.td-session-bar{min-height:48px;margin:0 26px;border-top:1px solid #303947;border-bottom:1px solid #303947}.td-session-context{color:#a3b0c1}.td-shell main{padding:20px 26px 22px}.td-shots{gap:18px;grid-template-rows:minmax(0,1fr) 166px}.td-shot-form,.td-card,.td-shot-sidebar,.td-asset-card,.td-review-card,.td-post-shot,.settings{box-shadow:0 12px 32px #06091030}.td-shot-form{padding:20px;gap:16px;background:linear-gradient(155deg,#202733,#1b202b 38%)}.td-composer-heading{padding-bottom:16px}.td-composer-heading small{color:#a1b3c5;letter-spacing:.08em}.td-composer-heading h3{font-size:17px}.td-shell .td-composer-heading button{min-width:36px;padding:6px 10px}.td-form label,.td-settings-grid label{gap:6px;color:#b5c1d0}.td-shot-head{gap:10px}.td-shell input:not([type=checkbox]):not([type=radio]):not([type=range]),.td-shell textarea,.td-shell select{border-color:#3a4859;background-color:#252e3c}.td-shell input:focus,.td-shell textarea:focus,.td-shell select:focus{border-color:var(--td-accent);box-shadow:0 0 0 3px #b2eac82b}.td-form label.td-toggle{border-radius:9px;background:#252e39}.td-form label.td-toggle:has(input:checked){border-color:#507f69;background:#294338}.td-advanced>summary{border-radius:9px}.td-note{border-radius:10px;background:#232c39}.td-note>summary{padding:10px 12px;color:#c2cbd8}.td-note textarea{padding:11px 12px}.td-field-label{margin-bottom:2px;color:#d3dae4}.td-field-label small{color:#9aaabd}.td-highlight-wrap{border-radius:10px}.td-highlight-backdrop,.td-form textarea.td-highlight-input{padding:12px 13px;line-height:1.7}.td-card{overflow:hidden;background:#1b212c}.td-card>header{padding:13px 15px;background:#202733}.td-card-body{gap:11px;padding:14px}.td-preview .td-result-empty{border-radius:10px;background:#10151d}.td-take-player{border-radius:10px}.td-shot-sidebar{padding:12px 14px;background:#1b212b}.td-timeline-heading{gap:12px}.td-timeline-heading strong{color:#e5eaf1;letter-spacing:.04em}.td-timeline-heading>span{color:#9baabc}.td-shot-list{gap:9px}.td-shot-card{flex-basis:186px;padding:10px 11px;border-radius:11px;background:#252e3b}.td-shot-card:hover{background:#2c3745}.td-shot-card.selected{border-color:#9ed6b8;background:#294238;box-shadow:inset 0 2px #b9e5ca}.td-shot-card-main strong{font-size:12.5px}.td-shot-card-meta{color:#b3c1d0}.td-shot-sidebar-footer{gap:10px}.td-chip{padding:3px 9px}.td-settings-grid,.td-workflow-fields{gap:16px}.td-workflow-group{padding:17px;border-radius:12px;background:#1e2530}.td-assets-toolbar,.td-post-header,.td-post-summary,.td-post-merged,.td-step,.td-action-group,.td-run-bar{border-radius:12px}@media(max-width:1150px){.td-workspace-rail{padding:20px 9px}.td-topbar{padding:15px 16px}.td-session-bar{margin:0 16px}.td-shell main{padding:14px 16px}.td-shots{gap:14px}}@media(max-width:850px){.td-workspace-rail{padding:18px 7px}.td-shell .td-stage-nav>button{padding:7px}.td-stage-number{width:30px;height:30px;font-size:11px}.td-shots{grid-template-rows:auto auto 170px}.td-shot-form{padding:16px}}@media(max-width:520px){.td-workspace-rail{padding:14px 4px}.td-topbar{padding:12px 10px}.td-session-bar{margin:0 10px}.td-shell main{padding:10px}.td-shot-form{padding:13px}.td-shots{grid-template-rows:auto auto 195px}.td-shot-sidebar{padding:10px}}', fr = "yuq-director-styles";
+function Ma() {
+  if (document.getElementById(fr)) return;
   const e = document.createElement("style");
-  e.id = pr, e.textContent = vs, document.head.append(e);
+  e.id = fr, e.textContent = Na, document.head.append(e);
 }
-_s();
-function ks() {
-  const e = JSON.parse(xs);
+Ma();
+function Ra() {
+  const e = JSON.parse(ja);
   if (!Array.isArray(e.nodes) || !e.nodes.length) throw new Error("内置生图工作流为空");
   return e;
 }
-const Ss = "/scripts/app.js", $s = "/scripts/api.js";
+const La = "/scripts/app.js", Oa = "/scripts/api.js";
 Promise.all([
   import(
     /* @vite-ignore */
-    Ss
+    La
   ),
   import(
     /* @vite-ignore */
-    $s
+    Oa
   )
 ]).then(([{ app: e }, { api: t }]) => {
-  const r = async (d) => {
-    var _, N, k, w;
-    const f = {
-      ...d.plan,
-      pipeline: { ...d.plan.pipeline ?? { firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass" }, phase: "first_pass", firstPassConfirmed: !1 },
-      // 一采只生成基础结果；二采只在审片确认后由后处理支流单独执行。
-      shots: d.plan.shots.map((z) => ({ ...z, secondSamplingMode: "off" }))
-    }, c = d.shotIds ?? f.shots.filter((z) => z.enabled).map((z) => z.id), p = JSON.stringify(f), b = await e.graphToPrompt(e.rootGraph);
-    for (const [z, g] of c.entries()) {
-      if ((_ = d.signal) != null && _.aborted) throw Ge();
-      const $ = Nt(f, g);
-      if ($ < 0) throw new Error(`镜头 ${g} 未启用或不存在，无法生成`);
-      const T = ms(b.output, { planJson: p, activeIndex: $ });
-      (N = d.onShotStart) == null || N.call(d, g, z, c.length), (k = d.onProgress) == null || k.call(d, { value: 0, max: 0 }), await tn(t, () => t.queuePrompt(0, { output: T, workflow: b.workflow }), d.onProgress, `镜头 ${g} 一采执行失败`, d.signal), (w = d.onShotDone) == null || w.call(d, g, z, c.length);
-    }
-  }, o = async (d) => {
-    var $;
-    const f = (($ = e.graph) == null ? void 0 : $._nodes) ?? [], c = f.find((T) => T.type === "TheodoreDirector_PostprocessSecondPassSource"), p = f.find((T) => T.type === "TheodoreDirector_SaveSecondPass");
-    if (!c || !p || c.id === void 0 || p.id === void 0)
-      throw new Error("当前工作流缺少后处理单独二采支流，请重新载入仓库中的 V7 导播台示例工作流");
-    const b = c.mode, _ = p.mode;
-    let N;
-    try {
-      c.mode = 0, p.mode = 0, N = await e.graphToPrompt(e.rootGraph);
-    } finally {
-      c.mode = b, p.mode = _;
-    }
-    const { onProgress: k, signal: w, ...z } = d, g = bs(N.output, {
-      sourceId: String(c.id),
-      targetId: String(p.id),
-      requestJson: JSON.stringify(z),
-      processingMode: d.processingMode,
-      denoise: d.denoise
-    });
-    if (w != null && w.aborted) throw Ge();
-    await tn(t, () => t.queuePrompt(0, { output: g, workflow: N.workflow }), k, "单独二采任务执行失败", w);
+  const r = t.queuePrompt;
+  t.queuePrompt = function(h, c, g) {
+    return r.call(this, h, { ...c, output: Aa(c.output) }, g);
   };
-  let i, a;
-  const l = () => (i ?? (i = ks()), a ?? (a = Ji(i)), { graph: i, prompt: a }), s = (d, f) => {
-    const c = d instanceof Request ? d.url : String(d);
-    return t.fetchApi ? t.fetchApi(c, f) : fetch(d, f);
-  }, m = async (d, f) => {
-    const c = [], p = [];
-    for (const _ of d.nodes) {
-      const N = _.widgets_values_named ?? {};
-      _.type === "UNETLoader" && p.push([_.type, "unet_name", N.unet_name]), _.type === "CLIPLoader" && p.push([_.type, "clip_name", N.clip_name]), _.type === "CLIPLoader" && p.push([_.type, "type", N.type]), _.type === "VAELoader" && p.push([_.type, "vae_name", N.vae_name]);
+  const i = (h) => async (c) => {
+    var v, x, u, $;
+    const g = {
+      ...c.plan,
+      pipeline: { ...c.plan.pipeline ?? { firstPassConfirmed: !1, secondPassMode: "super_resolution_second_pass" }, phase: "first_pass", firstPassConfirmed: !1 },
+      // 一采只生成基础结果；二采只在审片确认后由后处理支流单独执行。
+      shots: c.plan.shots.map((j) => ({ ...j, secondSamplingMode: "off" }))
+    }, S = c.shotIds ?? g.shots.filter((j) => j.enabled).map((j) => j.id), T = JSON.stringify(g), y = await e.graphToPrompt(e.rootGraph);
+    for (const [j, E] of S.entries()) {
+      if ((v = c.signal) != null && v.aborted) throw qe();
+      const P = Gt(g, E);
+      if (P < 0) throw new Error(`镜头 ${E} 未启用或不存在，无法生成`);
+      const C = ya(y.output, { planJson: T, activeIndex: P, projectId: h, baseSeed: g.defaults.baseSeed });
+      (x = c.onShotStart) == null || x.call(c, E, j, S.length), (u = c.onProgress) == null || u.call(c, { value: 0, max: 0 }), await sn(t, () => t.queuePrompt(0, { output: C, workflow: y.workflow }), c.onProgress, `镜头 ${E} 一采执行失败`, c.signal), ($ = c.onShotDone) == null || $.call(c, E, j, S.length);
     }
-    const b = [...new Set(d.nodes.filter((_) => _.mode !== 4).map((_) => _.type).filter((_) => _ !== "Note"))];
-    if (await Promise.all(b.map(async (_) => {
-      var w, z, g;
-      const N = await s(`/object_info/${encodeURIComponent(_)}`, { signal: f });
-      if (!N.ok) {
-        c.push(`节点 ${_} 不可用（HTTP ${N.status}）`);
+  }, o = async (h) => {
+    var C;
+    const c = ((C = e.graph) == null ? void 0 : C._nodes) ?? [], g = c.find((N) => N.type === "TheodoreDirector_PostprocessSecondPassSource"), S = c.find((N) => N.type === "TheodoreDirector_SaveSecondPass");
+    if (!g || !S || g.id === void 0 || S.id === void 0)
+      throw new Error("当前工作流缺少后处理单独二采支流，请载入 YuQ 导播台工作流或接回对应支流");
+    const T = g.mode, y = S.mode;
+    let v;
+    try {
+      g.mode = 0, S.mode = 0, v = await e.graphToPrompt(e.rootGraph);
+    } finally {
+      g.mode = T, S.mode = y;
+    }
+    const { onProgress: x, signal: u } = h, { payload: $, output: j } = Ia(v.output, String(g.id), String(S.id), h);
+    if (u != null && u.aborted) throw qe();
+    const E = await (t.fetchApi ? t.fetchApi("/theodore-director/v1/second-pass/prepare", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify($),
+      signal: u
+    }) : fetch("/theodore-director/v1/second-pass/prepare", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify($),
+      signal: u
+    }));
+    if (E.status === 404) throw new Error("请更新 YuQ 插件并重启 ComfyUI，当前服务不支持二采接力状态校验");
+    const P = await E.json();
+    if (!E.ok) throw new Error(P.error || `HTTP ${E.status}`);
+    P.skip || await sn(t, () => t.queuePrompt(0, { output: j, workflow: v.workflow }), x, "单独二采任务执行失败", u);
+  };
+  let s, l;
+  const a = () => (s ?? (s = Ra()), l ?? (l = ta(s)), { graph: s, prompt: l }), d = (h, c) => {
+    const g = h instanceof Request ? h.url : String(h);
+    return t.fetchApi ? t.fetchApi(g, c) : fetch(h, c);
+  }, p = async (h, c) => {
+    const g = [], S = [];
+    for (const y of h.nodes) {
+      const v = y.widgets_values_named ?? {};
+      y.type === "UNETLoader" && S.push([y.type, "unet_name", v.unet_name]), y.type === "CLIPLoader" && S.push([y.type, "clip_name", v.clip_name]), y.type === "CLIPLoader" && S.push([y.type, "type", v.type]), y.type === "VAELoader" && S.push([y.type, "vae_name", v.vae_name]);
+    }
+    const T = [...new Set(h.nodes.filter((y) => y.mode !== 4).map((y) => y.type).filter((y) => y !== "Note"))];
+    if (await Promise.all(T.map(async (y) => {
+      var u, $, j;
+      const v = await d(`/object_info/${encodeURIComponent(y)}`, { signal: c });
+      if (!v.ok) {
+        g.push(`节点 ${y} 不可用（HTTP ${v.status}）`);
         return;
       }
-      const k = await N.json();
-      if (!k[_]) {
-        c.push(`当前 ComfyUI 缺少节点 ${_}`);
+      const x = await v.json();
+      if (!x[y]) {
+        g.push(`当前 ComfyUI 缺少节点 ${y}`);
         return;
       }
-      for (const [$, T, C] of p.filter((S) => S[0] === _)) {
-        const S = (g = (z = (w = k[$]) == null ? void 0 : w.input) == null ? void 0 : z.required) == null ? void 0 : g[T], L = Array.isArray(S) && Array.isArray(S[0]) ? S[0] : [];
-        (typeof C != "string" || !L.includes(C)) && c.push(`模型/类型 ${String(C)} 未安装或不在 ${$}.${T} 可用列表中`);
+      for (const [E, P, C] of S.filter((N) => N[0] === y)) {
+        const N = (j = ($ = (u = x[E]) == null ? void 0 : u.input) == null ? void 0 : $.required) == null ? void 0 : j[P], R = Array.isArray(N) && Array.isArray(N[0]) ? N[0] : [];
+        (typeof C != "string" || !R.includes(C)) && g.push(`模型/类型 ${String(C)} 未安装或不在 ${E}.${P} 可用列表中`);
       }
-    })), f != null && f.aborted) throw Ge();
-    if (c.length) throw new Error(c.join(`
+    })), c != null && c.aborted) throw qe();
+    if (g.length) throw new Error(g.join(`
 `));
-  }, h = {
-    defaults: async () => ({ ...Ki(l().graph), width: 1080, height: 720, batchSize: 1, modelOptions: await Qi(s) }),
-    register: async (d, f) => {
-      const c = await s("/theodore-director/v1/image-generation/register", {
+  }, m = async (h) => {
+    var y, v;
+    if (!(((y = e.graph) == null ? void 0 : y._nodes) ?? []).some((x) => x.type === "TheodoreDirector_ImageControls")) return;
+    const c = (((v = e.graph) == null ? void 0 : v._nodes) ?? []).filter((x) => x.type === "SaveImage" && x.mode === 2), g = c.map((x) => x.mode);
+    let S;
+    try {
+      c.forEach((x) => {
+        x.mode = 0;
+      }), S = await e.graphToPrompt(e.rootGraph);
+    } finally {
+      c.forEach((x, u) => {
+        x.mode = g[u];
+      });
+    }
+    const T = Ne(S.output, "TheodoreDirector_ImageControls").filter((x) => Ae(S.output, x, h));
+    if (T.length) {
+      if (T.length !== 1) throw new Error("当前项目连接了多个生图控制节点，请保留一个");
+      return { base: S, controls: S.output[T[0]].inputs };
+    }
+  }, b = (h) => ({
+    defaults: async () => {
+      const c = await m(h);
+      if (!c) return { ...ra(a().graph), modelOptions: await ia(d) };
+      const g = c.controls, S = ur(c.base.output, h, {
+        positivePrompt: "",
+        negativePrompt: String(g.negative_prompt ?? ""),
+        width: Number(g.width ?? 1024),
+        height: Number(g.height ?? 1024),
+        batchSize: Number(g.batch_size ?? 1),
+        seed: Number(g.seed ?? 0),
+        filenamePrefix: String(g.filename_prefix ?? "TheodoreDirector/ImageGen/manual/image")
+      });
+      return { negativePrompt: String(g.negative_prompt ?? ""), width: Number(g.width ?? 1080), height: Number(g.height ?? 720), batchSize: Number(g.batch_size ?? 1), seed: Number(g.seed ?? 0), ...Zo(S.output), models: [], canvasWorkflow: !0, workflowSource: "canvas" };
+    },
+    register: async (c, g) => {
+      const S = await d("/theodore-director/v1/image-generation/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ projectName: d, filename: f.filename, subfolder: f.subfolder, type: f.type })
-      }), p = await c.json();
-      if (!c.ok || !p.path) throw new Error(p.error ?? `登记图片失败：HTTP ${c.status}`);
-      return p.path;
+        body: JSON.stringify({ projectName: c, filename: g.filename, subfolder: g.subfolder, type: g.type })
+      }), T = await S.json();
+      if (!S.ok || !T.path) throw new Error(T.error ?? `登记图片失败：HTTP ${S.status}`);
+      return T.path;
     },
-    recover: async (d) => ({
-      promptId: d.promptId,
-      createdAt: d.createdAt,
-      settings: d.settings,
-      images: await or(d.promptId, void 0, s)
+    recover: async (c) => ({
+      promptId: c.promptId,
+      createdAt: c.createdAt,
+      settings: c.settings,
+      images: await dr(c.promptId, void 0, d)
     }),
-    queue: async (d) => {
-      const { graph: f, prompt: c } = l(), { signal: p, onProgress: b, onQueued: _, ...N } = d, k = Wt(N), w = Yi(c, f, k), z = Xi(f, w);
-      if (await m(z, p), p != null && p.aborted) throw Ge();
-      let g = "";
-      if (await tn(t, async () => {
-        const T = await t.queuePrompt(0, { output: w, workflow: z });
-        return g = String(T.prompt_id ?? ""), g && (_ == null || _(g)), T;
-      }, b, "自动生图任务执行失败", p, 6e4, {
-        probe: async (T) => {
-          const C = await s(`/history/${encodeURIComponent(T)}`);
-          if (!C.ok) throw new Error(`查询生图任务状态失败：HTTP ${C.status}`);
-          return oo(await C.json(), T);
+    queue: async (c) => {
+      const { signal: g, onProgress: S, onQueued: T, ...y } = c, v = await m(h), x = Qt({ ...y, workflowSource: v ? "canvas" : void 0 });
+      let u, $, j;
+      if (v) {
+        const C = ur(v.base.output, h, x);
+        u = C.output, $ = v.base.workflow, j = C.targetId;
+      } else {
+        const C = a();
+        u = oa(C.prompt, C.graph, x);
+        const N = aa(C.graph, u);
+        $ = N, await p({ ...N, nodes: N.nodes.filter((R) => u[String(R.id)]) }, g);
+      }
+      if (g != null && g.aborted) throw qe();
+      let E = "";
+      if (await sn(t, async () => {
+        const C = await t.queuePrompt(0, { output: u, workflow: $ });
+        return E = String(C.prompt_id ?? ""), E && (T == null || T(E)), C;
+      }, S, "自动生图任务执行失败", g, 6e4, {
+        probe: async (C) => {
+          const N = await d(`/history/${encodeURIComponent(C)}`);
+          if (!N.ok) throw new Error(`查询生图任务状态失败：HTTP ${N.status}`);
+          return li(await N.json(), C);
         },
         pollMs: 2500
-      }), !g) throw new Error("ComfyUI 没有返回生图任务 ID");
-      const $ = await or(g, p, s);
-      return { promptId: g, createdAt: Date.now(), settings: k, images: $ };
+      }), !E) throw new Error("ComfyUI 没有返回生图任务 ID");
+      const P = await dr(E, g, d, j);
+      return { promptId: E, createdAt: Date.now(), settings: x, images: P };
     }
-  };
+  });
   e.registerExtension({
     name: "YuQ.Director.UI",
-    beforeRegisterNodeDef(d, f) {
-      if (f.name === "TheodoreDirector_PostprocessSecondPassSource") {
-        const p = d.prototype.onNodeCreated;
-        d.prototype.onNodeCreated = function() {
-          var _, N;
-          p == null || p.apply(this);
-          const b = (_ = this.widgets) == null ? void 0 : _.find((k) => k.name === "request_json");
-          b && (b.type = "hidden", b.computeSize = () => [0, -4]), this.size = [Math.max(((N = this.size) == null ? void 0 : N[0]) ?? 300, 380), 80];
+    beforeConfigureGraph(h) {
+      zt(h);
+    },
+    nodeCreated(h) {
+      zt({ nodes: [h] });
+    },
+    loadedGraphNode(h) {
+      zt({ nodes: [h] });
+    },
+    afterConfigureGraph() {
+      zt(e.graph ?? {});
+    },
+    beforeRegisterNodeDef(h, c) {
+      if (c.name === "TheodoreDirector_PostprocessSecondPassSource") {
+        const S = h.prototype.onNodeCreated;
+        h.prototype.onNodeCreated = function() {
+          var y, v;
+          S == null || S.apply(this);
+          const T = (y = this.widgets) == null ? void 0 : y.find((x) => x.name === "request_json");
+          T && (T.type = "hidden", T.computeSize = () => [0, -4]), this.size = [Math.max(((v = this.size) == null ? void 0 : v[0]) ?? 300, 380), 80];
         };
         return;
       }
-      if (f.name !== "TheodoreDirector_Project") return;
-      const c = d.prototype.onNodeCreated;
-      d.prototype.onNodeCreated = function() {
-        var b, _;
-        c == null || c.apply(this);
-        const p = (b = this.widgets) == null ? void 0 : b.find((N) => N.name === "plan_json");
-        p && (p.type = "hidden", p.computeSize = () => [0, -4], this.addWidget("button", "打开 YuQ 导播台", null, () => {
-          var N;
+      if (c.name !== "TheodoreDirector_Project") return;
+      const g = h.prototype.onNodeCreated;
+      h.prototype.onNodeCreated = function() {
+        var T, y;
+        g == null || g.apply(this);
+        const S = (T = this.widgets) == null ? void 0 : T.find((v) => v.name === "plan_json");
+        S && (S.type = "hidden", S.computeSize = () => [0, -4], this.addWidget("button", "打开 YuQ 导播台", null, () => {
+          var v;
           try {
-            const k = JSON.parse(String(p.value)), w = ((N = e.graph) == null ? void 0 : N._nodes) ?? [], z = w.some((C) => C.type === "TheodoreDirector_PostprocessSecondPassSource") && w.some((C) => C.type === "TheodoreDirector_SaveSecondPass"), g = (C) => {
-              var S, L;
-              p.value = JSON.stringify(C, null, 2), this.setDirtyCanvas(!0, !0), (L = (S = e.graph) == null ? void 0 : S.setDirtyCanvas) == null || L.call(S, !0, !0);
-            }, $ = w.some((C) => {
-              var S;
-              return C.type === "TheodoreDirector_SelectShot" && ((S = C.outputs) == null ? void 0 : S.some((L) => {
-                var V;
-                return ["super-res 2nd pass", "latent upscale 2nd pass", "super-res only"].includes(L.name) && ((V = L.links) == null ? void 0 : V.length);
+            const x = JSON.parse(String(S.value)), u = ((v = e.graph) == null ? void 0 : v._nodes) ?? [], $ = u.some((N) => N.type === "TheodoreDirector_PostprocessSecondPassSource") && u.some((N) => N.type === "TheodoreDirector_SaveSecondPass"), j = (N) => {
+              var R, F;
+              S.value = JSON.stringify(N, null, 2), this.setDirtyCanvas(!0, !0), (F = (R = e.graph) == null ? void 0 : R.setDirtyCanvas) == null || F.call(R, !0, !0);
+            }, E = u.some((N) => {
+              var R;
+              return N.type === "TheodoreDirector_SelectShot" && ((R = N.outputs) == null ? void 0 : R.some((F) => {
+                var I;
+                return ["super-res 2nd pass", "latent upscale 2nd pass", "super-res only"].includes(F.name) && ((I = F.links) == null ? void 0 : I.length);
               }));
-            }), T = ys(() => {
-              var C;
-              return ((C = e.graph) == null ? void 0 : C._nodes) ?? [];
-            }, () => {
-              var C, S;
-              return (S = (C = e.graph) == null ? void 0 : C.setDirtyCanvas) == null ? void 0 : S.call(C, !0, !0);
-            });
-            hs(k, g, $, z ? o : void 0, r, g, h, T);
-          } catch (k) {
-            window.alert(`YuQ Director: ${k instanceof Error ? k.message : String(k)}`);
+            }), P = (N, R = /* @__PURE__ */ new Set()) => {
+              var I;
+              const F = String(N.id);
+              return F === String(this.id) ? !0 : R.has(F) ? !1 : (R.add(F), !!((I = N.inputs) != null && I.some((ne) => {
+                var M, V, Z, Y, L, _;
+                if (ne.link == null) return !1;
+                if ((Z = (V = (M = this.outputs) == null ? void 0 : M[0]) == null ? void 0 : V.links) != null && Z.includes(ne.link)) return !0;
+                const k = (_ = (L = (Y = e.graph) == null ? void 0 : Y.links) == null ? void 0 : L[ne.link]) == null ? void 0 : _.origin_id, D = u.find((K) => String(K.id) === String(k));
+                return D ? P(D, R) : !1;
+              })));
+            }, C = u.some((N) => N.type === "TheodoreDirector_ShotControl" && P(N));
+            Ta(x, j, E, $ ? o : void 0, i(String(this.id)), j, b(String(this.id)), C);
+          } catch (x) {
+            window.alert(`YuQ Director: ${x instanceof Error ? x.message : String(x)}`);
           }
-        }), this.size = [Math.max(((_ = this.size) == null ? void 0 : _[0]) ?? 300, 360), 110]);
+        }), this.size = [Math.max(((y = this.size) == null ? void 0 : y[0]) ?? 300, 360), 110]);
       };
     }
   });

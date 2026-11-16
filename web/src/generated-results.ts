@@ -1,6 +1,9 @@
 import type { PostprocessMode } from "./types";
 
 export interface GeneratedVideoItem {
+  relayValid?: boolean;
+  relayReason?: string;
+  relay?: { version?: number; key?: string; parent?: string };
   path: string;
   bytes?: number;
   modifiedAt?: number;

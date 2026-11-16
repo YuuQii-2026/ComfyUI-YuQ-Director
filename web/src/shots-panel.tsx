@@ -194,7 +194,11 @@ export function ShotsPanel({ plan, language, selected, setSelected, mutate, setR
         <div class="td-card-body">
           {preview?.errors.length ? <ul class="errors">{preview.errors.map((error) => <li>{error}</li>)}</ul> : <p class="ok">✓ {L("本镜头通过预检", "This shot passes")}</p>}
           {preview && preview.slots.length > 0 && <ol class="td-slot-list">{preview.slots.map((slot) => <li><code>{slot.label}</code><span>{slot.alias}</span></li>)}</ol>}
-          <button class="td-link-button" onClick={() => setShowCompiled((value) => !value)}>{showCompiled ? L("收起编译结果", "Hide compiled prompt") : L("查看发送给 H3 的最终提示词", "Show compiled prompt")}</button>
+          {relaysFromPrevious(plan, shot) && plan.continuity.durationMode === "final_output" && <p class="td-hint">{L(
+            `分镜时间从本段成片第 0 秒计算。生成时自动加上 ${(plan.continuity.videoContextFrames / plan.defaults.fps).toFixed(3)} 秒接力前缀，动作和台词同步换算。`,
+            `Shot times start at the delivered segment's zero. Generation adds ${(plan.continuity.videoContextFrames / plan.defaults.fps).toFixed(3)} seconds of overlap and shifts action and dialogue windows together.`,
+          )}</p>}
+          <button class="td-link-button" onClick={() => setShowCompiled((value) => !value)}>{showCompiled ? L("收起编译结果", "Hide reference compilation") : L("查看素材编译结果（成片时间）", "Show reference compilation (delivered times)")}</button>
           {showCompiled && <pre class="td-compiled">{preview?.compiledPrompt}</pre>}
         </div>
       </section>

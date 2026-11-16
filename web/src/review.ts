@@ -26,6 +26,7 @@ export function processedResultsFor(results: GeneratedVideoItem[], sourcePath: s
   const source = normalizePath(sourcePath);
   return results
     .filter((item) => (item.stage === "second_pass" || item.stage === "upscaled") && normalizePath(item.sourcePath) === source)
+    .filter((item) => item.relayValid !== false)
     .filter((item) => !mode || !item.processingMode || item.processingMode === mode)
     .sort((left, right) => (right.modifiedAt ?? 0) - (left.modifiedAt ?? 0));
 }
@@ -157,6 +158,7 @@ export function shotSignature(plan: DirectorPlan, shot: DirectorShot): string {
   return hashText(JSON.stringify([
     shot.prompt, shot.negativePrompt, shot.durationSeconds, shot.latentRelay, shot.seed, [...(shot.disabledAssetIds ?? [])].sort(),
     plan.promptPrefix, plan.promptSuffix, plan.continuity, assets,
+    ...(plan.generation ? [plan.generation, plan.defaults.fps, plan.defaults.baseSeed] : []),
   ]));
 }
 

@@ -8,7 +8,10 @@ not copy or vendor the following optional workflow dependencies:
   cross-shot audio/video latent continuity.
 - ComfyUI-KJNodes — used by the supplied YuQ workflow.
 - ComfyUI-Easy-Use — used by the supplied YuQ workflow.
-- ComfyUI MiniMax H3 Turbo — used by the supplied YuQ workflow.
+- comfyui-SelfLift — external progressive H3 sampling dependency, replacing
+  the former first-pass Turbo sampler.
+- YZ金鱼 MiniMax H3 文武双全 v2 — reference workflow supplied by the user;
+  SelfLift, Sigma and optional motion-LoRA settings adapted into the YuQ graph.
 - NVIDIA RTX Video Nodes — used by the YuQ super-resolution modes.
 - Comfyui Minimax H3 Latent Upscaler — used by the YuQ learned 3D latent
   upscale mode (V7.1 scheme C).

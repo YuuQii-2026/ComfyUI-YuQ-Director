@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -35,6 +35,8 @@ class VideoResultMetadata:
     source_path: str
     completed_at: str
     processing_mode: str = ""
+    relay: dict[str, Any] = field(default_factory=dict)
+    source_context: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -46,6 +48,9 @@ class SecondPassRequest:
     output_prefix: str
     request_id: str
     processing_mode: PostprocessMode
+    relay: dict[str, Any] = field(default_factory=dict)
+    media: dict[str, Any] = field(default_factory=dict, compare=False, repr=False)
+    source_context: dict[str, Any] = field(default_factory=dict)
 
 
 def metadata_path(video_path: Path) -> Path:
@@ -61,6 +66,8 @@ def write_video_result_metadata(
     plan_hash: str,
     source_path: str = "",
     processing_mode: str = "",
+    relay: dict[str, Any] | None = None,
+    source_context: dict[str, Any] | None = None,
 ) -> VideoResultMetadata:
     result = VideoResultMetadata(
         schema_version=2,
@@ -70,6 +77,8 @@ def write_video_result_metadata(
         source_path=source_path,
         completed_at=datetime.now(timezone.utc).isoformat(),
         processing_mode=processing_mode,
+        relay=relay or {},
+        source_context=source_context or {},
     )
     atomic_write_json(metadata_path(video_path), asdict(result))
     return result
@@ -91,6 +100,8 @@ def read_video_result_metadata(video_path: Path) -> VideoResultMetadata | None:
             # V7.2 的旧 second_pass 都是 RTX 超分二采，可安全补齐具体模式。
             processing_mode=str(data.get("processing_mode", data.get("processingMode", "")))
             or (SecondSamplingMode.SUPER_RESOLUTION_SECOND_PASS.value if stage == "second_pass" else ""),
+            relay=data.get("relay", {}) if isinstance(data.get("relay"), dict) else {},
+            source_context=data.get("source_context", {}) if isinstance(data.get("source_context"), dict) else {},
         )
     except (FileNotFoundError, json.JSONDecodeError, OSError, TypeError, ValueError):
         return None
@@ -98,11 +109,18 @@ def read_video_result_metadata(video_path: Path) -> VideoResultMetadata | None:
 
 def video_result_payload(root: Path, video_path: Path) -> dict[str, Any]:
     metadata = read_video_result_metadata(video_path)
+    from .second_pass_relay import invalid_reason
+
+    reason = invalid_reason(root, metadata) if metadata else ""
     return {
         "stage": metadata.stage if metadata else "legacy_unknown",
         "sourcePath": metadata.source_path if metadata else "",
         "completedAt": metadata.completed_at if metadata else "",
         "processingMode": metadata.processing_mode if metadata else "",
+        "relay": metadata.relay if metadata else {},
+        "sourceContext": metadata.source_context if metadata else {},
+        "relayValid": not bool(reason),
+        "relayReason": reason,
     }
 
 
@@ -154,6 +172,11 @@ def parse_second_pass_request(root: Path, value: str | dict[str, Any]) -> Second
 
     shot = select_shot_for_postprocess(plan, shot_id)
     paths = build_output_paths_from_values(plan.project_name, plan.run_id, shot_id, max(0, shot.active_index))
+    from .second_pass_relay import resolve_relay
+    from .render_source import resolve
+
+    source_context = resolve(output_root, plan, shot_id, candidate, data.get("sourceSelections"), data.get("workflowSignature", ""))
+    relay = resolve_relay(output_root, plan, shot_id, candidate, processing_mode, data)
     return SecondPassRequest(
         plan=plan,
         shot=shot,
@@ -162,6 +185,8 @@ def parse_second_pass_request(root: Path, value: str | dict[str, Any]) -> Second
         output_prefix=f"{paths.video_prefix}_{_postprocess_suffix(processing_mode)}",
         request_id=request_id,
         processing_mode=processing_mode,  # type: ignore[arg-type]
+        relay=relay,
+        source_context=source_context,
     )
 
 

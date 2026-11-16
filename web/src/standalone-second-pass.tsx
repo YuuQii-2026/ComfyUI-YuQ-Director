@@ -4,6 +4,7 @@ import { availableStandaloneProcessingModes, normalizeGeneratedResults, type Gen
 import { LazyVideoThumbnail } from "./lazy-video-thumbnail";
 import { assetFileName, comfyViewUrl } from "./media";
 import { postprocessShotEntries } from "./postprocess-selection";
+import { chosenTake, firstPassTakes } from "./review";
 import type { DirectorPlan, PostprocessMode, QueueProgress, QueueSecondPass } from "./types";
 
 interface Props {
@@ -77,6 +78,11 @@ export function StandaloneSecondPassPanel({ plan, language, queueSecondPass }: P
         sourcePath: path,
         requestId: `td2_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`,
         processingMode,
+        relayVersion: 1,
+        sourceSelections: Object.fromEntries(entries.flatMap((entry) => {
+          const take = chosenTake(entry.shot, firstPassTakes(normalizeGeneratedResults(states[entry.key]?.response ?? { found: false })));
+          return take ? [[entry.shot.id, take.path]] : [];
+        })),
         phase: "second_pass",
         denoise: processingMode === "super_resolution_only" ? undefined : denoise,
         onProgress: setProgress,

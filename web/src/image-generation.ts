@@ -15,6 +15,7 @@ export interface ImageWorkflowGraph { nodes: ImageWorkflowNode[]; links: unknown
 export interface ImageModelSettings { unetName?: string; clipName?: string; vaeName?: string; clipType?: string }
 export type ImageModelOptions = Record<keyof ImageModelSettings, string[]>;
 export interface ImageGenerationSettings extends ImageModelSettings {
+  workflowSource?: "canvas";
   positivePrompt: string;
   negativePrompt: string;
   width: number;
@@ -34,7 +35,7 @@ export interface ImageGenerationRecord {
   registeredPaths?: Record<string, string>;
 }
 export interface PendingImageGeneration { promptId: string; createdAt: number; settings: ImageGenerationSettings }
-export interface ImageGenerationDefaults extends Omit<ImageGenerationSettings, "positivePrompt" | "filenamePrefix"> { models: string[]; modelOptions?: ImageModelOptions }
+export interface ImageGenerationDefaults extends Omit<ImageGenerationSettings, "positivePrompt" | "filenamePrefix"> { models: string[]; modelOptions?: ImageModelOptions; canvasWorkflow?: boolean; fixedSteps?: boolean }
 export interface QueueImageGenerationRequest extends ImageGenerationSettings {
   signal?: AbortSignal;
   onProgress?: (progress: QueueProgress) => void;
@@ -50,18 +51,40 @@ export interface ImageGenerationController {
 export interface ApiPromptNode { class_type: string; inputs: Record<string, unknown>; _meta?: { title?: string } }
 export type ImageApiPrompt = Record<string, ApiPromptNode>;
 
+export function imageSamplingDefaults(prompt: ImageApiPrompt): { steps: number; cfg: number; fixedSteps: boolean } {
+  const values = Object.values(prompt);
+  const schedule = values.find((node) => node.class_type === "ManualSigmas");
+  const sampler = values.find((node) => node.class_type === "KSampler");
+  const guider = values.find((node) => node.class_type === "CFGGuider");
+  return { steps: schedule ? String(schedule.inputs.sigmas).split(",").filter((part) => part.trim()).length - 1 : Number(sampler?.inputs.steps ?? 12), cfg: Number(guider?.inputs.cfg ?? sampler?.inputs.cfg ?? 1), fixedSteps: Boolean(schedule) };
+}
+
 // Explicit widget order for the core nodes used by the supplied workflow. Frontend-only widgets never enter /prompt.
 const WIDGETS: Record<string, string[]> = {
   KSampler: ["seed", "control_after_generate", "steps", "cfg", "sampler_name", "scheduler", "denoise"],
   EmptySD3LatentImage: ["width", "height", "batch_size"], CLIPTextEncode: ["text"],
   UNETLoader: ["unet_name", "weight_dtype"], CLIPLoader: ["clip_name", "type", "device"],
   VAELoader: ["vae_name"], SaveImage: ["filename_prefix"], ModelSamplingAuraFlow: ["shift"], VAEDecode: [],
+  EmptyLatentImage: ["width", "height", "batch_size"],
+  TextEncodeQwenImage21: ["prompt", "negative_prompt", "resolution"],
+  QwenImage21Cache: ["device", "dtype"], ManualSigmas: ["sigmas"],
+  RandomNoise: ["noise_seed", "control_after_generate"], CFGGuider: ["cfg"],
+  KSamplerSelect: ["sampler_name"], SamplerCustomAdvanced: [],
+  ComfySwitchNode: ["switch"], PrimitiveStringMultiline: ["value"],
+  TextGenerate: ["prompt", "max_length", "sampling_mode", "sampling_mode.temperature", "sampling_mode.top_k", "sampling_mode.top_p", "sampling_mode.min_p", "sampling_mode.repetition_penalty", "sampling_mode.seed", "sampling_mode.presence_penalty", "thinking", "use_default_template", "mtp"],
 };
 const REQUIRED: Record<string, string[]> = {
   KSampler: ["model", "positive", "negative", "latent_image", "seed", "steps", "cfg", "sampler_name", "scheduler", "denoise"],
   EmptySD3LatentImage: ["width", "height", "batch_size"], CLIPTextEncode: ["text", "clip"],
   UNETLoader: ["unet_name", "weight_dtype"], CLIPLoader: ["clip_name", "type"], VAELoader: ["vae_name"],
   SaveImage: ["images", "filename_prefix"], ModelSamplingAuraFlow: ["model", "shift"], VAEDecode: ["samples", "vae"],
+  EmptyLatentImage: ["width", "height", "batch_size"],
+  TextEncodeQwenImage21: ["clip", "prompt", "negative_prompt", "resolution"],
+  QwenImage21Cache: ["model", "device", "dtype"], ManualSigmas: ["sigmas"],
+  RandomNoise: ["noise_seed"], CFGGuider: ["model", "positive", "negative", "cfg"],
+  KSamplerSelect: ["sampler_name"], SamplerCustomAdvanced: ["noise", "guider", "sampler", "sigmas", "latent_image"],
+  ComfySwitchNode: ["switch"], PrimitiveStringMultiline: ["value"],
+  TextGenerate: ["clip", "prompt", "max_length", "sampling_mode"],
 };
 export const IMAGE_NO_TEXT_POSITIVE = "画面干净，无文字、字幕、标语、水印、Logo 或画面叠字。";
 export const IMAGE_NO_TEXT_NEGATIVE = "text, subtitles, captions, watermark, logo, letters, typography, signature";
@@ -92,12 +115,22 @@ function oneNode(graph: ImageWorkflowGraph, type: string): ImageWorkflowNode {
   return nodes[0];
 }
 function encoder(graph: ImageWorkflowGraph, kind: "positive" | "negative"): ImageWorkflowNode {
+  const qwen = graph.nodes.find((node) => node.type === "TextEncodeQwenImage21");
+  if (qwen) return qwen;
   const sampler = oneNode(graph, "KSampler");
   const input = sampler.inputs?.find((item) => item.name === kind);
   const link = graph.links.find((raw) => Array.isArray(raw) && raw[0] === input?.link) as unknown[] | undefined;
   const node = link && graph.nodes.find((item) => String(item.id) === String(link[1]));
   if (!node || node.type !== "CLIPTextEncode") throw new Error(`生图工作流的 ${kind} 未直连 CLIPTextEncode`);
   return node;
+}
+
+function imageClip(graph: ImageWorkflowGraph): ImageWorkflowNode {
+  const clipLink = encoder(graph, "positive").inputs?.find((input) => input.name === "clip")?.link;
+  const link = graph.links.find((raw) => Array.isArray(raw) && raw[0] === clipLink) as unknown[] | undefined;
+  const clip = graph.nodes.find((node) => String(node.id) === String(link?.[1]));
+  if (!clip || clip.type !== "CLIPLoader") throw new Error("生图文本编码器未连接 CLIPLoader");
+  return clip;
 }
 
 // ComfyUI's mode 4 is the graph's bypass mode.  The supplied image workflow
@@ -120,6 +153,18 @@ export function uiWorkflowToApiPrompt(graph: ImageWorkflowGraph): ImageApiPrompt
   const visiting = new Set<string>();
   const sourceRef = (node: ImageWorkflowNode, outputSlot: number): [string, number] => {
     const id = String(node.id);
+    // A literal switch can be folded before submission. Disabled prompt enhancement
+    // then has no dependency on the optional text-generation model.
+    if (node.type === "ComfySwitchNode" && !node.inputs?.find((input) => input.name === "switch")?.link && typeof nodeValues(node).switch === "boolean") {
+      if (visiting.has(id)) throw new Error("生图工作流连线形成循环");
+      const selected = node.inputs?.find((input) => input.name === (nodeValues(node).switch ? "on_true" : "on_false"));
+      const link = links.get(String(selected?.link));
+      const upstream = link && nodes.get(String(link[1]));
+      if (!upstream) throw new Error("提示词增强开关缺少所选输入");
+      visiting.add(id);
+      try { return sourceRef(upstream, Number(link![2])); }
+      finally { visiting.delete(id); }
+    }
     if (node.mode === BYPASS_MODE) {
       if (outputSlot !== 0) throw new Error(`旁路节点 ${id} 不支持输出端口 ${outputSlot}`);
       const linkedInputs = (node.inputs ?? []).filter((input) => input.link != null);
@@ -184,15 +229,16 @@ export function effectiveImageSettings(settings: ImageGenerationSettings): Image
   };
 }
 export function imageWorkflowDefaults(graph: ImageWorkflowGraph): ImageGenerationDefaults {
-  const sampler = nodeValues(oneNode(graph, "KSampler"));
-  const latent = nodeValues(oneNode(graph, "EmptySD3LatentImage"));
+  const qwen = graph.nodes.some((node) => node.type === "TextEncodeQwenImage21");
+  const sampler = qwen ? { seed: nodeValues(oneNode(graph, "RandomNoise")).noise_seed, cfg: nodeValues(oneNode(graph, "CFGGuider")).cfg, steps: String(nodeValues(oneNode(graph, "ManualSigmas")).sigmas).split(",").length - 1 } : nodeValues(oneNode(graph, "KSampler"));
+  const latent = nodeValues(oneNode(graph, qwen ? "EmptyLatentImage" : "EmptySD3LatentImage"));
   const models = graph.nodes.flatMap((node) => [nodeValues(node).unet_name, nodeValues(node).clip_name, nodeValues(node).vae_name].filter((value): value is string => typeof value === "string"));
-  return { negativePrompt: String(nodeValues(encoder(graph, "negative")).text ?? ""),
+  return { negativePrompt: String(nodeValues(encoder(graph, "negative"))[qwen ? "negative_prompt" : "text"] ?? ""),
     width: Number(latent.width), height: Number(latent.height), batchSize: Number(latent.batch_size),
-    steps: Number(sampler.steps), cfg: Number(sampler.cfg), seed: Number(sampler.seed), models,
+    steps: Number(sampler.steps), cfg: Number(sampler.cfg), seed: Number(sampler.seed), models, fixedSteps: qwen,
     unetName: String(nodeValues(oneNode(graph, "UNETLoader")).unet_name),
-    clipName: String(nodeValues(oneNode(graph, "CLIPLoader")).clip_name),
-    clipType: String(nodeValues(oneNode(graph, "CLIPLoader")).type),
+    clipName: String(nodeValues(imageClip(graph)).clip_name),
+    clipType: String(nodeValues(imageClip(graph)).type),
     vaeName: String(nodeValues(oneNode(graph, "VAELoader")).vae_name) };
 }
 
@@ -223,12 +269,26 @@ export function patchImageGenerationPrompt(source: ImageApiPrompt, graph: ImageW
     if (prompt[id]?.class_type !== type) throw new Error(`生图 API 缺少节点 ${id} (${type})`);
     return prompt[id];
   };
-  prompt[String(encoder(graph, "positive").id)].inputs.text = effective.positivePrompt;
-  prompt[String(encoder(graph, "negative").id)].inputs.text = effective.negativePrompt;
-  Object.assign(node("KSampler").inputs, { seed: effective.seed, steps: effective.steps, cfg: effective.cfg });
-  Object.assign(node("EmptySD3LatentImage").inputs, { width: effective.width, height: effective.height, batch_size: effective.batchSize });
+  const qwen = graph.nodes.some((item) => item.type === "TextEncodeQwenImage21");
+  if (qwen) {
+    node("TextEncodeQwenImage21").inputs.negative_prompt = effective.negativePrompt;
+    const enhancer = graph.nodes.find((item) => item.type === "TextGenerate");
+    if (enhancer && prompt[String(enhancer.id)]) {
+      prompt[String(enhancer.id)].inputs.prompt = effective.positivePrompt;
+      prompt[String(enhancer.id)].inputs["sampling_mode.seed"] = effective.seed;
+    } else node("TextEncodeQwenImage21").inputs.prompt = effective.positivePrompt;
+    node("RandomNoise").inputs.noise_seed = effective.seed;
+    node("CFGGuider").inputs.cfg = effective.cfg;
+    // Turbo's supplied ManualSigmas is authoritative; a stored legacy step count
+    // must never replace its schedule.
+  } else {
+    prompt[String(encoder(graph, "positive").id)].inputs.text = effective.positivePrompt;
+    prompt[String(encoder(graph, "negative").id)].inputs.text = effective.negativePrompt;
+    Object.assign(node("KSampler").inputs, { seed: effective.seed, steps: effective.steps, cfg: effective.cfg });
+  }
+  Object.assign(node(qwen ? "EmptyLatentImage" : "EmptySD3LatentImage").inputs, { width: effective.width, height: effective.height, batch_size: effective.batchSize });
   for (const [key, type, input] of [["unetName", "UNETLoader", "unet_name"], ["clipName", "CLIPLoader", "clip_name"], ["clipType", "CLIPLoader", "type"], ["vaeName", "VAELoader", "vae_name"]] as const) {
-    if (effective[key]) node(type).inputs[input] = effective[key];
+    if (effective[key]) (type === "CLIPLoader" ? prompt[String(imageClip(graph).id)] : node(type)).inputs[input] = effective[key];
   }
   node("SaveImage").inputs.filename_prefix = effective.filenamePrefix;
   return prompt;

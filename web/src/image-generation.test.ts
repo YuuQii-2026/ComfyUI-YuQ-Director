@@ -75,13 +75,43 @@ describe("image generation workflow", () => {
     expect(patched["3"].inputs.model).toEqual(["16", 0]);
   });
 
-  it("真实内置工作流可转换并将旁路模型节点折叠为上游连线", () => {
+  it("Qwen Turbo uses the source eight-step schedule without requiring the optional enhancer", () => {
     const graph = JSON.parse(imageWorkflowText) as ImageWorkflowGraph;
+    const before = JSON.stringify(graph);
+    const defaults = imageWorkflowDefaults(graph);
+    expect(defaults).toMatchObject({ width: 1024, height: 1024, steps: 8, cfg: 1, clipType: "qwen_image", fixedSteps: true });
+    expect(defaults.unetName).toBe("qwen_image_2.1_turbo_int8_convrot.safetensors");
+    expect(defaults.clipName).toBe("qwen3vl/qwen3vl_8b_fp8_scaled.safetensors");
     const api = uiWorkflowToApiPrompt(graph);
-    const sampler = Object.values(api).find((node) => node.class_type === "KSampler");
-    expect(sampler?.inputs.model).toEqual(["16", 0]);
-    expect(Object.values(api).some((node) => node.class_type === "ModelSamplingAuraFlow")).toBe(false);
-    expect(Object.values(api).some((node) => node.class_type === "Note")).toBe(false);
+    expect(Object.values(api).some((node) => node.class_type === "TextGenerate")).toBe(false);
+    expect(Object.values(api).filter((node) => node.class_type === "CLIPLoader")).toHaveLength(1);
+    expect(Object.values(api).find((node) => node.class_type === "ManualSigmas")?.inputs.sigmas).toBe("1.0, 0.978453, 0.95418, 0.926626, 0.89508, 0.845148, 0.704534, 0.414568, 0");
+    const patched = patchImageGenerationPrompt(api, graph, { ...settings(), width: 1536, height: 1024, batchSize: 3, seed: 42 });
+    const byType = (type: string) => Object.values(patched).find((node) => node.class_type === type)!;
+    expect(byType("TextEncodeQwenImage21").inputs.prompt).toContain("清晨的山间小屋");
+    expect(byType("TextEncodeQwenImage21").inputs.negative_prompt).toContain("模糊");
+    expect(byType("EmptyLatentImage").inputs).toMatchObject({ width: 1536, height: 1024, batch_size: 3 });
+    expect(byType("RandomNoise").inputs.noise_seed).toBe(42);
+    expect(byType("ManualSigmas").inputs).toEqual(Object.values(api).find((node) => node.class_type === "ManualSigmas")!.inputs);
+    expect(byType("SaveImage").inputs.filename_prefix).toBe(settings().filenamePrefix);
+    expect(JSON.stringify(patched)).not.toContain("speak_and_recognation");
+    expect(JSON.stringify(graph)).toBe(before);
+  });
+
+  it("Qwen's optional enhancer preserves its system prompt and receives the same prompt and seed", () => {
+    const graph = JSON.parse(imageWorkflowText) as ImageWorkflowGraph;
+    const toggle = graph.nodes.find((node) => node.type === "ComfySwitchNode")!;
+    toggle.widgets_values_named!.switch = true;
+    toggle.widgets_values![0] = true;
+    const api = patchImageGenerationPrompt(uiWorkflowToApiPrompt(graph), graph, { ...settings(), seed: 77 });
+    const enhancer = Object.values(api).find((node) => node.class_type === "TextGenerate")!;
+    expect(enhancer.inputs.prompt).toContain("清晨的山间小屋");
+    expect(enhancer.inputs["sampling_mode.seed"]).toBe(77);
+    expect(enhancer.inputs.thinking).toBe(false);
+    expect(Object.values(api).filter((node) => node.class_type === "CLIPLoader")).toHaveLength(2);
+    const restored = patchImageWorkflow(graph, api);
+    expect(restored.nodes.find((node) => node.type === "TextGenerate")!.widgets_values_named!.prompt).toContain("清晨的山间小屋");
+    expect(Object.values(api).find((node) => node.class_type === "TextEncodeQwenImage21")!.inputs.prompt).toEqual([String(graph.nodes.find((node) => node.type === "TextGenerate")!.id), 0]);
   });
 
   it("无文字约束固定追加且提示词能分开保存", () => {
