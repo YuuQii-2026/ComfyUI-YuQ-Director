@@ -30,7 +30,7 @@
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/YuQii608/ComfyUI-YuQ-Director.git
+git clone https://github.com/YuuQii-2026/ComfyUI-YuQ-Director.git
 ```
 
 安装 Python 依赖后重启 ComfyUI：
